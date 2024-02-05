@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run tests",
+      "command": ".pipeliner/test.sh --watch",
+      "group": "test",
+      "type": "shell",
+    }
+  ]
+}
