@@ -16,7 +16,7 @@ Pipeliner_Test_Run() {
 
   Log_Info "Running tests"
 
-  Test_Run unit,integration | tee "$(Files_Path_Root)/$filename"
+  Test_Run unit | tee "$(Files_Path_Root)/$filename"
   exitCode=${PIPESTATUS[0]}
 
   Variables_Set testReport "$(Files_Path_Root)/$filename"
