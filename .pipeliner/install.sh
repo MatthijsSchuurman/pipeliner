@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ORIGINALPWD=$PWD #store as soon as script get loaded
-PACKAGEURL=https://tbd/pipeliner.zip
+PACKAGEURL=https://github.com/MatthijsSchuurman/pipeliner/releases/latest/download/pipeliner.zip
 
 Install_Directory() {
   echo $ORIGINALPWD
