@@ -15,7 +15,4 @@ jobs:
     - name: Run tests
       run: |
         source ./.pipeliner/init.sh
-
-        Environment_Platform
-
-        Log_Error "Test error"
+        Pipeliner_Test_Run
