@@ -22,6 +22,7 @@ Pipeliner_Package_Create() {
   VCS_Clone_Directory "$(Files_Path_Root)" "$buildDirectory"
   rm -rf "$buildDirectory/.hg" "$buildDirectory/.git"
   rm -f "$buildDirectory/.hgignore" "$buildDirectory/.gitignore"
+  rm -f "$buildDirectory/README.md" "$buildDirectory/LICENSE.md"
 
   Log_Info "Creating package"
   cd "$buildDirectory"

@@ -20,6 +20,8 @@ IntegrationTest_Pipeliner_Package_Create() {
   local actual=
   local exitCode=
 
+  rm -f $(Files_Path_Root)/pipeliner-1.2.345-test.zip
+
   Version_Pipeliner_Full() { #mock
     echo "1.2.345-test"
   }
@@ -30,6 +32,7 @@ IntegrationTest_Pipeliner_Package_Create() {
     mkdir -p "$target"
     cp -r "$source/.pipeliner" "$target"
     cp -r "$source/.vscode" "$target"
+    cp *.md "$target"
 
     rsync -a --exclude=.nuget/ --exclude=.local/ --exclude=.dotnet/ --exclude=bin/ --exclude=obj/ --exclude=.npm/ --exclude=node_modules/ "$source/examples" "$target"
   }
@@ -57,8 +60,14 @@ IntegrationTest_Pipeliner_Package_Create() {
   files=$(unzip -l $(Files_Path_Root)/pipeliner-1.2.345-test.zip | awk '{print $4}')
   Assert_Contains "$files" ".pipeliner/init.sh"
   Assert_Contains "$files" ".pipeliner/core/log.class.sh"
+  Assert_Contains "$files" ".pipeliner/README.md"
+  Assert_Contains "$files" ".pipeliner/LICENSE.md"
   Assert_Contains "$files" "examples/node/.pipelines/ci.local.sh"
   Assert_Contains "$files" "examples/dotnet/app1/work.sln"
+
+  Assert_Not_Contains "$(echo "$files" | grep "^README.md$")" "README.md" #should be removed from root
+  Assert_Not_Contains "$(echo "$files" | grep "^LICENSE.md$")" "LICENSE.md" #should be removed from root
+
 
   #Clean
   rm $(Files_Path_Root)/pipeliner-1.2.345-test.zip
