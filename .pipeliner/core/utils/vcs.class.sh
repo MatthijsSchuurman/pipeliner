@@ -12,6 +12,9 @@ VCS_Affected() {
     fi
     files=$(hg status --rev $branch)
   elif [ -d $(Files_Path_Root)/.git ]; then
+    if [ ! "$branch" ]; then
+      branch=$(git branch --show-current)
+    fi
     files=$(git diff --name-only $branch)
   else
     Log_Error "Unknown version control system" >&2
@@ -75,7 +78,7 @@ VCS_Clone_Directory() {
       hg clone "$source" "$target"
       exitCode=$?
     elif [ -d "$source/.git" ]; then
-      git clone "$source" "$target"
+      git clone "$source" "$target" 2> /dev/null
       exitCode=$?
     else
       Log_Error "Unknown version control system" >&2
