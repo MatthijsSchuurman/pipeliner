@@ -11,6 +11,26 @@ UnitTest_Environment_Platform() {
   #Then
   Assert_Equal "$actual" "local"
 }
+UnitTest_Environment_Platform_Azure() {
+  #Given
+  AGENT_ID="123"
+
+  #When
+  local actual=$(Environment_Platform)
+
+  #Then
+  Assert_Equal "$actual" "azure"
+}
+UnitTest_Environment_Platform_Github() {
+  #Given
+  GITHUB_ACTIONS="true"
+
+  #When
+  local actual=$(Environment_Platform)
+
+  #Then
+  Assert_Equal "$actual" "github"
+}
 
 UnitTest_Environment_OS() {
   #Given
