@@ -94,6 +94,22 @@ UnitTest_Version_BuildId_Azure() {
   Assert_Equal "$actual" 123
 }
 
+UnitTest_Version_BuildId_Github() {
+  #Given
+  local actual=
+
+  Environment_Platform() { #mock
+    echo "github"
+  }
+  GITHUB_RUN_NUMBER=123 #mock
+
+  #When
+  actual=$(Version_BuildId)
+
+  #Then
+  Assert_Equal "$actual" 123
+}
+
 UnitTest_Version_BuildId_Fail() {
   #Given
   Environment_Platform() { #mock
