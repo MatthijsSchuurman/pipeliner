@@ -3,6 +3,8 @@ pipeliner-*.zip
 pipeliner-docker-*.tar.xz
 test_report-*.txt
 
+tmp.*log
+
 .ssh/
 
 .npm/
@@ -14,7 +16,6 @@ node_modules/
 .templateengine/
 **/bin/
 **/obj/
-
 
 test-report.json
 test-report.xml
