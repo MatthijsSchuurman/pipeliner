@@ -12,6 +12,7 @@ E2ETest_Pipeliner_Pipeline_CD() {
   exitCode=$?
   actual=$(cat tmp.cd.log)
   rm tmp.cd.log
+  echo "$actual"
 
   #Then
   Assert_Equal $exitCode 0
