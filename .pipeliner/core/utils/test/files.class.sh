@@ -315,6 +315,8 @@ UnitTest_Files_Get_E2E_Tests() {
 # Files watch
 
 UnitTest_Files_Watch_Directory_Written() {
+  if [ ! -x "$(command -v inotifywait)" ] && [ ! -x "$(command -v fswatch)" ]; then exit 255 ; fi #skip
+
   #Given
   local directory=tmp
   rm -rf $directory 2>&1 > /dev/null

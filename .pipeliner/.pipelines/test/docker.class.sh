@@ -24,7 +24,11 @@ UnitTest_Pipeliner_Docker_Create_Image() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "INFO Create Pipeliner Docker image"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" INFO "Create Pipeliner Docker image"
+  else
+    Assert_Contains "$actual" info "Create Pipeliner Docker image"
+  fi
 
   Assert_File_Exists "$dockerImageFile"
   Assert_Match "$(Variables_Get dockerImage)" "$dockerImageFile"

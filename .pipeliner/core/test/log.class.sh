@@ -26,6 +26,18 @@ UnitTest_Log_Debug_Azure() {
   #Then
   Assert_Contains "$actual" "##[debug]" "debug message"
 }
+UnitTest_Log_Debug_Github() {
+  #Given
+  Environment_Platform() { #mock
+    echo "github"
+  }
+
+  #When
+  local actual=$(Log_Debug "debug message")
+
+  #Then
+  Assert_Contains "$actual" "::debug::debug message"
+}
 UnitTest_Log_Debug_Fail() {
   #Given
   local actual=
@@ -68,6 +80,18 @@ UnitTest_Log_Info_Azure() {
   #Then
   Assert_Contains "$actual" "##[info]" "info message"
 }
+UnitTest_Log_Info_Github() {
+  #Given
+  Environment_Platform() { #mock
+    echo "github"
+  }
+
+  #When
+  local actual=$(Log_Info "info message")
+
+  #Then
+  Assert_Contains "$actual" "::info::info message"
+}
 UnitTest_Log_Info_Fail() {
   #Given
   local actual=
@@ -109,6 +133,18 @@ UnitTest_Log_Warning_Azure() {
 
   #Then
   Assert_Contains "$actual" "##[warning]" "warning message"
+}
+UnitTest_Log_Warning_Github() {
+  #Given
+  Environment_Platform() { #mock
+    echo "github"
+  }
+
+  #When
+  local actual=$(Log_Warning "warning message")
+
+  #Then
+  Assert_Contains "$actual" "::warning::warning message"
 }
 UnitTest_Log_Warning_Fail() {
   #Given
@@ -153,6 +189,18 @@ UnitTest_Log_Error_Azure() {
   #Then
   Assert_Contains "$actual" "##[error]" "error message"
 }
+UnitTest_Log_Error_Github() {
+  #Given
+  Environment_Platform() { #mock
+    echo "github"
+  }
+
+  #When
+  local actual=$(Log_Error "error message")
+
+  #Then
+  Assert_Contains "$actual" "::error::error message"
+}
 UnitTest_Log_Error_Fail() {
   #Given
   local actual=
@@ -194,6 +242,27 @@ UnitTest_Log_Variable_Azure() {
 
   #Then
   Assert_Contains "$actual" "##vso[task.setvariable variable=key]value"
+}
+UnitTest_Log_Variable_Github() {
+  #Given
+  Environment_Platform() { #mock
+    echo "github"
+  }
+
+  GITHUB_OUTPUT=$(mktemp) #mock
+
+  #When
+  local actual=$(Log_Variable "key" "value")
+
+  #Then
+  Assert_Empty "$actual"
+
+  Assert_File_Exists "$GITHUB_OUTPUT"
+  actual=$(cat "$GITHUB_OUTPUT")
+  Assert_Contains "$actual" "key=value"
+
+  #Cleanup
+  rm "$GITHUB_OUTPUT"
 }
 UnitTest_Log_Variable_Fail() {
   #Given
@@ -237,6 +306,18 @@ UnitTest_Log_Group_Azure() {
   #Then
   Assert_Contains "$actual" "##[group]" "group message"
 }
+UnitTest_Log_Group_Github() {
+  #Given
+  Environment_Platform() { #mock
+    echo "github"
+  }
+
+  #When
+  local actual=$(Log_Group "group message")
+
+  #Then
+  Assert_Contains "$actual" "::group::group message"
+}
 UnitTest_Log_Group_Fail() {
   #Given
   local actual=
@@ -278,6 +359,18 @@ UnitTest_Log_Group_End_Azure() {
 
   #Then
   Assert_Equal "$actual" "##[endgroup]"
+}
+UnitTest_Log_Group_End_Github() {
+  #Given
+  Environment_Platform() { #mock
+    echo "github"
+  }
+
+  #When
+  local actual=$(Log_Group_End)
+
+  #Then
+  Assert_Equal "$actual" "::endgroup::"
 }
 UnitTest_Log_Group_End_Fail() {
   #Given

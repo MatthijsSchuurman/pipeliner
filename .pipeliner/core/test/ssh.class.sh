@@ -110,7 +110,11 @@ UnitTest_SSH_Generate_Key() {
   actual=$(SSH_Generate_Key "$keyName")
 
   #Then
-  Assert_Contains "$actual" "GROUP SSH generating key: $keyFile" "ed25519" "ENDGROUP"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "SSH generating key: $keyFile" "ed25519" ENDGROUP
+  else
+    Assert_Contains "$actual" group "SSH generating key: $keyFile" "ed25519" endgroup
+  fi
 
   Assert_File_Exists "$keyFile"
   Assert_File_Exists "$keyFilePublic"
@@ -121,7 +125,11 @@ UnitTest_SSH_Generate_Key() {
   actual=$(SSH_Generate_Key "$keyName")
 
   #Then
-  Assert_Contains "$actual" "INFO SSH key already exists: $keyFile"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" INFO "SSH key already exists: $keyFile"
+  else
+    Assert_Contains "$actual" info "SSH key already exists: $keyFile"
+  fi
 
   Assert_File_Exists "$keyFile"
   Assert_File_Exists "$keyFilePublic"
@@ -194,7 +202,7 @@ UnitTest_SSH_Deploy_Key() {
   local keyFile=$(SSH__Key_File "$keyName")
   local keyFilePublic=$(SSH__Key_File_Public "$keyName")
   local remoteKeysFile=$(SSH__Remote_Authorized_Keys_File)
-  remoteKeysFile=$(eval realpath $remoteKeysFile) #get actual home directory
+  remoteKeysFile=$(eval realpath -m $remoteKeysFile) #get actual home directory
 
   rm -f "$keyFile" "$keyFilePublic"
 
@@ -205,11 +213,13 @@ UnitTest_SSH_Deploy_Key() {
     cp "$remoteKeysFile" "$remoteKeysFile.bak"
   fi
 
+  mkdir ~/.ssh/ 2>/dev/null
   echo "$keyPublic" >> ~/.ssh/authorized_keys #need so test can be ran without password
 
+  ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
 
   #When
-  actual=$(SSH_Deploy_Key "$host" "$keyName")
+  actual=$(SSH_Deploy_Key "$host" "$keyName" 2> /dev/null)
 
   #Then
   Assert_Equal "$actual" ""
@@ -231,7 +241,7 @@ UnitTest_SSH_Run() {
   #Given
   local actual=
   local host="localhost"
-  local command=w
+  local command="echo \$SSH_CLIENT"
 
   local keyName="pipeliner-localhost-test"
   local keyFile=$(SSH__Key_File "$keyName")
@@ -240,14 +250,17 @@ UnitTest_SSH_Run() {
   if [ ! -f "$keyFile" ]; then
     SSH_Generate_Key "$keyName"
 
+    mkdir ~/.ssh/ 2>/dev/null
     cat "$keyFilePublic" >> ~/.ssh/authorized_keys
   fi
 
+  ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
+
   #When
-  actual=$(SSH_Run "$host" "$command" "$keyName")
+  actual=$(SSH_Run "$host" "$command" "$keyName" 2> /dev/null)
 
   #Then
-  Assert_Contains "$actual" "sshd"
+  Assert_Not_Empty "$actual"
 }
 
 UnitTest_SSH_Copy() {
@@ -264,11 +277,14 @@ UnitTest_SSH_Copy() {
   if [ ! -f "$keyFile" ]; then
     SSH_Generate_Key "$keyName"
 
+    mkdir ~/.ssh/ 2>/dev/null
     cat "$keyFilePublic" >> ~/.ssh/authorized_keys
   fi
 
+  ssh-keygen -R localhost 2>/dev/null #ensure no host key is present
+
   #When
-  actual=$(SSH_Copy "$host" "$sourceFile" "$destinationFile" "$keyName")
+  actual=$(SSH_Copy "$host" "$sourceFile" "$destinationFile" "$keyName" 2> /dev/null)
 
   #Then
   Assert_Equal "$actual" ""

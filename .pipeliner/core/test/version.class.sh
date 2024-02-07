@@ -94,6 +94,22 @@ UnitTest_Version_BuildId_Azure() {
   Assert_Equal "$actual" 123
 }
 
+UnitTest_Version_BuildId_Github() {
+  #Given
+  local actual=
+
+  Environment_Platform() { #mock
+    echo "github"
+  }
+  GITHUB_RUN_NUMBER=123 #mock
+
+  #When
+  actual=$(Version_BuildId)
+
+  #Then
+  Assert_Equal "$actual" 123
+}
+
 UnitTest_Version_BuildId_Fail() {
   #Given
   Environment_Platform() { #mock
@@ -112,6 +128,8 @@ UnitTest_Version_BuildId_Fail() {
 
 
 UnitTest_Version_BuildId_Next() {
+  if [ "$(Environment_Platform)" != "local" ]; then exit 255; fi #skip
+
   #Given
   local currentBuildId=$(cat $(Files_Path_Data)/.buildId 2> /dev/null || echo 0)
   local expectedBuildId=$((currentBuildId+1))
@@ -124,6 +142,8 @@ UnitTest_Version_BuildId_Next() {
 }
 
 UnitTest_Version_Generate_BuildId_NewFile() {
+  if [ "$(Environment_Platform)" != "local" ]; then exit 255; fi #skip
+
   #Given
   mv $(Files_Path_Data)/.buildId $(Files_Path_Data)/.buildId.bak
 

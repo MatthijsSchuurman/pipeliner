@@ -113,6 +113,7 @@ UnitTest_VCS_Clone_Directory() {
 
 UnitTest_VCS_Clone_Directory_Update() {
   if [ ! -d $(Files_Path_Root)/.hg ] && [ ! -d $(Files_Path_Root)/.git ]; then exit 255; fi #skip
+  if [ $(Environment_Platform) != "local" ]; then exit 255; fi #skip, in pipelines this misses its branch
 
   #Given
   local source=$(Files_Path_Root)

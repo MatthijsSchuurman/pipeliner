@@ -54,13 +54,13 @@ Install_Download() {
   fi
 
   local output=
-  output=$(wget --no-clobber --content-disposition "$url" 2>&1)
+  output=$(wget --max-redirect=10 --no-clobber --content-disposition "$url" 2>&1)
   if [ $? != 0 ]; then
     echo "Error: Unable to download $url" >&2
     exit 1
   fi
 
-  local filename=$(echo $output | grep "pipeliner-.*\.zip" | sed -E "s/.*(pipeliner-.*\.zip).*/\1/")
+  local filename=$(echo $output | grep "pipeliner.*\.zip" | sed -E "s/.*(pipeliner.*\.zip).*/\1/")
   echo "$filename"
 }
 

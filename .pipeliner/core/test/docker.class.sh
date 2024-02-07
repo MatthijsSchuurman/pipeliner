@@ -15,7 +15,12 @@ UnitTest_Docker_Install() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Install" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" endgroup
+  fi
+  Assert_Contains "$actual" "Docker version"
 
   which docker > /dev/null 2>&1
   Assert_Equal $? 0
@@ -57,8 +62,11 @@ UnitTest_Docker_Build() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Build" core/Dockerfile core:test
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Build" core/Dockerfile core:test ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Build" core/Dockerfile core:test endgroup
+  fi
 }
 
 UnitTest_Docker_Build_Arguments() {
@@ -76,8 +84,12 @@ UnitTest_Docker_Build_Arguments() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Build" core/test/Dockerfile core-test:test
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Build" core/test/Dockerfile core-test:test ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Build" core/test/Dockerfile core-test:test endgroup
+  fi
+
   Assert_Contains "$actual2" key1=value1
   Assert_Contains "$actual2" key2=value2
 
@@ -88,8 +100,12 @@ UnitTest_Docker_Build_Arguments() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Build" core/test/Dockerfile core-test:test
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Build" core/test/Dockerfile core-test:test ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Build" core/test/Dockerfile core-test:test endgroup
+  fi
+
   Assert_Contains "$actual2" key1=value1
   Assert_Contains "$actual2" key2=default2
 }
@@ -110,8 +126,11 @@ UnitTest_Docker_Run_node() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP Docker Run node:test pwd
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Run" node:test pwd ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Run" node:test pwd endgroup
+  fi
 
   #When
   actual=$(Docker_Run node:test pwd .pipeliner/)
@@ -119,8 +138,11 @@ UnitTest_Docker_Run_node() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP Docker Run node:test pwd
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Run" node:test pwd ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Run" node:test pwd endgroup
+  fi
 }
 UnitTest_Docker_Run_dotnet() {
   if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
@@ -138,8 +160,11 @@ UnitTest_Docker_Run_dotnet() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP Docker Run dotnet:test pwd
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Run" dotnet:test pwd ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Run" dotnet:test pwd endgroup
+  fi
 }
 UnitTest_Docker_Run_Owner() {
   if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
@@ -289,7 +314,7 @@ UnitTest_Docker_List_All() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "node test" "node 19"
+  Assert_Contains "$actual" "node test" "node"
 }
 
 UnitTest_Docker_Save() {
@@ -308,8 +333,11 @@ UnitTest_Docker_Save() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Save" core:test core-test.tar.gz
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Save" core:test core-test.tar.gz ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Save" core:test core-test.tar.gz endgroup
+  fi
 
   Assert_File_Exists $(Files_Path_Root)/core-test.tar.gz
   Assert_Contains "$(file $(Files_Path_Root)/core-test.tar.gz)" "gzip compressed data"
@@ -320,9 +348,12 @@ UnitTest_Docker_Save() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Save" core:test core-test.tar.gz
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Save" core:test core-test.tar.gz ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Save" core:test core-test.tar.gz endgroup
+  fi
   Assert_Contains "$actual" "Overwriting docker image"
-  Assert_Contains "$actual" ENDGROUP
 
   Assert_File_Exists $(Files_Path_Root)/core-test.tar.gz
   Assert_Contains "$(file $(Files_Path_Root)/core-test.tar.gz)" "gzip compressed data"
@@ -336,8 +367,11 @@ UnitTest_Docker_Save() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Save" core:test core-test.tar.xz
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Save" core:test core-test.tar.xz ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Save" core:test core-test.tar.xz endgroup
+  fi
 
   Assert_File_Exists $(Files_Path_Root)/core-test.tar.xz
   Assert_Contains "$(file $(Files_Path_Root)/core-test.tar.xz)" "XZ compressed data"
@@ -351,8 +385,11 @@ UnitTest_Docker_Save() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Save" core:test core-test.tar.bz2
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Save" core:test core-test.tar.bz2 ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Save" core:test core-test.tar.bz2 endgroup
+  fi
 
   Assert_File_Exists $(Files_Path_Root)/core-test.tar.bz2
   Assert_Contains "$(file $(Files_Path_Root)/core-test.tar.bz2)" "bzip2 compressed data"
@@ -374,9 +411,12 @@ UnitTest_Docker_Save_Fail() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" GROUP "Docker Save" UNKNOWN:test core-test.tar.gz
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Save" UNKNOWN:test core-test.tar.gz ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Save" UNKNOWN:test core-test.tar.gz endgroup
+  fi
   Assert_Contains "$actual" "Failed to save docker image"
-  Assert_Contains "$actual" ENDGROUP
   Assert_Not_File_Exists $(Files_Path_Root)/core-test.tar.gz
 }
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source $(Files_Path_Pipeliner)/core/compression.class.sh
+source $(Files_Path_Pipeliner)/core/environment.class.sh
 
 UnitTest_Compression_Zip() {
   #Given
@@ -17,9 +18,12 @@ UnitTest_Compression_Zip() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Zipping $filename"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Zipping $filename" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Zipping $filename" endgroup
+  fi
   Assert_Contains "$actual" adding compression.class.sh
-  Assert_Contains "$actual" ENDGROUP
 
   rm -f "$filename"
 
@@ -33,10 +37,13 @@ UnitTest_Compression_Zip() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Zipping $filename"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Zipping $filename" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Zipping $filename" endgroup
+  fi
   Assert_Contains "$actual" adding compression.class.sh
   Assert_Contains "$actual" adding log.class.sh
-  Assert_Contains "$actual" ENDGROUP
 }
 
 UnitTest_Compression_Zip_Directory() {
@@ -54,10 +61,13 @@ UnitTest_Compression_Zip_Directory() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Zipping $filename"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Zipping $filename" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Zipping $filename" endgroup
+  fi
   Assert_Contains "$actual" adding core/compression.class.sh
   Assert_Contains "$actual" adding test.sh
-  Assert_Contains "$actual" ENDGROUP
 
   rm -f "$filename"
 }
@@ -77,9 +87,12 @@ UnitTest_Compression_Zip_Fail() {
 
   #Then
   Assert_Equal $exitCode 12
-  Assert_Contains "$actual" GROUP "Zipping $filename"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Zipping $filename" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Zipping $filename" endgroup
+  fi
   Assert_Contains "$actual" Zipping failed
-  Assert_Contains "$actual" ENDGROUP
 
   rm -f "$filename"
 }

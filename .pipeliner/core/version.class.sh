@@ -29,6 +29,9 @@ Version_BuildId() {
     "azure")
       version=$BUILD_BUILDID
       ;;
+    "github")
+      version=$GITHUB_RUN_NUMBER
+      ;;
     "local")
       if [ ! "$PIPELINER_BUILDID" ]; then
         Log_Error "Local build id is not set, please run Version_BuildId_Next first" >&2

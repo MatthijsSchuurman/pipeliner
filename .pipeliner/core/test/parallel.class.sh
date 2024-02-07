@@ -190,9 +190,15 @@ UnitTest_Parallel__Batch_Results() {
   local actual=$(Parallel__Batch_Results)
 
   #Then
-  Assert_Contains "$actual" "GROUP Job #1: cmd1" "log1" "Exit code: 1, PID: 1" "GROUP END"
-  Assert_Contains "$actual" "GROUP Job #2: cmd2" "log2" "Exit code: 2, PID: 2" "GROUP END"
-  Assert_Contains "$actual" "GROUP Job #3: cmd3" "log3" "Exit code: 3, PID: 3" "GROUP END"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Match "$actual" GROUP "Job #1: cmd1" "log1" "Exit code: 1, PID: 1" ENDGROUP
+    Assert_Match "$actual" GROUP "Job #2: cmd2" "log2" "Exit code: 2, PID: 2" ENDGROUP
+    Assert_Match "$actual" GROUP "Job #3: cmd3" "log3" "Exit code: 3, PID: 3" ENDGROUP
+  else
+    Assert_Match "$actual" group "Job #1: cmd1" "log1" "Exit code: 1, PID: 1" endgroup
+    Assert_Match "$actual" group "Job #2: cmd2" "log2" "Exit code: 2, PID: 2" endgroup
+    Assert_Match "$actual" group "Job #3: cmd3" "log3" "Exit code: 3, PID: 3" endgroup
+  fi
 
   #Clean
   Parallel__Temporary_Directory_Remove
@@ -249,14 +255,23 @@ UnitTest_Parallel_Run() {
 
   #Then
   Assert_Match $exitCode 1
-
-  Assert_Match "$value" "GROUP Job #1: echo test1" "test1" "Exit code: 0, PID: [0-9]+" "GROUP END"
-  Assert_Match "$value" "GROUP Job #2: echo test2" "test2" "Exit code: 0, PID: [0-9]+" "GROUP END"
-  Assert_Match "$value" "GROUP Job #3: echo test3" "test3" "Exit code: 0, PID: [0-9]+" "GROUP END"
-  Assert_Match "$value" "GROUP Job #4: exit 1" "Exit code: 1, PID: [0-9]+" "GROUP END"
-  Assert_Match "$value" "GROUP Job #5: echo test5" "test5" "Exit code: 0, PID: [0-9]+" "GROUP END"
-  Assert_Match "$value" "GROUP Job #6: echo test6" "test6" "Exit code: 0, PID: [0-9]+" "GROUP END"
-  Assert_Match "$value" "GROUP Job #7: echo test7" "test7" "Exit code: 0, PID: [0-9]+" "GROUP END"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Match "$value" GROUP "Job #1: echo test1" "test1" "Exit code: 0, PID: [0-9]+" ENDGROUP
+    Assert_Match "$value" GROUP "Job #2: echo test2" "test2" "Exit code: 0, PID: [0-9]+" ENDGROUP
+    Assert_Match "$value" GROUP "Job #3: echo test3" "test3" "Exit code: 0, PID: [0-9]+" ENDGROUP
+    Assert_Match "$value" GROUP "Job #4: exit 1" "Exit code: 1, PID: [0-9]+" ENDGROUP
+    Assert_Match "$value" GROUP "Job #5: echo test5" "test5" "Exit code: 0, PID: [0-9]+" ENDGROUP
+    Assert_Match "$value" GROUP "Job #6: echo test6" "test6" "Exit code: 0, PID: [0-9]+" ENDGROUP
+    Assert_Match "$value" GROUP "Job #7: echo test7" "test7" "Exit code: 0, PID: [0-9]+" ENDGROUP
+  else
+    Assert_Match "$value" group "Job #1: echo test1" "test1" "Exit code: 0, PID: [0-9]+" endgroup
+    Assert_Match "$value" group "Job #2: echo test2" "test2" "Exit code: 0, PID: [0-9]+" endgroup
+    Assert_Match "$value" group "Job #3: echo test3" "test3" "Exit code: 0, PID: [0-9]+" endgroup
+    Assert_Match "$value" group "Job #4: exit 1" "Exit code: 1, PID: [0-9]+" endgroup
+    Assert_Match "$value" group "Job #5: echo test5" "test5" "Exit code: 0, PID: [0-9]+" endgroup
+    Assert_Match "$value" group "Job #6: echo test6" "test6" "Exit code: 0, PID: [0-9]+" endgroup
+    Assert_Match "$value" group "Job #7: echo test7" "test7" "Exit code: 0, PID: [0-9]+" endgroup
+  fi
 
   Assert_Not_Directory_Exists "$(Parallel__Temporary_Directory)"
 }

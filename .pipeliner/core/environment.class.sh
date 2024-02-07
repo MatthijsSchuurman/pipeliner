@@ -3,7 +3,7 @@
 Environment_Platform() {
   if [ -f /.dockerenv ]; then
     echo "docker"
-  elif [ "$CI" ]; then
+  elif [ "$AGENT_ID" ]; then
     echo "azure"
   elif [ "$GITHUB_ACTIONS" ]; then
     echo "github"

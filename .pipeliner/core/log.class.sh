@@ -9,8 +9,10 @@ Log__Log() {
 
   case $(Environment_Platform) in
     "azure")
-      level=$(echo "$level" | tr '[:upper:]' '[:lower:]')
-      echo "##[$level] $message"
+      echo "##[${level,,}] $message"
+      ;;
+    "github")
+      echo "::${level,,}::$message"
       ;;
     "local")
       local log="$level $message"
@@ -58,6 +60,9 @@ Log_Variable() {
     "azure")
       echo "##vso[task.setvariable variable=$key]$value"
       ;;
+    "github")
+      echo "$key=$value" >> "$GITHUB_OUTPUT"
+      ;;
     "local")
       Color_Cyan "VARIABLE $key=$value" ; echo
       ;;
@@ -74,6 +79,7 @@ Log_Group() {
 
   case $(Environment_Platform) in
     "azure")  echo "##[group] $name" ;;
+    "github") echo "::group::$name" ;;
     "local")  Color_Blue "GROUP $name" ; echo ;;
     *)
       echo "Log grouping for $(Environment_Platform) platform is not supported" >&2
@@ -85,6 +91,7 @@ Log_Group() {
 Log_Group_End() {
   case $(Environment_Platform) in
     "azure")  echo "##[endgroup]" ;;
+    "github") echo "::endgroup::" ;;
     "local")  Color_Blue "ENDGROUP" ; echo ;;
     *)
       echo "Log grouping for $(Environment_Platform) platform is not supported" >&2

@@ -82,6 +82,7 @@ SSH_Run() {
   local keyFile=$(SSH__Key_File "$keyName")
 
   local ssh="ssh -i $keyFile"
+  ssh+=" -o StrictHostKeyChecking=no"
 
   if Dictionary_Exists "$url" "port"; then
     ssh+=" -p $(Dictionary_Get "$url" "port")"
@@ -120,6 +121,7 @@ SSH_Copy() {
   local keyFile=$(SSH__Key_File "$keyName")
 
   local scp="scp -i $keyFile"
+  scp+=" -o StrictHostKeyChecking=no"
   scp+=" $sourceFile"
 
   if Dictionary_Exists "$url" "port"; then
@@ -129,7 +131,6 @@ SSH_Copy() {
   if Dictionary_Exists "$url" "user"; then
     scp+=" $(Dictionary_Get "$url" "user")@"
   fi
-
 
   scp+=" $(Dictionary_Get "$url" "host")"
   scp+=":$destinationFile"
