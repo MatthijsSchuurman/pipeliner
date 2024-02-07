@@ -13,9 +13,13 @@ E2ETest_Init() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Install"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" endgroup
+  fi
+
   Assert_Contains "$actual" "Docker version"
-  Assert_Contains "$actual" ENDGROUP
 
   Assert_Function Docker_Install
   Assert_Function Log_Info

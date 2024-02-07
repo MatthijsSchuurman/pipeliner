@@ -11,8 +11,12 @@ E2ETest_Docker() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "core:runner"
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "core:runner" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" "Docker Build" "Docker Run" "core:runner" endgroup
+  fi
+
   Assert_Contains "$actual" "Hello World"
 
   #When
@@ -21,8 +25,11 @@ E2ETest_Docker() {
 
   #Then
   Assert_Equal $exitCode 127
-  Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "core:runner"
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "core:runner" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" "Docker Build" "Docker Run" "core:runner" endgroup
+  fi
 }
 
 E2ETest_Docker_node() {
@@ -36,8 +43,12 @@ E2ETest_Docker_node() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "node:runner"
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "node:runner" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" "Docker Build" "Docker Run" "node:runner" endgroup
+  fi
+
   Assert_Contains "$actual" "Usage: node"
 
   #When
@@ -46,8 +57,11 @@ E2ETest_Docker_node() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "node:runner"
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "node:runner" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" "Docker Build" "Docker Run" "node:runner" endgroup
+  fi
 }
 
 E2ETest_Docker_dotnet() {
@@ -61,8 +75,12 @@ E2ETest_Docker_dotnet() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "dotnet:runner"
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "dotnet:runner" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" "Docker Build" "Docker Run" "dotnet:runner" endgroup
+  fi
+
   Assert_Contains "$actual" "Usage: dotnet"
 
   #When
@@ -71,8 +89,11 @@ E2ETest_Docker_dotnet() {
 
   #Then
   Assert_Equal $exitCode 127
-  Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "dotnet:runner"
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" "Docker Build" "Docker Run" "dotnet:runner" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" "Docker Build" "Docker Run" "dotnet:runner" endgroup
+  fi
 }
 
 E2ETest_Docker_unknown() {
@@ -86,8 +107,12 @@ E2ETest_Docker_unknown() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" GROUP "Docker Install"
-  Assert_Contains "$actual" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Docker Install" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Docker Install" endgroup
+  fi
+
   Assert_Contains "$actual" "Docker image unknown not found"
 }
 
