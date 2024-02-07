@@ -12,10 +12,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Run tests
+    - name: Run unit tests
       run: |
-        set +e
-
         source ./.pipeliner/init.sh
-        Pipeliner_Test_Run
+        Pipeliner_Test_Run unit
 
+    - name: Run integration tests
+      run: |
+        source ./.pipeliner/init.sh
+        Pipeliner_Test_Run integration
