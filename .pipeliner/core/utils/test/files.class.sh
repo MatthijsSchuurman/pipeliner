@@ -315,6 +315,8 @@ UnitTest_Files_Get_E2E_Tests() {
 # Files watch
 
 UnitTest_Files_Watch_Directory_Written() {
+  if ! command -v inotifywait -a ! command -v fswatch ; then return 255; fi #skip test if inotifywait or fswatch is not installed
+
   #Given
   local directory=tmp
   rm -rf $directory 2>&1 > /dev/null

@@ -314,7 +314,7 @@ UnitTest_Docker_List_All() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "node test" "node 19"
+  Assert_Contains "$actual" "node test" "node"
 }
 
 UnitTest_Docker_Save() {

@@ -213,6 +213,7 @@ UnitTest_SSH_Deploy_Key() {
     cp "$remoteKeysFile" "$remoteKeysFile.bak"
   fi
 
+  mkdir ~/.ssh/ 2>/dev/null
   echo "$keyPublic" >> ~/.ssh/authorized_keys #need so test can be ran without password
 
 
@@ -248,6 +249,7 @@ UnitTest_SSH_Run() {
   if [ ! -f "$keyFile" ]; then
     SSH_Generate_Key "$keyName"
 
+    mkdir ~/.ssh/ 2>/dev/null
     cat "$keyFilePublic" >> ~/.ssh/authorized_keys
   fi
 
@@ -272,6 +274,7 @@ UnitTest_SSH_Copy() {
   if [ ! -f "$keyFile" ]; then
     SSH_Generate_Key "$keyName"
 
+    mkdir ~/.ssh/ 2>/dev/null
     cat "$keyFilePublic" >> ~/.ssh/authorized_keys
   fi
 
