@@ -43,7 +43,7 @@ Dictionary_Set() {
 
   if Dictionary_Exists "$dictionary" "$key"; then #update
     local match=$(echo "$key" | sed -E 's/(\-|\{|\}|\(|\)|\[|\]|\|)/\\\1/g')
-    echo -e "$dictionary" | sed -E "s/^$match: *.*/$key: $value/"
+    echo -e "$dictionary" | sed -E "s/^${match//\//\\/}: *.*/${key//\//\\/}: ${value//\//\\/}/"
   else #add
     echo -e "$dictionary$key: $value"
   fi

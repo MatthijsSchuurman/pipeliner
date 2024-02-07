@@ -1,7 +1,9 @@
 #!/bin/bash
 source $(dirname ${BASH_SOURCE[0]})/../../.pipeliner/init.sh
 
-Version_BuildId_Next
+if [ $(Environment_Platform) == "local" ]; then
+  Version_BuildId_Next
+fi
 
 echo
 Pipeliner_Package_Create

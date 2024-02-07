@@ -6,16 +6,32 @@ on:
       - main
 
 jobs:
-  test:
+  Unit_test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Run tests
+    - name: Run unit tests
       run: |
-        set +e
-
         source ./.pipeliner/init.sh
-        Pipeliner_Test_Run
+        Pipeliner_Test_Run unit
 
+  Integration_test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run integration tests
+      run: |
+        source ./.pipeliner/init.sh
+        Pipeliner_Test_Run integration
+
+  E2E_test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run E2E tests
+      run: |
+        source ./.pipeliner/init.sh
+        Pipeliner_Test_Run e2e

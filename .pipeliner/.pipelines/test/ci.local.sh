@@ -18,9 +18,15 @@ E2ETest_Pipeliner_Pipeline_CI() {
   Assert_Contains "$actual" "Pipeliner core compression"
   Assert_Match "$actual" "Compression Zip.*OK"
 
-  local testReport=$(Variables_Get testReport)
-  Assert_File_Exists "$testReport"
+  local unitTestReport=$(Variables_Get unitTestReport)
+  Assert_File_Exists "$unitTestReport"
+
+  local integrationTestReport=$(Variables_Get integrationTestReport)
+  Assert_File_Exists "$integrationTestReport"
+
+  local e2eTestReport=$(Variables_Get e2eTestReport)
+  Assert_File_Exists "$e2eTestReport"
 
   #Clean
-  rm "$testReport"
+  rm "$unitTestReport" "$integrationTestReport" "$e2eTestReport"
 }

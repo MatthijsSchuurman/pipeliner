@@ -1,4 +1,5 @@
 #!/bin/bash
+set +e
 
 # Import all classes
 source $(dirname "${BASH_SOURCE[0]}")/core/utils/files.class.sh
