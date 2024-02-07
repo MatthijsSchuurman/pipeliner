@@ -13,11 +13,18 @@ Pipeliner_Test_Report_Filename() {
 
 Pipeliner_Test_Run() {
   local type=$1
+  local include=
+  local exclude=
+
   local filename=$(Pipeliner_Test_Report_Filename $type)
   local exitCode=
 
+  if [ $type == "e2e" ]; then
+    exclude="ci.local.sh" #prevent infinite loop
+  fi
+
   Log_Info "Running tests"
-  Test_Run $type | tee "$(Files_Path_Root)/$filename"
+  Test_Run "$type" "$include" "$exclude" | tee "$(Files_Path_Root)/$filename"
   exitCode=${PIPESTATUS[0]}
 
   Variables_Set ${type}TestReport "$(Files_Path_Root)/$filename"

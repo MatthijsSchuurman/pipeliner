@@ -1,7 +1,7 @@
 .pipeliner/data/.buildId
 pipeliner-*.zip
 pipeliner-docker-*.tar.xz
-test_report-*.txt
+*_test_report-*.txt
 
 tmp.*log
 

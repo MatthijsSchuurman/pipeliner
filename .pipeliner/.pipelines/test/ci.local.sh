@@ -24,6 +24,9 @@ E2ETest_Pipeliner_Pipeline_CI() {
   local integrationTestReport=$(Variables_Get integrationTestReport)
   Assert_File_Exists "$integrationTestReport"
 
+  local e2eTestReport=$(Variables_Get e2eTestReport)
+  Assert_File_Exists "$e2eTestReport"
+
   #Clean
-  rm "$unitTestReport" "$integrationTestReport"
+  rm "$unitTestReport" "$integrationTestReport" "$e2eTestReport"
 }
