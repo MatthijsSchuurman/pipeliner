@@ -123,6 +123,11 @@ UnitTest_VCS_Clone_Directory_Update() {
   VCS_Clone_Directory "$source" "$target"
 
   #When
+  git branch #DEBUG
+  pwd
+  cd $target
+  git branch
+
   actual=$(VCS_Clone_Directory "$source" "$target")
   exitCode=$?
 

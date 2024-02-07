@@ -257,6 +257,8 @@ UnitTest_SSH_Run() {
   actual=$(SSH_Run "$host" "$command" "$keyName")
 
   #Then
+  ps axuw #DEBUG
+
   Assert_Contains "$actual" "sshd"
 }
 
