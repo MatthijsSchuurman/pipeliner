@@ -81,6 +81,19 @@ key2: value2"
   #Then
   Assert_Equal $exitCode 0
   Assert_Empty "$actual"
+
+
+  #Given
+  local dictionary="key/1: value/1
+key/2: value/2"
+
+  #When
+  actual=$(Dictionary_Exists "$dictionary" "key/1")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Empty "$actual"
 }
 
 
@@ -90,7 +103,8 @@ UnitTest_Dictionary_Keys() {
 key2: value2
 -arg: argvalue
 0: value3
-1: value4"
+1: value4
+key/1: value/1"
 
   local actual=
   local exitCode=
@@ -106,6 +120,7 @@ key2: value2
   Assert_Contains "$actual" "-arg"
   Assert_Contains "$actual" "0"
   Assert_Contains "$actual" "1"
+  Assert_Contains "$actual" "key/1"
 }
 
 UnitTest_Dictionary_Keys_Fail() {
@@ -200,6 +215,48 @@ keykey: value2"
   Assert_Equal $exitCode 0
   Assert_Equal "$actual" "key: value
 0: indexvalue"
+
+
+  #Given
+  local dictionary=
+  local key="key"
+  local value="value/1"
+
+  #When
+  actual=$(Dictionary_Set "$dictionary" "$key" "$value")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Equal "$actual" "key: value/1"
+
+
+  #Given
+  local dictionary="key/1: value"
+  local key="key/1"
+  local value="value1"
+
+  #When
+  actual=$(Dictionary_Set "$dictionary" "$key" "$value")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Equal "$actual" "key/1: value1"
+
+
+  #Given
+  local dictionary="key: value/1"
+  local key="key"
+  local value="value/2"
+
+  #When
+  actual=$(Dictionary_Set "$dictionary" "$key" "$value")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Equal "$actual" "key: value/2"
 }
 
 UnitTest_Dictionary_Set_Overwrite() {
