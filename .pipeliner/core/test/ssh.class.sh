@@ -110,7 +110,11 @@ UnitTest_SSH_Generate_Key() {
   actual=$(SSH_Generate_Key "$keyName")
 
   #Then
-  Assert_Contains "$actual" "GROUP SSH generating key: $keyFile" "ed25519" "ENDGROUP"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "SSH generating key: $keyFile" "ed25519" ENDGROUP
+  else
+    Assert_Contains "$actual" group "SSH generating key: $keyFile" "ed25519" endgroup
+  fi
 
   Assert_File_Exists "$keyFile"
   Assert_File_Exists "$keyFilePublic"
@@ -121,7 +125,11 @@ UnitTest_SSH_Generate_Key() {
   actual=$(SSH_Generate_Key "$keyName")
 
   #Then
-  Assert_Contains "$actual" "INFO SSH key already exists: $keyFile"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" INFO "SSH key already exists: $keyFile"
+  else
+    Assert_Contains "$actual" info "SSH key already exists: $keyFile"
+  fi
 
   Assert_File_Exists "$keyFile"
   Assert_File_Exists "$keyFilePublic"

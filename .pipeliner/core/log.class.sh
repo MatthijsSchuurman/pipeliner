@@ -9,8 +9,7 @@ Log__Log() {
 
   case $(Environment_Platform) in
     "azure")
-      level=$(echo "$level" | tr '[:upper:]' '[:lower:]')
-      echo "##[$level] $message"
+      echo "##[${level,,}] $message"
       ;;
     "github")
       echo "::${level,,}::$message"
