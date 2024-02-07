@@ -68,8 +68,11 @@ Docker_Run() {
 
   dockerCommand="docker run"
   dockerCommand+=" --volume $(realpath "$(Files_Path_Root)"):/work"
-  dockerCommand+=" --interactive --tty"
   dockerCommand+=" --user $(id -u):$(id -g)"
+
+  if [ $(Environment_Platform) == "local" ]; then
+    dockerCommand+=" --interactive --tty"
+  fi
 
   if [ "$workdir" ]; then
     dockerCommand+=" --workdir /work/$workdir"
