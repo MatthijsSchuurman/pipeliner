@@ -202,7 +202,7 @@ UnitTest_SSH_Deploy_Key() {
   local keyFile=$(SSH__Key_File "$keyName")
   local keyFilePublic=$(SSH__Key_File_Public "$keyName")
   local remoteKeysFile=$(SSH__Remote_Authorized_Keys_File)
-  remoteKeysFile=$(eval realpath $remoteKeysFile) #get actual home directory
+  remoteKeysFile=$(eval realpath -m $remoteKeysFile) #get actual home directory
 
   rm -f "$keyFile" "$keyFilePublic"
 
@@ -240,7 +240,7 @@ UnitTest_SSH_Run() {
   #Given
   local actual=
   local host="localhost"
-  local command=w
+  local command="sleep .5 ; w"
 
   local keyName="pipeliner-localhost-test"
   local keyFile=$(SSH__Key_File "$keyName")

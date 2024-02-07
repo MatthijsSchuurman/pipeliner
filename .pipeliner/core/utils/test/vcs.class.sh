@@ -122,12 +122,12 @@ UnitTest_VCS_Clone_Directory_Update() {
   rm -rf "$target" 2>&1 > /dev/null
   VCS_Clone_Directory "$source" "$target"
 
-  #When
-  git branch #DEBUG
-  pwd
-  cd $target
-  git branch
+  local currentPath=$(pwd)
+  cd "$target"
+  git checkout main 2>&1 > /dev/null
+  cd "$currentPath"
 
+  #When
   actual=$(VCS_Clone_Directory "$source" "$target")
   exitCode=$?
 
