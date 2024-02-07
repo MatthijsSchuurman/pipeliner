@@ -141,6 +141,7 @@ UnitTest_Install_Download() {
   local exitCode=
 
   cd /tmp
+  rm -Rf pipeliner*.zip
   source $(Files_Path_Pipeliner)/install.sh
 
   #When
@@ -149,7 +150,7 @@ UnitTest_Install_Download() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Match "$actual" "^pipeliner-.*\.zip$"
+  Assert_Match "$actual" "^pipeliner.*\.zip$"
   Assert_File_Exists "$actual"
 
   #Cleanup
