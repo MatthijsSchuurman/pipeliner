@@ -9,6 +9,8 @@ jobs:
   Unit_test:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Run unit tests
       run: |
         source ./.pipeliner/init.sh
@@ -17,6 +19,8 @@ jobs:
   Integration_test:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Run integration tests
       run: |
         source ./.pipeliner/init.sh
@@ -25,6 +29,8 @@ jobs:
   E2E_test:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Run E2E tests
       run: |
         source ./.pipeliner/init.sh
