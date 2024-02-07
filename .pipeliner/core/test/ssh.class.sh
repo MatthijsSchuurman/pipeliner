@@ -253,12 +253,13 @@ UnitTest_SSH_Run() {
     cat "$keyFilePublic" >> ~/.ssh/authorized_keys
   fi
 
+  ssh-keygen -R localhost 2>/dev/null #ensure no host key is present
+
+
   #When
-  actual=$(SSH_Run "$host" "$command" "$keyName")
+  actual=$(SSH_Run "$host" "$command" "$keyName" 2> /dev/null)
 
   #Then
-  ps axuw #DEBUG
-
   Assert_Contains "$actual" "sshd"
 }
 
@@ -280,8 +281,10 @@ UnitTest_SSH_Copy() {
     cat "$keyFilePublic" >> ~/.ssh/authorized_keys
   fi
 
+  ssh-keygen -R localhost 2>/dev/null #ensure no host key is present
+
   #When
-  actual=$(SSH_Copy "$host" "$sourceFile" "$destinationFile" "$keyName")
+  actual=$(SSH_Copy "$host" "$sourceFile" "$destinationFile" "$keyName" 2> /dev/null)
 
   #Then
   Assert_Equal "$actual" ""
