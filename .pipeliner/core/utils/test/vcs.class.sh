@@ -123,8 +123,9 @@ UnitTest_VCS_Clone_Directory_Update() {
   VCS_Clone_Directory "$source" "$target"
 
   local currentPath=$(pwd)
+  local currentBranch=$(git branch --show-current 2>&1)
   cd "$target"
-  git checkout main 2>&1 > /dev/null
+  git checkout "$currentBranch" 2>&1 > /dev/null
   cd "$currentPath"
 
   #When

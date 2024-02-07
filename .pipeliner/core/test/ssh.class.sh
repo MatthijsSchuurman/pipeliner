@@ -216,9 +216,10 @@ UnitTest_SSH_Deploy_Key() {
   mkdir ~/.ssh/ 2>/dev/null
   echo "$keyPublic" >> ~/.ssh/authorized_keys #need so test can be ran without password
 
+  ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
 
   #When
-  actual=$(SSH_Deploy_Key "$host" "$keyName")
+  actual=$(SSH_Deploy_Key "$host" "$keyName" 2> /dev/null)
 
   #Then
   Assert_Equal "$actual" ""
@@ -240,7 +241,7 @@ UnitTest_SSH_Run() {
   #Given
   local actual=
   local host="localhost"
-  local command="sleep .5 ; w"
+  local command="echo \$SSH_CLIENT"
 
   local keyName="pipeliner-localhost-test"
   local keyFile=$(SSH__Key_File "$keyName")
@@ -253,14 +254,13 @@ UnitTest_SSH_Run() {
     cat "$keyFilePublic" >> ~/.ssh/authorized_keys
   fi
 
-  ssh-keygen -R localhost 2>/dev/null #ensure no host key is present
-
+  ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
 
   #When
   actual=$(SSH_Run "$host" "$command" "$keyName" 2> /dev/null)
 
   #Then
-  Assert_Contains "$actual" "sshd"
+  Assert_Not_Empty "$actual"
 }
 
 UnitTest_SSH_Copy() {
