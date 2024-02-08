@@ -132,11 +132,19 @@ Files_Temp__Dir() {
 }
 
 Files_Temp_File() {
-  mktemp -p "$(Files_Temp__Dir)"
+  local prefix=$1
+  local suffix=$2
+  local template=${prefix}XXXXXXX${suffix}
+
+  mktemp -p "$(Files_Temp__Dir)" "$template"
 }
 
 Files_Temp_Directory() {
-  mktemp -d -p "$(Files_Temp__Dir)"
+  local prefix=$1
+  local suffix=$2
+  local template=${prefix}XXXXXXX${suffix}
+
+  mktemp -d -p "$(Files_Temp__Dir)" "$template"
 }
 
 Files_Temp_Clean() {

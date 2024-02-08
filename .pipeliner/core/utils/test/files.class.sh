@@ -361,7 +361,7 @@ UnitTest_Files_Temp_File() {
   local file1=$(Files_Temp_File)
 
   #Then
-  Assert_Match $file1 "/tmp/pipeliner/tmp.*"
+  Assert_Match $file1 "/tmp/pipeliner/.*"
   Assert_File_Exists $file1
 
   #Clean
@@ -379,6 +379,19 @@ UnitTest_Files_Temp_File() {
   #Clean
   rm -f $file2 $file3
 }
+UnitTest_Files_Temp_File_Prefix_Suffix() {
+  #Given
+
+  #When
+  local file1=$(Files_Temp_File "prefix" "suffix")
+
+  #Then
+  Assert_Match $file1 "/tmp/pipeliner/prefix.*suffix"
+  Assert_File_Exists $file1
+
+  #Clean
+  rm -f $file1
+}
 
 UnitTest_Files_Temp_Directory() {
   #Given
@@ -387,7 +400,7 @@ UnitTest_Files_Temp_Directory() {
   local directory1=$(Files_Temp_Directory)
 
   #Then
-  Assert_Match $directory1 "/tmp/pipeliner/tmp.*"
+  Assert_Match $directory1 "/tmp/pipeliner/.*"
   Assert_Directory_Exists $directory1
 
   #Clean
@@ -404,6 +417,19 @@ UnitTest_Files_Temp_Directory() {
 
   #Clean
   rm -rf $directory2 $directory3
+}
+UnitTest_Files_Temp_Directory_Prefix_Suffix() {
+  #Given
+
+  #When
+  local directory1=$(Files_Temp_Directory "prefix" "suffix")
+
+  #Then
+  Assert_Match $directory1 "/tmp/pipeliner/prefix.*suffix"
+  Assert_Directory_Exists $directory1
+
+  #Clean
+  rm -rf $directory1
 }
 
 UnitTest_Files_Temp_Clean() {
