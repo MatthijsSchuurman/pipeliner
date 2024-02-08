@@ -16,7 +16,7 @@ UnitTest_Variables_Set() {
   }
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variables_Set "$key" "$value" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -28,7 +28,7 @@ UnitTest_Variables_Set() {
   Assert_Match "$actual" "VARIABLE $key=$value"
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variables_Set "$key" "$value2" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -53,7 +53,7 @@ UnitTest_Variables_Set_Fail() {
   }
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variables_Set "$key" "$value" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -69,7 +69,7 @@ UnitTest_Variables_Set_Fail() {
   local value=
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variables_Set "$key" "$value" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -95,7 +95,7 @@ UnitTest_Variables_Unset() {
   Variables_Set "$key" "$value"
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variable_Unset "$key" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -119,7 +119,7 @@ UnitTest_Variables_Unset_Fail() {
   }
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variable_Unset "$key" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -134,7 +134,7 @@ UnitTest_Variables_Unset_Fail() {
   local key=
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variable_Unset "$key" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -181,7 +181,7 @@ UnitTest_Variables_Get_Fail() {
   }
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variables_Get "$key" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -196,7 +196,7 @@ UnitTest_Variables_Get_Fail() {
   local key=
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Variables_Get "$key" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)

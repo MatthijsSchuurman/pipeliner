@@ -6,7 +6,7 @@ E2ETest_Init() {
   local exitCode=
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   source $(Files_Path_Pipeliner)/init.sh > $logFile
   exitCode=$?
   actual=$(cat $logFile)

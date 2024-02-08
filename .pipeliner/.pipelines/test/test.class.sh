@@ -43,7 +43,7 @@ IntegrationTest_Pipeliner_Test_Run() {
   }
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Pipeliner_Test_Run unit > $logFile
   exitCode=$?
   actual=$(cat $logFile)
@@ -65,10 +65,11 @@ IntegrationTest_Pipeliner_Test_Run() {
 
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Pipeliner_Test_Run integration > $logFile
   exitCode=$?
   actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
@@ -86,10 +87,11 @@ IntegrationTest_Pipeliner_Test_Run() {
 
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Pipeliner_Test_Run e2e > $logFile
   exitCode=$?
   actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
@@ -122,7 +124,7 @@ IntegrationTest_Pipeliner_Test_Run_Fail() {
   }
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Pipeliner_Test_Run fail > $logFile
   exitCode=$?
   actual=$(cat $logFile)

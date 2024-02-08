@@ -219,7 +219,7 @@ UnitTest_Docker_Runner() {
   }
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Docker_Runner core "ls -la" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -235,7 +235,7 @@ UnitTest_Docker_Runner() {
   #Given build was already done
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Docker_Runner core "ls -la" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -256,7 +256,7 @@ UnitTest_Docker_Runner_node() {
   local exitCode=
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Docker_Runner node "ls -la" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
@@ -275,7 +275,7 @@ UnitTest_Docker_Runner_Fail() {
   local exitCode=
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Docker_Runner UNKNOWN "ls -la" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)

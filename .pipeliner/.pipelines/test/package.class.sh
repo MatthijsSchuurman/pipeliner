@@ -38,7 +38,7 @@ IntegrationTest_Pipeliner_Package_Create() {
   }
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   Pipeliner_Package_Create > $logFile
   exitCode=$?
   actual=$(cat $logFile)

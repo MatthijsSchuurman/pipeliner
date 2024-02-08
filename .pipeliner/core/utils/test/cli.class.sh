@@ -74,7 +74,7 @@ UnitTest_CLI_Arguments_Fail() {
   local actual=
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=$(Files_Temp_File test .log)
   actual=$(CLI_Arguments "$argumentsDefinition" --unknown 2>$logFile) #don't capture stdout but only stderr
   local stderr=$(cat $logFile)
   rm $logFile
