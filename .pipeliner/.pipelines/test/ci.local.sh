@@ -8,7 +8,7 @@ E2ETest_Pipeliner_Pipeline_CI() {
   local exitCode=
 
   #When
-  local logFile=$(Files_Temp_File).log
+  local logFile=ci.local.log #don't use Files_Temp_File because temp directory is removed
   source $(Files_Path_Pipeliner)/.pipelines/ci.local.sh > $logFile 2>&1 #needs to use a unique filename so tests don't remove it
   exitCode=$?
   actual=$(cat $logFile)
