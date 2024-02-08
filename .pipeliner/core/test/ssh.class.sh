@@ -224,7 +224,7 @@ UnitTest_SSH_Deploy_Key() {
   #Then
   Assert_Equal "$actual" ""
 
-  local keyCount=$(grep -F "$keyPublic" $remoteKeysFile | wc -l)
+  local keyCount=$(grep -F "$keyPublic" $remoteKeysFile | wc -l | xargs)
   Assert_Equal "$keyCount" 2 #one for the test and one for the actual key
 
   #Cleanup

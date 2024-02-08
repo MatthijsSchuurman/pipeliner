@@ -80,6 +80,7 @@ SSH_Run() {
   local keyName=$3
 
   local keyFile=$(SSH__Key_File "$keyName")
+  local exitCode=
 
   local ssh="ssh -i $keyFile"
   ssh+=" -o StrictHostKeyChecking=no"
@@ -97,6 +98,13 @@ SSH_Run() {
   ssh+=" $command"
 
   $ssh
+  exitCode=$?
+
+  if [ $exitCode == 255 ]; then
+    Log_Error "SSH connection failed"
+  fi
+
+  return $exitCode
 }
 
 SSH_Deploy_Key() {
@@ -119,6 +127,7 @@ SSH_Copy() {
   local keyName=$4
 
   local keyFile=$(SSH__Key_File "$keyName")
+  local exitCode=
 
   local scp="scp -i $keyFile"
   scp+=" -o StrictHostKeyChecking=no"
@@ -136,4 +145,11 @@ SSH_Copy() {
   scp+=":$destinationFile"
 
   $scp
+  exitCode=$?
+
+  if [ $exitCode == 255 ]; then
+    Log_Error "SSH connection failed"
+  fi
+
+  return $exitCode
 }
