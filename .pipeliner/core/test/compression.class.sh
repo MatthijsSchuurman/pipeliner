@@ -25,11 +25,15 @@ UnitTest_Compression_Zip() {
   fi
   Assert_Contains "$actual" adding compression.class.sh
 
+  #Clean
   rm -f "$filename"
 
 
   #Given
-  local files="$(Files_Path_Pipeliner)/core/compression.class.sh $(Files_Path_Pipeliner)/core/log.class.sh"
+  filename="test2.zip"
+  files="$(Files_Path_Pipeliner)/core/compression.class.sh $(Files_Path_Pipeliner)/core/log.class.sh"
+
+  rm -f "$filename"
 
   #When
   actual=$(Compression_Zip $filename $files)
@@ -44,6 +48,9 @@ UnitTest_Compression_Zip() {
   fi
   Assert_Contains "$actual" adding compression.class.sh
   Assert_Contains "$actual" adding log.class.sh
+
+  #Clean
+  rm -f "$filename"
 }
 
 UnitTest_Compression_Zip_Directory() {
