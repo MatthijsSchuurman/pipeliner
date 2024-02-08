@@ -8,10 +8,11 @@ E2ETest_Pipeliner_Pipeline_CI() {
   local exitCode=
 
   #When
-  source $(Files_Path_Pipeliner)/.pipelines/ci.local.sh > tmp.ci.log 2>&1 #needs to use a unique filename so tests don't remove it
+  local logFile=$(Files_Temp_File).log
+  source $(Files_Path_Pipeliner)/.pipelines/ci.local.sh > $logFile 2>&1 #needs to use a unique filename so tests don't remove it
   exitCode=$?
-  actual=$(cat tmp.ci.log)
-  rm tmp.ci.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Contains "$actual" "Running tests"

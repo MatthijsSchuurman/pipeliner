@@ -16,10 +16,11 @@ UnitTest_Variables_Set() {
   }
 
   #When
-  Variables_Set "$key" "$value" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variables_Set "$key" "$value" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
@@ -27,10 +28,11 @@ UnitTest_Variables_Set() {
   Assert_Match "$actual" "VARIABLE $key=$value"
 
   #When
-  Variables_Set "$key" "$value2" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variables_Set "$key" "$value2" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
@@ -51,10 +53,11 @@ UnitTest_Variables_Set_Fail() {
   }
 
   #When
-  Variables_Set "$key" "$value" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variables_Set "$key" "$value" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1
@@ -66,10 +69,11 @@ UnitTest_Variables_Set_Fail() {
   local value=
 
   #When
-  Variables_Set "$key" "$value" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variables_Set "$key" "$value" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1
@@ -91,10 +95,11 @@ UnitTest_Variables_Unset() {
   Variables_Set "$key" "$value"
 
   #When
-  Variable_Unset "$key" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variable_Unset "$key" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
@@ -114,10 +119,11 @@ UnitTest_Variables_Unset_Fail() {
   }
 
   #When
-  Variable_Unset "$key" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variable_Unset "$key" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
@@ -128,10 +134,11 @@ UnitTest_Variables_Unset_Fail() {
   local key=
 
   #When
-  Variable_Unset "$key" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variable_Unset "$key" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1
@@ -174,10 +181,11 @@ UnitTest_Variables_Get_Fail() {
   }
 
   #When
-  Variables_Get "$key" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variables_Get "$key" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1
@@ -188,10 +196,11 @@ UnitTest_Variables_Get_Fail() {
   local key=
 
   #When
-  Variables_Get "$key" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Variables_Get "$key" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1

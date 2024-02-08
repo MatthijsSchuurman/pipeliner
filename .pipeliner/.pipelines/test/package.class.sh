@@ -38,10 +38,11 @@ IntegrationTest_Pipeliner_Package_Create() {
   }
 
   #When
-  Pipeliner_Package_Create > tmp.log
+  local logFile=$(Files_Temp_File).log
+  Pipeliner_Package_Create > $logFile
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0

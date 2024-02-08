@@ -17,9 +17,10 @@ UnitTest_Pipeliner_Docker_Create_Image() {
   touch "$packageFile"
 
   #When
-  Pipeliner_Docker_Create_Image "$packageFile" > tmp.log 2>&1
-  actual=$(cat tmp.log)
-  rm tmp.log
+  local logFile=$(Files_Temp_File).log
+  Pipeliner_Docker_Create_Image "$packageFile" > $logFile 2>&1
+  actual=$(cat $logFile)
+  rm $logFile
   exitCode=$?
 
   #Then

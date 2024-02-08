@@ -219,10 +219,11 @@ UnitTest_Docker_Runner() {
   }
 
   #When
-  Docker_Runner core "ls -la" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Docker_Runner core "ls -la" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Contains "$actual" "Docker Run core:runner ls"
@@ -234,10 +235,11 @@ UnitTest_Docker_Runner() {
   #Given build was already done
 
   #When
-  Docker_Runner core "ls -la" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Docker_Runner core "ls -la" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Contains "$actual" "Docker run core:runner ls"
@@ -254,10 +256,11 @@ UnitTest_Docker_Runner_node() {
   local exitCode=
 
   #When
-  Docker_Runner node "ls -la" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Docker_Runner node "ls -la" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Contains "$actual" "Docker run node:runner ls"
@@ -272,10 +275,11 @@ UnitTest_Docker_Runner_Fail() {
   local exitCode=
 
   #When
-  Docker_Runner UNKNOWN "ls -la" > tmp.log 2>&1
+  local logFile=$(Files_Temp_File).log
+  Docker_Runner UNKNOWN "ls -la" > $logFile 2>&1
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1

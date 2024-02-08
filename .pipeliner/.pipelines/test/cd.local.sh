@@ -8,10 +8,11 @@ E2ETest_Pipeliner_Pipeline_CD() {
   local exitCode=
 
   #When
-  source $(Files_Path_Pipeliner)/.pipelines/cd.local.sh > tmp.cd.log 2>&1 #needs to use a unique filename so tests don't remove it
+  local logFile=$(Files_Temp_File).log
+  source $(Files_Path_Pipeliner)/.pipelines/cd.local.sh > $logFile 2>&1 #needs to use a unique filename so tests don't remove it
   exitCode=$?
-  actual=$(cat tmp.cd.log)
-  rm tmp.cd.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
