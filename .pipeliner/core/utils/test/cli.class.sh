@@ -74,9 +74,10 @@ UnitTest_CLI_Arguments_Fail() {
   local actual=
 
   #When
-  actual=$(CLI_Arguments "$argumentsDefinition" --unknown 2>tmp.log) #don't capture stdout but only stderr
-  local stderr=$(cat tmp.log)
-  rm tmp.log
+  local logFile=$(Files_Temp_File test .log)
+  actual=$(CLI_Arguments "$argumentsDefinition" --unknown 2>$logFile) #don't capture stdout but only stderr
+  local stderr=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $(Dictionary_Keys "$actual" | wc -l) 1

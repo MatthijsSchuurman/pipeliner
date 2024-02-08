@@ -6,10 +6,11 @@ E2ETest_Examples_DotNet_Pipeline_CI() {
   local exitCode=
 
   #When
-  source $(Files_Path_Root)/examples/dotnet/.pipelines/ci.local.sh examples/dotnet/app1 > tmp.log
+  local logFile=$(Files_Temp_File test .log)
+  source $(Files_Path_Root)/examples/dotnet/.pipelines/ci.local.sh examples/dotnet/app1 > $logFile
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0

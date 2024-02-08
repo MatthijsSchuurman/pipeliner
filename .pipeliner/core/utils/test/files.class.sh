@@ -339,3 +339,110 @@ UnitTest_Files_Watch_Directory_Written() {
   #Clean
   rm -rf $directory 2>&1 > /dev/null
 }
+
+
+# Files temp
+
+UnitTest_Files_Temp__Dir() {
+  #Given
+
+  #When
+  local directory=$(Files_Temp__Dir)
+
+  #Then
+  Assert_Equal $directory "/tmp/pipeliner"
+  Assert_Directory_Exists $directory
+}
+
+UnitTest_Files_Temp_File() {
+  #Given
+
+  #When
+  local file1=$(Files_Temp_File)
+
+  #Then
+  Assert_Match $file1 "/tmp/pipeliner/.*"
+  Assert_File_Exists $file1
+
+  #Clean
+  rm -f $file1
+
+
+  #When
+  local file2=$(Files_Temp_File)
+  local file3=$(Files_Temp_File)
+
+  #Then
+  Assert_Not_Equal $file1 $file2
+  Assert_Not_Equal $file2 $file3
+
+  #Clean
+  rm -f $file2 $file3
+}
+UnitTest_Files_Temp_File_Prefix_Suffix() {
+  #Given
+
+  #When
+  local file1=$(Files_Temp_File "prefix" "suffix")
+
+  #Then
+  Assert_Match $file1 "/tmp/pipeliner/prefix.*suffix"
+  Assert_File_Exists $file1
+
+  #Clean
+  rm -f $file1
+}
+
+UnitTest_Files_Temp_Directory() {
+  #Given
+
+  #When
+  local directory1=$(Files_Temp_Directory)
+
+  #Then
+  Assert_Match $directory1 "/tmp/pipeliner/.*"
+  Assert_Directory_Exists $directory1
+
+  #Clean
+  rm -rf $directory1
+
+
+  #When
+  local directory2=$(Files_Temp_Directory)
+  local directory3=$(Files_Temp_Directory)
+
+  #Then
+  Assert_Not_Equal $directory1 $directory2
+  Assert_Not_Equal $directory2 $directory3
+
+  #Clean
+  rm -rf $directory2 $directory3
+}
+UnitTest_Files_Temp_Directory_Prefix_Suffix() {
+  #Given
+
+  #When
+  local directory1=$(Files_Temp_Directory "prefix" "suffix")
+
+  #Then
+  Assert_Match $directory1 "/tmp/pipeliner/prefix.*suffix"
+  Assert_Directory_Exists $directory1
+
+  #Clean
+  rm -rf $directory1
+}
+
+UnitTest_Files_Temp_Clean() {
+  #Given
+  local directory=$(Files_Temp__Dir)
+  local file=$(Files_Temp_File)
+  local directory2=$(Files_Temp_Directory)
+
+  #When
+  Files_Temp_Clean
+
+  #Then
+  Assert_Not_Directory_Exists $directory
+  Assert_Not_File_Exists $file
+  Assert_Not_Directory_Exists $directory2
+}

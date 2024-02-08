@@ -119,3 +119,34 @@ Files_Watch_Directory_Written() {
     fi
   fi
 }
+
+
+Files_Temp__Dir() {
+  local directory=/tmp/pipeliner
+
+  if [ ! -d "$directory" ]; then
+    mkdir -p "$directory"
+  fi
+
+  echo $directory
+}
+
+Files_Temp_File() {
+  local prefix=$1
+  local suffix=$2
+  local template=${prefix}XXXXXXX${suffix}
+
+  mktemp -p "$(Files_Temp__Dir)" "$template"
+}
+
+Files_Temp_Directory() {
+  local prefix=$1
+  local suffix=$2
+  local template=${prefix}XXXXXXX${suffix}
+
+  mktemp -d -p "$(Files_Temp__Dir)" "$template"
+}
+
+Files_Temp_Clean() {
+  rm -Rf "$(Files_Temp__Dir)" 2> /dev/null
+}

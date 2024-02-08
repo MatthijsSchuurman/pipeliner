@@ -6,10 +6,11 @@ E2ETest_Init() {
   local exitCode=
 
   #When
-  source $(Files_Path_Pipeliner)/init.sh > tmp.log
+  local logFile=$(Files_Temp_File test .log)
+  source $(Files_Path_Pipeliner)/init.sh > $logFile
   exitCode=$?
-  actual=$(cat tmp.log)
-  rm tmp.log
+  actual=$(cat $logFile)
+  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
