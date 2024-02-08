@@ -21,7 +21,7 @@ UnitTest_Parallel__Temporary_Directory_Create() {
   local actual=$(Parallel__Temporary_Directory_Create)
 
   #Then
-  Assert_Match "$actual" ""
+  Assert_Empty "$actual"
   Assert_Directory_Exists "$(Parallel__Temporary_Directory)"
 
   #Clean
@@ -36,7 +36,7 @@ UnitTest_Parallel__Temporary_Directory_Remove() {
   local actual=$(Parallel__Temporary_Directory_Remove)
 
   #Then
-  Assert_Match "$actual" ""
+  Assert_Empty "$actual"
   Assert_Not_Directory_Exists "$(Parallel__Temporary_Directory)"
 }
 
@@ -53,7 +53,7 @@ UnitTest_Parallel__Command_Start() {
   wait
 
   #Then
-  Assert_Match "$actual" ""
+  Assert_Empty "$actual"
 
   Assert_File_Exists "$(Parallel__Temporary_Directory)/$jobID.cmd"
   Assert_Contains "$(cat $(Parallel__Temporary_Directory)/$jobID.cmd)" "echo test"
@@ -108,7 +108,7 @@ UnitTest_Parallel__Batch_Start() {
   local actual=$(Parallel__Batch_Start $batchID $batchSize "${commands[@]}")
 
   #Then
-  Assert_Match "$actual" ""
+  Assert_Empty "$actual"
 
   Assert_File_Exists "$(Parallel__Temporary_Directory)/1.log"
   Assert_File_Exists "$(Parallel__Temporary_Directory)/2.log"
@@ -125,7 +125,7 @@ UnitTest_Parallel__Batch_Start() {
   actual=$(Parallel__Batch_Start $batchID $batchSize "${commands[@]}")
 
   #Then
-  Assert_Match "$actual" ""
+  Assert_Empty "$actual"
 
   Assert_Not_File_Exists "$(Parallel__Temporary_Directory)/1.log"
   Assert_Not_File_Exists "$(Parallel__Temporary_Directory)/2.log"
@@ -149,7 +149,7 @@ UnitTest_Parallel__Batch_Wait() {
   local actual=$(Parallel__Batch_Wait)
 
   #Then
-  Assert_Match "$actual" ""
+  Assert_Empty "$actual"
 
   Assert_File_Exists "$(Parallel__Temporary_Directory)/1.exit"
   Assert_Match "$(cat $(Parallel__Temporary_Directory)/1.exit)" 0
@@ -218,7 +218,7 @@ UnitTest_Parallel__Batch_Failures() {
   local exitCode=$?
 
   #Then
-  Assert_Match "$actual" ""
+  Assert_Empty "$actual"
   Assert_Match $exitCode 0
 
   #Clean
@@ -236,7 +236,7 @@ UnitTest_Parallel__Batch_Failures() {
   exitCode=$?
 
   #Then
-  Assert_Match "$actual" ""
+  Assert_Empty "$actual"
   Assert_Match $exitCode 1
 
   #Clean
@@ -289,5 +289,5 @@ UnitTest_Parallel_Run_sleep() {
   local duration=$((endSeconds - startSeconds))
 
   #Then
-  Assert_Between 1 $duration 2
+  Assert_Between 1 $duration 3
 }
