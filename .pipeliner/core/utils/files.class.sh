@@ -119,3 +119,26 @@ Files_Watch_Directory_Written() {
     fi
   fi
 }
+
+
+Files_Temp__Dir() {
+  local directory=/tmp/pipeliner
+
+  if [ ! -d "$directory" ]; then
+    mkdir -p "$directory"
+  fi
+
+  echo $directory
+}
+
+Files_Temp_File() {
+  mktemp -p "$(Files_Temp__Dir)"
+}
+
+Files_Temp_Directory() {
+  mktemp -d -p "$(Files_Temp__Dir)"
+}
+
+Files_Temp_Clean() {
+  rm -Rf "$(Files_Temp__Dir)" 2> /dev/null
+}
