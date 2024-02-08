@@ -1,30 +1,18 @@
 #!/bin/bash
 
 source $(Files_Path_Pipeliner)/core/log.class.sh
+source $(Files_Path_Pipeliner)/core/utils/files.class.sh
 
-Parallel__Temporary_Directory() {
-  echo ".parallel_tmp"
+
+Parallel__Command_Start() {
+  local tempDirectory=$1
+  local command=$2
+  local id=$3
+
+  echo $command > "$tempDirectory/$id.cmd"
+  $command > "$tempDirectory/$id.log" 2>&1 &
+  echo $! > "$tempDirectory/$id.pid"
 }
-
-Parallel__Temporary_Directory_Create() {
-  mkdir -p $(Parallel__Temporary_Directory) > /dev/null 2>&1
-}
-
-Parallel__Temporary_Directory_Remove() {
-  rm -rf $(Parallel__Temporary_Directory) > /dev/null 2>&1
-}
-
-
-Parallel__Command_Start()
-{
-  local command=$1
-  local id=$2
-
-  echo $command > $(Parallel__Temporary_Directory)/$id.cmd
-  $command > $(Parallel__Temporary_Directory)/$id.log 2>&1 &
-  echo $! > $(Parallel__Temporary_Directory)/$id.pid
-}
-
 
 Parallel__Batch_Determine() {
   local batchSize=$1
@@ -34,9 +22,10 @@ Parallel__Batch_Determine() {
 }
 
 Parallel__Batch_Start() {
-  local batchID=$1
-  local batchSize=$2
-  shift 2
+  local tempDirectory=$1
+  local batchID=$2
+  local batchSize=$3
+  shift 3
   local commands=("$@")
 
   local jobStartID=$(( ( ( $batchID - 1 ) * $batchSize ) + 1 ))
@@ -47,26 +36,30 @@ Parallel__Batch_Start() {
       break
     fi
 
-    Parallel__Command_Start "${commands[$(($jobID-1))]}" $jobID
+    Parallel__Command_Start "$tempDirectory" "${commands[$(($jobID-1))]}" $jobID
   done
 }
 
 Parallel__Batch_Wait() {
-  for pidFile in $(ls $(Parallel__Temporary_Directory)/*.pid); do
+  local tempDirectory=$1
+
+  for pidFile in $(ls "$tempDirectory/"*.pid); do
     local pid=$(cat $pidFile)
     local jobID=$(basename $pidFile .pid)
 
     wait $pid
-    echo $? > $(Parallel__Temporary_Directory)/$jobID.exit
+    echo $? > "$tempDirectory/$jobID.exit"
   done
 }
 
 Parallel__Batch_Results() {
-  for logFile in $(ls $(Parallel__Temporary_Directory)/*.log); do
+  local tempDirectory=$1
+
+  for logFile in $(ls "$tempDirectory/"*.log); do
     local jobID=$(basename $logFile .log)
-    local command=$(cat $(Parallel__Temporary_Directory)/$jobID.cmd)
-    local pid=$(cat $(Parallel__Temporary_Directory)/$jobID.pid)
-    local exitCode=$(cat $(Parallel__Temporary_Directory)/$jobID.exit)
+    local command=$(cat "$tempDirectory/$jobID.cmd")
+    local pid=$(cat "$tempDirectory/$jobID.pid")
+    local exitCode=$(cat "$tempDirectory/$jobID.exit")
 
     Log_Group "Job #$jobID: $command"
     cat $logFile
@@ -76,7 +69,9 @@ Parallel__Batch_Results() {
 }
 
 Parallel__Batch_Failures() {
-  for exitFile in $(ls $(Parallel__Temporary_Directory)/*.exit); do
+  local tempDirectory=$1
+
+  for exitFile in $(ls "$tempDirectory/"*.exit); do
     local exitCode=$(cat $exitFile)
     if [ $exitCode -ne 0 ]; then
       return 1
@@ -92,20 +87,19 @@ Parallel_Run() {
   local commands=("$@")
 
   local failed=0
-  Parallel__Temporary_Directory_Remove
+
   for batchID in $(seq 1 $(Parallel__Batch_Determine $batchSize ${#commands[@]})); do
-    Parallel__Temporary_Directory_Create
+    local tempDirectory=$(Files_Temp_Directory parallel)
+    Parallel__Batch_Start "$tempDirectory" $batchID $batchSize "${commands[@]}"
+    Parallel__Batch_Wait "$tempDirectory"
+    Parallel__Batch_Results "$tempDirectory"
 
-    Parallel__Batch_Start $batchID $batchSize "${commands[@]}"
-    Parallel__Batch_Wait
-    Parallel__Batch_Results
-
-    Parallel__Batch_Failures
+    Parallel__Batch_Failures "$tempDirectory"
     if [ $? != 0 ]; then
       failed=1
     fi
 
-    Parallel__Temporary_Directory_Remove
+    rm -R "$tempDirectory"
   done
 
   return $failed
