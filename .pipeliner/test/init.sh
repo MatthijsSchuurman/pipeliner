@@ -17,7 +17,7 @@ E2ETest_Init() {
   if [ $(Environment_Platform) == "local" ]; then
     Assert_Match "$actual" DEBUG "Docker version [0-9\.]+"
   else
-    Assert_Match "$actual" DEBUG "Docker version [0-9\.]+"
+    Assert_Match "$actual" debug "Docker version [0-9\.]+"
   fi
 
 
