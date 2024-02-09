@@ -2,52 +2,6 @@
 
 source $(Files_Path_Pipeliner)/core/docker.class.sh
 
-UnitTest_Docker_Install() {
-  if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
-
-  #Given
-  local actual=
-  local exitCode=
-
-  #When
-  actual=$(Docker_Install)
-  exitCode=$?
-
-  #Then
-  Assert_Equal $exitCode 0
-  if [ $(Environment_Platform) == "local" ]; then
-    Assert_Contains "$actual" GROUP "Docker Install" ENDGROUP
-  else
-    Assert_Contains "$actual" group "Docker Install" endgroup
-  fi
-  Assert_Contains "$actual" "Docker version"
-
-  which docker > /dev/null 2>&1
-  Assert_Equal $? 0
-}
-UnitTest_Docker_Install_Fail() {
-  if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
-
-  which docker > /dev/null 2>&1 #skip if docker is already installed
-  if [ $? == 0 ]; then exit 255; fi #skip
-
-  #Given
-  local actual=
-  local exitCode=
-
-  Environment_Distro() { #mock
-    echo "unknown"
-  }
-
-  #When
-  actual=$(Docker_Install)
-  exitCode=$?
-
-  #Then
-  Assert_Equal $exitCode 1
-  Assert_Contains "$actual" "Docker is not supported on unknown unknown"
-}
-
 UnitTest_Docker_Build() {
   if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
 

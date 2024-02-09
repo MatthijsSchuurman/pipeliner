@@ -6,7 +6,7 @@ source $(dirname "${BASH_SOURCE[0]}")/core/utils/files.class.sh
 Files_Import_Classes
 
 # Setup prerequisites
-Docker_Install
+Packages_Prerequisites docker
 
 # Import all stages
 Files_Import_Stages

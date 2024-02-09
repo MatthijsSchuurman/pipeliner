@@ -5,35 +5,6 @@ source $(Files_Path_Pipeliner)/core/environment.class.sh
 
 PIPELINER_IMAGES_BUILT=""
 
-Docker_Install() {
-  Log_Group "Docker Install"
-
-  which docker > /dev/null 2>&1
-  if [ $? != 0 ]; then
-    Log_Warning "Installing Docker"
-    case $(Environment_Distro) in
-      "arch")
-        sudo pacman -S --noconfirm docker
-        sudo systemctl enable docker.service
-        sudo systemctl start docker.service
-        ;;
-      "ubuntu")
-        sudo apt-get update
-        sudo apt-get install -y docker.io
-        sudo systemctl enable docker.service
-        sudo systemctl start docker.service
-        ;;
-      *)
-        Log_Error "Docker is not supported on $(Environment_Distro) $(Environment_OS)" >&2
-        exit 1
-        ;;
-    esac
-  fi
-
-  docker --version
-  Log_Group_End
-}
-
 Docker_Build() {
   local dockerfile=$1
   local tag=$2

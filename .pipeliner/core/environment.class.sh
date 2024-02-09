@@ -44,31 +44,3 @@ Environment_Distro() {
 Environment_Architecture() {
   echo $(uname -m)
 }
-
-Environment_Package_Manager() {
-  which apt-get > /dev/null 2>&1
-  if [ $? == 0 ]; then
-    echo "apt"
-    return
-  fi
-
-  which yum > /dev/null 2>&1
-  if [ $? == 0 ]; then
-    echo "yum"
-    return
-  fi
-
-  which pacman > /dev/null 2>&1
-  if [ $? == 0 ]; then
-    echo "pacman"
-    return
-  fi
-
-  which brew > /dev/null 2>&1
-  if [ $? == 0 ]; then
-    echo "brew"
-    return
-  fi
-
-  echo "unknown"
-}
