@@ -90,23 +90,3 @@ UnitTest_Environment_Architecture() {
   #Then
   Assert_Equal "$actual" "$(uname -m)"
 }
-
-UnitTest_Environment_Package_Manager() {
-  #Given
-
-  #When
-  local actual=$(Environment_Package_Manager)
-
-  #Then
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    Assert_Equal "$actual" "brew"
-  elif [ "$(Environment_Distro)" == "arch" ]; then
-    Assert_Equal "$actual" "pacman"
-  elif [ "$(Environment_Distro)" == "ubuntu" ]; then
-    Assert_Equal "$actual" "apt"
-  elif [ "$(Environment_Distro)" == "centos" ]; then
-    Assert_Equal "$actual" "yum"
-  else
-    Assert_Equal "$actual" "unknown"
-  fi
-}

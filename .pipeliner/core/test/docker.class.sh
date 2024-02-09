@@ -1,52 +1,7 @@
 #!/bin/bash
 
 source $(Files_Path_Pipeliner)/core/docker.class.sh
-
-UnitTest_Docker_Install() {
-  if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
-
-  #Given
-  local actual=
-  local exitCode=
-
-  #When
-  actual=$(Docker_Install)
-  exitCode=$?
-
-  #Then
-  Assert_Equal $exitCode 0
-  if [ $(Environment_Platform) == "local" ]; then
-    Assert_Contains "$actual" GROUP "Docker Install" ENDGROUP
-  else
-    Assert_Contains "$actual" group "Docker Install" endgroup
-  fi
-  Assert_Contains "$actual" "Docker version"
-
-  which docker > /dev/null 2>&1
-  Assert_Equal $? 0
-}
-UnitTest_Docker_Install_Fail() {
-  if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
-
-  which docker > /dev/null 2>&1 #skip if docker is already installed
-  if [ $? == 0 ]; then exit 255; fi #skip
-
-  #Given
-  local actual=
-  local exitCode=
-
-  Environment_Distro() { #mock
-    echo "unknown"
-  }
-
-  #When
-  actual=$(Docker_Install)
-  exitCode=$?
-
-  #Then
-  Assert_Equal $exitCode 1
-  Assert_Contains "$actual" "Docker is not supported on unknown unknown"
-}
+source $(Files_Path_Pipeliner)/core/utils/packages.class.sh
 
 UnitTest_Docker_Build() {
   if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
@@ -54,7 +9,7 @@ UnitTest_Docker_Build() {
   #Given
   local actual=
   local exitCode=
-  Docker_Install
+  Packages_Prerequisites docker
 
   #When
   actual=$(Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile core:test)
@@ -75,7 +30,7 @@ UnitTest_Docker_Build_Arguments() {
   #Given
   local actual=
   local exitCode=
-  Docker_Install
+  Packages_Prerequisites docker
 
   #When
   actual=$(Docker_Build $(Files_Path_Pipeliner)/core/test/Dockerfile core-test:test "key1=value1 key2=value2")
@@ -117,7 +72,7 @@ UnitTest_Docker_Run_node() {
   local actual=
   local exitCode=
 
-  Docker_Install
+  Packages_Prerequisites docker
   Docker_Build $(Files_Path_Pipeliner)/node/Dockerfile node:test
 
   #When
@@ -151,7 +106,7 @@ UnitTest_Docker_Run_dotnet() {
   local actual=
   local exitCode=
 
-  Docker_Install
+  Packages_Prerequisites docker
   Docker_Build $(Files_Path_Pipeliner)/dotnet/Dockerfile dotnet:test
 
   #When
@@ -173,7 +128,7 @@ UnitTest_Docker_Run_Owner() {
   local actual=
   local exitCode=
 
-  Docker_Install
+  Packages_Prerequisites docker
   Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile core:test
 
   #When
@@ -191,7 +146,7 @@ UnitTest_Docker_Run_Env() {
   local actual=
   local exitCode=
 
-  Docker_Install
+  Packages_Prerequisites docker
   Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile core:test
 
   #When
@@ -293,7 +248,7 @@ UnitTest_Docker_List() {
   local actual=
   local exitCode=
 
-  Docker_Install
+  Packages_Prerequisites docker
   Docker_Build $(Files_Path_Pipeliner)/node/Dockerfile node:test
 
   #When
@@ -328,7 +283,7 @@ UnitTest_Docker_Save() {
   local actual=
   local exitCode=
 
-  Docker_Install
+  Packages_Prerequisites docker
   Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile core:test
 
   #When
