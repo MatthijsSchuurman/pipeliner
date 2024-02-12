@@ -1,10 +1,6 @@
 #!/bin/bash
 source $(dirname ${BASH_SOURCE[0]})/init.sh
 
-source $(Files_Path_Pipeliner)/core/docker.class.sh
-source $(Files_Path_Pipeliner)/core/version.class.sh
-source $(Files_Path_Pipeliner)/core/utils/cli.class.sh
-
 
 #Main logic
 argumentsDefinition="
