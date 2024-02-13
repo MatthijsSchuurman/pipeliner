@@ -1,11 +1,46 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+- *
 
 pool:
   vmImage: ubuntu-latest
 
+jobs:
+- job: UnitTest
+
+  - bash: |
+      source ./.pipeliner/init.sh
+      Pipeliner_Test_Run unit
+    displayName: Run unit tests
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: testReports
+    condition: always()
+
+
+- job: IntegrationTest
+  - script: |
+      source ./.pipeliner/init.sh
+      Pipeliner_Test_Run integration
+    displayName: Run integration tests
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: testReports
+    condition: always()
+
+
+- job: E2ETest
+  - script: |
+      source ./.pipeliner/init.sh
+      Pipeliner_Test_Run e2e
+    displayName: Run E2E tests
+
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: testReports
+    condition: always()
