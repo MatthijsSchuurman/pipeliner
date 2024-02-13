@@ -10,6 +10,9 @@ Artifacts_Directory() {
     "azure")
       directory=$BUILD_ARTIFACTSTAGINGDIRECTORY
       ;;
+    "github")
+      directory="$(Files_Path_Root)/artifacts"
+      ;;
     "local")
       directory="$(Files_Path_Root)/artifacts"
       ;;
@@ -27,21 +30,45 @@ Artifacts_Directory() {
 }
 
 Artifacts_Write() {
-  local fileName=$1
+  local filename=$1
   local content=$2
 
-  Log_Info "Writing artifact '$fileName'"
-  echo "$content" > "$(Artifacts_Directory)/$fileName"
+  Log_Info "Writing artifact $filename"
+  echo "$content" > "$(Artifacts_Directory)/$filename"
 }
 
-Artifacts_Delete() {
-  local fileName=$1
+Artifacts_Read() {
+  local filename=$1
 
-  if [ ! -f "$(Artifacts_Directory)/$fileName" ]; then
-    Log_Warning "Artifact '$fileName' does not exist"
+  if [ ! -f "$(Artifacts_Directory)/$filename" ]; then
+    Log_Error "Artifact $filename does not exist"
     return 1
   fi
 
-  Log_Info "Deleting artifact '$fileName'"
-  rm "$(Artifacts_Directory)/$fileName"
+  cat "$(Artifacts_Directory)/$filename"
+}
+
+Artifacts_Move() {
+  local sourceFilename=$1
+  local destinationFilename=$2
+
+  if [ ! -f "$sourceFilename" ]; then
+    Log_Error "Artifact $sourceFilename does not exist"
+    return 1
+  fi
+
+  Log_Info "Moving artifact $sourceFilename to $(Artifacts_Directory)/$destinationFilename"
+  mv "$sourceFilename" "$(Artifacts_Directory)/$destinationFilename"
+}
+
+Artifacts_Delete() {
+  local filename=$1
+
+  if [ ! -f "$(Artifacts_Directory)/$filename" ]; then
+    Log_Error "Artifact $filename does not exist"
+    return 1
+  fi
+
+  Log_Info "Deleting artifact $filename"
+  rm "$(Artifacts_Directory)/$filename"
 }
