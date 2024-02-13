@@ -5,6 +5,7 @@ source $(Files_Path_Pipeliner)/core/environment.class.sh
 source $(Files_Path_Pipeliner)/core/version.class.sh
 source $(Files_Path_Pipeliner)/core/compression.class.sh
 source $(Files_Path_Pipeliner)/core/variables.class.sh
+source $(Files_Path_Pipeliner)/core/artifacts.class.sh
 source $(Files_Path_Pipeliner)/core/utils/vcs.class.sh
 
 Pipeliner_Package_Filename() {
@@ -33,6 +34,8 @@ Pipeliner_Package_Create() {
   Log_Debug "Removing build directory"
   rm -rf "$buildDirectory"
 
-  Variables_Set package "$(Files_Path_Root)/$filename"
+  Artifacts_Move "$(Files_Path_Root)/$filename" "packages/$filename"
+
+  Variables_Set package "$(Artifacts_Directory)/packages/$filename" #bit of an assumption here
   return $exitCode
 }
