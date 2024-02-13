@@ -1,0 +1,27 @@
+name: Pipeliner CD
+
+on:
+  #push:
+  pull_request: #REPLACE with push so it's only done when actually merged
+    branches:
+      - main
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Create package
+      id: package
+      run: |
+        source ./.pipeliner/init.sh
+        Pipeliner_Package_Create
+
+        local package=$(Variable_Get "package")
+        Variable_Set "packageName" "$(basename "$package")"
+    - name: Upload package
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.package.outputs.packageName }}
+        path: ${{ steps.package.outputs.package }}
