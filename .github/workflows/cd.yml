@@ -1,6 +1,7 @@
 name: Pipeliner CD
 
 on:
+  workflow_dispatch: #Allow manual run
   push:
     branches:
       - main

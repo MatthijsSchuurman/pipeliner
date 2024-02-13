@@ -42,10 +42,6 @@ IntegrationTest_Pipeliner_Test_Run() {
     echo "1.2.345-test"
   }
 
-  Environment_Platform() { #mock
-    echo "local"
-  }
-
   #When
   local logFile=$(Files_Temp_File test .log)
   Pipeliner_Test_Run unit > $logFile

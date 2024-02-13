@@ -20,9 +20,6 @@ IntegrationTest_Pipeliner_Package_Create() {
   local actual=
   local exitCode=
 
-  Environment_Platform() { #mock
-    echo "local"
-  }
   Version_Pipeliner_Full() { #mock
     echo "1.2.345-test"
   }
@@ -48,7 +45,7 @@ IntegrationTest_Pipeliner_Package_Create() {
   actual=$(cat $logFile)
   rm $logFile
 
-  echo "$actual"
+  echo "$actual" #debug
 
   #Then
   Assert_Equal $exitCode 0

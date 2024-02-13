@@ -7,9 +7,6 @@ UnitTest_Pipeliner_Docker_Create_Image() {
   local actual=
   local exitCode=
 
-  Environment_Platform() { #mock
-    echo "local"
-  }
   Version_Pipeliner_Full() { #mock
     echo "1.2.345-test"
   }
