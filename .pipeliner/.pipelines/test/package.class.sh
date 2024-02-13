@@ -48,6 +48,8 @@ IntegrationTest_Pipeliner_Package_Create() {
   actual=$(cat $logFile)
   rm $logFile
 
+  echo "$actual"
+
   #Then
   Assert_Equal $exitCode 0
   Assert_Match "$actual" "Preparing build directory"
