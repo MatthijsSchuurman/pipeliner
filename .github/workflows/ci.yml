@@ -6,47 +6,30 @@ on:
       - main
 
 jobs:
-  Unit_test:
+  Test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+
     - name: Run unit tests
       run: |
         source ./.pipeliner/init.sh
         Pipeliner_Test_Run unit
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      with:
-        name: testReports
-        path: artifacts/testReports/
       if: always()
 
-  Integration_test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
     - name: Run integration tests
       run: |
         source ./.pipeliner/init.sh
         Pipeliner_Test_Run integration
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      with:
-        name: testReports
-        path: artifacts/testReports/
       if: always()
 
-  E2E_test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
     - name: Run E2E tests
       run: |
         source ./.pipeliner/init.sh
         Pipeliner_Test_Run e2e
+      if: always()
+
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:

@@ -11,6 +11,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+
     - name: Create package
       id: package
       run: |
@@ -19,6 +20,7 @@ jobs:
 
         package=$(Variables_Get "package")
         Variables_Set "packageName" "$(basename "$package")"
+
     - name: Upload package
       uses: actions/upload-artifact@v4
       with:
