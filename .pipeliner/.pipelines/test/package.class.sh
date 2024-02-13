@@ -38,8 +38,8 @@ IntegrationTest_Pipeliner_Package_Create() {
     rsync -a --exclude=.nuget/ --exclude=.local/ --exclude=.dotnet/ --exclude=bin/ --exclude=obj/ --exclude=.npm/ --exclude=node_modules/ "$source/examples" "$target"
   }
 
+  rm -f $(Files_Path_Root)/pipeliner-1.2.345-test.zip
   rm -rf $(Artifacts_Directory)
-
 
   #When
   local logFile=$(Files_Temp_File test .log)
@@ -72,7 +72,6 @@ IntegrationTest_Pipeliner_Package_Create() {
 
   Assert_Not_Contains "$(echo "$files" | grep "^README.md$")" "README.md" #should be removed from root
   Assert_Not_Contains "$(echo "$files" | grep "^LICENSE.md$")" "LICENSE.md" #should be removed from root
-
 
   #Clean
   rm -rf $(Artifacts_Directory)

@@ -14,12 +14,10 @@ UnitTest_Pipeliner_Docker_Create_Image() {
     echo "1.2.345-test"
   }
 
-  local packageFile="$(Files_Path_Root)/pipeliner-$(Version_Pipeliner_Full).zip"
-  touch "$packageFile"
-
   rm -rf $(Artifacts_Directory)
 
-
+  local packageFile="$(Files_Path_Root)/pipeliner-$(Version_Pipeliner_Full).zip"
+  touch "$packageFile"
 
   #When
   local logFile=$(Files_Temp_File test .log)
@@ -41,4 +39,5 @@ UnitTest_Pipeliner_Docker_Create_Image() {
 
   #Clean
   rm -rf $(Artifacts_Directory)
+  rm "$packageFile"
 }
