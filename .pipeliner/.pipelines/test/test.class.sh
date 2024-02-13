@@ -57,11 +57,13 @@ IntegrationTest_Pipeliner_Test_Run() {
   Assert_Contains "$actual" "include: "
   Assert_Contains "$actual" "exclude: "
 
-  Assert_Equal "$(Variables_Get unitTestReport)" "$(Files_Path_Root)/unit_test_report-1.2.345-test.txt"
-  Assert_File_Exists $(Files_Path_Root)/unit_test_report-1.2.345-test.txt
+  Assert_Equal "$(Variables_Get unitTestReport)" "$(Artifacts_Directory)/testReports/unit_test_report-1.2.345-test.txt"
+  Assert_File_Exists "$(Artifacts_Directory)/testReports/unit_test_report-1.2.345-test.txt"
+  local report=$(cat $(Artifacts_Directory)/testReports/unit_test_report-1.2.345-test.txt)
+  Assert_Contains "$report" "Fake test report"
 
   #Clean
-  rm $(Files_Path_Root)/unit_test_report-1.2.345-test.txt
+  rm -rf $(Artifacts_Directory)
 
 
   #When
@@ -79,11 +81,13 @@ IntegrationTest_Pipeliner_Test_Run() {
   Assert_Contains "$actual" "include: "
   Assert_Contains "$actual" "exclude: "
 
-  Assert_Equal "$(Variables_Get integrationTestReport)" "$(Files_Path_Root)/integration_test_report-1.2.345-test.txt"
-  Assert_File_Exists $(Files_Path_Root)/integration_test_report-1.2.345-test.txt
+  Assert_Equal "$(Variables_Get integrationTestReport)" "$(Artifacts_Directory)/testReports/integration_test_report-1.2.345-test.txt"
+  Assert_File_Exists "$(Artifacts_Directory)/testReports/integration_test_report-1.2.345-test.txt"
+  local report=$(cat $(Artifacts_Directory)/testReports/integration_test_report-1.2.345-test.txt)
+  Assert_Contains "$report" "Fake test report"
 
   #Clean
-  rm $(Files_Path_Root)/integration_test_report-1.2.345-test.txt
+  rm -rf $(Artifacts_Directory)
 
 
   #When
@@ -101,11 +105,13 @@ IntegrationTest_Pipeliner_Test_Run() {
   Assert_Contains "$actual" "include: "
   Assert_Contains "$actual" "exclude: ci.local.sh"
 
-  Assert_Equal "$(Variables_Get e2eTestReport)" "$(Files_Path_Root)/e2e_test_report-1.2.345-test.txt"
-  Assert_File_Exists $(Files_Path_Root)/e2e_test_report-1.2.345-test.txt
+  Assert_Equal "$(Variables_Get e2eTestReport)" "$(Artifacts_Directory)/testReports/e2e_test_report-1.2.345-test.txt"
+  Assert_File_Exists "$(Artifacts_Directory)/testReports/e2e_test_report-1.2.345-test.txt"
+  local report=$(cat $(Artifacts_Directory)/testReports/e2e_test_report-1.2.345-test.txt)
+  Assert_Contains "$report" "Fake test report"
 
   #Clean
-  rm $(Files_Path_Root)/e2e_test_report-1.2.345-test.txt
+  rm -rf $(Artifacts_Directory)
 }
 
 IntegrationTest_Pipeliner_Test_Run_Fail() {
@@ -135,9 +141,9 @@ IntegrationTest_Pipeliner_Test_Run_Fail() {
   Assert_Match "$actual" "Running tests"
   Assert_Match "$actual" "Fake test report"
 
-  Assert_Equal "$(Variables_Get failTestReport)" "$(Files_Path_Root)/fail_test_report-1.2.345-test.txt"
-  Assert_File_Exists $(Files_Path_Root)/fail_test_report-1.2.345-test.txt
+  Assert_Equal "$(Variables_Get failTestReport)" "$(Artifacts_Directory)/testReports/fail_test_report-1.2.345-test.txt"
+  Assert_File_Exists "$(Artifacts_Directory)/testReports/fail_test_report-1.2.345-test.txt"
 
   #Clean
-  rm $(Files_Path_Root)/fail_test_report-1.2.345-test.txt
+  rm -rf $(Artifacts_Directory)
 }

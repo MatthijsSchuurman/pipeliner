@@ -1,0 +1,29 @@
+name: Pipeliner CD
+
+on:
+  workflow_dispatch: #Allow manual run
+  push:
+    branches:
+      - main
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Create package
+      id: package
+      run: |
+        source ./.pipeliner/init.sh
+        Pipeliner_Package_Create
+
+        package=$(Variables_Get "package")
+        Variables_Set "packageName" "$(basename "$package")"
+
+    - name: Upload package
+      uses: actions/upload-artifact@v4
+      with:
+        name: packages
+        path: artifacts/packages/

@@ -11,9 +11,9 @@ UnitTest_Pipeliner_Docker_Create_Image() {
     echo "1.2.345-test"
   }
 
-  local packageFile="$(Files_Path_Root)/pipeliner-$(Version_Pipeliner_Full).zip"
-  local dockerImageFile="$(Files_Path_Root)/pipeliner-docker-$(Version_Pipeliner_Full).tar.xz"
+  rm -rf $(Artifacts_Directory)
 
+  local packageFile="$(Files_Path_Root)/pipeliner-$(Version_Pipeliner_Full).zip"
   touch "$packageFile"
 
   #When
@@ -31,9 +31,10 @@ UnitTest_Pipeliner_Docker_Create_Image() {
     Assert_Contains "$actual" info "Create Pipeliner Docker image"
   fi
 
-  Assert_File_Exists "$dockerImageFile"
-  Assert_Match "$(Variables_Get dockerImage)" "$dockerImageFile"
+  Assert_File_Exists "$(Artifacts_Directory)/packages/pipeliner-docker-1.2.345-test.tar.xz"
+  Assert_Match "$(Variables_Get dockerImage)" "$(Artifacts_Directory)/packages/pipeliner-docker-1.2.345-test.tar.xz"
 
   #Clean
-  rm -f "$packageFile" "$dockerImageFile"
+  rm -rf $(Artifacts_Directory)
+  rm "$packageFile"
 }

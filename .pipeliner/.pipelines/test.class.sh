@@ -2,6 +2,7 @@
 
 source $(Files_Path_Pipeliner)/core/log.class.sh
 source $(Files_Path_Pipeliner)/core/variables.class.sh
+source $(Files_Path_Pipeliner)/core/artifacts.class.sh
 source $(Files_Path_Pipeliner)/core/utils/test.class.sh
 
 Pipeliner_Test_Report_Filename() {
@@ -27,6 +28,8 @@ Pipeliner_Test_Run() {
   Test_Run "$type" "$include" "$exclude" | tee "$(Files_Path_Root)/$filename"
   exitCode=${PIPESTATUS[0]}
 
-  Variables_Set ${type}TestReport "$(Files_Path_Root)/$filename"
+  Artifacts_Move "$(Files_Path_Root)/$filename" "testReports/$filename"
+
+  Variables_Set ${type}TestReport "$(Artifacts_Directory)/testReports/$filename" #bit of an assumption here
   return $exitCode
 }

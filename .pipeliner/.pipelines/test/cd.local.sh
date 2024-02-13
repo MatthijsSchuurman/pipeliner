@@ -27,7 +27,7 @@ E2ETest_Pipeliner_Pipeline_CD() {
   local package=$(Variables_Get package)
   Assert_File_Exists "$package"
 
-  local dockerImage=$(echo $(Variables_Get package) | sed -E "s/(pipeliner)-(.+)\.zip/\1-docker-\2.tar.xz/")
+  local dockerImage=$(Variables_Get dockerImage)
   Assert_File_Exists "$dockerImage"
 
   #Download pipeliner from docker image
@@ -42,11 +42,11 @@ E2ETest_Pipeliner_Pipeline_CD() {
   docker stop pipeliner_e2etest > /dev/null 2>&1
   docker rm --force pipeliner_e2etest > /dev/null 2>&1
 
-  Assert_File_Exists "$package.1" #auto-renamed by wget
+  local downloadedPackage=$(basename "$package")
+  Assert_File_Exists "$downloadedPackage"
 
   #Clean
-  rm "$package"
-  rm "$dockerImage"
-  rm "$package.1"
+  rm -rf $(Artifacts_Directory)
+  rm "$downloadedPackage"
   rm "install.sh"
 }

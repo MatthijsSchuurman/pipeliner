@@ -29,5 +29,5 @@ E2ETest_Pipeliner_Pipeline_CI() {
   Assert_File_Exists "$e2eTestReport"
 
   #Clean
-  rm "$unitTestReport" "$integrationTestReport" "$e2eTestReport"
+  rm -rf $(Artifacts_Directory)
 }
