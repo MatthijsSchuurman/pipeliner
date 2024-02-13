@@ -18,7 +18,7 @@ jobs:
         source ./.pipeliner/init.sh
         Pipeliner_Package_Create
 
-        local package=$(Variables_Get "package")
+        package=$(Variables_Get "package")
         Variables_Set "packageName" "$(basename "$package")"
     - name: Upload package
       uses: actions/upload-artifact@v2
