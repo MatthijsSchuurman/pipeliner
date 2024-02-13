@@ -104,6 +104,26 @@ UnitTest_Artifacts_Write() {
   rm -rf "artifacts"
 }
 
+UnitTest_Artifacts_Write_Directory() {
+  #Given
+  local filename="test/test.txt"
+  local content="test content"
+  local actual=
+
+  Environment_Platform() { #mock
+    echo "local"
+  }
+
+  #When
+  actual=$(Artifacts_Write "$filename" "$content")
+
+  Assert_File_Exists "$(Artifacts_Directory)/$filename"
+  Assert_Equal "$(cat $(Artifacts_Directory)/$filename)" "$content"
+
+  #Clean
+  rm -rf "artifacts"
+}
+
 UnitTest_Artifacts_Write_Azure() {
   #Given
   local filename="test.txt"
@@ -270,6 +290,51 @@ UnitTest_Artifacts_Move() {
   else
     Assert_Match "$actual" info "Moving artifact $sourceFilename to $(Artifacts_Directory)/$destinationFilename"
   fi
+
+  #Clean
+  rm -rf "artifacts"
+}
+
+UnitTest_Artifacts_Move_Directory() {
+  #Given
+  local sourceFilename="test.txt"
+  local destinationFilename="test/test2.txt"
+  local content="test content"
+  local actual=
+
+  Environment_Platform() { #mock
+    echo "local"
+  }
+
+  echo "$content" > "$sourceFilename"
+
+  #When
+  actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename")
+
+  Assert_File_Exists "$(Artifacts_Directory)/$destinationFilename"
+  Assert_Not_File_Exists "$sourceFilename"
+
+  #Clean
+  rm -rf "artifacts"
+
+
+  #Given
+  sourceFilename="test/test.txt"
+  destinationFilename="test/"
+  content="test content"
+
+  Environment_Platform() { #mock
+    echo "local"
+  }
+
+  echo "$content" > "$sourceFilename"
+
+  #When
+  actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename")
+
+  Assert_Directory_Exists "$(Artifacts_Directory)/$destinationFilename"
+  Assert_File_Exists "$(Artifacts_Directory)/$destinationFilename/test.txt"
+  Assert_Not_File_Exists "$sourceFilename"
 
   #Clean
   rm -rf "artifacts"

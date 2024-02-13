@@ -33,6 +33,11 @@ Artifacts_Write() {
   local filename=$1
   local content=$2
 
+  local directory=$(dirname "$filename")
+  if [ ! -d "$(Artifacts_Directory)/$directory" ]; then
+    mkdir -p "$(Artifacts_Directory)/$directory"
+  fi
+
   Log_Info "Writing artifact $filename"
   echo "$content" > "$(Artifacts_Directory)/$filename"
 }
@@ -55,6 +60,18 @@ Artifacts_Move() {
   if [ ! -f "$sourceFilename" ]; then
     Log_Error "Artifact $sourceFilename does not exist"
     return 1
+  fi
+
+  local directory=
+
+  if [[ $destinationFilename == */ ]]; then
+    directory="$destinationFilename"
+  else
+    directory=$(dirname "$destinationFilename")
+  fi
+
+  if [ ! -d "$(Artifacts_Directory)/$directory" ]; then
+    mkdir -p "$(Artifacts_Directory)/$directory"
   fi
 
   Log_Info "Moving artifact $sourceFilename to $(Artifacts_Directory)/$destinationFilename"
