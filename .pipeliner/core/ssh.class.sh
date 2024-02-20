@@ -26,7 +26,6 @@ SSH__Remote_Authorized_Keys_File() {
 
 SSH_Key_Exists() {
   local keyName=$1
-
   local keyFile=$(SSH__Key_File "$keyName")
 
   if [ -f "$keyFile" ]; then
@@ -38,7 +37,6 @@ SSH_Key_Exists() {
 
 SSH_Generate_Key() {
   local keyName=$1
-
   local keyFile=$(SSH__Key_File "$keyName")
 
   if SSH_Key_Exists "$keyName"; then
@@ -76,8 +74,13 @@ SSH__Dissect_URL() {
 
 SSH_Run() {
   local url=$(SSH__Dissect_URL "$1")
-  local command=$2
-  local keyName=$3
+  local keyName=$2
+
+  local commands=
+  if [ ${#@} -gt 2 ]; then
+    shift 2
+    commands=("$@")
+  fi
 
   local keyFile=$(SSH__Key_File "$keyName")
   local exitCode=
@@ -95,7 +98,7 @@ SSH_Run() {
 
   ssh+=" $(Dictionary_Get "$url" "host")"
 
-  ssh+=" $command"
+  ssh+=" $commands"
 
   $ssh
   exitCode=$?
@@ -117,14 +120,14 @@ SSH_Deploy_Key() {
 
   local command="echo "$keyPublic" >> $remoteKeysFile"
 
-  SSH_Run "$url" "$command" "$keyName"
+  SSH_Run "$url" "$keyName" "$command"
 }
 
 SSH_Copy() {
   local url=$(SSH__Dissect_URL "$1")
-  local sourceFile=$2
-  local destinationFile=$3
-  local keyName=$4
+  local keyName=$2
+  local sourceFile=$3
+  local destinationFile=$4
 
   local keyFile=$(SSH__Key_File "$keyName")
   local exitCode=
