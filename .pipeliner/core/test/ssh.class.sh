@@ -270,7 +270,7 @@ UnitTest_SSH_Deploy_Key() {
   ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
 
   #When
-  actual=$(SSH_Deploy_Key "$host" "$keyName" 2> /dev/null)
+  actual=$(SSH_Deploy_Key "$host?key=$keyName" 2> /dev/null)
 
   #Then
   Assert_Equal "$actual" ""
@@ -308,7 +308,7 @@ UnitTest_SSH_Run() {
   ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
 
   #When
-  actual=$(SSH_Run "$host" "$keyName" "$command" 2> /dev/null)
+  actual=$(SSH_Run "$host?key=$keyName" "$command" 2> /dev/null)
 
   #Then
   Assert_Not_Empty "$actual"
@@ -335,7 +335,7 @@ UnitTest_SSH_Copy() {
   ssh-keygen -R localhost 2>/dev/null #ensure no host key is present
 
   #When
-  actual=$(SSH_Copy "$host" "$keyName" "$sourceFile" "$destinationFile" 2> /dev/null)
+  actual=$(SSH_Copy "$host?key=$keyName" "$sourceFile" "$destinationFile" 2> /dev/null)
 
   #Then
   Assert_Equal "$actual" ""

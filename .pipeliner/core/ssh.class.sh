@@ -111,14 +111,14 @@ SSH__Dissect_URL() {
 
 SSH_Run() {
   local url=$(SSH__Dissect_URL "$1")
-  local keyName=$2
 
   local commands=
-  if [ ${#@} -gt 2 ]; then
-    shift 2
+  if [ ${#@} -gt 1 ]; then
+    shift 1
     commands=("$@")
   fi
 
+  local keyName=$(Dictionary_Get "$url" "key")
   local keyFile=$(SSH__Key_File "$keyName")
   local exitCode=
 
@@ -148,8 +148,8 @@ SSH_Run() {
 }
 
 SSH_Deploy_Key() {
-  local url=$1
-  local keyName=$2
+  local urlString=$1
+  local url=$(SSH__Dissect_URL "$urlString")
 
   local keyFilePublic=$(SSH__Key_File_Public "$keyName")
   local keyPublic=$(cat "$keyFilePublic")
@@ -157,15 +157,15 @@ SSH_Deploy_Key() {
 
   local command="echo "$keyPublic" >> $remoteKeysFile"
 
-  SSH_Run "$url" "$keyName" "$command"
+  SSH_Run "$urlString" "$command"
 }
 
 SSH_Copy() {
   local url=$(SSH__Dissect_URL "$1")
-  local keyName=$2
-  local sourceFile=$3
-  local destinationFile=$4
+  local sourceFile=$2
+  local destinationFile=$3
 
+  local keyName=$(Dictionary_Get "$url" "key")
   local keyFile=$(SSH__Key_File "$keyName")
   local exitCode=
 
