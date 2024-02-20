@@ -31,11 +31,16 @@ Docker_Build() {
 
 Docker_Run() {
   local tag=$1
-  local command=$2
-  local workdir=$3
-  local env=$4
+  local workdir=$2
+  local env=$3
 
-  Log_Group "Docker Run $tag $command"
+  local commands=
+  if [ ${#@} -gt 3 ]; then
+    shift 3
+    commands=("$@")
+  fi
+
+  Log_Group "Docker Run $tag $commands"
 
   dockerCommand="docker run"
   dockerCommand+=" --volume $(realpath "$(Files_Path_Root)"):/work"
@@ -54,7 +59,7 @@ Docker_Run() {
     dockerCommand+=" --env $e"
   done
 
-  dockerCommand+=" $tag $command"
+  dockerCommand+=" $tag $commands"
 
   $dockerCommand 2>&1
   result=$?
@@ -66,9 +71,10 @@ Docker_Run() {
 
 Docker_Runner() {
   local image=$1
-  local command=$2
-  local workdir=$3
-  local env=$4
+  local workdir=$2
+  local env=$3
+  shift 3
+  local commands=("$@")
 
   if [[ "$image" =~ [^a-zA-Z0-9_-] ]] || [ ! -f $(Files_Path_Pipeliner)/$image/Dockerfile ]; then
     Log_Error "Docker image $image not found" >&2
@@ -87,7 +93,7 @@ Docker_Runner() {
 "
   fi
 
-  Docker_Run $image:runner "$command" "$workdir" "$env"
+  Docker_Run $image:runner "$workdir" "$env" "$commands"
 }
 
 Docker_List() {

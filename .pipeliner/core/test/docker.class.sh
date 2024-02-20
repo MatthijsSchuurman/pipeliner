@@ -37,6 +37,8 @@ UnitTest_Docker_Build_Arguments() {
   actual2=$(Docker_Run core-test:test)
   exitCode=$?
 
+  echo "$actual2"
+
   #Then
   Assert_Equal $exitCode 0
   if [ $(Environment_Platform) == "local" ]; then
@@ -76,7 +78,7 @@ UnitTest_Docker_Run_node() {
   Docker_Build $(Files_Path_Pipeliner)/node/Dockerfile node:test
 
   #When
-  actual=$(Docker_Run node:test pwd)
+  actual=$(Docker_Run node:test "" "" pwd)
   exitCode=$?
 
   #Then
@@ -88,7 +90,7 @@ UnitTest_Docker_Run_node() {
   fi
 
   #When
-  actual=$(Docker_Run node:test pwd .pipeliner/)
+  actual=$(Docker_Run node:test .pipeliner/ "" pwd)
   exitCode=$?
 
   #Then
@@ -110,7 +112,7 @@ UnitTest_Docker_Run_dotnet() {
   Docker_Build $(Files_Path_Pipeliner)/dotnet/Dockerfile dotnet:test
 
   #When
-  actual=$(Docker_Run dotnet:test pwd)
+  actual=$(Docker_Run dotnet:test "" "" pwd)
   exitCode=$?
 
   #Then
@@ -132,7 +134,7 @@ UnitTest_Docker_Run_Owner() {
   Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile core:test
 
   #When
-  Docker_Run core:test "touch asd"
+  Docker_Run core:test "" "" "touch asd"
 
   #Then
   Assert_Path_Owner $(Files_Path_Root)/asd $(id -u)
@@ -150,7 +152,7 @@ UnitTest_Docker_Run_Env() {
   Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile core:test
 
   #When
-  actual=$(Docker_Run core:test "env" "" "asd=123")
+  actual=$(Docker_Run core:test "" "asd=123" "env")
 
   #Then
   Assert_Contains "$actual" "asd=123"
@@ -175,7 +177,7 @@ UnitTest_Docker_Runner() {
 
   #When
   local logFile=$(Files_Temp_File test .log)
-  Docker_Runner core "ls -la" > $logFile 2>&1
+  Docker_Runner core "" "" "ls -la" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
   rm $logFile
@@ -191,7 +193,7 @@ UnitTest_Docker_Runner() {
 
   #When
   local logFile=$(Files_Temp_File test .log)
-  Docker_Runner core "ls -la" > $logFile 2>&1
+  Docker_Runner core "" "" "ls -la" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
   rm $logFile
@@ -212,7 +214,7 @@ UnitTest_Docker_Runner_node() {
 
   #When
   local logFile=$(Files_Temp_File test .log)
-  Docker_Runner node "ls -la" > $logFile 2>&1
+  Docker_Runner node "" "" "ls -la" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
   rm $logFile
@@ -231,7 +233,7 @@ UnitTest_Docker_Runner_Fail() {
 
   #When
   local logFile=$(Files_Temp_File test .log)
-  Docker_Runner UNKNOWN "ls -la" > $logFile 2>&1
+  Docker_Runner UNKNOWN "" "" "ls -la" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
   rm $logFile
@@ -385,7 +387,7 @@ UnitTest_Core_Dockerfile() {
 
   #When
   for tool in ${tools[@]}; do
-    Docker_Runner core "which $tool"
+    Docker_Runner core "" "" "which $tool"
     exitCode=$?
 
     #Then
