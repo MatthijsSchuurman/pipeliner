@@ -57,16 +57,53 @@ SSH__Dissect_URL() {
   local url=$1
   local dictionary=
 
+  local user=
   if [[ $url == *"@"* ]]; then
-    dictionary=$(Dictionary_Set "" "user" "$(echo $url | cut -d'@' -f1)")
-    url=$(echo $url | cut -d'@' -f2)
+    user="$(echo $url | cut -d '@' -f 1)"
+    url=$(echo $url | cut -d '@' -f 2-)
   fi
 
+  local arguments=
+  if [[ $url == *"?"* ]]; then
+    arguments="$(echo $url | cut -d '?' -f 2-)"
+    url=$(echo $url | cut -d '?' -f 1)
+  fi
+
+  local path=
+  if [[ $url == *"/"* ]]; then
+    path="$(echo $url | cut -d '/' -f 2-)"
+    url=$(echo $url | cut -d '/' -f 1)
+  fi
+
+  local host=
+  local port=
   if [[ $url == *":"* ]]; then
-    dictionary=$(Dictionary_Set "$dictionary" "host" "$(echo $url | cut -d':' -f1)")
-    dictionary=$(Dictionary_Set "$dictionary" "port" "$(echo $url | cut -d':' -f2)")
+    host="$(echo $url | cut -d ':' -f 1)"
+    port="$(echo $url | cut -d ':' -f 2)"
   else
-    dictionary=$(Dictionary_Set "$dictionary" "host" "$url")
+    host=$url
+  fi
+
+  dictionary=$(Dictionary_Set "$dictionary" "host" "$host")
+  if [ "$user" ]; then
+    dictionary=$(Dictionary_Set "$dictionary" "user" "$user")
+  fi
+  if [ "$port" ]; then
+    dictionary=$(Dictionary_Set "$dictionary" "port" "$port")
+  fi
+  if [ "$path" ]; then
+    dictionary=$(Dictionary_Set "$dictionary" "path" "$path")
+  fi
+
+  if  [ "$arguments" ]; then
+    local argumentsArray=($(echo $arguments | tr "&" "\n"))
+    for argument in "${argumentsArray[@]}"; do
+      local key=$(echo $argument | cut -d '=' -f 1)
+      if ! $(Dictionary_Exists "$dictionary" "$key"); then
+        local value=$(echo $argument | cut -d '=' -f 2)
+        dictionary=$(Dictionary_Set "$dictionary" "$key" "$value")
+      fi
+    done
   fi
 
   echo "$dictionary"

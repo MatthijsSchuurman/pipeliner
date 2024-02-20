@@ -141,43 +141,20 @@ UnitTest_SSH_Generate_Key() {
 UnitTest_SSH__Dissect_URL() {
   #Given
   local actual=
-  local url="user@localhost:22"
+  local url="localhost"
 
   #When
   actual=$(SSH__Dissect_URL "$url")
 
   #Then
-  Assert_Equal "$(Dictionary_Get "$actual" "user")" "user"
   Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
-  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
-
-  #Given
-  url="localhost:22"
-
-  #When
-  actual=$(SSH__Dissect_URL "$url")
-
-  #Then
-  Dictionary_Exists "$actual" "user"
+  $(Dictionary_Exists "$actual" "user")
+  Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "port")
+  Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "path")
   Assert_Equal $? 1
 
-  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
-  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
-
-  #Given
-  url="localhost"
-
-  #When
-  actual=$(SSH__Dissect_URL "$url")
-
-  #Then
-  Dictionary_Exists "$actual" "user"
-  Assert_Equal $? 1
-
-  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
-
-  Dictionary_Exists "$actual" "port"
-  Assert_Equal $? 1
 
   #Given
   url="user@localhost"
@@ -186,11 +163,85 @@ UnitTest_SSH__Dissect_URL() {
   actual=$(SSH__Dissect_URL "$url")
 
   #Then
-  Assert_Equal "$(Dictionary_Get "$actual" "user")" "user"
   Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
-
-  Dictionary_Exists "$actual" "port"
+  Assert_Equal "$(Dictionary_Get "$actual" "user")" "user"
+  $(Dictionary_Exists "$actual" "port")
   Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "path")
+  Assert_Equal $? 1
+
+
+  #Given
+  url="localhost:22"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
+  $(Dictionary_Exists "$actual" "user")
+  Assert_Equal $? 1
+  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
+  $(Dictionary_Exists "$actual" "path")
+  Assert_Equal $? 1
+
+
+  #Given
+  url="localhost:22/path/to/file"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
+  $(Dictionary_Exists "$actual" "user")
+  Assert_Equal $? 1
+  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
+  Assert_Equal "$(Dictionary_Get "$actual" "path")" "path/to/file"
+}
+
+UnitTest_SSH__Dissect_URL_Arguments() {
+  #Given
+  local actual=
+  local url="localhost?key=value&key2=value2"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
+  $(Dictionary_Exists "$actual" "user")
+  Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "port")
+  Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "path")
+  Assert_Equal $? 1
+  Assert_Equal "$(Dictionary_Get "$actual" "key")" "value"
+  Assert_Equal "$(Dictionary_Get "$actual" "key2")" "value2"
+
+
+  #Given
+  url="localhost?key=value&key2=value2&key=value3"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "key")" "value"
+  Assert_Equal "$(Dictionary_Get "$actual" "key2")" "value2"
+
+
+  #Given
+  url="user@localhost:22/path/to/file?host=localhost2&user=user2&port=23&path=path2"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
+  Assert_Equal "$(Dictionary_Get "$actual" "user")" "user"
+  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
+  Assert_Equal "$(Dictionary_Get "$actual" "path")" "path/to/file"
 }
 
 UnitTest_SSH_Deploy_Key() {
