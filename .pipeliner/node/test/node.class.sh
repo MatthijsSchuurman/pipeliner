@@ -8,7 +8,7 @@ UnitTest_Node_Dockerfile() {
 
   #When
   for tool in ${tools[@]}; do
-    Docker_Runner node "which $tool"
+    Docker_Runner node "" "" "which $tool"
     exitCode=$?
 
     #Then

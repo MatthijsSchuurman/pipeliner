@@ -6,5 +6,5 @@ Node_Run() {
   local command=$1
   local workdir=$2
 
-  Docker_Runner node "$command" "$workdir" "npm_config_cache=/work/.npm/cache/"
+  Docker_Runner node "$workdir" "npm_config_cache=/work/.npm/cache/" "$command"
 }

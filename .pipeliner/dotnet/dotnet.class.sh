@@ -6,7 +6,7 @@ DotNet_Run() {
   local command=$1
   local workdir=$2
 
-  Docker_Runner dotnet "$command" "$workdir"
+  Docker_Runner dotnet "$workdir" "" "$command"
 }
 
 DotNet_Build() {
