@@ -16,16 +16,13 @@ UnitTest_Artifacts_Directory() {
   #Then
   Assert_Match "$actual" "artifacts"
   Assert_Directory_Exists "$actual"
-
-  #Clean
-  rm -rf "artifacts"
 }
 
 UnitTest_Artifacts_Directory_Azure() {
   #Given
   local actual=
 
-  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts"
+  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts-test"
   Environment_Platform() { #mock
     echo "azure"
   }
@@ -55,9 +52,6 @@ UnitTest_Artifacts_Directory_Github() {
   #Then
   Assert_Match "$actual" "artifacts"
   Assert_Directory_Exists "$actual"
-
-  #Clean
-  rm -rf "artifacts"
 }
 
 UnitTest_Artifacts_Directory_Fail() {
@@ -87,6 +81,12 @@ UnitTest_Artifacts_Write() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
 
   #When
   actual=$(Artifacts_Write "$filename" "$content")
@@ -101,7 +101,7 @@ UnitTest_Artifacts_Write() {
   fi
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Write_Directory() {
@@ -113,6 +113,12 @@ UnitTest_Artifacts_Write_Directory() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
 
   #When
   actual=$(Artifacts_Write "$filename" "$content")
@@ -121,7 +127,7 @@ UnitTest_Artifacts_Write_Directory() {
   Assert_Equal "$(cat $(Artifacts_Directory)/$filename)" "$content"
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Write_Azure() {
@@ -130,7 +136,7 @@ UnitTest_Artifacts_Write_Azure() {
   local content="test content"
   local actual=
 
-  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts"
+  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts-test"
   Environment_Platform() { #mock
     echo "azure"
   }
@@ -160,6 +166,12 @@ UnitTest_Artifacts_Write_Github() {
   Environment_Platform() { #mock
     echo "github"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
 
   #When
   actual=$(Artifacts_Write "$filename" "$content")
@@ -174,7 +186,7 @@ UnitTest_Artifacts_Write_Github() {
   fi
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Read() {
@@ -186,7 +198,12 @@ UnitTest_Artifacts_Read() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
 
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
   echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
@@ -195,7 +212,7 @@ UnitTest_Artifacts_Read() {
   Assert_Equal "$actual" "$content"
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Read_Azure() {
@@ -204,11 +221,12 @@ UnitTest_Artifacts_Read_Azure() {
   local content="test content"
   local actual=
 
-  BUILD_ARTIFACTSTAGINGDIRECTORY="test/artifacts/"
+  BUILD_ARTIFACTSTAGINGDIRECTORY="test/artifacts-test/"
   Environment_Platform() { #mock
     echo "azure"
   }
 
+  rm -rf "$BUILD_ARTIFACTSTAGINGDIRECTORY"
   mkdir -p "$BUILD_ARTIFACTSTAGINGDIRECTORY"
   echo "$content" > "$BUILD_ARTIFACTSTAGINGDIRECTORY/$filename"
 
@@ -230,7 +248,12 @@ UnitTest_Artifacts_Read_Github() {
   Environment_Platform() { #mock
     echo "github"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
 
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
   echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
@@ -239,7 +262,7 @@ UnitTest_Artifacts_Read_Github() {
   Assert_Equal "$actual" "$content"
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Read_Fail() {
@@ -251,6 +274,11 @@ UnitTest_Artifacts_Read_Fail() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "artifacts-test"
 
   #When
   actual=$(Artifacts_Read "$filename" 2>&1)
@@ -276,7 +304,12 @@ UnitTest_Artifacts_Move() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
 
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
   echo "$content" > "$sourceFilename"
 
   #When
@@ -292,7 +325,7 @@ UnitTest_Artifacts_Move() {
   fi
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Move_Directory() {
@@ -305,7 +338,12 @@ UnitTest_Artifacts_Move_Directory() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
 
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
   echo "$content" > "$sourceFilename"
 
   #When
@@ -315,7 +353,7 @@ UnitTest_Artifacts_Move_Directory() {
   Assert_Not_File_Exists "$sourceFilename"
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 
 
   #Given
@@ -326,7 +364,12 @@ UnitTest_Artifacts_Move_Directory() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
 
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
   echo "$content" > "$sourceFilename"
 
   #When
@@ -337,7 +380,7 @@ UnitTest_Artifacts_Move_Directory() {
   Assert_Not_File_Exists "$sourceFilename"
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Move_Azure() {
@@ -347,7 +390,7 @@ UnitTest_Artifacts_Move_Azure() {
   local content="test content"
   local actual=
 
-  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts"
+  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts-test"
   Environment_Platform() { #mock
     echo "azure"
   }
@@ -380,7 +423,12 @@ UnitTest_Artifacts_Move_Github() {
   Environment_Platform() { #mock
     echo "github"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
 
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
   echo "$content" > "$sourceFilename"
 
   #When
@@ -396,7 +444,7 @@ UnitTest_Artifacts_Move_Github() {
   fi
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Move_Fail() {
@@ -409,6 +457,12 @@ UnitTest_Artifacts_Move_Fail() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
 
   #When
   actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename" 2>&1)
@@ -422,6 +476,9 @@ UnitTest_Artifacts_Move_Fail() {
   else
     Assert_Match "$actual" error "Artifact $sourceFilename does not exist"
   fi
+
+  #Clean
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Delete() {
@@ -433,9 +490,15 @@ UnitTest_Artifacts_Delete() {
   Environment_Platform() { #mock
     echo "local"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
+  echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
-  Artifacts_Write "$filename" "$content"
   actual=$(Artifacts_Delete "$filename")
 
   Assert_Not_File_Exists "$(Artifacts_Directory)/$filename"
@@ -447,7 +510,7 @@ UnitTest_Artifacts_Delete() {
   fi
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
 
 UnitTest_Artifacts_Delete_Azure() {
@@ -456,13 +519,14 @@ UnitTest_Artifacts_Delete_Azure() {
   local content="test content"
   local actual=
 
-  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts"
+  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts-test"
   Environment_Platform() { #mock
     echo "azure"
   }
+  mkdir -p "$BUILD_ARTIFACTSTAGINGDIRECTORY"
+  echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
-  Artifacts_Write "$filename" "$content"
   actual=$(Artifacts_Delete "$filename")
 
   Assert_Not_File_Exists "$BUILD_ARTIFACTSTAGINGDIRECTORY/$filename"
@@ -486,9 +550,15 @@ UnitTest_Artifacts_Delete_Github() {
   Environment_Platform() { #mock
     echo "github"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "artifacts-test"
+  mkdir -p "artifacts-test"
+  echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
-  Artifacts_Write "$filename" "$content"
   actual=$(Artifacts_Delete "$filename")
 
   Assert_Not_File_Exists "$(Artifacts_Directory)/$filename"
@@ -500,5 +570,5 @@ UnitTest_Artifacts_Delete_Github() {
   fi
 
   #Clean
-  rm -rf "artifacts"
+  rm -rf "artifacts-test"
 }
