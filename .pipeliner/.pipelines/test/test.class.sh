@@ -41,6 +41,12 @@ IntegrationTest_Pipeliner_Test_Run() {
   Version_Pipeliner_Full() { #mock
     echo "1.2.345-test"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
 
   #When
   local logFile=$(Files_Temp_File test .log)
@@ -63,7 +69,7 @@ IntegrationTest_Pipeliner_Test_Run() {
   Assert_Contains "$report" "Fake test report"
 
   #Clean
-  rm -rf $(Artifacts_Directory)
+  rm -rf "$(Artifacts_Directory)"
 
 
   #When
@@ -87,7 +93,7 @@ IntegrationTest_Pipeliner_Test_Run() {
   Assert_Contains "$report" "Fake test report"
 
   #Clean
-  rm -rf $(Artifacts_Directory)
+  rm -rf "$(Artifacts_Directory)"
 
 
   #When
@@ -111,7 +117,7 @@ IntegrationTest_Pipeliner_Test_Run() {
   Assert_Contains "$report" "Fake test report"
 
   #Clean
-  rm -rf $(Artifacts_Directory)
+  rm -rf "$(Artifacts_Directory)"
 }
 
 IntegrationTest_Pipeliner_Test_Run_Fail() {
@@ -128,6 +134,12 @@ IntegrationTest_Pipeliner_Test_Run_Fail() {
   Version_Pipeliner_Full() {
     echo "1.2.345-test"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
+
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
 
   #When
   local logFile=$(Files_Temp_File test .log)
@@ -145,5 +157,5 @@ IntegrationTest_Pipeliner_Test_Run_Fail() {
   Assert_File_Exists "$(Artifacts_Directory)/testReports/fail_test_report-1.2.345-test.txt"
 
   #Clean
-  rm -rf $(Artifacts_Directory)
+  rm -rf "$(Artifacts_Directory)"
 }

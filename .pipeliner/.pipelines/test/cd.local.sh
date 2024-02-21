@@ -46,7 +46,6 @@ E2ETest_Pipeliner_Pipeline_CD() {
   Assert_File_Exists "$downloadedPackage"
 
   #Clean
-  rm -rf $(Artifacts_Directory)
   rm "$downloadedPackage"
   rm "install.sh"
 }

@@ -10,8 +10,12 @@ UnitTest_Pipeliner_Docker_Create_Image() {
   Version_Pipeliner_Full() { #mock
     echo "1.2.345-test"
   }
+  Artifacts_Directory() { #mock
+    echo "artifacts-test"
+  }
 
-  rm -rf $(Artifacts_Directory)
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
 
   local packageFile="$(Files_Path_Root)/pipeliner-$(Version_Pipeliner_Full).zip"
   touch "$packageFile"
@@ -35,6 +39,6 @@ UnitTest_Pipeliner_Docker_Create_Image() {
   Assert_Match "$(Variables_Get dockerImage)" "$(Artifacts_Directory)/packages/pipeliner-docker-1.2.345-test.tar.xz"
 
   #Clean
-  rm -rf $(Artifacts_Directory)
+  rm -rf "$(Artifacts_Directory)"
   rm "$packageFile"
 }

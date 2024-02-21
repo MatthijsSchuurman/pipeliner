@@ -85,8 +85,8 @@ UnitTest_Artifacts_Write() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
 
   #When
   actual=$(Artifacts_Write "$filename" "$content")
@@ -101,7 +101,7 @@ UnitTest_Artifacts_Write() {
   fi
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Write_Directory() {
@@ -117,8 +117,8 @@ UnitTest_Artifacts_Write_Directory() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
 
   #When
   actual=$(Artifacts_Write "$filename" "$content")
@@ -127,7 +127,7 @@ UnitTest_Artifacts_Write_Directory() {
   Assert_Equal "$(cat $(Artifacts_Directory)/$filename)" "$content"
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Write_Azure() {
@@ -170,8 +170,8 @@ UnitTest_Artifacts_Write_Github() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
 
   #When
   actual=$(Artifacts_Write "$filename" "$content")
@@ -186,7 +186,7 @@ UnitTest_Artifacts_Write_Github() {
   fi
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Read() {
@@ -202,8 +202,8 @@ UnitTest_Artifacts_Read() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
   echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
@@ -212,7 +212,7 @@ UnitTest_Artifacts_Read() {
   Assert_Equal "$actual" "$content"
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Read_Azure() {
@@ -221,7 +221,7 @@ UnitTest_Artifacts_Read_Azure() {
   local content="test content"
   local actual=
 
-  BUILD_ARTIFACTSTAGINGDIRECTORY="test/artifacts-test/"
+  BUILD_ARTIFACTSTAGINGDIRECTORY="test/artifacts-test"
   Environment_Platform() { #mock
     echo "azure"
   }
@@ -252,8 +252,8 @@ UnitTest_Artifacts_Read_Github() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
   echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
@@ -262,7 +262,7 @@ UnitTest_Artifacts_Read_Github() {
   Assert_Equal "$actual" "$content"
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Read_Fail() {
@@ -278,7 +278,7 @@ UnitTest_Artifacts_Read_Fail() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 
   #When
   actual=$(Artifacts_Read "$filename" 2>&1)
@@ -308,8 +308,8 @@ UnitTest_Artifacts_Move() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
   echo "$content" > "$sourceFilename"
 
   #When
@@ -325,7 +325,7 @@ UnitTest_Artifacts_Move() {
   fi
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Move_Directory() {
@@ -342,8 +342,8 @@ UnitTest_Artifacts_Move_Directory() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
   echo "$content" > "$sourceFilename"
 
   #When
@@ -353,7 +353,7 @@ UnitTest_Artifacts_Move_Directory() {
   Assert_Not_File_Exists "$sourceFilename"
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 
 
   #Given
@@ -368,8 +368,8 @@ UnitTest_Artifacts_Move_Directory() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
   echo "$content" > "$sourceFilename"
 
   #When
@@ -380,7 +380,7 @@ UnitTest_Artifacts_Move_Directory() {
   Assert_Not_File_Exists "$sourceFilename"
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Move_Azure() {
@@ -427,8 +427,8 @@ UnitTest_Artifacts_Move_Github() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
   echo "$content" > "$sourceFilename"
 
   #When
@@ -444,7 +444,7 @@ UnitTest_Artifacts_Move_Github() {
   fi
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Move_Fail() {
@@ -461,8 +461,8 @@ UnitTest_Artifacts_Move_Fail() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
 
   #When
   actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename" 2>&1)
@@ -478,7 +478,7 @@ UnitTest_Artifacts_Move_Fail() {
   fi
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Delete() {
@@ -494,8 +494,8 @@ UnitTest_Artifacts_Delete() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
   echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
@@ -510,7 +510,7 @@ UnitTest_Artifacts_Delete() {
   fi
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
 
 UnitTest_Artifacts_Delete_Azure() {
@@ -554,8 +554,8 @@ UnitTest_Artifacts_Delete_Github() {
     echo "artifacts-test"
   }
 
-  rm -rf "artifacts-test"
-  mkdir -p "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
+  mkdir -p "$(Artifacts_Directory)"
   echo "$content" > "$(Artifacts_Directory)/$filename"
 
   #When
@@ -570,5 +570,5 @@ UnitTest_Artifacts_Delete_Github() {
   fi
 
   #Clean
-  rm -rf "artifacts-test"
+  rm -rf "$(Artifacts_Directory)"
 }
