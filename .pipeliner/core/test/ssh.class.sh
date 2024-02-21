@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source $(Files_Path_Pipeliner)/core/ssh.class.sh
-
+source $(Files_Path_Pipeliner)/core/compression.class.sh
 
 UnitTest_SSH_Directory() {
   #Given
@@ -141,43 +141,20 @@ UnitTest_SSH_Generate_Key() {
 UnitTest_SSH__Dissect_URL() {
   #Given
   local actual=
-  local url="user@localhost:22"
+  local url="localhost"
 
   #When
   actual=$(SSH__Dissect_URL "$url")
 
   #Then
-  Assert_Equal "$(Dictionary_Get "$actual" "user")" "user"
   Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
-  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
-
-  #Given
-  url="localhost:22"
-
-  #When
-  actual=$(SSH__Dissect_URL "$url")
-
-  #Then
-  Dictionary_Exists "$actual" "user"
+  $(Dictionary_Exists "$actual" "user")
+  Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "port")
+  Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "path")
   Assert_Equal $? 1
 
-  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
-  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
-
-  #Given
-  url="localhost"
-
-  #When
-  actual=$(SSH__Dissect_URL "$url")
-
-  #Then
-  Dictionary_Exists "$actual" "user"
-  Assert_Equal $? 1
-
-  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
-
-  Dictionary_Exists "$actual" "port"
-  Assert_Equal $? 1
 
   #Given
   url="user@localhost"
@@ -186,11 +163,85 @@ UnitTest_SSH__Dissect_URL() {
   actual=$(SSH__Dissect_URL "$url")
 
   #Then
-  Assert_Equal "$(Dictionary_Get "$actual" "user")" "user"
   Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
-
-  Dictionary_Exists "$actual" "port"
+  Assert_Equal "$(Dictionary_Get "$actual" "user")" "user"
+  $(Dictionary_Exists "$actual" "port")
   Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "path")
+  Assert_Equal $? 1
+
+
+  #Given
+  url="localhost:22"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
+  $(Dictionary_Exists "$actual" "user")
+  Assert_Equal $? 1
+  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
+  $(Dictionary_Exists "$actual" "path")
+  Assert_Equal $? 1
+
+
+  #Given
+  url="localhost:22/path/to/file"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
+  $(Dictionary_Exists "$actual" "user")
+  Assert_Equal $? 1
+  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
+  Assert_Equal "$(Dictionary_Get "$actual" "path")" "path/to/file"
+}
+
+UnitTest_SSH__Dissect_URL_Arguments() {
+  #Given
+  local actual=
+  local url="localhost?key=value&key2=value2"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
+  $(Dictionary_Exists "$actual" "user")
+  Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "port")
+  Assert_Equal $? 1
+  $(Dictionary_Exists "$actual" "path")
+  Assert_Equal $? 1
+  Assert_Equal "$(Dictionary_Get "$actual" "key")" "value"
+  Assert_Equal "$(Dictionary_Get "$actual" "key2")" "value2"
+
+
+  #Given
+  url="localhost?key=value&key2=value2&key=value3"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "key")" "value"
+  Assert_Equal "$(Dictionary_Get "$actual" "key2")" "value2"
+
+
+  #Given
+  url="user@localhost:22/path/to/file?host=localhost2&user=user2&port=23&path=path2"
+
+  #When
+  actual=$(SSH__Dissect_URL "$url")
+
+  #Then
+  Assert_Equal "$(Dictionary_Get "$actual" "host")" "localhost"
+  Assert_Equal "$(Dictionary_Get "$actual" "user")" "user"
+  Assert_Equal "$(Dictionary_Get "$actual" "port")" "22"
+  Assert_Equal "$(Dictionary_Get "$actual" "path")" "path/to/file"
 }
 
 UnitTest_SSH_Deploy_Key() {
@@ -219,7 +270,7 @@ UnitTest_SSH_Deploy_Key() {
   ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
 
   #When
-  actual=$(SSH_Deploy_Key "$host" "$keyName" 2> /dev/null)
+  actual=$(SSH_Deploy_Key "$host?key=$keyName" 2> /dev/null)
 
   #Then
   Assert_Equal "$actual" ""
@@ -257,7 +308,7 @@ UnitTest_SSH_Run() {
   ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
 
   #When
-  actual=$(SSH_Run "$host" "$command" "$keyName" 2> /dev/null)
+  actual=$(SSH_Run "$host?key=$keyName" "$command" 2> /dev/null)
 
   #Then
   Assert_Not_Empty "$actual"
@@ -284,7 +335,7 @@ UnitTest_SSH_Copy() {
   ssh-keygen -R localhost 2>/dev/null #ensure no host key is present
 
   #When
-  actual=$(SSH_Copy "$host" "$sourceFile" "$destinationFile" "$keyName" 2> /dev/null)
+  actual=$(SSH_Copy "$host?key=$keyName" "$sourceFile" "$destinationFile" 2> /dev/null)
 
   #Then
   Assert_Equal "$actual" ""
@@ -294,4 +345,50 @@ UnitTest_SSH_Copy() {
 
   #Cleanup
   rm -f "$destinationFile"
+}
+
+UnitTest_SSH_Compression_ZIP_Example() {
+  #Given
+  local actual=
+  local exitCode=
+  local host="localhost"
+
+  local keyName="pipeliner-localhost-test"
+  local keyFile=$(SSH__Key_File "$keyName")
+  local keyFilePublic=$(SSH__Key_File_Public "$keyName")
+
+  if [ ! -f "$keyFile" ]; then
+    SSH_Generate_Key "$keyName"
+
+    mkdir ~/.ssh/ 2>/dev/null
+    cat "$keyFilePublic" >> ~/.ssh/authorized_keys
+  fi
+
+  ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
+
+  touch ~/pipeliner-test.txt
+  rm -f ~/pipeliner-test.zip
+
+  #When
+  zip() { #Wrap zip command in SSH
+    SSH_Run "localhost?key=$keyName" "zip $@" 2> /dev/null
+  }
+
+  actual=$(Compression_Zip pipeliner-test.zip pipeliner-test.txt)
+  exitCode=$?
+
+  echo "$actual"
+  #Then
+  Assert_Equal $exitCode 0
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Zipping pipeliner-test.zip" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Zipping pipeliner-test.zip" endgroup
+  fi
+
+  Assert_File_Exists ~/pipeliner-test.zip
+  Assert_Contains "$actual" adding pipeliner-test.txt
+
+  #Clean
+  rm ~/pipeliner-test.zip ~/pipeliner-test.txt
 }

@@ -26,7 +26,6 @@ SSH__Remote_Authorized_Keys_File() {
 
 SSH_Key_Exists() {
   local keyName=$1
-
   local keyFile=$(SSH__Key_File "$keyName")
 
   if [ -f "$keyFile" ]; then
@@ -38,7 +37,6 @@ SSH_Key_Exists() {
 
 SSH_Generate_Key() {
   local keyName=$1
-
   local keyFile=$(SSH__Key_File "$keyName")
 
   if SSH_Key_Exists "$keyName"; then
@@ -59,16 +57,53 @@ SSH__Dissect_URL() {
   local url=$1
   local dictionary=
 
+  local user=
   if [[ $url == *"@"* ]]; then
-    dictionary=$(Dictionary_Set "" "user" "$(echo $url | cut -d'@' -f1)")
-    url=$(echo $url | cut -d'@' -f2)
+    user="$(echo $url | cut -d '@' -f 1)"
+    url=$(echo $url | cut -d '@' -f 2-)
   fi
 
+  local arguments=
+  if [[ $url == *"?"* ]]; then
+    arguments="$(echo $url | cut -d '?' -f 2-)"
+    url=$(echo $url | cut -d '?' -f 1)
+  fi
+
+  local path=
+  if [[ $url == *"/"* ]]; then
+    path="$(echo $url | cut -d '/' -f 2-)"
+    url=$(echo $url | cut -d '/' -f 1)
+  fi
+
+  local host=
+  local port=
   if [[ $url == *":"* ]]; then
-    dictionary=$(Dictionary_Set "$dictionary" "host" "$(echo $url | cut -d':' -f1)")
-    dictionary=$(Dictionary_Set "$dictionary" "port" "$(echo $url | cut -d':' -f2)")
+    host="$(echo $url | cut -d ':' -f 1)"
+    port="$(echo $url | cut -d ':' -f 2)"
   else
-    dictionary=$(Dictionary_Set "$dictionary" "host" "$url")
+    host=$url
+  fi
+
+  dictionary=$(Dictionary_Set "$dictionary" "host" "$host")
+  if [ "$user" ]; then
+    dictionary=$(Dictionary_Set "$dictionary" "user" "$user")
+  fi
+  if [ "$port" ]; then
+    dictionary=$(Dictionary_Set "$dictionary" "port" "$port")
+  fi
+  if [ "$path" ]; then
+    dictionary=$(Dictionary_Set "$dictionary" "path" "$path")
+  fi
+
+  if  [ "$arguments" ]; then
+    local argumentsArray=($(echo $arguments | tr "&" "\n"))
+    for argument in "${argumentsArray[@]}"; do
+      local key=$(echo $argument | cut -d '=' -f 1)
+      if ! $(Dictionary_Exists "$dictionary" "$key"); then
+        local value=$(echo $argument | cut -d '=' -f 2)
+        dictionary=$(Dictionary_Set "$dictionary" "$key" "$value")
+      fi
+    done
   fi
 
   echo "$dictionary"
@@ -76,9 +111,14 @@ SSH__Dissect_URL() {
 
 SSH_Run() {
   local url=$(SSH__Dissect_URL "$1")
-  local command=$2
-  local keyName=$3
 
+  local commands=
+  if [ ${#@} -gt 1 ]; then
+    shift 1
+    commands=$@
+  fi
+
+  local keyName=$(Dictionary_Get "$url" "key")
   local keyFile=$(SSH__Key_File "$keyName")
   local exitCode=
 
@@ -95,7 +135,7 @@ SSH_Run() {
 
   ssh+=" $(Dictionary_Get "$url" "host")"
 
-  ssh+=" $command"
+  ssh+=" $commands"
 
   $ssh
   exitCode=$?
@@ -108,8 +148,8 @@ SSH_Run() {
 }
 
 SSH_Deploy_Key() {
-  local url=$1
-  local keyName=$2
+  local urlString=$1
+  local url=$(SSH__Dissect_URL "$urlString")
 
   local keyFilePublic=$(SSH__Key_File_Public "$keyName")
   local keyPublic=$(cat "$keyFilePublic")
@@ -117,15 +157,15 @@ SSH_Deploy_Key() {
 
   local command="echo "$keyPublic" >> $remoteKeysFile"
 
-  SSH_Run "$url" "$command" "$keyName"
+  SSH_Run "$urlString" "$command"
 }
 
 SSH_Copy() {
   local url=$(SSH__Dissect_URL "$1")
   local sourceFile=$2
   local destinationFile=$3
-  local keyName=$4
 
+  local keyName=$(Dictionary_Get "$url" "key")
   local keyFile=$(SSH__Key_File "$keyName")
   local exitCode=
 

@@ -9,8 +9,8 @@ Compression_Zip() {
   local files=$@
 
   Log_Group "Zipping $filename"
-  Docker_Runner core "zip -r $filename $files" "$(Files_Path_Work)"
-  exitCode=$?
+  zip -r $filename $files
+  local exitCode=$?
 
   if [ $exitCode -ne 0 ]; then
     Log_Error "Zipping failed ($exitCode)"

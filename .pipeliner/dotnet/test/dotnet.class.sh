@@ -8,7 +8,7 @@ UnitTest_DotNet_Dockerfile() {
 
   #When
   for tool in ${tools[@]}; do
-    Docker_Runner dotnet "which $tool"
+    Docker_Runner dotnet "" "" "which $tool"
     exitCode=$?
 
     #Then

@@ -1,10 +1,6 @@
 #!/bin/bash
 source $(dirname ${BASH_SOURCE[0]})/init.sh
 
-source $(Files_Path_Pipeliner)/core/docker.class.sh
-source $(Files_Path_Pipeliner)/core/version.class.sh
-source $(Files_Path_Pipeliner)/core/utils/cli.class.sh
-
 
 #Main logic
 argumentsDefinition="
@@ -39,7 +35,7 @@ else
   fi
 
   if ! Dictionary_Exists "$arguments" 0 ; then #no commands
-    Docker_Runner "$image" "/bin/sh" "$(Files_Path_Work)"
+    Docker_Runner "$image" "$(Files_Path_Work)" "" "/bin/sh"
   else
     commandCounter=0
     while true; do
@@ -47,7 +43,7 @@ else
         break
       fi
 
-      Docker_Runner "$image" "$(Dictionary_Get "$arguments" $commandCounter)" "$(Files_Path_Work)"
+      Docker_Runner "$image" "$(Files_Path_Work)" "" "$(Dictionary_Get "$arguments" $commandCounter)"
       exitCode=$?
 
       if [ $exitCode != 0 ]; then
