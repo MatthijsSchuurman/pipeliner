@@ -19,6 +19,7 @@ node_modules/
 
 examples/**/*.jar
 examples/**/*.class
+examples/**/build/
 
 
 test-report.json

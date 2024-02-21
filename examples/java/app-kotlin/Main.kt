@@ -1,4 +1,4 @@
-import HelloWorld
+import com.example.HelloWorld
 
 fun main() {
     val helloWorld = HelloWorld()
