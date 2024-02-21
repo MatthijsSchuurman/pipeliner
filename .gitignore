@@ -17,6 +17,10 @@ node_modules/
 **/bin/
 **/obj/
 
+examples/**/*.jar
+examples/**/*.class
+
+
 test-report.json
 test-report.xml
 lint-report.json
