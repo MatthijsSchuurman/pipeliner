@@ -115,7 +115,7 @@ SSH_Run() {
   local commands=
   if [ ${#@} -gt 1 ]; then
     shift 1
-    commands=("$@")
+    commands=$@
   fi
 
   local keyName=$(Dictionary_Get "$url" "key")

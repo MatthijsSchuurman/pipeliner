@@ -37,7 +37,7 @@ Docker_Run() {
   local commands=
   if [ ${#@} -gt 3 ]; then
     shift 3
-    commands=("$@")
+    commands=$@
   fi
 
   Log_Group "Docker Run $tag $commands"
@@ -74,7 +74,7 @@ Docker_Runner() {
   local workdir=$2
   local env=$3
   shift 3
-  local commands=("$@")
+  local commands=$@
 
   if [[ "$image" =~ [^a-zA-Z0-9_-] ]] || [ ! -f $(Files_Path_Pipeliner)/$image/Dockerfile ]; then
     Log_Error "Docker image $image not found" >&2
@@ -93,7 +93,7 @@ Docker_Runner() {
 "
   fi
 
-  Docker_Run $image:runner "$workdir" "$env" "$commands"
+  Docker_Run $image:runner "$workdir" "$env" $commands
 }
 
 Docker_List() {

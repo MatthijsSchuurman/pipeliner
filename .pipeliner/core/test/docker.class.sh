@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source $(Files_Path_Pipeliner)/core/docker.class.sh
+source $(Files_Path_Pipeliner)/core/compression.class.sh
 source $(Files_Path_Pipeliner)/core/utils/packages.class.sh
 
 UnitTest_Docker_Build() {
@@ -393,4 +394,34 @@ UnitTest_Core_Dockerfile() {
     #Then
     Assert_Equal $exitCode 0
   done
+}
+
+UnitTest_Docker_Compression_ZIP_Example() {
+  #Given
+  local actual=
+  local exitCode=
+
+  #When
+  zip() { #Wrap zip command in Docker
+    Docker_Runner core "$(Files_Path_Work)" "" "zip $@"
+  }
+
+  actual=$(Compression_Zip $(Files_Path_Root)/core-test.zip $(Files_Path_Pipeliner)/core/)
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Zipping $(Files_Path_Root)/core-test.zip" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Zipping $(Files_Path_Root)/core-test.zip" endgroup
+  fi
+
+  Assert_File_Exists $(Files_Path_Root)/core-test.zip
+  Assert_Contains "$(file $(Files_Path_Root)/core-test.zip)" "Zip archive data"
+  Assert_Contains "$actual" adding core/compression.class.sh
+  Assert_Contains "$actual" adding core/log.class.sh
+
+  #Clean
+  rm $(Files_Path_Root)/core-test.zip
 }

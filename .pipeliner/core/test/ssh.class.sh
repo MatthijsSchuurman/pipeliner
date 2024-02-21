@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source $(Files_Path_Pipeliner)/core/ssh.class.sh
-
+source $(Files_Path_Pipeliner)/core/compression.class.sh
 
 UnitTest_SSH_Directory() {
   #Given
@@ -345,4 +345,50 @@ UnitTest_SSH_Copy() {
 
   #Cleanup
   rm -f "$destinationFile"
+}
+
+UnitTest_SSH_Compression_ZIP_Example() {
+  #Given
+  local actual=
+  local exitCode=
+  local host="localhost"
+
+  local keyName="pipeliner-localhost-test"
+  local keyFile=$(SSH__Key_File "$keyName")
+  local keyFilePublic=$(SSH__Key_File_Public "$keyName")
+
+  if [ ! -f "$keyFile" ]; then
+    SSH_Generate_Key "$keyName"
+
+    mkdir ~/.ssh/ 2>/dev/null
+    cat "$keyFilePublic" >> ~/.ssh/authorized_keys
+  fi
+
+  ssh-keygen -R localhost > /dev/null 2>&1 #ensure no host key is present
+
+  touch ~/pipeliner-test.txt
+  rm -f ~/pipeliner-test.zip
+
+  #When
+  zip() { #Wrap zip command in SSH
+    SSH_Run "localhost?key=$keyName" "zip $@" 2> /dev/null
+  }
+
+  actual=$(Compression_Zip pipeliner-test.zip pipeliner-test.txt)
+  exitCode=$?
+
+  echo "$actual"
+  #Then
+  Assert_Equal $exitCode 0
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Zipping pipeliner-test.zip" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Zipping pipeliner-test.zip" endgroup
+  fi
+
+  Assert_File_Exists ~/pipeliner-test.zip
+  Assert_Contains "$actual" adding pipeliner-test.txt
+
+  #Clean
+  rm ~/pipeliner-test.zip ~/pipeliner-test.txt
 }
