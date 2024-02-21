@@ -23,6 +23,8 @@ UnitTest_Compression_Zip() {
   else
     Assert_Contains "$actual" group "Zipping $filename" endgroup
   fi
+
+  Assert_File_Exists "$filename"
   Assert_Contains "$actual" adding compression.class.sh
 
   #Clean
@@ -46,6 +48,8 @@ UnitTest_Compression_Zip() {
   else
     Assert_Contains "$actual" group "Zipping $filename" endgroup
   fi
+
+  Assert_File_Exists "$filename"
   Assert_Contains "$actual" adding compression.class.sh
   Assert_Contains "$actual" adding log.class.sh
 
@@ -73,9 +77,12 @@ UnitTest_Compression_Zip_Directory() {
   else
     Assert_Contains "$actual" group "Zipping $filename" endgroup
   fi
+
+  Assert_File_Exists "$filename"
   Assert_Contains "$actual" adding core/compression.class.sh
   Assert_Contains "$actual" adding test.sh
 
+  #Clean
   rm -f "$filename"
 }
 
@@ -99,7 +106,7 @@ UnitTest_Compression_Zip_Fail() {
   else
     Assert_Contains "$actual" group "Zipping $filename" endgroup
   fi
-  Assert_Contains "$actual" Zipping failed
 
-  rm -f "$filename"
+  Assert_Not_File_Exists "$filename"
+  Assert_Contains "$actual" Zipping failed
 }
