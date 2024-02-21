@@ -16,7 +16,7 @@ E2ETest_Pipeliner_Pipeline_CD() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "Docker Install"
+  Assert_Contains "$actual" "Docker version"
 
   Assert_Contains "$actual" "Creating package"
   Assert_Contains "$actual" "adding: .pipeliner/test.sh"
