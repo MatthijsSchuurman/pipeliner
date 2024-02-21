@@ -1,7 +1,7 @@
-JUNIT_JAR = junit-4.x.jar
+JUNIT_JAR = ../junit-4.x.jar
 JUNIT_URL = https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar
 
-HAMCREST_JAR = hamcrest-core-1.x.jar
+HAMCREST_JAR = ../hamcrest-core-1.x.jar
 HAMCREST_URL = https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 
 
@@ -10,15 +10,15 @@ HAMCREST_URL = https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/ham
 all: build test run
 
 clean:
-	@rm -f HelloWorld.jar HelloWorldTest.jar $(JUNIT_JAR)
+	@rm -Rf *.jar *.class build
 
 build: HelloWorld.jar
 
 test: junit-install hamcrest-install HelloWorldTest.jar
 	@java -cp $(JUNIT_JAR):$(HAMCREST_JAR):HelloWorld.jar:HelloWorldTest.jar org.junit.runner.JUnitCore com.example.HelloWorldTest
 
-run: HelloWorld.jar
-	@java -jar HelloWorld.jar
+run: build
+	@java -jar HelloWorld.jar com.example.Main
 
 
 #Build targets
