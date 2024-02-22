@@ -6,17 +6,20 @@ pipeliner-docker-*.tar.xz
 tmp.*log
 
 .ssh/
+.local/
+.bash_history
 
 .npm/
 node_modules/
 
 .dotnet/
 .nuget/
-.local/share/NuGet/
 .templateengine/
 **/bin/
 **/obj/
 
+.gradle/
+.kotlin/
 examples/**/*.jar
 examples/**/*.class
 examples/**/build/
