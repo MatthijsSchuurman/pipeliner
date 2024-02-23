@@ -107,8 +107,7 @@ UnitTest_Docker_Run_core() {
     Assert_Contains "$actual" group "Docker Run" core:test pwd ls endgroup
   fi
 
-  Assert_Contains "$actual" "work/.pipeliner"
-  Assert_Contains "$actual" "core"
+  Assert_Contains "$actual" "work/.pipeliner" "core"
 }
 
 UnitTest_Docker_Run_Owner() {
@@ -174,8 +173,7 @@ UnitTest_Docker_Runner() {
 
   #Then
   Assert_Contains "$actual" "Docker Run core:runner ls"
-  Assert_Contains "$actual" "Build"
-  Assert_Contains "$actual" "examples"
+  Assert_Contains "$actual" "Build" "examples"
   Assert_Contains "$PIPELINER_IMAGES_BUILT" "core"
   Assert_Equal $buildCounter 1
 
@@ -191,8 +189,7 @@ UnitTest_Docker_Runner() {
   #Then
   Assert_Contains "$actual" "Docker run core:runner" pwd "ls -la"
   Assert_Not_Contains "$actual" "Build"
-  Assert_Contains "$actual" "work/.pipeliner"
-  Assert_Contains "$actual" "core"
+  Assert_Contains "$actual" "work/.pipeliner" "core"
   Assert_Contains "$PIPELINER_IMAGES_BUILT" "core"
   Assert_Equal $buildCounter 1
 }
@@ -377,7 +374,7 @@ UnitTest_Docker_Compression_ZIP_Example() {
   local actual=
   local exitCode=
 
-  rm $(Files_Path_Root)/core-test.zip
+  rm -f $(Files_Path_Root)/core-test.zip
 
   #When
   zip() { #Wrap zip command in Docker
@@ -401,5 +398,5 @@ UnitTest_Docker_Compression_ZIP_Example() {
   Assert_Contains "$actual" adding core/log.class.sh
 
   #Clean
-  rm $(Files_Path_Root)/core-test.zip
+  rm -f $(Files_Path_Root)/core-test.zip
 }

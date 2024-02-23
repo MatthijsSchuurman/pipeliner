@@ -291,6 +291,8 @@ UnitTest_SSH_Deploy_Key() {
 UnitTest_SSH_Run() {
   #Given
   local actual=
+  local exitCode=
+
   local host="localhost"
   local command="echo \$SSH_CLIENT"
 
@@ -309,9 +311,19 @@ UnitTest_SSH_Run() {
 
   #When
   actual=$(SSH_Run "$host?key=$keyName" "$command" 2> /dev/null)
+  exitCode=$?
 
   #Then
+  Assert_Equal $exitCode 0
   Assert_Not_Empty "$actual"
+
+
+  #When
+  actual=$(SSH_Run "$host?key=$keyName" pwd "ls -la" 2> /dev/null)
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Contains "$actual" "home" .. drwx
 }
 
 UnitTest_SSH_Copy() {
@@ -371,7 +383,7 @@ UnitTest_SSH_Compression_ZIP_Example() {
 
   #When
   zip() { #Wrap zip command in SSH
-    SSH_Run "localhost?key=$keyName" "zip $@" 2> /dev/null
+    SSH_Run "localhost?key=$keyName" "zip $(IFS=" " ; echo "$*")" 2> /dev/null
   }
 
   actual=$(Compression_Zip pipeliner-test.zip pipeliner-test.txt)
@@ -390,5 +402,5 @@ UnitTest_SSH_Compression_ZIP_Example() {
   Assert_Contains "$actual" adding pipeliner-test.txt
 
   #Clean
-  rm ~/pipeliner-test.zip ~/pipeliner-test.txt
+  rm -f ~/pipeliner-test.zip ~/pipeliner-test.txt
 }
