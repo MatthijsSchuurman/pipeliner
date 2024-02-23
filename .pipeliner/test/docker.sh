@@ -22,6 +22,15 @@ E2ETest_Docker() {
   Assert_Contains "$actual" "Hello World"
 
   #When
+  actual=$($(Files_Path_Pipeliner)/docker.sh pwd "ls -la")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Contains "$actual" work examples
+
+
+  #When
   actual=$($(Files_Path_Pipeliner)/docker.sh -i core "UNKNOWN_COMMAND")
   exitCode=$?
 

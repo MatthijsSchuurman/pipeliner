@@ -19,11 +19,22 @@ UnitTest_Node_Dockerfile() {
 UnitTest_Node_Run() {
   #Given
   local actual=
+  local exitCode=
   local workdir=examples/node
 
   #When
-  actual=$(Node_Run "npm --version" $workdir)
+  actual=$(Node_Run $workdir "npm --version")
+  exitCode=$?
 
   #Then
+  Assert_Equal $exitCode 0
   Assert_Match "$actual" "[0-9]+\.[0-9]+\.[0-9]+"
+
+  #When
+  actual=$(Node_Run $workdir "node --version" "ls -la")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Match "$actual" "v[0-9]+\.[0-9]+\.[0-9]" examples drwx
 }

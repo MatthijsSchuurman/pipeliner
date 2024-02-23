@@ -37,21 +37,23 @@ else
   if ! Dictionary_Exists "$arguments" 0 ; then #no commands
     Docker_Runner "$image" "$(Files_Path_Work)" "" "/bin/sh"
   else
+    commands=()
     commandCounter=0
     while true; do
       if ! Dictionary_Exists "$arguments" $commandCounter ; then
         break
       fi
 
-      Docker_Runner "$image" "$(Files_Path_Work)" "" "$(Dictionary_Get "$arguments" $commandCounter)"
-      exitCode=$?
-
-      if [ $exitCode != 0 ]; then
-        exit $exitCode
-      fi
-
+      commands+=("$(Dictionary_Get "$arguments" $commandCounter)")
       commandCounter=$((commandCounter+1))
     done
+
+    Docker_Runner "$image" "$(Files_Path_Work)" "" "${commands[@]}"
+    exitCode=$?
+
+    if [ $exitCode != 0 ]; then
+      exit $exitCode
+    fi
   fi
 fi
 

@@ -8,9 +8,9 @@ Node_NPM_Install() {
 
   Log_Info "NPM Install packages"
   if [ "$production" ]; then
-    Node_Run "npm install --omit=dev" "$workdir"
+    Node_Run "$workdir" "npm install --omit=dev"
   else
-    Node_Run "npm install" "$workdir"
+    Node_Run "$workdir" "npm install"
   fi
 }
 
@@ -18,14 +18,14 @@ Node_NPM_Test() {
   local workdir=$1
 
   Log_Info "NPM Test"
-  Node_Run "npm install" "$workdir"
-  Node_Run "npm test" "$workdir"
+  Node_Run "$workdir" "npm install"
+  Node_Run "$workdir" "npm test"
 }
 
 Node_NPM_Lint() {
   local workdir=$1
 
   Log_Info "NPM Lint"
-  Node_Run "npm install" "$workdir"
-  Node_Run "npm run lint" "$workdir"
+  Node_Run "$workdir" "npm install"
+  Node_Run "$workdir" "npm run lint"
 }

@@ -113,9 +113,11 @@ SSH_Run() {
   local url=$(SSH__Dissect_URL "$1")
 
   local commands=
-  if [ ${#@} -gt 1 ]; then
+  if [ ${#@} -eq 2 ]; then
+    commands=$2
+  elif [ ${#@} -gt 2 ]; then
     shift 1
-    commands=$@
+    commands=$(IFS=";" ; echo "$*")
   fi
 
   local keyName=$(Dictionary_Get "$url" "key")
