@@ -4,7 +4,7 @@ source $(Files_Path_Pipeliner)/node/node.class.sh
 
 UnitTest_Node_Dockerfile() {
   #Given
-  local tools=(ls)
+  local tools=(ls node npm)
 
   #When
   for tool in ${tools[@]}; do
@@ -31,10 +31,10 @@ UnitTest_Node_Run() {
   Assert_Match "$actual" "[0-9]+\.[0-9]+\.[0-9]+"
 
   #When
-  actual=$(Node_Run $workdir "node --version" "ls -la")
+  actual=$(Node_Run $workdir "npm --version" "ls -la")
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Match "$actual" "v[0-9]+\.[0-9]+\.[0-9]" examples drwx
+  Assert_Match "$actual" "[0-9]+\.[0-9]+\.[0-9]" examples drwx
 }
