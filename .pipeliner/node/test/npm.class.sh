@@ -2,7 +2,7 @@
 
 source $(Files_Path_Pipeliner)/node/npm.class.sh
 
-UnitTest_NPM_Run_Install() {
+UnitTest_NPM_Install() {
   #Given
   local workdir=examples/node/app1
 
@@ -17,7 +17,7 @@ UnitTest_NPM_Run_Install() {
   rm -rf $(Files_Path_Root)/$workdir/node_modules/
 }
 
-UnitTest_NPM_Run_Install_Production() {
+UnitTest_NPM_Install_Production() {
   #Given
   local workdir=examples/node/app1
 
@@ -32,7 +32,7 @@ UnitTest_NPM_Run_Install_Production() {
   rm -rf $(Files_Path_Root)/$workdir/node_modules/
 }
 
-UnitTest_NPM_Run_Test() {
+UnitTest_NPM_Test() {
   #Given
   local workdir=examples/node/app1
 
@@ -46,7 +46,7 @@ UnitTest_NPM_Run_Test() {
   rm $(Files_Path_Root)/$workdir/test-report.json
 }
 
-UnitTest_NPM_Run_Lint() {
+UnitTest_NPM_Lint() {
   #Given
   local workdir=examples/node/app1
 
