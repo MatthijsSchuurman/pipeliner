@@ -39,9 +39,7 @@ Docker_Run() {
     commands=$4
   elif [ ${#@} -gt 3 ]; then
     shift 3
-    commands="/bin/sh -c "
-    commands+=$(IFS=";" ; echo "$*")
-    echo $commands
+    commands="/bin/sh -c '$(IFS=";" ; echo "$*")'"
   fi
 
   Log_Group "Docker Run $tag $commands"
@@ -65,7 +63,8 @@ Docker_Run() {
 
   dockerCommand+=" $tag $commands"
 
-  $dockerCommand 2>&1
+  echo "$dockerCommand"
+  eval $dockerCommand 2>&1
   result=$?
 
   Log_Group_End

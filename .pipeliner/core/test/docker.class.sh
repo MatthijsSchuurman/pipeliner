@@ -107,7 +107,7 @@ UnitTest_Docker_Run_core() {
     Assert_Contains "$actual" group "Docker Run" core:test pwd ls endgroup
   fi
 
-  Assert_Contains "$actual" "work/.pipeliner" "core"
+  Assert_Contains "$actual" "work/.pipeliner" "core" drwx
 }
 
 UnitTest_Docker_Run_Owner() {
@@ -189,7 +189,7 @@ UnitTest_Docker_Runner() {
   #Then
   Assert_Contains "$actual" "Docker run core:runner" pwd "ls -la"
   Assert_Not_Contains "$actual" "Build"
-  Assert_Contains "$actual" "work/.pipeliner" "core"
+  Assert_Contains "$actual" "work/.pipeliner" "core" drwx
   Assert_Contains "$PIPELINER_IMAGES_BUILT" "core"
   Assert_Equal $buildCounter 1
 }
