@@ -19,13 +19,25 @@ UnitTest_DotNet_Dockerfile() {
 UnitTest_DotNet_Run() {
   #Given
   local actual=
+  local exitCode=
   local workdir=examples/dotnet
 
   #When
-  actual=$(DotNet_Run "dotnet --version" $workdir)
+  actual=$(DotNet_Run $workdir "dotnet --version")
+  exitCode=$?
 
   #Then
+  Assert_Equal $exitCode 0
   Assert_Match "$actual" "[0-9]+\.[0-9]+\.[0-9]+"
+
+
+  #When
+  actual=$(DotNet_Run $workdir "dotnet --version" "ls -la")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Match "$actual" "[0-9]+\.[0-9]+\.[0-9]+" examples drwx
 }
 
 UnitTest_DotNet_Build() {
