@@ -4,8 +4,8 @@
   "description": "Pipeliner Example",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "mocha --reporter json --reporter-option output=test-report.json test.js",
+    "start": "node src/main.js",
+    "test": "mocha --reporter json --reporter-option output=test-report.json test/*.js",
     "lint": "eslint . > lint-report.json"
   },
   "devDependencies": {

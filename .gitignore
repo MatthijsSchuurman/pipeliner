@@ -8,6 +8,7 @@ tmp.*log
 .ssh/
 .local/
 .bash_history
+.ash_history
 
 .npm/
 node_modules/
