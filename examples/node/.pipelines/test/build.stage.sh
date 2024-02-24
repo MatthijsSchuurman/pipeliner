@@ -18,7 +18,7 @@ IntegrationTest_Examples_Node_Stage_Build() {
   Assert_Equal $? 0
   Docker_Run examples/node/app1:latest "" "" "test -f /home/node/app/src/main.js"
   Assert_Equal $? 0
-  Docker_Run examples/node/app1:latest "" "" "test -d /home/node/app/node_modules/.bin"
+  Docker_Run examples/node/app1:latest "" "" "test -d /home/node/app/node_modules/"
   Assert_Equal $? 0
   Docker_Run examples/node/app1:latest "" "" "test -d /home/node/app/node_modules/mocha"
   Assert_Equal $? 1

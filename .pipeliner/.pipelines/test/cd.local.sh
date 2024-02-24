@@ -20,7 +20,7 @@ E2ETest_Pipeliner_Pipeline_CD() {
 
   Assert_Contains "$actual" "Creating package"
   Assert_Contains "$actual" "adding: .pipeliner/test.sh"
-  Assert_Contains "$actual" "adding: examples/node/app1/test.js"
+  Assert_Contains "$actual" "adding: examples/node/app1/test/helloworld.js"
   Assert_Contains "$actual" "Removing build directory"
   Assert_Function Pipeliner_Package_Create
 
