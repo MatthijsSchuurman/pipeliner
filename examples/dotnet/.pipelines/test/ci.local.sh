@@ -14,7 +14,7 @@ E2ETest_Examples_DotNet_Pipeline_CI() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Install"
+  Assert_Match "$actual" DEBUG "Docker version [0-9\.]+"
   Assert_Contains "$actual" "WARNING Running CI pipeline for examples/dotnet/app1"
   Assert_Contains "$actual" "GROUP Docker Build ./.pipeliner/dotnet/Dockerfile"
   Assert_Contains "$actual" "INFO DotNet Test"

@@ -7,4 +7,4 @@ COPY --chown=node:node . .
 RUN npm install --omit=dev
 
 EXPOSE 8080
-CMD [ "node", "index.js" ]
+CMD [ "node", "src/main.js" ]

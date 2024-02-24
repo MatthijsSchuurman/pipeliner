@@ -4,7 +4,7 @@ source $(Files_Path_Pipeliner)/dotnet/dotnet.class.sh
 
 UnitTest_DotNet_Dockerfile() {
   #Given
-  local tools=(ls)
+  local tools=(ls dotnet)
 
   #When
   for tool in ${tools[@]}; do

@@ -10,4 +10,10 @@ IntegrationTest_Examples_DotNet_Stage_Build() {
   #Then
   actual=$(Docker_List examples/dotnet/app1:latest)
   Assert_Contains "$actual" "examples/dotnet/app1" "latest"
+
+  actual=$(Docker_Run examples/dotnet/app1:latest "" "" "dotnet --info")
+  Assert_Contains "$actual" Version 8.0
+
+  Docker_Run examples/dotnet/app1:latest "" "" "test -f /home/app/work"
+  Assert_Equal $? 0
 }

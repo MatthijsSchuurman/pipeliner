@@ -62,7 +62,7 @@ IntegrationTest_Pipeliner_Package_Create() {
 
   #check file size
   local size=$(stat -c%s "$(Artifacts_Directory)/packages/pipeliner-1.2.345-test.zip" 2>/dev/null || stat -f%z "$(Artifacts_Directory)/packages/pipeliner-1.2.345-test.zip" 2>/dev/null)
-  Assert_Between 50000 $size 150000
+  Assert_Between 100000 $size 200000
 
   #check contents
   files=$(unzip -l "$(Artifacts_Directory)/packages/pipeliner-1.2.345-test.zip" | awk '{print $4}')

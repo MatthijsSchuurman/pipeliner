@@ -14,7 +14,7 @@ E2ETest_Examples_Node_Pipeline_CI() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Docker Install"
+  Assert_Match "$actual" DEBUG "Docker version [0-9\.]+"
   Assert_Contains "$actual" "WARNING Running CI pipeline for examples/node/app1"
   Assert_Contains "$actual" "GROUP Docker Build ./.pipeliner/node/Dockerfile"
   Assert_Contains "$actual" "INFO NPM Test"

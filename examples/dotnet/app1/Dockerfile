@@ -14,4 +14,4 @@ WORKDIR /home/app
 COPY --from=build-env /home/app/out .
 
 EXPOSE 8080
-ENTRYPOINT ["dotnet", "work.dll"]
+CMD ["./work"]
