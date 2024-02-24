@@ -3,7 +3,8 @@
 JVM_Pipelines_Stage_Build() {
   local app=$1
 
-  JVM_Gradle_Build $app prod
+  JVM_Gradle_Clean $app
+  JVM_Gradle_Build $app
 
   local curpath=$(pwd)
   cd "$(Files_Path_Root)/$app"
