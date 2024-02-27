@@ -14,6 +14,13 @@ UnitTest_Node_Dockerfile() {
     #Then
     Assert_Equal $exitCode 0
   done
+
+
+  #When
+  actual=$(Docker_Runner node "" "" "node --version")
+
+  #Then
+  Assert_Match "$actual" "v19\.[0-9]+\.[0-9]+"
 }
 
 UnitTest_Node_Run() {

@@ -14,6 +14,20 @@ UnitTest_JVM_Dockerfile() {
     #Then
     Assert_Equal $exitCode 0
   done
+
+
+  #When
+  actual=$(Docker_Runner jvm "" "" "java --version")
+
+  #Then
+  Assert_Match "$actual" "openjdk 21\.[0-9]+\.[0-9]+"
+
+
+  #When
+  actual=$(Docker_Runner jvm "" "" "gradle --version")
+
+  #Then
+  Assert_Match "$actual" "Gradle 8\.6"
 }
 
 UnitTest_JVM_Run() {
