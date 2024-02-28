@@ -8,12 +8,28 @@ UnitTest_explode() {
   local delimiter=,
 
   #When
-  local result=($(explode $delimiter "$string"))
+  local result=($(explode "$delimiter" "$string"))
 
   #Then
-  Assert_Equal ${result[0]} a
-  Assert_Equal ${result[1]} b
-  Assert_Equal ${result[2]} c
+  Assert_Equal "${result[0]}" a
+  Assert_Equal "${result[1]}" b
+  Assert_Equal "${result[2]}" c
+
+
+  #Given
+  local string="a&&b b&&c"
+  local delimiter="&&"
+
+  #When
+  IFS=$'\n' read -d '' -ra result < <(explode "$delimiter" "$string")
+  for element in "${result[@]}"; do
+    echo "Element: $element"
+  done
+
+  #Then
+  Assert_Equal "${result[0]}" a
+  Assert_Equal "${result[1]}" "b b"
+  Assert_Equal "${result[2]}" c
 }
 
 UnitTest_implode() {
@@ -21,10 +37,20 @@ UnitTest_implode() {
   local delimiter=,
 
   #When
-  local result=$(implode $delimiter a b c)
+  local result=$(implode "$delimiter" a b c)
 
   #Then
-  Assert_Equal $result "a,b,c"
+  Assert_Equal "$result" "a,b,c"
+
+
+  #Given
+  local delimiter="&&"
+
+  #When
+  local result=$(implode $delimiter a "b b" c)
+
+  #Then
+  Assert_Equal "$result" "a&&b b&&c"
 }
 
 UnitTest_map() {
