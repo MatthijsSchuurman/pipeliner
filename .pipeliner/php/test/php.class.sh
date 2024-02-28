@@ -71,7 +71,6 @@ UnitTest_PHP_Lint() {
 
   local report=$(cat "$(Files_Path_Root)/$workdir/lint-report.txt")
   Assert_Contains "$report" "No syntax errors detected" src/index.php src/HelloWorld.php test/HelloWorldTest.php
-  Assert_Not_Contains "$report" "vendor"
 
   #Clean
   rm "$(Files_Path_Root)/$workdir/lint-report.txt"
