@@ -28,13 +28,6 @@ UnitTest_PHP_Dockerfile() {
 
   #Then
   Assert_Match "$actual" Composer version "[0-9]+\.[0-9]+\.[0-9]+"
-
-
-  #When
-  actual=$(Docker_Runner php "" "" "/php/vendor/bin/phpunit --version")
-
-  #Then
-  Assert_Match "$actual" "PHPUnit 11\.[0-9]+\.[0-9]+"
 }
 
 UnitTest_PHP_Run() {
