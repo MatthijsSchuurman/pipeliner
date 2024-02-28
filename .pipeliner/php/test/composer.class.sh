@@ -60,8 +60,8 @@ UnitTest_PHP_Composer_Test() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_File_Exists $(Files_Path_Root)/$workdir/phpunit-report.xml
+  Assert_File_Exists $(Files_Path_Root)/$workdir/test-report.xml
 
   #Clean
-  rm -f $(Files_Path_Root)/$workdir/phpunit-report.xml
+  rm -f $(Files_Path_Root)/$workdir/test-report.xml
 }

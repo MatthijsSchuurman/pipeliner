@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/node/node.class.sh
+source $(Files_Path_Pipeliner)/php/php.class.sh
 
 PHP_Composer_Install() {
   local workdir=$1
@@ -18,5 +18,5 @@ PHP_Composer_Test() {
   local workdir=$1
 
   Log_Info "Composer PHPUnit Test"
-  PHP_Run "$workdir" "composer install" "vendor/bin/phpunit test --log-junit phpunit-report.xml"
+  PHP_Run "$workdir" "composer install" "vendor/bin/phpunit test --log-junit test-report.xml"
 }
