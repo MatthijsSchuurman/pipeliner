@@ -21,5 +21,5 @@ PHP_Lint() {
   local workdir=$1
 
   Log_Info "PHP Lint"
-  PHP_Run "$workdir" "php -l . > $workdir/lint-report.txt"
+  PHP_Run "$workdir" "/bin/sh -c 'php -l */*.php' > lint-report.txt"
 }
