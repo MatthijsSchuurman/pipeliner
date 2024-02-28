@@ -71,7 +71,7 @@ E2ETest_Docker_node() {
   exitCode=$?
 
   #Then
-  Assert_Equal $exitCode 1
+  Assert_Equal $exitCode 127
   if [ $(Environment_Platform) == "local" ]; then
     Assert_Match "$actual" DEBUG "Docker version [0-9\.]+"
     Assert_Contains "$actual" GROUP "Docker Build" "Docker Run" "node:runner" ENDGROUP
