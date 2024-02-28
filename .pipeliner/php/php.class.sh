@@ -17,16 +17,9 @@ PHP_Build() {
   return 1
 }
 
-PHP_Test() {
-  local workdir=$1
-
-  Log_Info "PHP Test"
-  PHP_Run "$workdir" "./.composer/vendor/bin/phpunit tests"
-}
-
 PHP_Lint() {
   local workdir=$1
 
   Log_Info "PHP Lint"
-  PHP_Run "$workdir" "php -l ."
+  PHP_Run "$workdir" "php -l . > $workdir/lint-report.txt"
 }

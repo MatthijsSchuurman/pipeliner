@@ -4,6 +4,8 @@ source $(Files_Path_Pipeliner)/php/php.class.sh
 
 UnitTest_PHP_Dockerfile() {
   #Given
+  local actual=
+  local exitCode=
   local tools=(ls php composer)
 
   #When
@@ -51,4 +53,25 @@ UnitTest_PHP_Run() {
   #Then
   Assert_Equal $exitCode 0
   Assert_Match "$actual" Composer version "[0-9]+\.[0-9]+\.[0-9]+" examples drwx
+}
+
+UnitTest_PHP_Lint() {
+  #Given
+  local actual=
+  local exitCode=
+  local workdir=examples/php/app1
+
+  #When
+  actual=$(PHP_Lint $workdir)
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_File_Exists "$(Files_Path_Root)/$workdir/lint-report.txt"
+
+  local report=$(cat "$(Files_Path_Root)/$workdir/lint-report.txt")
+  Assert_Contains "$report" "No syntax errors detected"
+
+  #Clean
+  rm "$(Files_Path_Root)/$workdir/lint-report.txt"
 }
