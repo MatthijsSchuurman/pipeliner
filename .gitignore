@@ -25,6 +25,8 @@ examples/**/*.jar
 examples/**/*.class
 examples/**/build/
 
+.composer/
+examples/**/vendor/
 
 test-report.json
 test-report.xml
