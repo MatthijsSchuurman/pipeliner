@@ -2,6 +2,7 @@
 
 source $(Files_Path_Pipeliner)/core/log.class.sh
 source $(Files_Path_Pipeliner)/core/environment.class.sh
+source $(Files_Path_Pipeliner)/core/utils/misc.sh
 
 PIPELINER_IMAGES_BUILT=""
 
@@ -21,6 +22,7 @@ Docker_Build() {
 
   dockerCommand+=" ."
 
+  echo "$dockerCommand"
   $dockerCommand 2>&1
   result=$?
 
@@ -39,7 +41,7 @@ Docker_Run() {
     commands=$4
   elif [ ${#@} -gt 3 ]; then
     shift 3
-    commands="/bin/sh -c '$(IFS=";" ; echo "$*")'"
+    commands=$(implode " && " "$@")
   fi
 
   Log_Group "Docker Run $tag $commands"
@@ -61,11 +63,17 @@ Docker_Run() {
     dockerCommand+=" --env $e"
   done
 
-  dockerCommand+=" $tag $commands"
+  dockerCommand+=" $tag"
 
-  echo "$dockerCommand"
-  eval $dockerCommand 2>&1
-  result=$?
+  if [ "$commands" ]; then
+    echo "$dockerCommand $commands"
+    $dockerCommand /bin/sh -c "$commands" 2>&1
+    result=$?
+  else
+    echo "$dockerCommand"
+    $dockerCommand 2>&1
+    result=$?
+  fi
 
   Log_Group_End
 

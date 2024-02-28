@@ -14,6 +14,13 @@ UnitTest_DotNet_Dockerfile() {
     #Then
     Assert_Equal $exitCode 0
   done
+
+
+  #When
+  actual=$(Docker_Runner dotnet "" "" "dotnet --version")
+
+  #Then
+  Assert_Match "$actual" "8\.0\.[0-9]+"
 }
 
 UnitTest_DotNet_Run() {

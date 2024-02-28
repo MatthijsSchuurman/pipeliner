@@ -23,17 +23,6 @@ IntegrationTest_Pipeliner_Package_Create() {
   Version_Pipeliner_Full() { #mock
     echo "1.2.345-test"
   }
-  VCS_Clone_Directory() { #mock
-    local source=$1
-    local target=$2
-
-    mkdir -p "$target"
-    cp -r "$source/.pipeliner" "$target"
-    cp -r "$source/.vscode" "$target"
-    cp *.md "$target"
-
-    rsync -a --exclude=.nuget/ --exclude=.local/ --exclude=.dotnet/ --exclude=bin/ --exclude=obj/ --exclude=.npm/ --exclude=node_modules/ "$source/examples" "$target"
-  }
   Artifacts_Directory() { #mock
     echo "artifacts-test"
   }
@@ -49,8 +38,6 @@ IntegrationTest_Pipeliner_Package_Create() {
   actual=$(cat $logFile)
   rm $logFile
 
-  echo "$actual" #debug
-
   #Then
   Assert_Equal $exitCode 0
   Assert_Match "$actual" "Preparing build directory"
@@ -62,7 +49,7 @@ IntegrationTest_Pipeliner_Package_Create() {
 
   #check file size
   local size=$(stat -c%s "$(Artifacts_Directory)/packages/pipeliner-1.2.345-test.zip" 2>/dev/null || stat -f%z "$(Artifacts_Directory)/packages/pipeliner-1.2.345-test.zip" 2>/dev/null)
-  Assert_Between 100000 $size 200000
+  Assert_Between 150000 $size 200000
 
   #check contents
   files=$(unzip -l "$(Artifacts_Directory)/packages/pipeliner-1.2.345-test.zip" | awk '{print $4}')

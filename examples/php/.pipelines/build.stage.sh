@@ -1,10 +1,9 @@
 #!/bin/bash
 
-JVM_Pipelines_Stage_Build() {
+PHP_Pipelines_Stage_Build() {
   local app=$1
 
-  JVM_Gradle_Clean $app
-  JVM_Gradle_Build $app
+  PHP_Composer_Install $app prod
 
   local curpath=$(pwd)
   cd "$(Files_Path_Root)/$app"

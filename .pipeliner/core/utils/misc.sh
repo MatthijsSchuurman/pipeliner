@@ -4,9 +4,11 @@ explode() {
   local delimiter=$1
   local string=$2
 
-  local IFS=$delimiter
-  local array=($string)
-  echo "${array[@]}"
+  local entry=
+  IFS=$delimiter read -ra result <<< "$string"
+  for entry in "${result[@]}"; do
+    echo "$entry"
+  done
 }
 
 implode() {
@@ -14,8 +16,12 @@ implode() {
   shift
   local array=("$@")
 
-  local IFS=$delimiter
-  echo "${array[*]}"
+  local result=""
+  for item in "${array[@]}"; do
+    result+="$item$delimiter"
+  done
+
+  echo ${result%$delimiter}
 }
 
 trim() {
