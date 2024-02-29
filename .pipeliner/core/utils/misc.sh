@@ -30,6 +30,18 @@ trim() {
   sed -E "s/^ +| +$//g" <<< $string
 }
 
+toLower() {
+  local string=$1
+
+  echo ${string,,}
+}
+
+toUpper() {
+  local string=$1
+
+  echo ${string^^}
+}
+
 map() {
   local callback=$1
   shift
