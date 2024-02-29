@@ -209,11 +209,6 @@ Packages_Prerequisites() {
   local updated=false
 
   for bin in $bins; do
-
-    echo "Checking $bin"
-    Packages_Installed $bin
-    echo "Installed: $?"
-
     if ! Packages_Installed $bin; then
       if [ $updated == false ]; then
         Packages_Update

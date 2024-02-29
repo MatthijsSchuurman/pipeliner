@@ -23,7 +23,7 @@ Vagrant_Running () {
   fi
 
   cd $(Vagrant_Directory)
-  VAGRANT_VAGRANTFILE=Vagrantfile.$machine VAGRANT_DOTFILE_PATH=$(Files_Path_Root)/.vagrant vagrant status | grep "$machine\s*running" > /dev/null
+  VAGRANT_VAGRANTFILE=Vagrantfile.$machine VAGRANT_DOTFILE_PATH=$(Files_Path_Root)/.vagrant vagrant status | grep "pipeliner-$machine\s*running" > /dev/null
   local exitCode=$?
   cd - > /dev/null
 

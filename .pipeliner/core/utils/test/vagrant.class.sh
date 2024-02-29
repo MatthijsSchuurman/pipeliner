@@ -68,7 +68,7 @@ UnitTest_Vagrant_Up() {
   Assert_Equal $exitCode 0
   Assert_Equal $running 0
   Assert_Contains "$actual" "GROUP Vagrant up $machine" ENDGROUP
-  Assert_Contains "$actual" "Bringing machine 'default' up with 'virtualbox' provider..."
+  Assert_Contains "$actual" "Bringing machine 'pipeliner-default' up with 'virtualbox' provider..."
   Assert_Contains "$actual" "cd $(Vagrant_Directory) ; VAGRANT_VAGRANTFILE=Vagrantfile.$machine VAGRANT_DOTFILE_PATH=$(Files_Path_Root)/.vagrant vagrant ssh"
 
 

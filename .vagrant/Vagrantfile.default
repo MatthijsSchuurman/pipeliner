@@ -1,11 +1,16 @@
+name = "pipeliner-default"
 
 Vagrant.configure("2") do |config|
   config.vm.box = "archlinux/archlinux"
 
-  config.vm.provider "virtualbox" do |vb|
-    vb.name = "pipeliner-default"
-    vb.memory = 512
-    vb.cpus = 2
+  config.vm.define name do |config|
+    config.vm.hostname = name
+
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = name
+      vb.memory = 512
+      vb.cpus = 2
+    end
   end
 
   config.vm.provision "shell", inline: <<-SHELL
