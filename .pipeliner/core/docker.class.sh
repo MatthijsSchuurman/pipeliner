@@ -22,7 +22,7 @@ Docker_Build() {
 
   dockerCommand+=" ."
 
-  echo "$dockerCommand"
+  Log_Debug "$dockerCommand"
   $dockerCommand 2>&1
   result=$?
 
@@ -66,11 +66,11 @@ Docker_Run() {
   dockerCommand+=" $tag"
 
   if [ "$commands" ]; then
-    echo "$dockerCommand $commands"
+    Log_Debug "$dockerCommand $commands"
     $dockerCommand /bin/sh -c "$commands" 2>&1
     result=$?
   else
-    echo "$dockerCommand"
+    Log_Debug "$dockerCommand"
     $dockerCommand 2>&1
     result=$?
   fi
