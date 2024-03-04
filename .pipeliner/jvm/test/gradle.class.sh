@@ -102,7 +102,7 @@ UnitTest_Gradle_Run() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Match "$actual" "BUILD SUCCESSFUL" "Hello World"
+  Assert_Match "$actual" "BUILD SUCCESSFUL" "Hello, World!"
 
   #Clean
   rm -rf examples/jvm/app-java/build/
@@ -114,7 +114,7 @@ UnitTest_Gradle_Run() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Match "$actual" "BUILD SUCCESSFUL" "Hello World"
+  Assert_Match "$actual" "BUILD SUCCESSFUL" "Hello, World!"
 
   #Clean
   rm -rf examples/jvm/app-kotlin/build/

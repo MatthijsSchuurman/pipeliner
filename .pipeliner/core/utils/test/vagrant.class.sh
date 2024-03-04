@@ -124,12 +124,12 @@ UnitTest_Vagrant_SSH() {
   Vagrant_Up $machine
 
   #When
-  actual=$(Vagrant_SSH $machine "echo 'Hello World'")
+  actual=$(Vagrant_SSH $machine "echo 'Hello, World!'")
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "Hello World"
+  Assert_Contains "$actual" "Hello, World!"
 
 
   #Given
