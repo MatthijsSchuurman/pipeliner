@@ -5,7 +5,15 @@ source $(Files_Path_Pipeliner)/core/log.class.sh
 Packages_Installed() {
   local bin=$1
 
-  which $bin > /dev/null 2>&1
+  command -v $bin > /dev/null 2>&1
+  local exitCode=$?
+
+  if [ $exitCode == 127 ]; then
+    which $bin > /dev/null 2>&1
+    exitCode=$?
+  fi
+
+  return $exitCode
 }
 
 Packages_Version() {
