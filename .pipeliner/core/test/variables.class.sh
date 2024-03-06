@@ -96,7 +96,7 @@ UnitTest_Variables_Unset() {
 
   #When
   local logFile=$(Files_Temp_File test .log)
-  Variable_Unset "$key" > $logFile 2>&1
+  Variables_Unset "$key" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
   rm $logFile
@@ -120,7 +120,7 @@ UnitTest_Variables_Unset_Fail() {
 
   #When
   local logFile=$(Files_Temp_File test .log)
-  Variable_Unset "$key" > $logFile 2>&1
+  Variables_Unset "$key" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
   rm $logFile
@@ -135,7 +135,7 @@ UnitTest_Variables_Unset_Fail() {
 
   #When
   local logFile=$(Files_Temp_File test .log)
-  Variable_Unset "$key" > $logFile 2>&1
+  Variables_Unset "$key" > $logFile 2>&1
   exitCode=$?
   actual=$(cat $logFile)
   rm $logFile
