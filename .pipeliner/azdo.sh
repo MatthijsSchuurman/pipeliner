@@ -35,7 +35,11 @@ else
       fi
 
       if [ "$(Dictionary_Get "$arguments" agent,0)" == "command" ]; then
-        Vagrant_SSH azdo "$(Dictionary_Get "$arguments" 0)"
+        if Dictionary_Exists "$arguments" 0 ; then
+          Vagrant_SSH azdo "$(Dictionary_Get "$arguments" 0)"
+        else
+          Vagrant_SSH azdo
+        fi
       fi
     fi
   else
