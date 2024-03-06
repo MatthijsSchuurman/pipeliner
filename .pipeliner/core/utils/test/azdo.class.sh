@@ -86,7 +86,7 @@ UnitTest_AZDO_Agent_Install() {
   local filename=$(Files_Temp_File test .tar.gz)
   local directory=$(Files_Temp_Directory test)
 
-  touch "$directory/svc.sh"
+  touch "$directory/config.sh"
   tar -czf "$filename" -C "$directory" .
   rm -Rf "$directory"
 
@@ -100,7 +100,7 @@ UnitTest_AZDO_Agent_Install() {
   #Then
   Assert_Equal $exitCode 0
   Assert_Directory_Exists "$directory"
-  Assert_File_Exists "$directory/svc.sh"
+  Assert_File_Exists "$directory/config.sh"
 
   #Cleanup
   rm -Rf "$filename" "$directory"

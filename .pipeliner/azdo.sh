@@ -4,7 +4,7 @@ source $(dirname ${BASH_SOURCE[0]})/init.sh
 
 #Main logic
 argumentsDefinition="
-agent: agent #Azure DevOps agent commands: start, command, stop, clean
+agent: agent #Azure DevOps agent commands: start, setup, command, stop, clean
 
 --help: help #Show usage information
 --version: version #Show version information
@@ -40,6 +40,25 @@ else
         else
           Vagrant_SSH azdo
         fi
+      elif [ "$(Dictionary_Get "$arguments" agent,0)" == "setup" ]; then
+        Vagrant_SSH azdo '
+source pipeliner/.pipeliner/core/utils/files.class.sh
+Files_Import_Classes
+
+if [ ! -d ~/agent ]; then
+  Packages_Prerequisites wget
+
+  if [ ! -f azdo-agent-*.tar.gz ]; then
+    AZDO_Agent_Download
+    if [ $? != 0 ]; then exit 1 ; fi
+  else
+    Variables_Set azdoAgentFilename azdo-agent-*.tar.gz
+  fi
+
+  AZDO_Agent_Install $(Variables_Get azdoAgentFilename)
+  if [ $? != 0 ]; then exit 1 ; fi
+fi
+'
       fi
     fi
   else

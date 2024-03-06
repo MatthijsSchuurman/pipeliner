@@ -43,7 +43,7 @@ AZDO_Agent_Download() {
 
 AZDO_Agent_Install() {
   local filename=$1
-  local directory=${2:-"~/agent"}
+  local directory=${2:-~/agent}
 
   Log_Group "Installing AZDO Agent $filename"
 
