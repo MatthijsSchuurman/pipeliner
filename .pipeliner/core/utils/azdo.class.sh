@@ -133,12 +133,23 @@ AZDO_Agent_Setup() {
   cd "$directory"
   ./config.sh $commandArgs
   local exitCode=$?
-  cd -
 
   if [ $exitCode != 0 ]; then
-    Log_Error "Failed to setup AZDO Agent"
+    Log_Error "Failed to configure AZDO Agent"
+    Log_Group_End
+    return $exitCode
   fi
 
+  sudo ./svc.sh install
+  local exitCode=$?
+
+  if [ $exitCode != 0 ]; then
+    Log_Error "Failed to install AZDO Agent service"
+    Log_Group_End
+    return $exitCode
+  fi
+
+  cd -
   Log_Group_End
-  return $exitCode
+  return 0
 }

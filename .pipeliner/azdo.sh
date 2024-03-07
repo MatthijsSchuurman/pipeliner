@@ -5,6 +5,15 @@ source $(dirname ${BASH_SOURCE[0]})/init.sh
 #Main logic
 argumentsDefinition="
 agent: agent #Azure DevOps agent commands: start, setup, command, stop, clean
+--url: url #Azure DevOps URL
+--token: token #Azure DevOps PAT
+--pool: pool #Azure DevOps pool
+--name: name #Azure DevOps agent name
+
+-u: url #--url
+-t: token #--token
+-p: pool #--pool
+-n: name #--name
 
 --help: help #Show usage information
 --version: version #Show version information
@@ -58,6 +67,9 @@ if [ ! -d ~/agent ]; then
   AZDO_Agent_Install $(Variables_Get azdoAgentFilename)
   if [ $? != 0 ]; then exit 1 ; fi
 fi
+
+AZDO_Agent_Setup ~/agent "'$(Dictionary_Get "$arguments" url,0)'" "'$(Dictionary_Get "$arguments" token,0)'" "'$(Dictionary_Get "$arguments" pool,0)'" "'$(Dictionary_Get "$arguments" name,0)'"
+if [ $? != 0 ]; then exit 1 ; fi
 '
       fi
     fi
