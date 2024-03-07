@@ -82,7 +82,9 @@ UnitTest_AZDO_Agent_Download_Fail() {
 
 UnitTest_AZDO_Agent_Install() {
   #Given
+  local actual=
   local exitCode=
+
   local filename=$(Files_Temp_File test .tar.gz)
   local directory=$(Files_Temp_Directory test)
 
@@ -91,11 +93,8 @@ UnitTest_AZDO_Agent_Install() {
   rm -Rf "$directory"
 
   #When
-  local logFile=$(Files_Temp_File test .log)
-  AZDO_Agent_Install "$filename" "$directory" > $logFile
+  actual=$(AZDO_Agent_Install "$filename" "$directory")
   exitCode=$?
-  actual=$(cat $logFile)
-  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
@@ -108,16 +107,15 @@ UnitTest_AZDO_Agent_Install() {
 
 UnitTest_AZDO_Agent_Install_Fail() {
   #Given
+  local actual=
   local exitCode=
+
   local filename=invalid.tar.gz
   local directory=$(Files_Temp_Directory test)
 
   #When
-  local logFile=$(Files_Temp_File test .log)
-  AZDO_Agent_Install "$filename" "$directory" > $logFile
+  actual=$(AZDO_Agent_Install "$filename" "$directory")
   exitCode=$?
-  actual=$(cat $logFile)
-  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1
@@ -134,11 +132,8 @@ UnitTest_AZDO_Agent_Install_Fail() {
   directory=$(Files_Temp_Directory test)
 
   #When
-  logFile=$(Files_Temp_File test .log)
-  AZDO_Agent_Install "$filename" "$directory" > $logFile
+  actual=$(AZDO_Agent_Install "$filename" "$directory")
   exitCode=$?
-  actual=$(cat $logFile)
-  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1
@@ -155,11 +150,8 @@ UnitTest_AZDO_Agent_Install_Fail() {
   rm -Rf "$directory"
 
   #When
-  logFile=$(Files_Temp_File test .log)
-  AZDO_Agent_Install "$filename" > $logFile
+  actual=$(AZDO_Agent_Install "$filename" "$directory")
   exitCode=$?
-  actual=$(cat $logFile)
-  rm $logFile
 
   #Then
   Assert_Equal $exitCode 1
@@ -167,4 +159,116 @@ UnitTest_AZDO_Agent_Install_Fail() {
 
   #Cleanup
   rm -Rf "$filename" "$directory"
+}
+
+UnitTest_AZDO_Agent_Setup() {
+  #Given
+  local actual=
+  local exitCode=
+
+  local directory=$(Files_Temp_Directory test)
+  local url="https://dev.azure.com/organization"
+  local pat="personalAccessToken"
+  local pool="pool1"
+  local name="agent2"
+
+  echo "echo url=$url
+echo pat=$pat
+echo pool=$pool
+echo name=$name
+" > "$directory/config.sh"
+  chmod +x "$directory/config.sh"
+
+  #When
+  actual=$(AZDO_Agent_Setup "$directory" "$url" "$pat" "$pool" "$name")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Contains "$actual" GROUP "Setting up AZDO Agent $directory" ENDGROUP
+  Assert_Contains "$actual" "url=$url" "pat=$pat" "pool=$pool" "name=$name"
+
+  #Cleanup
+  rm -Rf "$directory"
+}
+
+UnitTest_AZDO_Agent_Setup_Fail() {
+  #Given
+  local actual=
+  local exitCode=
+
+  local directory=$(Files_Temp_Directory test)
+
+  rm -Rf "$directory"
+
+  #When
+  actual=$(AZDO_Agent_Setup "$directory")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 1
+  Assert_Contains "$actual" ERROR "Directory not found: $directory"
+
+
+  #Given
+  directory=$(Files_Temp_Directory test)
+
+  #When
+  actual=$(AZDO_Agent_Setup "$directory")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 1
+  Assert_Contains "$actual" ERROR "File not found: $directory/config.sh"
+
+  #Cleanup
+  rm -Rf "$directory"
+}
+
+UnitTest_AZDO_Agent_Setup_Fail_Parameters() {
+  #Given
+  local actual=
+  local exitCode=
+
+  local directory=$(Files_Temp_Directory test)
+  touch "$directory/config.sh"
+
+  #When
+  actual=$(AZDO_Agent_Setup "$directory")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 1
+  Assert_Contains "$actual" ERROR "URL not specified"
+
+
+  #When
+  actual=$(AZDO_Agent_Setup "$directory" "url")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 1
+  Assert_Contains "$actual" ERROR "PAT not specified"
+
+
+  #When
+  actual=$(AZDO_Agent_Setup "$directory" "url" "pat")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 1
+  Assert_Contains "$actual" ERROR "Pool not specified"
+
+
+  #When
+  actual=$(AZDO_Agent_Setup "$directory" "url" "pat" "pool")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 1
+  Assert_Contains "$actual" ERROR "Name not specified"
+
+
+  #Cleanup
+  rm -Rf "$directory"
 }

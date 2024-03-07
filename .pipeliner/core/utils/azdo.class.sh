@@ -59,7 +59,7 @@ AZDO_Agent_Install() {
     return 1
   fi
 
-  tar -tzf "$filename" 2>&1 | grep -q "svc.sh"
+  tar -tzf "$filename" 2>&1 | grep -q "config.sh"
   if [ $? != 0 ]; then
     Log_Error "Invalid AZDO Agent file: $filename"
     Log_Group_End
@@ -74,6 +74,69 @@ AZDO_Agent_Install() {
     Log_Error "Failed to install AZDO Agent"
     Log_Group_End
     return $exitCode
+  fi
+
+  Log_Group_End
+  return $exitCode
+}
+
+AZDO_Agent_Setup() {
+  local directory=${1:-~/agent}
+  local url=$2
+  local pat=$3
+  local pool=$4
+  local name=$5
+
+  Log_Group "Setting up AZDO Agent $directory"
+  if [ ! -d "$directory" ]; then
+    Log_Error "Directory not found: $directory"
+    Log_Group_End
+    return 1
+  fi
+
+  if [ ! -f "$directory/config.sh" ]; then
+    Log_Error "File not found: $directory/config.sh"
+    Log_Group_End
+    return 1
+  fi
+
+  if [ ! "$url" ]; then
+    Log_Error "URL not specified"
+    Log_Group_End
+    return 1
+  fi
+
+  if [ ! "$pat" ]; then
+    Log_Error "PAT not specified"
+    Log_Group_End
+    return 1
+  fi
+
+  if [ ! "$pool" ]; then
+    Log_Error "Pool not specified"
+    Log_Group_End
+    return 1
+  fi
+
+  if [ ! "$name" ]; then
+    Log_Error "Name not specified"
+    Log_Group_End
+    return 1
+  fi
+
+  local commandArgs="--unattended"
+  commandArgs+=" --url $url"
+  commandArgs+=" --auth pat --token $pat"
+  commandArgs+=" --pool $pool"
+  commandArgs+=" --agent $name"
+
+  cd "$directory"
+  ./config.sh $commandArgs
+  local exitCode=$?
+  cd -
+
+  if [ $exitCode != 0 ]; then
+    Log_Error "Failed to setup AZDO Agent"
   fi
 
   Log_Group_End
