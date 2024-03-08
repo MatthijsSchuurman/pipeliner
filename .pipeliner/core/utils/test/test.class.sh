@@ -111,7 +111,7 @@ UnitTest_Test_Run() {
   Assert_Match "$actual" "map: .*OK.*"
   Assert_Match "$actual" "reduce: .*OK.*"
 
-  Assert_Match "$actual" "7.* passed / 7 total"
+  Assert_Match "$actual" "9.* passed / 9 total"
 }
 
 UnitTest_Test_Run_Type() {
@@ -237,7 +237,7 @@ UnitTest_Test_Run_Fail() {
   Assert_Match "$actual" "explode: .*FAIL.*"
   Assert_Match "$actual" "map: .*FAIL.*"
   Assert_Match "$actual" "reduce: .*FAIL.*"
-  Assert_Match "$actual" "0.* passed / .*7.* failed / 7 total"
+  Assert_Match "$actual" "0.* passed / .*9.* failed / 9 total"
 }
 
 UnitTest_Test_Statistics() {

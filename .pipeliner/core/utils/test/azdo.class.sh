@@ -189,7 +189,12 @@ echo name=$name
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Setting up AZDO Agent $directory" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Setting up AZDO Agent $directory" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Setting up AZDO Agent $directory" endgroup
+  fi
+
   Assert_Contains "$actual" "url=$url" "pat=$pat" "pool=$pool" "name=$name"
   Assert_Contains "$actual" "sudo ./svc.sh install" "sudo ./svc.sh start"
 
@@ -212,7 +217,11 @@ UnitTest_AZDO_Agent_Setup_Fail() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "Directory not found: $directory"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "Directory not found: $directory"
+  else
+    Assert_Contains "$actual" error "Directory not found: $directory"
+  fi
 
 
   #Given
@@ -224,7 +233,11 @@ UnitTest_AZDO_Agent_Setup_Fail() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "File not found: $directory/config.sh"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "File not found: $directory/config.sh"
+  else
+    Assert_Contains "$actual" error "File not found: $directory/config.sh"
+  fi
 
   #Cleanup
   rm -Rf "$directory"
@@ -244,16 +257,24 @@ UnitTest_AZDO_Agent_Setup_Fail_Parameters() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "URL not specified"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "URL not specified"
+  else
+    Assert_Contains "$actual" error "URL not specified"
+  fi
 
 
-  #When
+ #When
   actual=$(AZDO_Agent_Setup "$directory" "url")
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "PAT not specified"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "PAT not specified"
+  else
+    Assert_Contains "$actual" error "PAT not specified"
+  fi
 
 
   #When
@@ -262,7 +283,11 @@ UnitTest_AZDO_Agent_Setup_Fail_Parameters() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "Pool not specified"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "Pool not specified"
+  else
+    Assert_Contains "$actual" error "Pool not specified"
+  fi
 
 
   #When
@@ -271,8 +296,11 @@ UnitTest_AZDO_Agent_Setup_Fail_Parameters() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "Name not specified"
-
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "Name not specified"
+  else
+    Assert_Contains "$actual" error "Name not specified"
+  fi
 
   #Cleanup
   rm -Rf "$directory"
