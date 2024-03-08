@@ -179,6 +179,10 @@ echo name=$name
 " > "$directory/config.sh"
   chmod +x "$directory/config.sh"
 
+  sudo() { #mock
+    echo "sudo $@"
+  }
+
   #When
   actual=$(AZDO_Agent_Setup "$directory" "$url" "$pat" "$pool" "$name")
   exitCode=$?
@@ -187,6 +191,7 @@ echo name=$name
   Assert_Equal $exitCode 0
   Assert_Contains "$actual" GROUP "Setting up AZDO Agent $directory" ENDGROUP
   Assert_Contains "$actual" "url=$url" "pat=$pat" "pool=$pool" "name=$name"
+  Assert_Contains "$actual" "sudo ./svc.sh install" "sudo ./svc.sh start"
 
   #Cleanup
   rm -Rf "$directory"

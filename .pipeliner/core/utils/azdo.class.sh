@@ -152,7 +152,7 @@ AZDO_Agent_Setup() {
     return $exitCode
   fi
 
-  cd -
+  cd - > /dev/null
   Log_Group_End
   return 0
 }
