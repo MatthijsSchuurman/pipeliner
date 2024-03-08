@@ -13,12 +13,8 @@ stages:
         Pipeliner_Test_Run unit
       displayName: Run unit tests
 
-    - download: current
-      artifact: Test Reports
-      displayName: Download test reports
-      condition: always()
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: Test Reports
+      artifact: Unit Test Reports
       displayName: Publish test reports
       condition: always()
 
@@ -30,12 +26,8 @@ stages:
         Pipeliner_Test_Run integration
       displayName: Run integration tests
 
-    - download: current
-      artifact: Test Reports
-      displayName: Download test reports
-      condition: always()
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: Test Reports
+      artifact: Integration Test Reports
       displayName: Publish test reports
       condition: always()
 
@@ -47,11 +39,7 @@ stages:
         Pipeliner_Test_Run e2e
       displayName: Run E2E tests
 
-    - download: current
-      artifact: Test Reports
-      displayName: Download test reports
-      condition: always()
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: Test Reports
+      artifact: E2E Test Reports
       displayName: Publish test reports
       condition: always()
