@@ -14,7 +14,10 @@ E2ETest_Pipeliner_Pipeline_CI() {
   actual=$(cat $logFile)
   rm $logFile
 
+  echo "$actual"
+
   #Then
+  Assert_Equal $exitCode 0
   Assert_Contains "$actual" "Running tests"
   Assert_Contains "$actual" "Pipeliner core compression"
   Assert_Match "$actual" "Compression Zip.*OK"

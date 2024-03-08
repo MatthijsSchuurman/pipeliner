@@ -14,8 +14,8 @@ stages:
       displayName: Run unit tests
 
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: Unit Test Reports
-      displayName: Publish test reports
+      artifact: Unit Test Report
+      displayName: Publish test report
       condition: always()
 
 
@@ -27,8 +27,8 @@ stages:
       displayName: Run integration tests
 
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: Integration Test Reports
-      displayName: Publish test reports
+      artifact: Integration Test Report
+      displayName: Publish test report
       condition: always()
 
 
@@ -40,6 +40,6 @@ stages:
       displayName: Run E2E tests
 
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: E2E Test Reports
-      displayName: Publish test reports
+      artifact: E2E Test Report
+      displayName: Publish test report
       condition: always()

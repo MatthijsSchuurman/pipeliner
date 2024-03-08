@@ -14,6 +14,8 @@ E2ETest_Pipeliner_Pipeline_CD() {
   actual=$(cat $logFile)
   rm $logFile
 
+  echo "$actual"
+
   #Then
   Assert_Equal $exitCode 0
   Assert_Contains "$actual" "Docker version"
