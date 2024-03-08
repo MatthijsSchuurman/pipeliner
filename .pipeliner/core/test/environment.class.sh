@@ -4,10 +4,10 @@ source $(Files_Path_Pipeliner)/core/environment.class.sh
 
 UnitTest_Environment_Platform() {
   #Given
-  AGENT_ID=
-  GITHUB_ACTIONS=
-  GITLAB_CI=
-  BITBUCKET_BUILD_NUMBER=
+  unset AGENT_ID
+  unset GITHUB_ACTIONS
+  unset GITLAB_CI
+  unset BITBUCKET_BUILD_NUMBER
 
   #When
   local actual=$(Environment_Platform)
@@ -18,6 +18,9 @@ UnitTest_Environment_Platform() {
 UnitTest_Environment_Platform_Azure() {
   #Given
   AGENT_ID="123"
+  unset GITHUB_ACTIONS
+  unset GITLAB_CI
+  unset BITBUCKET_BUILD_NUMBER
 
   #When
   local actual=$(Environment_Platform)
@@ -27,7 +30,10 @@ UnitTest_Environment_Platform_Azure() {
 }
 UnitTest_Environment_Platform_Github() {
   #Given
+  unset AGENT_ID
   GITHUB_ACTIONS="true"
+  unset GITLAB_CI
+  unset BITBUCKET_BUILD_NUMBER
 
   #When
   local actual=$(Environment_Platform)

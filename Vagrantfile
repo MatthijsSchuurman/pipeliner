@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "archlinux/archlinux"
   config.vm.synced_folder ".", "/home/vagrant/pipeliner"
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 512
+    vb.memory = 2048
     vb.cpus = 2
   end
 
