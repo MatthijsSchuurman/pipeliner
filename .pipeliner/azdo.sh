@@ -52,7 +52,9 @@ else
       elif [ "$(Dictionary_Get "$arguments" agent,0)" == "setup" ]; then
         Vagrant_SSH azdo '
 source pipeliner/.pipeliner/init.sh
-Packages_Prerequisites wget git
+Packages_Prerequisites wget git zip
+
+sudo usermod -a -G docker vagrant
 
 if [ ! -d ~/agent ]; then
 
