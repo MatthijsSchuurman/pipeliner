@@ -21,8 +21,11 @@ E2ETest_AZDO_Agent_Start() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Vagrant up azdo" "vagrant ssh" ENDGROUP
-
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Vagrant up azdo" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Vagrant up azdo" endgroup
+  fi
 
   #When
   actual=$($(Files_Path_Pipeliner)/azdo.sh agent start)
@@ -30,7 +33,11 @@ E2ETest_AZDO_Agent_Start() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Not_Contains "$actual" GROUP azdo ssh ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Not_Contains "$actual" GROUP "up azdo" ENDGROUP
+  else
+    Assert_Not_Contains "$actual" group "up azdo" endgroup
+  fi
 }
 
 E2ETest_AZDO_Agent_Command() {

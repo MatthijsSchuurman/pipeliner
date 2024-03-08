@@ -1,0 +1,1397 @@
+[0;90mDEBUG Docker version 24.0.7, build afdd53b4e3[0m
+
+[1;37mINFO Running tests[0m
+[1;37mExamples dotnet .pipelines build[0m
+- [1;90mExamples DotNet Stage Build[0m: [1;34mSKIP[0m
+
+[1;37mExamples dotnet .pipelines ci[0m
+- [0;90mExamples DotNet Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mExamples dotnet .pipelines pipeline[0m
+- [1;90mExamples DotNet Pipelines Affected all[0m: [1;34mSKIP[0m
+- [1;90mExamples DotNet Pipelines Affected affected[0m: [1;34mSKIP[0m
+
+[1;37mExamples dotnet .pipelines test[0m
+- [1;90mExamples DotNet Pipelines Stage Test[0m: [1;34mSKIP[0m
+
+[1;37mExamples jvm .pipelines build[0m
+- [1;90mExamples JVM Stage Build java[0m: [1;34mSKIP[0m
+- [1;90mExamples JVM Stage Build kotlin[0m: [1;34mSKIP[0m
+
+[1;37mExamples jvm .pipelines ci[0m
+- [0;90mExamples JVM Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mExamples jvm .pipelines pipeline[0m
+- [1;90mExamples JVM Pipelines Affected all[0m: [1;34mSKIP[0m
+- [1;90mExamples JVM Pipelines Affected affected[0m: [1;34mSKIP[0m
+
+[1;37mExamples jvm .pipelines test[0m
+- [1;90mExamples JVM Pipelines Stage Test java[0m: [1;34mSKIP[0m
+- [1;90mExamples JVM Pipelines Stage Test kotlin[0m: [1;34mSKIP[0m
+
+[1;37mExamples node .pipelines build[0m
+- [1;90mExamples Node Stage Build[0m: [1;34mSKIP[0m
+
+[1;37mExamples node .pipelines ci[0m
+- [0;90mExamples Node Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mExamples node .pipelines pipeline[0m
+- [1;90mExamples Node Pipelines Affected all[0m: [1;34mSKIP[0m
+- [1;90mExamples Node Pipelines Affected affected[0m: [1;34mSKIP[0m
+
+[1;37mExamples node .pipelines test[0m
+- [1;90mExamples Node Pipelines Stage Test[0m: [1;34mSKIP[0m
+
+[1;37mExamples php .pipelines build[0m
+- [1;90mExamples PHP Stage Build[0m: [1;34mSKIP[0m
+
+[1;37mExamples php .pipelines ci[0m
+- [0;90mExamples PHP Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mExamples php .pipelines pipeline[0m
+- [1;90mExamples PHP Pipelines Affected all[0m: [1;34mSKIP[0m
+- [1;90mExamples PHP Pipelines Affected affected[0m: [1;34mSKIP[0m
+
+[1;37mExamples php .pipelines test[0m
+- [1;90mExamples PHP Pipelines Stage Test[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner core artifacts[0m
+- Artifacts Directory: [1;32mOK[0m
+- Artifacts Directory Azure: [1;32mOK[0m
+- Artifacts Directory Github: [1;32mOK[0m
+- Artifacts Directory Fail: [1;32mOK[0m
+- Artifacts Write: [1;32mOK[0m
+- Artifacts Write Directory: [1;32mOK[0m
+- Artifacts Write Azure: [1;32mOK[0m
+- Artifacts Write Github: [1;32mOK[0m
+- Artifacts Read: [1;32mOK[0m
+- Artifacts Read Azure: [1;32mOK[0m
+- Artifacts Read Github: [1;32mOK[0m
+- Artifacts Read Fail: [1;32mOK[0m
+- Artifacts Move: [1;32mOK[0m
+- Artifacts Move Directory: [1;32mOK[0m
+- Artifacts Move Azure: [1;32mOK[0m
+- Artifacts Move Github: [1;32mOK[0m
+- Artifacts Move Fail: [1;32mOK[0m
+- Artifacts Delete: [1;32mOK[0m
+- Artifacts Delete Azure: [1;32mOK[0m
+- Artifacts Delete Github: [1;32mOK[0m
+
+[1;37mPipeliner core compression[0m
+- Compression Zip: [1;32mOK[0m
+- Compression Zip Directory: [1;32mOK[0m
+- Compression Zip Fail: [1;32mOK[0m
+
+[1;37mPipeliner core docker[0m
+- Docker Build: [1;32mOK[0m
+- Docker Build Arguments: [1;32mOK[0m
+- Docker Run core: [1;32mOK[0m
+- Docker Run Owner: [1;32mOK[0m
+- Docker Run Env: [1;32mOK[0m
+- Docker Runner: [1;32mOK[0m
+- Docker Runner Fail: [1;32mOK[0m
+- Docker List: [1;32mOK[0m
+- Docker List All: [1;32mOK[0m
+- Docker Save: [1;32mOK[0m
+- Docker Save Fail: [1;32mOK[0m
+- Core Dockerfile: [1;32mOK[0m
+- Docker Compression ZIP Example: [1;32mOK[0m
+
+[1;37mPipeliner core environment[0m
+- Environment Platform: [1;32mOK[0m
+- Environment Platform Azure: [1;32mOK[0m
+- Environment Platform Github: [1;32mOK[0m
+- Environment OS: [1;32mOK[0m
+- Environment Distro: [1;32mOK[0m
+- Environment Architecture: [1;32mOK[0m
+
+[1;37mPipeliner core log[0m
+- Log Debug: [1;32mOK[0m
+- Log Debug Azure: [1;32mOK[0m
+- Log Debug Github: [1;32mOK[0m
+- Log Debug Fail: [1;32mOK[0m
+- Log Info: [1;32mOK[0m
+- Log Info Azure: [1;32mOK[0m
+- Log Info Github: [1;32mOK[0m
+- Log Info Fail: [1;32mOK[0m
+- Log Warning: [1;32mOK[0m
+- Log Warning Azure: [1;32mOK[0m
+- Log Warning Github: [1;32mOK[0m
+- Log Warning Fail: [1;32mOK[0m
+- Log Error: [1;32mOK[0m
+- Log Error Azure: [1;32mOK[0m
+- Log Error Github: [1;32mOK[0m
+- Log Error Fail: [1;32mOK[0m
+- Log Variable: [1;32mOK[0m
+- Log Variable Azure: [1;32mOK[0m
+- Log Variable Github: [1;32mOK[0m
+- Log Variable Fail: [1;32mOK[0m
+- Log Group: [1;32mOK[0m
+- Log Group Azure: [1;32mOK[0m
+- Log Group Github: [1;32mOK[0m
+- Log Group Fail: [1;32mOK[0m
+- Log Group End: [1;32mOK[0m
+- Log Group End Azure: [1;32mOK[0m
+- Log Group End Github: [1;32mOK[0m
+- Log Group End Fail: [1;32mOK[0m
+
+[1;37mPipeliner core parallel[0m
+- Parallel Command Start: [1;32mOK[0m
+- Parallel Batch Determine: [1;32mOK[0m
+- Parallel Batch Start: [1;32mOK[0m
+- Parallel Batch Wait: [1;32mOK[0m
+- Parallel Batch Results: [1;32mOK[0m
+- Parallel Batch Failures: [1;32mOK[0m
+- Parallel Run: [1;32mOK[0m
+- Parallel Run sleep: [1;32mOK[0m
+
+[1;37mPipeliner core ssh[0m
+- SSH Directory: [1;32mOK[0m
+- SSH Key File: [1;32mOK[0m
+- SSH Key File Public: [1;32mOK[0m
+- SSH Remote Authorized Keys File: [1;32mOK[0m
+- SSH Key Exists: [1;32mOK[0m
+- SSH Generate Key: [1;32mOK[0m
+- SSH Dissect URL: [1;32mOK[0m
+- SSH Dissect URL Arguments: [1;32mOK[0m
+- SSH Deploy Key: [1;32mOK[0m
+- SSH Run: [1;32mOK[0m
+- SSH Copy: [1;32mOK[0m
+- SSH Compression ZIP Example: [1;32mOK[0m
+
+[1;37mPipeliner core variables[0m
+- Variables Set: [1;32mOK[0m
+- Variables Set Fail: [1;32mOK[0m
+- Variables Unset: [1;32mOK[0m
+- Variables Unset Fail: [1;32mOK[0m
+- Variables Get: [1;32mOK[0m
+- Variables Get Fail: [1;32mOK[0m
+
+[1;37mPipeliner core version[0m
+- Version Pipeliner: [1;32mOK[0m
+- Version Pipeliner Full: [1;32mOK[0m
+- Version Pipeliner Code: [1;32mOK[0m
+- Version BuildId: [1;32mOK[0m
+- Version BuildId Azure: [1;32mOK[0m
+- Version BuildId Github: [1;32mOK[0m
+- Version BuildId Fail: [1;32mOK[0m
+- Version BuildId Next: [1;32mOK[0m
+- Version Generate BuildId NewFile: [1;32mOK[0m
+- Version BuildId Next Fail: [1;32mOK[0m
+
+[1;37mPipeliner core utils assert[0m
+- Assert Equal: [1;32mOK[0m
+- Assert Equal Fail: [1;32mOK[0m
+- Assert Not Equal: [1;32mOK[0m
+- Assert Not Equal Fail: [1;32mOK[0m
+- Assert Greater Than: [1;32mOK[0m
+- Assert Greater Than Fail: [1;32mOK[0m
+- Assert Greater Than Or Equal: [1;32mOK[0m
+- Assert Greater Than Or Equal Fail: [1;32mOK[0m
+- Assert Less Than: [1;32mOK[0m
+- Assert Less Than Fail: [1;32mOK[0m
+- Assert Less Than Or Equal: [1;32mOK[0m
+- Assert Less Than Or Equal Fail: [1;32mOK[0m
+- Assert Between: [1;32mOK[0m
+- Assert Between Fail: [1;32mOK[0m
+- Assert Not Between: [1;32mOK[0m
+- Assert Not Between Fail: [1;32mOK[0m
+- Assert Match: [1;32mOK[0m
+- Assert Match Fail: [1;32mOK[0m
+- Assert Not Match: [1;32mOK[0m
+- Assert Not Match Fail: [1;32mOK[0m
+- Assert Starts With: [1;32mOK[0m
+- Assert Starts With Fail: [1;32mOK[0m
+- Assert Not Starts With: [1;32mOK[0m
+- Assert Not Starts With Fail: [1;32mOK[0m
+- Assert Ends With: [1;32mOK[0m
+- Assert Ends With Fail: [1;32mOK[0m
+- Assert Not Ends With: [1;32mOK[0m
+- Assert Not Ends With Fail: [1;32mOK[0m
+- Assert Contains: [1;32mOK[0m
+- Assert Contains Fail: [1;32mOK[0m
+- Assert Not Contains: [1;32mOK[0m
+- Assert Not Contains Fail: [1;32mOK[0m
+- Assert Empty: [1;32mOK[0m
+- Assert Empty Fail: [1;32mOK[0m
+- Assert Not Empty: [1;32mOK[0m
+- Assert Not Empty Fail: [1;32mOK[0m
+- Assert File Exists: [1;32mOK[0m
+- Assert File Exists Fail: [1;32mOK[0m
+- Assert Not File Exists: [1;32mOK[0m
+- Assert Not File Exists Fail: [1;32mOK[0m
+- Assert Directory Exists: [1;32mOK[0m
+- Assert Directory Exists Fail: [1;32mOK[0m
+- Assert Not Directory Exists: [1;32mOK[0m
+- Assert Not Directory Exists Fail: [1;32mOK[0m
+- Assert Path Owner: [1;32mOK[0m
+- Assert Path Owner Fail: [1;32mOK[0m
+- Assert Path Group: [1;32mOK[0m
+- Assert Path Group Fail: [1;32mOK[0m
+- Assert Function: [1;32mOK[0m
+
+[1;37mPipeliner core utils azdo[0m
+- AZDO Agent Latest: [1;32mOK[0m
+- AZDO Agent Download: [1;32mOK[0m
+- AZDO Agent Download Fail: [1;32mOK[0m
+- AZDO Agent Install: [1;32mOK[0m
+- AZDO Agent Install Fail: [1;32mOK[0m
+- AZDO Agent Setup: [1;32mOK[0m
+- AZDO Agent Setup Fail: [1;32mOK[0m
+- AZDO Agent Setup Fail Parameters: [1;32mOK[0m
+- AZDO URL Trim: [1;32mOK[0m
+
+[1;37mPipeliner core utils cli[0m
+- CLI Arguments: [1;32mOK[0m
+- CLI Arguments Fail: [1;32mOK[0m
+- CLI Arguments Usage: [1;32mOK[0m
+- CLI Arguments Parse Mapping: [1;32mOK[0m
+- CLI Arguments Parse Mapping Fail: [1;32mOK[0m
+
+[1;37mPipeliner core utils colors[0m
+- Color Green: [1;32mOK[0m
+- Color Red: [1;32mOK[0m
+- Color Yellow: [1;32mOK[0m
+- Color Blue: [1;32mOK[0m
+- Color Purple: [1;32mOK[0m
+- Color Cyan: [1;32mOK[0m
+- Color White: [1;32mOK[0m
+- Color Gray: [1;32mOK[0m
+- Color Grey: [1;32mOK[0m
+
+[1;37mPipeliner core utils dictionary[0m
+- Dictionary Exists: [1;32mOK[0m
+- Dictionary Keys: [1;32mOK[0m
+- Dictionary Keys Fail: [1;32mOK[0m
+- Dictionary Set: [1;32mOK[0m
+- Dictionary Set Overwrite: [1;32mOK[0m
+- Dictionary Set Fail: [1;32mOK[0m
+- Dictionary Unset: [1;32mOK[0m
+- Dictionary Unset Fail: [1;32mOK[0m
+- Dictionary Get: [1;32mOK[0m
+- Dictionary Get Fail: [1;32mOK[0m
+
+[1;37mPipeliner core utils files[0m
+- Files Path Original: [1;32mOK[0m
+- Files Path Root: [1;32mOK[0m
+- Files Path Work: [1;32mOK[0m
+- Files Path Pipeliner: [1;32mOK[0m
+- Files Path Data: [1;32mOK[0m
+- Files Get Class Files: [1;32mOK[0m
+- Files Import Classes: [1;32mOK[0m
+- Files Get Stage Files: [1;32mOK[0m
+- Files Import Stages: [1;32mOK[0m
+- Files Get Test Files: [1;32mOK[0m
+- Files Import Tests: [1;32mOK[0m
+- Files Get Unit Tests: [1;32mOK[0m
+- Files Get Integration Tests: [1;32mOK[0m
+- Files Get E2E Tests: [1;32mOK[0m
+- Files Watch Directory Written: [1;32mOK[0m
+- Files Temp Dir: [1;32mOK[0m
+- Files Temp File: [1;32mOK[0m
+- Files Temp File Prefix Suffix: [1;32mOK[0m
+- Files Temp Directory: [1;32mOK[0m
+- Files Temp Directory Prefix Suffix: [1;32mOK[0m
+- Files Temp Clean: [1;32mOK[0m
+
+[1;37mPipeliner core utils misc.sh[0m
+- explode: [1;32mOK[0m
+- implode: [1;32mOK[0m
+- trim: [1;32mOK[0m
+- toLower: [1;32mOK[0m
+- toUpper: [1;32mOK[0m
+- map: [1;32mOK[0m
+- reduce: [1;32mOK[0m
+- filter: [1;32mOK[0m
+- reverse: [1;32mOK[0m
+
+[1;37mPipeliner core utils packages[0m
+- Packages Installed: [1;32mOK[0m
+- Packages Version: [1;32mOK[0m
+- Packages Determine Manager: [1;32mOK[0m
+- Packages Determine Packages: [1;32mOK[0m
+- Packages Determine Packages SSH: [1;32mOK[0m
+- Packages Determine Packages ZIP: [1;32mOK[0m
+- Packages Determine Packages Docker: [1;32mOK[0m
+- Packages Determine Services: [1;32mOK[0m
+- Packages Update: [1;32mOK[0m
+- Packages Update Fail: [1;32mOK[0m
+- Packages Install: [1;32mOK[0m
+- Packages Install Fail: [1;32mOK[0m
+- Packages Start Service: [1;32mOK[0m
+- Packages Start Service Fail: [1;32mOK[0m
+- Packages Prerequisites: [1;32mOK[0m
+
+[1;37mPipeliner core utils test[0m
+- Example: [1;32mOK[0m
+- Example Skip: [1;34mSKIP[0m
+- Test Title: [1;32mOK[0m
+- Test Name: [1;32mOK[0m
+- Test Execute: [1;32mOK[0m
+- Test Execute Fail: [1;32mOK[0m
+- Test Run: [1;32mOK[0m
+- Test Run Type: [1;32mOK[0m
+- Test Run Exclude: [1;32mOK[0m
+- Test Run Fail: [1;32mOK[0m
+- Test Statistics: [1;32mOK[0m
+- [1;90mExample[0m: [1;34mSKIP[0m
+- [0;90mExample[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils vagrant[0m
+- Vagrant Exists: [1;32mOK[0m
+- Vagrant Exists Fail: [1;32mOK[0m
+- Vagrant Running: [1;34mSKIP[0m
+- Vagrant Up: [1;32mOK[0m
+- Vagrant Up Fail: [1;32mOK[0m
+- Vagrant SSH: [1;32mOK[0m
+- Vagrant Halt: [1;32mOK[0m
+- Vagrant Halt Fail: [1;32mOK[0m
+- Vagrant Destroy: [1;34mSKIP[0m
+- Vagrant Destroy Fail: [1;32mOK[0m
+
+[1;37mPipeliner core utils vcs[0m
+- VCS Affected: [1;32mOK[0m
+- VCS Affected Directories: [1;32mOK[0m
+- VCS Clone Directory: [1;32mOK[0m
+- VCS Clone Directory Update: [1;32mOK[0m
+- VCS Clone Directory Unknown: [1;32mOK[0m
+
+[1;37mPipeliner dotnet dotnet[0m
+- DotNet Dockerfile: [1;32mOK[0m
+- DotNet Run: [1;32mOK[0m
+- DotNet Build: [1;32mOK[0m
+- DotNet Test: [1;32mOK[0m
+- DotNet Lint: [1;32mOK[0m
+
+[1;37mPipeliner jvm gradle[0m
+- Gradle Clean: [1;32mOK[0m
+- Gradle Build: [1;32mOK[0m
+- Gradle Test: [1;32mOK[0m
+- Gradle Run: [1;32mOK[0m
+
+[1;37mPipeliner jvm jvm[0m
+- JVM Dockerfile: [1;32mOK[0m
+- JVM Run: [1;32mOK[0m
+
+[1;37mPipeliner node node[0m
+- Node Dockerfile: [1;32mOK[0m
+- Node Run: [1;32mOK[0m
+
+[1;37mPipeliner node npm[0m
+- NPM Install: [1;32mOK[0m
+- NPM Install Production: [1;32mOK[0m
+- NPM Test: [1;32mOK[0m
+- NPM Lint: [1;32mOK[0m
+
+[1;37mPipeliner php composer[0m
+- PHP Composer Install: [1;32mOK[0m
+- PHP Composer Install Production: [1;32mOK[0m
+- PHP Composer Test: [1;32mOK[0m
+
+[1;37mPipeliner php php[0m
+- PHP Dockerfile: [1;32mOK[0m
+- PHP Run: [1;32mOK[0m
+- PHP Lint: [1;32mOK[0m
+
+[1;37mPipeliner .pipelines cd[0m
+- [0;90mPipeliner Pipeline CD[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines ci[0m
+- [0;90mPipeliner Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines docker[0m
+- Pipeliner Docker Create Image: [1;32mOK[0m
+
+[1;37mPipeliner .pipelines package[0m
+- [1;90mPipeliner Package Filename[0m: [1;34mSKIP[0m
+- [1;90mPipeliner Package Create[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines test[0m
+- [1;90mPipeliner Test Report Filename[0m: [1;34mSKIP[0m
+- [1;90mPipeliner Test Run[0m: [1;34mSKIP[0m
+- [1;90mPipeliner Test Run Fail[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner azdo.sh[0m
+- [0;90mAZDO Agent Start[0m: [1;34mSKIP[0m
+- [0;90mAZDO Agent Command[0m: [1;34mSKIP[0m
+- [0;90mAZDO Agent Stop[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner docker.sh[0m
+- [0;90mDocker[0m: [1;34mSKIP[0m
+- [0;90mDocker node[0m: [1;34mSKIP[0m
+- [0;90mDocker dotnet[0m: [1;34mSKIP[0m
+- [0;90mDocker unknown[0m: [1;34mSKIP[0m
+- [0;90mDocker Arguments[0m: [1;34mSKIP[0m
+- [0;90mDocker Arguments Fail[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner init.sh[0m
+- [0;90mInit[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner installed.sh[0m
+- Installed Pipeliner: [1;32mOK[0m
+- Installed Pipeliner Docker: [1;32mOK[0m
+- Installed Pipeliner Test: [1;32mOK[0m
+- Installed VSCode: [1;32mOK[0m
+- Installed Examples Node: [1;32mOK[0m
+- Installed Examples DotNet: [1;32mOK[0m
+
+[1;37mPipeliner install.sh[0m
+- Install Test mode: [1;32mOK[0m
+- Install Directory: [1;32mOK[0m
+- Install Directory Temp: [1;32mOK[0m
+- Install Directory Temp Flush: [1;32mOK[0m
+- Install Directory Temp Clear: [1;32mOK[0m
+- Install Is Upgrade: [1;32mOK[0m
+- Install Download: [1;32mOK[0m
+- Install Extract: [1;32mOK[0m
+- Install Install: [1;32mOK[0m
+- Install Install vscode: [1;32mOK[0m
+- Install Validate: [1;32mOK[0m
+- [0;90mInstall[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner test.sh[0m
+- [0;90mTest Type[0m: [1;34mSKIP[0m
+- [0;90mTest Include[0m: [1;34mSKIP[0m
+- [0;90mTest Exclude[0m: [1;34mSKIP[0m
+- [0;90mTest Arguments[0m: [1;34mSKIP[0m
+- [0;90mTest Arguments Fail[0m: [1;34mSKIP[0m
+
+[1;32m297[0m passed / [1;34m50[0m skipped / 347 total
+[1;37mINFO Moving artifact ./unit_test_report-0.5.1114.txt to ./artifacts/testReports/unit_test_report-0.5.1114.txt[0m
+[1;36mVARIABLE unitTestReport=./artifacts/testReports/unit_test_report-0.5.1114.txt[0m
+
+[1;37mINFO Running tests[0m
+[1;37mExamples dotnet .pipelines build[0m
+- [1;90mExamples DotNet Stage Build[0m: [1;32mOK[0m
+
+[1;37mExamples dotnet .pipelines ci[0m
+- [0;90mExamples DotNet Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mExamples dotnet .pipelines pipeline[0m
+- [1;90mExamples DotNet Pipelines Affected all[0m: [1;32mOK[0m
+- [1;90mExamples DotNet Pipelines Affected affected[0m: [1;32mOK[0m
+
+[1;37mExamples dotnet .pipelines test[0m
+- [1;90mExamples DotNet Pipelines Stage Test[0m: [1;32mOK[0m
+
+[1;37mExamples jvm .pipelines build[0m
+- [1;90mExamples JVM Stage Build java[0m: [1;32mOK[0m
+- [1;90mExamples JVM Stage Build kotlin[0m: [1;32mOK[0m
+
+[1;37mExamples jvm .pipelines ci[0m
+- [0;90mExamples JVM Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mExamples jvm .pipelines pipeline[0m
+- [1;90mExamples JVM Pipelines Affected all[0m: [1;32mOK[0m
+- [1;90mExamples JVM Pipelines Affected affected[0m: [1;32mOK[0m
+
+[1;37mExamples jvm .pipelines test[0m
+- [1;90mExamples JVM Pipelines Stage Test java[0m: [1;32mOK[0m
+- [1;90mExamples JVM Pipelines Stage Test kotlin[0m: [1;32mOK[0m
+
+[1;37mExamples node .pipelines build[0m
+- [1;90mExamples Node Stage Build[0m: [1;32mOK[0m
+
+[1;37mExamples node .pipelines ci[0m
+- [0;90mExamples Node Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mExamples node .pipelines pipeline[0m
+- [1;90mExamples Node Pipelines Affected all[0m: [1;32mOK[0m
+- [1;90mExamples Node Pipelines Affected affected[0m: [1;32mOK[0m
+
+[1;37mExamples node .pipelines test[0m
+- [1;90mExamples Node Pipelines Stage Test[0m: [1;32mOK[0m
+
+[1;37mExamples php .pipelines build[0m
+- [1;90mExamples PHP Stage Build[0m: [1;32mOK[0m
+
+[1;37mExamples php .pipelines ci[0m
+- [0;90mExamples PHP Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mExamples php .pipelines pipeline[0m
+- [1;90mExamples PHP Pipelines Affected all[0m: [1;32mOK[0m
+- [1;90mExamples PHP Pipelines Affected affected[0m: [1;32mOK[0m
+
+[1;37mExamples php .pipelines test[0m
+- [1;90mExamples PHP Pipelines Stage Test[0m: [1;32mOK[0m
+
+[1;37mPipeliner core artifacts[0m
+- Artifacts Directory: [1;34mSKIP[0m
+- Artifacts Directory Azure: [1;34mSKIP[0m
+- Artifacts Directory Github: [1;34mSKIP[0m
+- Artifacts Directory Fail: [1;34mSKIP[0m
+- Artifacts Write: [1;34mSKIP[0m
+- Artifacts Write Directory: [1;34mSKIP[0m
+- Artifacts Write Azure: [1;34mSKIP[0m
+- Artifacts Write Github: [1;34mSKIP[0m
+- Artifacts Read: [1;34mSKIP[0m
+- Artifacts Read Azure: [1;34mSKIP[0m
+- Artifacts Read Github: [1;34mSKIP[0m
+- Artifacts Read Fail: [1;34mSKIP[0m
+- Artifacts Move: [1;34mSKIP[0m
+- Artifacts Move Directory: [1;34mSKIP[0m
+- Artifacts Move Azure: [1;34mSKIP[0m
+- Artifacts Move Github: [1;34mSKIP[0m
+- Artifacts Move Fail: [1;34mSKIP[0m
+- Artifacts Delete: [1;34mSKIP[0m
+- Artifacts Delete Azure: [1;34mSKIP[0m
+- Artifacts Delete Github: [1;34mSKIP[0m
+
+[1;37mPipeliner core compression[0m
+- Compression Zip: [1;34mSKIP[0m
+- Compression Zip Directory: [1;34mSKIP[0m
+- Compression Zip Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core docker[0m
+- Docker Build: [1;34mSKIP[0m
+- Docker Build Arguments: [1;34mSKIP[0m
+- Docker Run core: [1;34mSKIP[0m
+- Docker Run Owner: [1;34mSKIP[0m
+- Docker Run Env: [1;34mSKIP[0m
+- Docker Runner: [1;34mSKIP[0m
+- Docker Runner Fail: [1;34mSKIP[0m
+- Docker List: [1;34mSKIP[0m
+- Docker List All: [1;34mSKIP[0m
+- Docker Save: [1;34mSKIP[0m
+- Docker Save Fail: [1;34mSKIP[0m
+- Core Dockerfile: [1;34mSKIP[0m
+- Docker Compression ZIP Example: [1;34mSKIP[0m
+
+[1;37mPipeliner core environment[0m
+- Environment Platform: [1;34mSKIP[0m
+- Environment Platform Azure: [1;34mSKIP[0m
+- Environment Platform Github: [1;34mSKIP[0m
+- Environment OS: [1;34mSKIP[0m
+- Environment Distro: [1;34mSKIP[0m
+- Environment Architecture: [1;34mSKIP[0m
+
+[1;37mPipeliner core log[0m
+- Log Debug: [1;34mSKIP[0m
+- Log Debug Azure: [1;34mSKIP[0m
+- Log Debug Github: [1;34mSKIP[0m
+- Log Debug Fail: [1;34mSKIP[0m
+- Log Info: [1;34mSKIP[0m
+- Log Info Azure: [1;34mSKIP[0m
+- Log Info Github: [1;34mSKIP[0m
+- Log Info Fail: [1;34mSKIP[0m
+- Log Warning: [1;34mSKIP[0m
+- Log Warning Azure: [1;34mSKIP[0m
+- Log Warning Github: [1;34mSKIP[0m
+- Log Warning Fail: [1;34mSKIP[0m
+- Log Error: [1;34mSKIP[0m
+- Log Error Azure: [1;34mSKIP[0m
+- Log Error Github: [1;34mSKIP[0m
+- Log Error Fail: [1;34mSKIP[0m
+- Log Variable: [1;34mSKIP[0m
+- Log Variable Azure: [1;34mSKIP[0m
+- Log Variable Github: [1;34mSKIP[0m
+- Log Variable Fail: [1;34mSKIP[0m
+- Log Group: [1;34mSKIP[0m
+- Log Group Azure: [1;34mSKIP[0m
+- Log Group Github: [1;34mSKIP[0m
+- Log Group Fail: [1;34mSKIP[0m
+- Log Group End: [1;34mSKIP[0m
+- Log Group End Azure: [1;34mSKIP[0m
+- Log Group End Github: [1;34mSKIP[0m
+- Log Group End Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core parallel[0m
+- Parallel Command Start: [1;34mSKIP[0m
+- Parallel Batch Determine: [1;34mSKIP[0m
+- Parallel Batch Start: [1;34mSKIP[0m
+- Parallel Batch Wait: [1;34mSKIP[0m
+- Parallel Batch Results: [1;34mSKIP[0m
+- Parallel Batch Failures: [1;34mSKIP[0m
+- Parallel Run: [1;34mSKIP[0m
+- Parallel Run sleep: [1;34mSKIP[0m
+
+[1;37mPipeliner core ssh[0m
+- SSH Directory: [1;34mSKIP[0m
+- SSH Key File: [1;34mSKIP[0m
+- SSH Key File Public: [1;34mSKIP[0m
+- SSH Remote Authorized Keys File: [1;34mSKIP[0m
+- SSH Key Exists: [1;34mSKIP[0m
+- SSH Generate Key: [1;34mSKIP[0m
+- SSH Dissect URL: [1;34mSKIP[0m
+- SSH Dissect URL Arguments: [1;34mSKIP[0m
+- SSH Deploy Key: [1;34mSKIP[0m
+- SSH Run: [1;34mSKIP[0m
+- SSH Copy: [1;34mSKIP[0m
+- SSH Compression ZIP Example: [1;34mSKIP[0m
+
+[1;37mPipeliner core variables[0m
+- Variables Set: [1;34mSKIP[0m
+- Variables Set Fail: [1;34mSKIP[0m
+- Variables Unset: [1;34mSKIP[0m
+- Variables Unset Fail: [1;34mSKIP[0m
+- Variables Get: [1;34mSKIP[0m
+- Variables Get Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core version[0m
+- Version Pipeliner: [1;34mSKIP[0m
+- Version Pipeliner Full: [1;34mSKIP[0m
+- Version Pipeliner Code: [1;34mSKIP[0m
+- Version BuildId: [1;34mSKIP[0m
+- Version BuildId Azure: [1;34mSKIP[0m
+- Version BuildId Github: [1;34mSKIP[0m
+- Version BuildId Fail: [1;34mSKIP[0m
+- Version BuildId Next: [1;34mSKIP[0m
+- Version Generate BuildId NewFile: [1;34mSKIP[0m
+- Version BuildId Next Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils assert[0m
+- Assert Equal: [1;34mSKIP[0m
+- Assert Equal Fail: [1;34mSKIP[0m
+- Assert Not Equal: [1;34mSKIP[0m
+- Assert Not Equal Fail: [1;34mSKIP[0m
+- Assert Greater Than: [1;34mSKIP[0m
+- Assert Greater Than Fail: [1;34mSKIP[0m
+- Assert Greater Than Or Equal: [1;34mSKIP[0m
+- Assert Greater Than Or Equal Fail: [1;34mSKIP[0m
+- Assert Less Than: [1;34mSKIP[0m
+- Assert Less Than Fail: [1;34mSKIP[0m
+- Assert Less Than Or Equal: [1;34mSKIP[0m
+- Assert Less Than Or Equal Fail: [1;34mSKIP[0m
+- Assert Between: [1;34mSKIP[0m
+- Assert Between Fail: [1;34mSKIP[0m
+- Assert Not Between: [1;34mSKIP[0m
+- Assert Not Between Fail: [1;34mSKIP[0m
+- Assert Match: [1;34mSKIP[0m
+- Assert Match Fail: [1;34mSKIP[0m
+- Assert Not Match: [1;34mSKIP[0m
+- Assert Not Match Fail: [1;34mSKIP[0m
+- Assert Starts With: [1;34mSKIP[0m
+- Assert Starts With Fail: [1;34mSKIP[0m
+- Assert Not Starts With: [1;34mSKIP[0m
+- Assert Not Starts With Fail: [1;34mSKIP[0m
+- Assert Ends With: [1;34mSKIP[0m
+- Assert Ends With Fail: [1;34mSKIP[0m
+- Assert Not Ends With: [1;34mSKIP[0m
+- Assert Not Ends With Fail: [1;34mSKIP[0m
+- Assert Contains: [1;34mSKIP[0m
+- Assert Contains Fail: [1;34mSKIP[0m
+- Assert Not Contains: [1;34mSKIP[0m
+- Assert Not Contains Fail: [1;34mSKIP[0m
+- Assert Empty: [1;34mSKIP[0m
+- Assert Empty Fail: [1;34mSKIP[0m
+- Assert Not Empty: [1;34mSKIP[0m
+- Assert Not Empty Fail: [1;34mSKIP[0m
+- Assert File Exists: [1;34mSKIP[0m
+- Assert File Exists Fail: [1;34mSKIP[0m
+- Assert Not File Exists: [1;34mSKIP[0m
+- Assert Not File Exists Fail: [1;34mSKIP[0m
+- Assert Directory Exists: [1;34mSKIP[0m
+- Assert Directory Exists Fail: [1;34mSKIP[0m
+- Assert Not Directory Exists: [1;34mSKIP[0m
+- Assert Not Directory Exists Fail: [1;34mSKIP[0m
+- Assert Path Owner: [1;34mSKIP[0m
+- Assert Path Owner Fail: [1;34mSKIP[0m
+- Assert Path Group: [1;34mSKIP[0m
+- Assert Path Group Fail: [1;34mSKIP[0m
+- Assert Function: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils azdo[0m
+- AZDO Agent Latest: [1;34mSKIP[0m
+- AZDO Agent Download: [1;34mSKIP[0m
+- AZDO Agent Download Fail: [1;34mSKIP[0m
+- AZDO Agent Install: [1;34mSKIP[0m
+- AZDO Agent Install Fail: [1;34mSKIP[0m
+- AZDO Agent Setup: [1;34mSKIP[0m
+- AZDO Agent Setup Fail: [1;34mSKIP[0m
+- AZDO Agent Setup Fail Parameters: [1;34mSKIP[0m
+- AZDO URL Trim: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils cli[0m
+- CLI Arguments: [1;34mSKIP[0m
+- CLI Arguments Fail: [1;34mSKIP[0m
+- CLI Arguments Usage: [1;34mSKIP[0m
+- CLI Arguments Parse Mapping: [1;34mSKIP[0m
+- CLI Arguments Parse Mapping Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils colors[0m
+- Color Green: [1;34mSKIP[0m
+- Color Red: [1;34mSKIP[0m
+- Color Yellow: [1;34mSKIP[0m
+- Color Blue: [1;34mSKIP[0m
+- Color Purple: [1;34mSKIP[0m
+- Color Cyan: [1;34mSKIP[0m
+- Color White: [1;34mSKIP[0m
+- Color Gray: [1;34mSKIP[0m
+- Color Grey: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils dictionary[0m
+- Dictionary Exists: [1;34mSKIP[0m
+- Dictionary Keys: [1;34mSKIP[0m
+- Dictionary Keys Fail: [1;34mSKIP[0m
+- Dictionary Set: [1;34mSKIP[0m
+- Dictionary Set Overwrite: [1;34mSKIP[0m
+- Dictionary Set Fail: [1;34mSKIP[0m
+- Dictionary Unset: [1;34mSKIP[0m
+- Dictionary Unset Fail: [1;34mSKIP[0m
+- Dictionary Get: [1;34mSKIP[0m
+- Dictionary Get Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils files[0m
+- Files Path Original: [1;34mSKIP[0m
+- Files Path Root: [1;34mSKIP[0m
+- Files Path Work: [1;34mSKIP[0m
+- Files Path Pipeliner: [1;34mSKIP[0m
+- Files Path Data: [1;34mSKIP[0m
+- Files Get Class Files: [1;34mSKIP[0m
+- Files Import Classes: [1;34mSKIP[0m
+- Files Get Stage Files: [1;34mSKIP[0m
+- Files Import Stages: [1;34mSKIP[0m
+- Files Get Test Files: [1;34mSKIP[0m
+- Files Import Tests: [1;34mSKIP[0m
+- Files Get Unit Tests: [1;34mSKIP[0m
+- Files Get Integration Tests: [1;34mSKIP[0m
+- Files Get E2E Tests: [1;34mSKIP[0m
+- Files Watch Directory Written: [1;34mSKIP[0m
+- Files Temp Dir: [1;34mSKIP[0m
+- Files Temp File: [1;34mSKIP[0m
+- Files Temp File Prefix Suffix: [1;34mSKIP[0m
+- Files Temp Directory: [1;34mSKIP[0m
+- Files Temp Directory Prefix Suffix: [1;34mSKIP[0m
+- Files Temp Clean: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils misc.sh[0m
+- explode: [1;34mSKIP[0m
+- implode: [1;34mSKIP[0m
+- trim: [1;34mSKIP[0m
+- toLower: [1;34mSKIP[0m
+- toUpper: [1;34mSKIP[0m
+- map: [1;34mSKIP[0m
+- reduce: [1;34mSKIP[0m
+- filter: [1;34mSKIP[0m
+- reverse: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils packages[0m
+- Packages Installed: [1;34mSKIP[0m
+- Packages Version: [1;34mSKIP[0m
+- Packages Determine Manager: [1;34mSKIP[0m
+- Packages Determine Packages: [1;34mSKIP[0m
+- Packages Determine Packages SSH: [1;34mSKIP[0m
+- Packages Determine Packages ZIP: [1;34mSKIP[0m
+- Packages Determine Packages Docker: [1;34mSKIP[0m
+- Packages Determine Services: [1;34mSKIP[0m
+- Packages Update: [1;34mSKIP[0m
+- Packages Update Fail: [1;34mSKIP[0m
+- Packages Install: [1;34mSKIP[0m
+- Packages Install Fail: [1;34mSKIP[0m
+- Packages Start Service: [1;34mSKIP[0m
+- Packages Start Service Fail: [1;34mSKIP[0m
+- Packages Prerequisites: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils test[0m
+- Example: [1;34mSKIP[0m
+- Example Skip: [1;34mSKIP[0m
+- Test Title: [1;34mSKIP[0m
+- Test Name: [1;34mSKIP[0m
+- Test Execute: [1;34mSKIP[0m
+- Test Execute Fail: [1;34mSKIP[0m
+- Test Run: [1;34mSKIP[0m
+- Test Run Type: [1;34mSKIP[0m
+- Test Run Exclude: [1;34mSKIP[0m
+- Test Run Fail: [1;34mSKIP[0m
+- Test Statistics: [1;34mSKIP[0m
+- [1;90mExample[0m: [1;32mOK[0m
+- [0;90mExample[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils vagrant[0m
+- Vagrant Exists: [1;34mSKIP[0m
+- Vagrant Exists Fail: [1;34mSKIP[0m
+- Vagrant Running: [1;34mSKIP[0m
+- Vagrant Up: [1;34mSKIP[0m
+- Vagrant Up Fail: [1;34mSKIP[0m
+- Vagrant SSH: [1;34mSKIP[0m
+- Vagrant Halt: [1;34mSKIP[0m
+- Vagrant Halt Fail: [1;34mSKIP[0m
+- Vagrant Destroy: [1;34mSKIP[0m
+- Vagrant Destroy Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils vcs[0m
+- VCS Affected: [1;34mSKIP[0m
+- VCS Affected Directories: [1;34mSKIP[0m
+- VCS Clone Directory: [1;34mSKIP[0m
+- VCS Clone Directory Update: [1;34mSKIP[0m
+- VCS Clone Directory Unknown: [1;34mSKIP[0m
+
+[1;37mPipeliner dotnet dotnet[0m
+- DotNet Dockerfile: [1;34mSKIP[0m
+- DotNet Run: [1;34mSKIP[0m
+- DotNet Build: [1;34mSKIP[0m
+- DotNet Test: [1;34mSKIP[0m
+- DotNet Lint: [1;34mSKIP[0m
+
+[1;37mPipeliner jvm gradle[0m
+- Gradle Clean: [1;34mSKIP[0m
+- Gradle Build: [1;34mSKIP[0m
+- Gradle Test: [1;34mSKIP[0m
+- Gradle Run: [1;34mSKIP[0m
+
+[1;37mPipeliner jvm jvm[0m
+- JVM Dockerfile: [1;34mSKIP[0m
+- JVM Run: [1;34mSKIP[0m
+
+[1;37mPipeliner node node[0m
+- Node Dockerfile: [1;34mSKIP[0m
+- Node Run: [1;34mSKIP[0m
+
+[1;37mPipeliner node npm[0m
+- NPM Install: [1;34mSKIP[0m
+- NPM Install Production: [1;34mSKIP[0m
+- NPM Test: [1;34mSKIP[0m
+- NPM Lint: [1;34mSKIP[0m
+
+[1;37mPipeliner php composer[0m
+- PHP Composer Install: [1;34mSKIP[0m
+- PHP Composer Install Production: [1;34mSKIP[0m
+- PHP Composer Test: [1;34mSKIP[0m
+
+[1;37mPipeliner php php[0m
+- PHP Dockerfile: [1;34mSKIP[0m
+- PHP Run: [1;34mSKIP[0m
+- PHP Lint: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines cd[0m
+- [0;90mPipeliner Pipeline CD[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines ci[0m
+- [0;90mPipeliner Pipeline CI[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines docker[0m
+- Pipeliner Docker Create Image: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines package[0m
+- [1;90mPipeliner Package Filename[0m: [1;32mOK[0m
+- [1;90mPipeliner Package Create[0m: [1;32mOK[0m
+
+[1;37mPipeliner .pipelines test[0m
+- [1;90mPipeliner Test Report Filename[0m: [1;32mOK[0m
+- [1;90mPipeliner Test Run[0m: [1;32mOK[0m
+- [1;90mPipeliner Test Run Fail[0m: [1;32mOK[0m
+
+[1;37mPipeliner azdo.sh[0m
+- [0;90mAZDO Agent Start[0m: [1;34mSKIP[0m
+- [0;90mAZDO Agent Command[0m: [1;34mSKIP[0m
+- [0;90mAZDO Agent Stop[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner docker.sh[0m
+- [0;90mDocker[0m: [1;34mSKIP[0m
+- [0;90mDocker node[0m: [1;34mSKIP[0m
+- [0;90mDocker dotnet[0m: [1;34mSKIP[0m
+- [0;90mDocker unknown[0m: [1;34mSKIP[0m
+- [0;90mDocker Arguments[0m: [1;34mSKIP[0m
+- [0;90mDocker Arguments Fail[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner init.sh[0m
+- [0;90mInit[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner installed.sh[0m
+- Installed Pipeliner: [1;34mSKIP[0m
+- Installed Pipeliner Docker: [1;34mSKIP[0m
+- Installed Pipeliner Test: [1;34mSKIP[0m
+- Installed VSCode: [1;34mSKIP[0m
+- Installed Examples Node: [1;34mSKIP[0m
+- Installed Examples DotNet: [1;34mSKIP[0m
+
+[1;37mPipeliner install.sh[0m
+- Install Test mode: [1;34mSKIP[0m
+- Install Directory: [1;34mSKIP[0m
+- Install Directory Temp: [1;34mSKIP[0m
+- Install Directory Temp Flush: [1;34mSKIP[0m
+- Install Directory Temp Clear: [1;34mSKIP[0m
+- Install Is Upgrade: [1;34mSKIP[0m
+- Install Download: [1;34mSKIP[0m
+- Install Extract: [1;34mSKIP[0m
+- Install Install: [1;34mSKIP[0m
+- Install Install vscode: [1;34mSKIP[0m
+- Install Validate: [1;34mSKIP[0m
+- [0;90mInstall[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner test.sh[0m
+- [0;90mTest Type[0m: [1;34mSKIP[0m
+- [0;90mTest Include[0m: [1;34mSKIP[0m
+- [0;90mTest Exclude[0m: [1;34mSKIP[0m
+- [0;90mTest Arguments[0m: [1;34mSKIP[0m
+- [0;90mTest Arguments Fail[0m: [1;34mSKIP[0m
+
+[1;32m24[0m passed / [1;34m323[0m skipped / 347 total
+[1;37mINFO Moving artifact ./integration_test_report-0.5.1114.txt to ./artifacts/testReports/integration_test_report-0.5.1114.txt[0m
+[1;36mVARIABLE integrationTestReport=./artifacts/testReports/integration_test_report-0.5.1114.txt[0m
+
+[1;37mINFO Running tests[0m
+[1;37mExamples dotnet .pipelines build[0m
+- [1;90mExamples DotNet Stage Build[0m: [1;34mSKIP[0m
+
+[1;37mExamples dotnet .pipelines pipeline[0m
+- [1;90mExamples DotNet Pipelines Affected all[0m: [1;34mSKIP[0m
+- [1;90mExamples DotNet Pipelines Affected affected[0m: [1;34mSKIP[0m
+
+[1;37mExamples dotnet .pipelines test[0m
+- [1;90mExamples DotNet Pipelines Stage Test[0m: [1;34mSKIP[0m
+
+[1;37mExamples jvm .pipelines build[0m
+- [1;90mExamples JVM Stage Build java[0m: [1;34mSKIP[0m
+- [1;90mExamples JVM Stage Build kotlin[0m: [1;34mSKIP[0m
+
+[1;37mExamples jvm .pipelines pipeline[0m
+- [1;90mExamples JVM Pipelines Affected all[0m: [1;34mSKIP[0m
+- [1;90mExamples JVM Pipelines Affected affected[0m: [1;34mSKIP[0m
+
+[1;37mExamples jvm .pipelines test[0m
+- [1;90mExamples JVM Pipelines Stage Test java[0m: [1;34mSKIP[0m
+- [1;90mExamples JVM Pipelines Stage Test kotlin[0m: [1;34mSKIP[0m
+
+[1;37mExamples node .pipelines build[0m
+- [1;90mExamples Node Stage Build[0m: [1;34mSKIP[0m
+
+[1;37mExamples node .pipelines pipeline[0m
+- [1;90mExamples Node Pipelines Affected all[0m: [1;34mSKIP[0m
+- [1;90mExamples Node Pipelines Affected affected[0m: [1;34mSKIP[0m
+
+[1;37mExamples node .pipelines test[0m
+- [1;90mExamples Node Pipelines Stage Test[0m: [1;34mSKIP[0m
+
+[1;37mExamples php .pipelines build[0m
+- [1;90mExamples PHP Stage Build[0m: [1;34mSKIP[0m
+
+[1;37mExamples php .pipelines pipeline[0m
+- [1;90mExamples PHP Pipelines Affected all[0m: [1;34mSKIP[0m
+- [1;90mExamples PHP Pipelines Affected affected[0m: [1;34mSKIP[0m
+
+[1;37mExamples php .pipelines test[0m
+- [1;90mExamples PHP Pipelines Stage Test[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner core artifacts[0m
+- Artifacts Directory: [1;34mSKIP[0m
+- Artifacts Directory Azure: [1;34mSKIP[0m
+- Artifacts Directory Github: [1;34mSKIP[0m
+- Artifacts Directory Fail: [1;34mSKIP[0m
+- Artifacts Write: [1;34mSKIP[0m
+- Artifacts Write Directory: [1;34mSKIP[0m
+- Artifacts Write Azure: [1;34mSKIP[0m
+- Artifacts Write Github: [1;34mSKIP[0m
+- Artifacts Read: [1;34mSKIP[0m
+- Artifacts Read Azure: [1;34mSKIP[0m
+- Artifacts Read Github: [1;34mSKIP[0m
+- Artifacts Read Fail: [1;34mSKIP[0m
+- Artifacts Move: [1;34mSKIP[0m
+- Artifacts Move Directory: [1;34mSKIP[0m
+- Artifacts Move Azure: [1;34mSKIP[0m
+- Artifacts Move Github: [1;34mSKIP[0m
+- Artifacts Move Fail: [1;34mSKIP[0m
+- Artifacts Delete: [1;34mSKIP[0m
+- Artifacts Delete Azure: [1;34mSKIP[0m
+- Artifacts Delete Github: [1;34mSKIP[0m
+
+[1;37mPipeliner core compression[0m
+- Compression Zip: [1;34mSKIP[0m
+- Compression Zip Directory: [1;34mSKIP[0m
+- Compression Zip Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core docker[0m
+- Docker Build: [1;34mSKIP[0m
+- Docker Build Arguments: [1;34mSKIP[0m
+- Docker Run core: [1;34mSKIP[0m
+- Docker Run Owner: [1;34mSKIP[0m
+- Docker Run Env: [1;34mSKIP[0m
+- Docker Runner: [1;34mSKIP[0m
+- Docker Runner Fail: [1;34mSKIP[0m
+- Docker List: [1;34mSKIP[0m
+- Docker List All: [1;34mSKIP[0m
+- Docker Save: [1;34mSKIP[0m
+- Docker Save Fail: [1;34mSKIP[0m
+- Core Dockerfile: [1;34mSKIP[0m
+- Docker Compression ZIP Example: [1;34mSKIP[0m
+
+[1;37mPipeliner core environment[0m
+- Environment Platform: [1;34mSKIP[0m
+- Environment Platform Azure: [1;34mSKIP[0m
+- Environment Platform Github: [1;34mSKIP[0m
+- Environment OS: [1;34mSKIP[0m
+- Environment Distro: [1;34mSKIP[0m
+- Environment Architecture: [1;34mSKIP[0m
+
+[1;37mPipeliner core log[0m
+- Log Debug: [1;34mSKIP[0m
+- Log Debug Azure: [1;34mSKIP[0m
+- Log Debug Github: [1;34mSKIP[0m
+- Log Debug Fail: [1;34mSKIP[0m
+- Log Info: [1;34mSKIP[0m
+- Log Info Azure: [1;34mSKIP[0m
+- Log Info Github: [1;34mSKIP[0m
+- Log Info Fail: [1;34mSKIP[0m
+- Log Warning: [1;34mSKIP[0m
+- Log Warning Azure: [1;34mSKIP[0m
+- Log Warning Github: [1;34mSKIP[0m
+- Log Warning Fail: [1;34mSKIP[0m
+- Log Error: [1;34mSKIP[0m
+- Log Error Azure: [1;34mSKIP[0m
+- Log Error Github: [1;34mSKIP[0m
+- Log Error Fail: [1;34mSKIP[0m
+- Log Variable: [1;34mSKIP[0m
+- Log Variable Azure: [1;34mSKIP[0m
+- Log Variable Github: [1;34mSKIP[0m
+- Log Variable Fail: [1;34mSKIP[0m
+- Log Group: [1;34mSKIP[0m
+- Log Group Azure: [1;34mSKIP[0m
+- Log Group Github: [1;34mSKIP[0m
+- Log Group Fail: [1;34mSKIP[0m
+- Log Group End: [1;34mSKIP[0m
+- Log Group End Azure: [1;34mSKIP[0m
+- Log Group End Github: [1;34mSKIP[0m
+- Log Group End Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core parallel[0m
+- Parallel Command Start: [1;34mSKIP[0m
+- Parallel Batch Determine: [1;34mSKIP[0m
+- Parallel Batch Start: [1;34mSKIP[0m
+- Parallel Batch Wait: [1;34mSKIP[0m
+- Parallel Batch Results: [1;34mSKIP[0m
+- Parallel Batch Failures: [1;34mSKIP[0m
+- Parallel Run: [1;34mSKIP[0m
+- Parallel Run sleep: [1;34mSKIP[0m
+
+[1;37mPipeliner core ssh[0m
+- SSH Directory: [1;34mSKIP[0m
+- SSH Key File: [1;34mSKIP[0m
+- SSH Key File Public: [1;34mSKIP[0m
+- SSH Remote Authorized Keys File: [1;34mSKIP[0m
+- SSH Key Exists: [1;34mSKIP[0m
+- SSH Generate Key: [1;34mSKIP[0m
+- SSH Dissect URL: [1;34mSKIP[0m
+- SSH Dissect URL Arguments: [1;34mSKIP[0m
+- SSH Deploy Key: [1;34mSKIP[0m
+- SSH Run: [1;34mSKIP[0m
+- SSH Copy: [1;34mSKIP[0m
+- SSH Compression ZIP Example: [1;34mSKIP[0m
+
+[1;37mPipeliner core variables[0m
+- Variables Set: [1;34mSKIP[0m
+- Variables Set Fail: [1;34mSKIP[0m
+- Variables Unset: [1;34mSKIP[0m
+- Variables Unset Fail: [1;34mSKIP[0m
+- Variables Get: [1;34mSKIP[0m
+- Variables Get Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core version[0m
+- Version Pipeliner: [1;34mSKIP[0m
+- Version Pipeliner Full: [1;34mSKIP[0m
+- Version Pipeliner Code: [1;34mSKIP[0m
+- Version BuildId: [1;34mSKIP[0m
+- Version BuildId Azure: [1;34mSKIP[0m
+- Version BuildId Github: [1;34mSKIP[0m
+- Version BuildId Fail: [1;34mSKIP[0m
+- Version BuildId Next: [1;34mSKIP[0m
+- Version Generate BuildId NewFile: [1;34mSKIP[0m
+- Version BuildId Next Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils assert[0m
+- Assert Equal: [1;34mSKIP[0m
+- Assert Equal Fail: [1;34mSKIP[0m
+- Assert Not Equal: [1;34mSKIP[0m
+- Assert Not Equal Fail: [1;34mSKIP[0m
+- Assert Greater Than: [1;34mSKIP[0m
+- Assert Greater Than Fail: [1;34mSKIP[0m
+- Assert Greater Than Or Equal: [1;34mSKIP[0m
+- Assert Greater Than Or Equal Fail: [1;34mSKIP[0m
+- Assert Less Than: [1;34mSKIP[0m
+- Assert Less Than Fail: [1;34mSKIP[0m
+- Assert Less Than Or Equal: [1;34mSKIP[0m
+- Assert Less Than Or Equal Fail: [1;34mSKIP[0m
+- Assert Between: [1;34mSKIP[0m
+- Assert Between Fail: [1;34mSKIP[0m
+- Assert Not Between: [1;34mSKIP[0m
+- Assert Not Between Fail: [1;34mSKIP[0m
+- Assert Match: [1;34mSKIP[0m
+- Assert Match Fail: [1;34mSKIP[0m
+- Assert Not Match: [1;34mSKIP[0m
+- Assert Not Match Fail: [1;34mSKIP[0m
+- Assert Starts With: [1;34mSKIP[0m
+- Assert Starts With Fail: [1;34mSKIP[0m
+- Assert Not Starts With: [1;34mSKIP[0m
+- Assert Not Starts With Fail: [1;34mSKIP[0m
+- Assert Ends With: [1;34mSKIP[0m
+- Assert Ends With Fail: [1;34mSKIP[0m
+- Assert Not Ends With: [1;34mSKIP[0m
+- Assert Not Ends With Fail: [1;34mSKIP[0m
+- Assert Contains: [1;34mSKIP[0m
+- Assert Contains Fail: [1;34mSKIP[0m
+- Assert Not Contains: [1;34mSKIP[0m
+- Assert Not Contains Fail: [1;34mSKIP[0m
+- Assert Empty: [1;34mSKIP[0m
+- Assert Empty Fail: [1;34mSKIP[0m
+- Assert Not Empty: [1;34mSKIP[0m
+- Assert Not Empty Fail: [1;34mSKIP[0m
+- Assert File Exists: [1;34mSKIP[0m
+- Assert File Exists Fail: [1;34mSKIP[0m
+- Assert Not File Exists: [1;34mSKIP[0m
+- Assert Not File Exists Fail: [1;34mSKIP[0m
+- Assert Directory Exists: [1;34mSKIP[0m
+- Assert Directory Exists Fail: [1;34mSKIP[0m
+- Assert Not Directory Exists: [1;34mSKIP[0m
+- Assert Not Directory Exists Fail: [1;34mSKIP[0m
+- Assert Path Owner: [1;34mSKIP[0m
+- Assert Path Owner Fail: [1;34mSKIP[0m
+- Assert Path Group: [1;34mSKIP[0m
+- Assert Path Group Fail: [1;34mSKIP[0m
+- Assert Function: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils azdo[0m
+- AZDO Agent Latest: [1;34mSKIP[0m
+- AZDO Agent Download: [1;34mSKIP[0m
+- AZDO Agent Download Fail: [1;34mSKIP[0m
+- AZDO Agent Install: [1;34mSKIP[0m
+- AZDO Agent Install Fail: [1;34mSKIP[0m
+- AZDO Agent Setup: [1;34mSKIP[0m
+- AZDO Agent Setup Fail: [1;34mSKIP[0m
+- AZDO Agent Setup Fail Parameters: [1;34mSKIP[0m
+- AZDO URL Trim: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils cli[0m
+- CLI Arguments: [1;34mSKIP[0m
+- CLI Arguments Fail: [1;34mSKIP[0m
+- CLI Arguments Usage: [1;34mSKIP[0m
+- CLI Arguments Parse Mapping: [1;34mSKIP[0m
+- CLI Arguments Parse Mapping Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils colors[0m
+- Color Green: [1;34mSKIP[0m
+- Color Red: [1;34mSKIP[0m
+- Color Yellow: [1;34mSKIP[0m
+- Color Blue: [1;34mSKIP[0m
+- Color Purple: [1;34mSKIP[0m
+- Color Cyan: [1;34mSKIP[0m
+- Color White: [1;34mSKIP[0m
+- Color Gray: [1;34mSKIP[0m
+- Color Grey: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils dictionary[0m
+- Dictionary Exists: [1;34mSKIP[0m
+- Dictionary Keys: [1;34mSKIP[0m
+- Dictionary Keys Fail: [1;34mSKIP[0m
+- Dictionary Set: [1;34mSKIP[0m
+- Dictionary Set Overwrite: [1;34mSKIP[0m
+- Dictionary Set Fail: [1;34mSKIP[0m
+- Dictionary Unset: [1;34mSKIP[0m
+- Dictionary Unset Fail: [1;34mSKIP[0m
+- Dictionary Get: [1;34mSKIP[0m
+- Dictionary Get Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils files[0m
+- Files Path Original: [1;34mSKIP[0m
+- Files Path Root: [1;34mSKIP[0m
+- Files Path Work: [1;34mSKIP[0m
+- Files Path Pipeliner: [1;34mSKIP[0m
+- Files Path Data: [1;34mSKIP[0m
+- Files Get Class Files: [1;34mSKIP[0m
+- Files Import Classes: [1;34mSKIP[0m
+- Files Get Stage Files: [1;34mSKIP[0m
+- Files Import Stages: [1;34mSKIP[0m
+- Files Get Test Files: [1;34mSKIP[0m
+- Files Import Tests: [1;34mSKIP[0m
+- Files Get Unit Tests: [1;34mSKIP[0m
+- Files Get Integration Tests: [1;34mSKIP[0m
+- Files Get E2E Tests: [1;34mSKIP[0m
+- Files Watch Directory Written: [1;34mSKIP[0m
+- Files Temp Dir: [1;34mSKIP[0m
+- Files Temp File: [1;34mSKIP[0m
+- Files Temp File Prefix Suffix: [1;34mSKIP[0m
+- Files Temp Directory: [1;34mSKIP[0m
+- Files Temp Directory Prefix Suffix: [1;34mSKIP[0m
+- Files Temp Clean: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils misc.sh[0m
+- explode: [1;34mSKIP[0m
+- implode: [1;34mSKIP[0m
+- trim: [1;34mSKIP[0m
+- toLower: [1;34mSKIP[0m
+- toUpper: [1;34mSKIP[0m
+- map: [1;34mSKIP[0m
+- reduce: [1;34mSKIP[0m
+- filter: [1;34mSKIP[0m
+- reverse: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils packages[0m
+- Packages Installed: [1;34mSKIP[0m
+- Packages Version: [1;34mSKIP[0m
+- Packages Determine Manager: [1;34mSKIP[0m
+- Packages Determine Packages: [1;34mSKIP[0m
+- Packages Determine Packages SSH: [1;34mSKIP[0m
+- Packages Determine Packages ZIP: [1;34mSKIP[0m
+- Packages Determine Packages Docker: [1;34mSKIP[0m
+- Packages Determine Services: [1;34mSKIP[0m
+- Packages Update: [1;34mSKIP[0m
+- Packages Update Fail: [1;34mSKIP[0m
+- Packages Install: [1;34mSKIP[0m
+- Packages Install Fail: [1;34mSKIP[0m
+- Packages Start Service: [1;34mSKIP[0m
+- Packages Start Service Fail: [1;34mSKIP[0m
+- Packages Prerequisites: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils test[0m
+- Example: [1;34mSKIP[0m
+- Example Skip: [1;34mSKIP[0m
+- Test Title: [1;34mSKIP[0m
+- Test Name: [1;34mSKIP[0m
+- Test Execute: [1;34mSKIP[0m
+- Test Execute Fail: [1;34mSKIP[0m
+- Test Run: [1;34mSKIP[0m
+- Test Run Type: [1;34mSKIP[0m
+- Test Run Exclude: [1;34mSKIP[0m
+- Test Run Fail: [1;34mSKIP[0m
+- Test Statistics: [1;34mSKIP[0m
+- [1;90mExample[0m: [1;34mSKIP[0m
+- [0;90mExample[0m: [1;32mOK[0m
+
+[1;37mPipeliner core utils vagrant[0m
+- Vagrant Exists: [1;34mSKIP[0m
+- Vagrant Exists Fail: [1;34mSKIP[0m
+- Vagrant Running: [1;34mSKIP[0m
+- Vagrant Up: [1;34mSKIP[0m
+- Vagrant Up Fail: [1;34mSKIP[0m
+- Vagrant SSH: [1;34mSKIP[0m
+- Vagrant Halt: [1;34mSKIP[0m
+- Vagrant Halt Fail: [1;34mSKIP[0m
+- Vagrant Destroy: [1;34mSKIP[0m
+- Vagrant Destroy Fail: [1;34mSKIP[0m
+
+[1;37mPipeliner core utils vcs[0m
+- VCS Affected: [1;34mSKIP[0m
+- VCS Affected Directories: [1;34mSKIP[0m
+- VCS Clone Directory: [1;34mSKIP[0m
+- VCS Clone Directory Update: [1;34mSKIP[0m
+- VCS Clone Directory Unknown: [1;34mSKIP[0m
+
+[1;37mPipeliner dotnet dotnet[0m
+- DotNet Dockerfile: [1;34mSKIP[0m
+- DotNet Run: [1;34mSKIP[0m
+- DotNet Build: [1;34mSKIP[0m
+- DotNet Test: [1;34mSKIP[0m
+- DotNet Lint: [1;34mSKIP[0m
+
+[1;37mPipeliner jvm gradle[0m
+- Gradle Clean: [1;34mSKIP[0m
+- Gradle Build: [1;34mSKIP[0m
+- Gradle Test: [1;34mSKIP[0m
+- Gradle Run: [1;34mSKIP[0m
+
+[1;37mPipeliner jvm jvm[0m
+- JVM Dockerfile: [1;34mSKIP[0m
+- JVM Run: [1;34mSKIP[0m
+
+[1;37mPipeliner node node[0m
+- Node Dockerfile: [1;34mSKIP[0m
+- Node Run: [1;34mSKIP[0m
+
+[1;37mPipeliner node npm[0m
+- NPM Install: [1;34mSKIP[0m
+- NPM Install Production: [1;34mSKIP[0m
+- NPM Test: [1;34mSKIP[0m
+- NPM Lint: [1;34mSKIP[0m
+
+[1;37mPipeliner php composer[0m
+- PHP Composer Install: [1;34mSKIP[0m
+- PHP Composer Install Production: [1;34mSKIP[0m
+- PHP Composer Test: [1;34mSKIP[0m
+
+[1;37mPipeliner php php[0m
+- PHP Dockerfile: [1;34mSKIP[0m
+- PHP Run: [1;34mSKIP[0m
+- PHP Lint: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines cd[0m
+- [0;90mPipeliner Pipeline CD[0m: [1;32mOK[0m
+
+[1;37mPipeliner .pipelines docker[0m
+- Pipeliner Docker Create Image: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines package[0m
+- [1;90mPipeliner Package Filename[0m: [1;34mSKIP[0m
+- [1;90mPipeliner Package Create[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner .pipelines test[0m
+- [1;90mPipeliner Test Report Filename[0m: [1;34mSKIP[0m
+- [1;90mPipeliner Test Run[0m: [1;34mSKIP[0m
+- [1;90mPipeliner Test Run Fail[0m: [1;34mSKIP[0m
+
+[1;37mPipeliner azdo.sh[0m
+- [0;90mAZDO Agent Start[0m: [1;31mFAIL[0m
+[1;34mGROUP Vagrant halt azdo[0m
+[1;37mINFO Vagrant machine azdo is not running[0m
+[1;34mENDGROUP[0m
+
+Assert failed: expected '[0;90mDEBUG Docker version 24.0.7, build afdd53b4e3[0m
+[0;90mDEBUG Vagrant 2.4.0[0m
+[0;90mDEBUG Oracle VM VirtualBox VM Selector v7.0.14[0m
+[1;34mGROUP Vagrant up azdo[0m
+Bringing machine 'azdo' up with 'virtualbox' provider...
+==> azdo: Checking if box 'archlinux/archlinux' version '20240201.210938' is up to date...
+==> azdo: Clearing any previously set forwarded ports...
+==> azdo: Clearing any previously set network interfaces...
+==> azdo: Preparing network interfaces based on configuration...
+    azdo: Adapter 1: nat
+==> azdo: Forwarding ports...
+    azdo: 22 (guest) => 2222 (host) (adapter 1)
+==> azdo: Running 'pre-boot' VM customizations...
+==> azdo: Booting VM...
+==> azdo: Waiting for machine to boot. This may take a few minutes...
+    azdo: SSH address: 127.0.0.1:2222
+    azdo: SSH username: vagrant
+    azdo: SSH auth method: private key
+==> azdo: Machine booted and ready!
+==> azdo: Checking for guest additions in VM...
+==> azdo: Setting hostname...
+==> azdo: Mounting shared folders...
+    azdo: /home/vagrant/pipeliner => /home/verty/pipeliner
+==> azdo: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> azdo: flag to force provisioning. Provisioners marked to run always will still run.
+[1;34mENDGROUP[0m' to contain 'ssh'
+
+- [0;90mAZDO Agent Command[0m: [1;32mOK[0m
+- [0;90mAZDO Agent Stop[0m: [1;32mOK[0m
+
+[1;37mPipeliner docker.sh[0m
+- [0;90mDocker[0m: [1;32mOK[0m
+- [0;90mDocker node[0m: [1;32mOK[0m
+- [0;90mDocker dotnet[0m: [1;32mOK[0m
+- [0;90mDocker unknown[0m: [1;32mOK[0m
+- [0;90mDocker Arguments[0m: [1;32mOK[0m
+- [0;90mDocker Arguments Fail[0m: [1;32mOK[0m
+
+[1;37mPipeliner init.sh[0m
+- [0;90mInit[0m: [1;32mOK[0m
+
+[1;37mPipeliner installed.sh[0m
+- Installed Pipeliner: [1;34mSKIP[0m
+- Installed Pipeliner Docker: [1;34mSKIP[0m
+- Installed Pipeliner Test: [1;34mSKIP[0m
+- Installed VSCode: [1;34mSKIP[0m
+- Installed Examples Node: [1;34mSKIP[0m
+- Installed Examples DotNet: [1;34mSKIP[0m
+
+[1;37mPipeliner install.sh[0m
+- Install Test mode: [1;34mSKIP[0m
+- Install Directory: [1;34mSKIP[0m
+- Install Directory Temp: [1;34mSKIP[0m
+- Install Directory Temp Flush: [1;34mSKIP[0m
+- Install Directory Temp Clear: [1;34mSKIP[0m
+- Install Is Upgrade: [1;34mSKIP[0m
+- Install Download: [1;34mSKIP[0m
+- Install Extract: [1;34mSKIP[0m
+- Install Install: [1;34mSKIP[0m
+- Install Install vscode: [1;34mSKIP[0m
+- Install Validate: [1;34mSKIP[0m
+- [0;90mInstall[0m: [1;32mOK[0m
+
+[1;37mPipeliner test.sh[0m
+- [0;90mTest Type[0m: [1;32mOK[0m
+- [0;90mTest Include[0m: [1;32mOK[0m
+- [0;90mTest Exclude[0m: [1;32mOK[0m
+- [0;90mTest Arguments[0m: [1;32mOK[0m
+- [0;90mTest Arguments Fail[0m: [1;32mOK[0m
+
+[1;32m17[0m passed / [1;31m1[0m failed / [1;34m324[0m skipped / 342 total
+[1;37mINFO Moving artifact ./e2e_test_report-0.5.1114.txt to ./artifacts/testReports/e2e_test_report-0.5.1114.txt[0m
+[1;36mVARIABLE e2eTestReport=./artifacts/testReports/e2e_test_report-0.5.1114.txt[0m
