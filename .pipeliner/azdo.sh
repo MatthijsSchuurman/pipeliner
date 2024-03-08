@@ -55,7 +55,7 @@ source pipeliner/.pipeliner/core/utils/files.class.sh
 Files_Import_Classes
 
 if [ ! -d ~/agent ]; then
-  Packages_Prerequisites wget
+  Packages_Prerequisites wget git
 
   if [ ! -f azdo-agent-*.tar.gz ]; then
     AZDO_Agent_Download
