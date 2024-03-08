@@ -44,7 +44,11 @@ UnitTest_AZDO_Agent_Download() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" GROUP "Downloading AZDO Agent 3.234.0" ENDGROUP
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Downloading AZDO Agent 3.234.0" ENDGROUP
+  else
+    Assert_Contains "$actual" group "Downloading AZDO Agent 3.234.0" endgroup
+  fi
 
   filename=$(Variables_Get "azdoAgentFilename")
   Assert_Equal "$filename" "azdo-agent-v3.234.0.tar.gz"
@@ -74,8 +78,14 @@ UnitTest_AZDO_Agent_Download_Fail() {
 
   #Then
   Assert_Equal $exitCode 8
-  Assert_Contains "$actual" GROUP "Downloading AZDO Agent invalid" ENDGROUP
-  Assert_Contains "$actual" ERROR "Failed to download AZDO Agent invalid"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" GROUP "Downloading AZDO Agent invalid" ENDGROUP
+    Assert_Contains "$actual" ERROR "Failed to download AZDO Agent invalid"
+  else
+    Assert_Contains "$actual" group "Downloading AZDO Agent invalid" endgroup
+    Assert_Contains "$actual" error "Failed to download AZDO Agent invalid"
+  fi
+
   Variables_Get "azdoAgentFilename" 2> /dev/null
   Assert_Equal $? 1
 }
@@ -119,7 +129,11 @@ UnitTest_AZDO_Agent_Install_Fail() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "File not found: $filename"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "File not found: $filename"
+  else
+    Assert_Contains "$actual" error "File not found: $filename"
+  fi
   Variables_Get "azdoAgentFilename" 2> /dev/null
   Assert_Equal $? 1
 
@@ -137,7 +151,11 @@ UnitTest_AZDO_Agent_Install_Fail() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "Directory already exists: $directory"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "Directory already exists: $directory"
+  else
+    Assert_Contains "$actual" error "Directory already exists: $directory"
+  fi
 
   #Cleanup
   rm -Rf "$filename" "$directory"
@@ -155,7 +173,11 @@ UnitTest_AZDO_Agent_Install_Fail() {
 
   #Then
   Assert_Equal $exitCode 1
-  Assert_Contains "$actual" ERROR "Invalid AZDO Agent file: $filename"
+  if [ $(Environment_Platform) == "local" ]; then
+    Assert_Contains "$actual" ERROR "Invalid AZDO Agent file: $filename"
+  else
+    Assert_Contains "$actual" error "Invalid AZDO Agent file: $filename"
+  fi
 
   #Cleanup
   rm -Rf "$filename" "$directory"
