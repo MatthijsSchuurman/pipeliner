@@ -124,6 +124,8 @@ AZDO_Agent_Setup() {
     return 1
   fi
 
+  url=$(AZDO_URL_Trim "$url")
+
   local commandArgs="--unattended"
   commandArgs+=" --url $url"
   commandArgs+=" --auth pat --token $pat"
@@ -131,6 +133,7 @@ AZDO_Agent_Setup() {
   commandArgs+=" --agent $name"
 
   cd "$directory"
+
   ./config.sh $commandArgs
   local exitCode=$?
 
@@ -140,11 +143,11 @@ AZDO_Agent_Setup() {
     return $exitCode
   fi
 
-  sudo ./svc.sh install
+  sudo ./svc.sh install && sudo ./svc.sh start
   local exitCode=$?
 
   if [ $exitCode != 0 ]; then
-    Log_Error "Failed to install AZDO Agent service"
+    Log_Error "Failed to install & start AZDO Agent service"
     Log_Group_End
     return $exitCode
   fi
@@ -152,4 +155,11 @@ AZDO_Agent_Setup() {
   cd -
   Log_Group_End
   return 0
+}
+
+AZDO_URL_Trim() {
+  local url=$1
+
+  url=$(echo "$url" | cut -d '/' -f 1-4)
+  echo "$url"
 }

@@ -272,3 +272,28 @@ UnitTest_AZDO_Agent_Setup_Fail_Parameters() {
   #Cleanup
   rm -Rf "$directory"
 }
+
+UnitTest_AZDO_URL_Trim() {
+  #Given
+  local actual=
+
+  #When
+  actual=$(AZDO_URL_Trim "https://dev.azure.com/organization")
+
+  #Then
+  Assert_Equal "$actual" "https://dev.azure.com/organization"
+
+
+  #When
+  actual=$(AZDO_URL_Trim "https://dev.azure.com/organization/project/")
+
+  #Then
+  Assert_Equal "$actual" "https://dev.azure.com/organization"
+
+
+  #When
+  actual=$(AZDO_URL_Trim "https://dev.azure.com/organization/project/_git/repo")
+
+  #Then
+  Assert_Equal "$actual" "https://dev.azure.com/organization"
+}
