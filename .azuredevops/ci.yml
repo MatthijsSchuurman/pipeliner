@@ -1,8 +1,7 @@
 pr:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+pool: Default
 
 jobs:
 - job: UnitTest
