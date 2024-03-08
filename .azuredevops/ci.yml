@@ -13,10 +13,13 @@ stages:
         Pipeliner_Test_Run unit
       displayName: Run unit tests
 
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: $(Build.ArtifactStagingDirectory)/testReports
-        artifact: testReports
+    - download: current
+      artifact: Test Reports
+      displayName: Download test reports
+      condition: always()
+    - publish: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: Test Reports
+      displayName: Publish test reports
       condition: always()
 
 
@@ -27,10 +30,13 @@ stages:
         Pipeliner_Test_Run integration
       displayName: Run integration tests
 
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: $(Build.ArtifactStagingDirectory)/testReports
-        artifact: testReports
+    - download: current
+      artifact: Test Reports
+      displayName: Download test reports
+      condition: always()
+    - publish: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: Test Reports
+      displayName: Publish test reports
       condition: always()
 
 
@@ -41,9 +47,11 @@ stages:
         Pipeliner_Test_Run e2e
       displayName: Run E2E tests
 
-
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: $(Build.ArtifactStagingDirectory)/testReports
-        artifact: testReports
+    - download: current
+      artifact: Test Reports
+      displayName: Download test reports
+      condition: always()
+    - publish: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: Test Reports
+      displayName: Publish test reports
       condition: always()
