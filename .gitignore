@@ -32,3 +32,5 @@ test-report.json
 test-report.xml
 lint-report.json
 lint-report.txt
+
+.vagrant/

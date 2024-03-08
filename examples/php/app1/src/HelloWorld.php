@@ -4,7 +4,7 @@ class HelloWorld
 {
     public function sayHello()
     {
-        echo "Hello World!";
+        echo "Hello, World!";
         return 0;
     }
 }

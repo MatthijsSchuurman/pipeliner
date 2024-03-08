@@ -340,12 +340,12 @@ keykey: value2"
 
 UnitTest_Dictionary_Set_Fail() {
   #Given
+  local actual=
+  local exitCode=
+
   local dictionary=
   local key="key: value"
   local value="value"
-
-  local actual=
-  local exitCode=
 
   #When
   actual=$(Dictionary_Set "$dictionary" "$key" "$value" 2>&1)
@@ -361,9 +361,6 @@ UnitTest_Dictionary_Set_Fail() {
   local key="key
 key2"
   local value="value"
-
-  local actual=
-  local exitCode=
 
   #When
   actual=$(Dictionary_Set "$dictionary" "$key" "$value" 2>&1)
@@ -381,9 +378,6 @@ key2' contains new line character"
   local value="value
 value2"
 
-  local actual=
-  local exitCode=
-
   #When
   actual=$(Dictionary_Set "$dictionary" "$key" "$value" 2>&1)
   exitCode=$?
@@ -396,11 +390,11 @@ value2' contains new line character"
 
 UnitTest_Dictionary_Unset() {
   #Given
-  local dictionary="key: value"
-  local key="key"
-
   local actual=
   local exitCode=
+
+  local dictionary="key: value"
+  local key="key"
 
   #When
   actual=$(Dictionary_Unset "$dictionary" "$key")
@@ -417,9 +411,6 @@ key2: value2
 key3: value3"
   local key="key2"
 
-  local actual=
-  local exitCode=
-
   #When
   actual=$(Dictionary_Unset "$dictionary" "$key")
   exitCode=$?
@@ -434,9 +425,6 @@ key3: value3"
   local dictionary="key: value
 keykey: value2
 key3: value3"
-
-  local actual=
-  local exitCode=
 
   #When
   actual=$(Dictionary_Unset "$dictionary" "key")
@@ -453,9 +441,6 @@ key3: value3"
 -arg: argvalue"
   local key="-arg"
 
-  local actual=
-  local exitCode=
-
   #When
   actual=$(Dictionary_Unset "$dictionary" "$key")
   exitCode=$?
@@ -470,9 +455,6 @@ key3: value3"
 0: indexvalue"
   local key="0"
 
-  local actual=
-  local exitCode=
-
   #When
   actual=$(Dictionary_Unset "$dictionary" "$key")
   exitCode=$?
@@ -484,11 +466,11 @@ key3: value3"
 
 UnitTest_Dictionary_Unset_Fail() {
   #Given
-  local dictionary="key: value"
-  local key="key2"
-
   local actual=
   local exitCode=
+
+  local dictionary="key: value"
+  local key="key2"
 
   #When
   actual=$(Dictionary_Unset "$dictionary" "$key" 2>&1)
@@ -504,9 +486,6 @@ UnitTest_Dictionary_Unset_Fail() {
   local key="key
 key2"
 
-  local actual=
-  local exitCode=
-
   #When
   actual=$(Dictionary_Unset "$dictionary" "$key" 2>&1)
   exitCode=$?
@@ -521,9 +500,6 @@ key2' contains new line character"
   local dictionary="key: value"
   local key="key: value"
 
-  local actual=
-  local exitCode=
-
   #When
   actual=$(Dictionary_Unset "$dictionary" "$key" 2>&1)
   exitCode=$?
@@ -535,11 +511,11 @@ key2' contains new line character"
 
 UnitTest_Dictionary_Get() {
   #Given
-  local dictionary="key: value"
-  local key="key"
-
   local actual=
   local exitCode=
+
+  local dictionary="key: value"
+  local key="key"
 
   #When
   actual=$(Dictionary_Get "$dictionary" "$key")
@@ -553,9 +529,6 @@ UnitTest_Dictionary_Get() {
   #Given
   local dictionary="key: value
 keykey: value2"
-
-  local actual=
-  local exitCode=
 
   #When
   actual=$(Dictionary_Get "$dictionary" "key")
@@ -571,9 +544,6 @@ keykey: value2"
 -arg: argvalue"
   local key="-arg"
 
-  local actual=
-  local exitCode=
-
   #When
   actual=$(Dictionary_Get "$dictionary" "$key")
   exitCode=$?
@@ -588,9 +558,6 @@ keykey: value2"
 0: indexvalue"
   local key="0"
 
-  local actual=
-  local exitCode=
-
   #When
   actual=$(Dictionary_Get "$dictionary" "$key")
   exitCode=$?
@@ -598,6 +565,19 @@ keykey: value2"
   #Then
   Assert_Equal $exitCode 0
   Assert_Equal "$actual" "indexvalue"
+
+
+  #Given
+  local dictionary="url: https://example.com/api"
+  local key="url"
+
+  #When
+  actual=$(Dictionary_Get "$dictionary" "$key")
+  exitCode=$?
+
+  #Then
+  Assert_Equal $exitCode 0
+  Assert_Equal "$actual" "https://example.com/api"
 }
 
 UnitTest_Dictionary_Get_Fail() {

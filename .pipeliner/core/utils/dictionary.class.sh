@@ -93,5 +93,5 @@ Dictionary_Get() {
     return 1
   fi
 
-  echo "$pair" | sed -E "s/.*: *(.*)/\1/" | sed -E "s/\"(.*)\"/\1/"
+  echo "$pair" | sed -E "s/[^:]+: *(.*)/\1/" | sed -E "s/\"(.*)\"/\1/"
 }

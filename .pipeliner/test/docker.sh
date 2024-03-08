@@ -6,7 +6,7 @@ E2ETest_Docker() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh "echo 'Hello World'")
+  actual=$($(Files_Path_Pipeliner)/docker.sh "echo 'Hello, World!'")
   exitCode=$?
 
   #Then
@@ -19,7 +19,7 @@ E2ETest_Docker() {
     Assert_Contains "$actual" group "Docker Build" "Docker Run" "core:runner" endgroup
   fi
 
-  Assert_Contains "$actual" "Hello World"
+  Assert_Contains "$actual" "Hello, World!"
 
   #When
   actual=$($(Files_Path_Pipeliner)/docker.sh pwd "ls -la")

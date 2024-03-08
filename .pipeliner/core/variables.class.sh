@@ -29,7 +29,7 @@ Variables_Set() {
   Log_Variable "$key" "$value"
 }
 
-Variable_Unset() {
+Variables_Unset() {
   local key=$1
 
   if [ ! "$key" ]; then

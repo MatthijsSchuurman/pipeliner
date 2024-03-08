@@ -8,7 +8,7 @@ public class HelloWorld
 
     public HelloWorld()
     {
-        this.message = "Hello World!";
+        this.message = "Hello, World!";
     }
 
     public int sayHello()

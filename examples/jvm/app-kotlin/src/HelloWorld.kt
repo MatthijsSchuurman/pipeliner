@@ -4,7 +4,7 @@ class HelloWorld {
     private var message: String
 
     init {
-        this.message = "Hello World!"
+        this.message = "Hello, World!"
     }
 
     fun sayHello(): Int {

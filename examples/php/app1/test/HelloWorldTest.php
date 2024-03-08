@@ -13,7 +13,7 @@ final class HelloWorldTest extends TestCase
         $ret=$helloWorld->sayHello();
         $output = ob_get_clean();
 
-        $this->assertEquals('Hello World!', $output);
+        $this->assertEquals('Hello, World!', $output);
         $this->assertEquals(0, $ret);
     }
 }
