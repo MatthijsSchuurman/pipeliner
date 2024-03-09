@@ -24,4 +24,5 @@ Pipeliner_Docker_Create_Image() {
   Artifacts_Move "$(Files_Path_Root)/$filename" "packages/$filename"
 
   Variables_Set dockerImage "$(Artifacts_Directory)/packages/$filename"
+  Log_Debug "Docker image: $(Variables_Get dockerImage)"
 }

@@ -61,7 +61,6 @@ Log_Variable() {
   case $(Environment_Platform) in
     "azure")
       echo "##vso[task.setvariable variable=$key]$value"
-      echo "##[debug] variable $key=$value" #also log so it's visible in the logs
       ;;
     "github")
       echo "$key=$value" >> "$GITHUB_OUTPUT"

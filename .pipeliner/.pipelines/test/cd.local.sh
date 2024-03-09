@@ -22,11 +22,11 @@ E2ETest_Pipeliner_Pipeline_CD() {
   Assert_Contains "$actual" "adding: examples/node/app1/test/helloworld.js"
   Assert_Contains "$actual" "Removing build directory"
 
-  Assert_Match "$actual" "package=.+\.zip"
-  Assert_Match "$actual" "dockerImage=.+\.tar\.xz"
+  Assert_Match "$actual" "Package: .+\.zip"
+  Assert_Match "$actual" "Docker image: .+\.tar\.xz"
 
-  local package=$(echo "$actual" | grep -Pom 1 "package=\]?.+\.zip" | sed -E "s/package=\]?//")
-  local dockerImage=$(echo "$actual" | grep -Pom 1 "dockerImage=\]?.+\.tar\.xz" | sed -E "s/dockerImage=\]?//")
+  local package=$(echo "$actual" | grep -Pom 1 "Package: (.+\.zip)" | sed -E "s/Package: (.+\.zip)/\1/")
+  local dockerImage=$(echo "$actual" | grep -Pom 1 "Docker image: (.+\.tar\.xz)" | sed -E "s/Docker image: (.+\.tar\.xz)/\1/")
   local version=$(echo "$package" | sed -E "s/.*\/pipeliner-([0-9]+\.[0-9]+\.[0-9]+)\.zip/\1/")
 
   Assert_File_Exists "$package"

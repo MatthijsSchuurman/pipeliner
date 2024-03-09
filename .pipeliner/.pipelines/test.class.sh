@@ -31,5 +31,6 @@ Pipeliner_Test_Run() {
   Artifacts_Move "$(Files_Path_Root)/$filename" "testReports/$filename"
 
   Variables_Set ${type}TestReport "$(Artifacts_Directory)/testReports/$filename" #bit of an assumption here
+  Log_Debug "${type} Test report: $(Variables_Get ${type}TestReport)"
   return $exitCode
 }
