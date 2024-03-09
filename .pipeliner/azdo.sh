@@ -51,11 +51,12 @@ else
         fi
       elif [ "$(Dictionary_Get "$arguments" agent,0)" == "setup" ]; then
         Vagrant_SSH azdo '
-source pipeliner/.pipeliner/core/utils/files.class.sh
-Files_Import_Classes
+source pipeliner/.pipeliner/init.sh
+Packages_Prerequisites wget git zip
+
+sudo usermod -a -G docker vagrant
 
 if [ ! -d ~/agent ]; then
-  Packages_Prerequisites wget
 
   if [ ! -f azdo-agent-*.tar.gz ]; then
     AZDO_Agent_Download

@@ -37,5 +37,6 @@ Pipeliner_Package_Create() {
   Artifacts_Move "$(Files_Path_Root)/$filename" "packages/$filename"
 
   Variables_Set package "$(Artifacts_Directory)/packages/$filename" #bit of an assumption here
+  Log_Debug "Package: $(Variables_Get package)"
   return $exitCode
 }

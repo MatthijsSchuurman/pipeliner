@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/home/vagrant/pipeliner"
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 512
-    vb.cpus = 2
+    vb.cpus = 1
   end
 
   config.vm.define :default, primary: true do |config|
@@ -22,6 +22,8 @@ Vagrant.configure("2") do |config|
     name = "pipeliner-azdo"
     config.vm.hostname = name
     config.vm.provider "virtualbox" do |vb|
+      vb.memory = 2048
+      vb.cpus = 2
       vb.name = name
     end
 

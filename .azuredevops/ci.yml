@@ -1,0 +1,46 @@
+pr:
+- main
+trigger: none
+
+pool: Default
+
+stages:
+- stage: Test
+  jobs:
+  - job: UnitTest
+    steps:
+    - bash: |
+        source ./.pipeliner/init.sh
+        Pipeliner_Test_Run unit
+      displayName: Run unit tests
+
+    - publish: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: Unit Test Report
+      displayName: Publish test report
+      condition: always()
+
+
+  - job: IntegrationTest
+    steps:
+    - script: |
+        source ./.pipeliner/init.sh
+        Pipeliner_Test_Run integration
+      displayName: Run integration tests
+
+    - publish: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: Integration Test Report
+      displayName: Publish test report
+      condition: always()
+
+
+  - job: E2ETest
+    steps:
+    - script: |
+        source ./.pipeliner/init.sh
+        Pipeliner_Test_Run e2e
+      displayName: Run E2E tests
+
+    - publish: $(Build.ArtifactStagingDirectory)/testReports
+      artifact: E2E Test Report
+      displayName: Publish test report
+      condition: always()
