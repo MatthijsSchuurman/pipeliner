@@ -8,11 +8,8 @@ E2ETest_Pipeliner_Pipeline_CD() {
   local exitCode=
 
   #When
-  local logFile=$(Files_Temp_File test .log)
-  source $(Files_Path_Pipeliner)/.pipelines/cd.local.sh > $logFile 2>&1 #needs to use a unique filename so tests don't remove it
+  actual=$($(Files_Path_Pipeliner)/.pipelines/cd.local.sh 2>&1)
   exitCode=$?
-  actual=$(cat $logFile)
-  rm $logFile
 
   echo "$actual"
 
@@ -24,20 +21,23 @@ E2ETest_Pipeliner_Pipeline_CD() {
   Assert_Contains "$actual" "adding: .pipeliner/test.sh"
   Assert_Contains "$actual" "adding: examples/node/app1/test/helloworld.js"
   Assert_Contains "$actual" "Removing build directory"
-  Assert_Function Pipeliner_Package_Create
 
-  local package=$(Variables_Get package)
+  Assert_Match "$actual" "package=.+\.zip"
+  Assert_Match "$actual" "dockerImage=.+\.tar\.xz"
+
+  local package=$(echo "$actual" | grep -Pom 1 "package=\]?.+\.zip" | sed -E "s/package=\]?//")
+  local dockerImage=$(echo "$actual" | grep -Pom 1 "dockerImage=\]?.+\.tar\.xz" | sed -E "s/dockerImage=\]?//")
+  local version=$(echo "$package" | sed -E "s/.*\/pipeliner-([0-9]+\.[0-9]+\.[0-9]+)\.zip/\1/")
+
   Assert_File_Exists "$package"
-
-  local dockerImage=$(Variables_Get dockerImage)
   Assert_File_Exists "$dockerImage"
 
   #Download pipeliner from docker image
   docker stop pipeliner_e2etest > /dev/null 2>&1
   docker rm --force pipeliner_e2etest > /dev/null 2>&1
-  docker run --name pipeliner_e2etest --detach=true --publish 127.0.0.1:8088:80 pipeliner:$(Version_Pipeliner_Full)
+  docker run --name pipeliner_e2etest --detach=true --publish 127.0.0.1:8088:80 pipeliner:$version
   Assert_Equal $? 0
-  wget --quiet --content-disposition http://127.0.0.1:8088/pipeliner.zip #will redirect to pipeliner-$(Version_Pipeliner_Full).zip
+  wget --quiet --content-disposition http://127.0.0.1:8088/pipeliner.zip #will redirect to pipeliner-$version.zip
   Assert_Equal $? 0
   wget --quiet --content-disposition http://127.0.0.1:8088/install.sh
   Assert_Equal $? 0

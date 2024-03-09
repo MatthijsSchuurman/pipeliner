@@ -8,11 +8,8 @@ E2ETest_Pipeliner_Pipeline_CI() {
   local exitCode=
 
   #When
-  local logFile=ci.local.log #don't use Files_Temp_File because temp directory is removed
-  source $(Files_Path_Pipeliner)/.pipelines/ci.local.sh > $logFile 2>&1 #needs to use a unique filename so tests don't remove it
+  actual=$($(Files_Path_Pipeliner)/.pipelines/ci.local.sh 2>&1)
   exitCode=$?
-  actual=$(cat $logFile)
-  rm $logFile
 
   echo "$actual"
 
@@ -22,12 +19,15 @@ E2ETest_Pipeliner_Pipeline_CI() {
   Assert_Contains "$actual" "Pipeliner core compression"
   Assert_Match "$actual" "Compression Zip.*OK"
 
-  local unitTestReport=$(Variables_Get unitTestReport)
+  Assert_Match "$actual" "unitTestReport=.+\.txt"
+  Assert_Match "$actual" "integrationTestReport=.+\.txt"
+  Assert_Match "$actual" "e2eTestReport=.+\.txt"
+
+  local unitTestReport=$(echo "$actual" | grep -Pom 1 "unitTestReport=\]?.+\.txt" | sed -E "s/unitTestReport=\]?//")
+  local integrationTestReport=$(echo "$actual" | grep -Pom 1 "integrationTestReport=\]?.+\.txt" | sed -E "s/integrationTestReport=\]?//")
+  local e2eTestReport=$(echo "$actual" | grep -Pom 1 "e2eTestReport=\]?.+\.txt" | sed -E "s/e2eTestReport=\]?//")
+
   Assert_File_Exists "$unitTestReport"
-
-  local integrationTestReport=$(Variables_Get integrationTestReport)
   Assert_File_Exists "$integrationTestReport"
-
-  local e2eTestReport=$(Variables_Get e2eTestReport)
   Assert_File_Exists "$e2eTestReport"
 }

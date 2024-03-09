@@ -6,11 +6,8 @@ E2ETest_Examples_JVM_Pipeline_CI() {
   local exitCode=
 
   #When
-  local logFile=$(Files_Temp_File test .log)
-  source $(Files_Path_Root)/examples/jvm/.pipelines/ci.local.sh examples/jvm/app-java > $logFile
+  actual=$($(Files_Path_Root)/examples/jvm/.pipelines/ci.local.sh examples/jvm/app-java)
   exitCode=$?
-  actual=$(cat $logFile)
-  rm $logFile
 
   #Then
   Assert_Equal $exitCode 0
