@@ -17,7 +17,7 @@ UnitTest_Pipeliner_Docker_Create_Image() {
   rm -rf "$(Artifacts_Directory)"
   mkdir -p "$(Artifacts_Directory)"
 
-  local packageFile="$(Files_Path_Root)/pipeliner-$(Version_Pipeliner_Full).zip"
+  local packageFile="$(Artifacts_Directory)/pipeliner-$(Version_Pipeliner_Full).zip"
   touch "$packageFile"
 
   #When
@@ -40,5 +40,4 @@ UnitTest_Pipeliner_Docker_Create_Image() {
 
   #Clean
   rm -rf "$(Artifacts_Directory)"
-  rm "$packageFile"
 }
