@@ -39,6 +39,36 @@ UnitTest_Installed_Pipeliner_Test() {
   Assert_File_Exists $(Files_Path_Pipeliner)/core/utils/test/test.class.sh
 }
 
+UnitTest_Installed_AzureDevOps() {
+  #Given
+
+  #When
+  Assert_Directory_Exists $(Files_Path_Root)/.azuredevops/
+
+  #Then
+  Assert_File_Exists $(Files_Path_Root)/.azuredevops/ci.yml
+}
+
+UnitTest_Installed_GitHub() {
+  #Given
+
+  #When
+  Assert_Directory_Exists $(Files_Path_Root)/.github/
+
+  #Then
+  Assert_File_Exists $(Files_Path_Root)/.github/workflows/ci.yml
+}
+
+UnitTest_Installed_Vagrant() {
+  #Given
+
+  #When
+  Assert_Directory_Exists $(Files_Path_Root)
+
+  #Then
+  Assert_File_Exists $(Files_Path_Root)/Vagrantfile
+}
+
 UnitTest_Installed_VSCode() {
   #Given
 
@@ -48,6 +78,35 @@ UnitTest_Installed_VSCode() {
   #Then
   Assert_File_Exists $(Files_Path_Root)/.vscode/extensions.json
   Assert_File_Exists $(Files_Path_Root)/.vscode/tasks.json
+}
+
+UnitTest_Installed_Examples_DotNet() {
+  #Given
+
+  #When
+  Assert_Directory_Exists $(Files_Path_Root)/examples/dotnet/
+
+  #Then
+  Assert_File_Exists $(Files_Path_Root)/examples/dotnet/.pipelines/ci.local.sh
+  Assert_File_Exists $(Files_Path_Root)/examples/dotnet/app1/Dockerfile
+  Assert_File_Exists $(Files_Path_Root)/examples/dotnet/app1/work.sln
+  Assert_File_Exists $(Files_Path_Root)/examples/dotnet/app1/src/main.cs
+}
+
+UnitTest_Installed_Examples_JVM() {
+  #Given
+
+  #When
+  Assert_Directory_Exists $(Files_Path_Root)/examples/jvm/
+
+  #Then
+  Assert_File_Exists $(Files_Path_Root)/examples/jvm/.pipelines/ci.local.sh
+  Assert_File_Exists $(Files_Path_Root)/examples/jvm/app-java/Dockerfile
+  Assert_File_Exists $(Files_Path_Root)/examples/jvm/app-java/build.gradle
+  Assert_File_Exists $(Files_Path_Root)/examples/jvm/app-java/src/Main.java
+  Assert_File_Exists $(Files_Path_Root)/examples/jvm/app-kotlin/Dockerfile
+  Assert_File_Exists $(Files_Path_Root)/examples/jvm/app-kotlin/build.gradle.kts
+  Assert_File_Exists $(Files_Path_Root)/examples/jvm/app-kotlin/src/Main.kt
 }
 
 UnitTest_Installed_Examples_Node() {
@@ -62,15 +121,15 @@ UnitTest_Installed_Examples_Node() {
   Assert_File_Exists $(Files_Path_Root)/examples/node/app1/package.json
 }
 
-UnitTest_Installed_Examples_DotNet() {
+UnitTest_Installed_Examples_PHP() {
   #Given
 
   #When
-  Assert_Directory_Exists $(Files_Path_Root)/examples/dotnet/
+  Assert_Directory_Exists $(Files_Path_Root)/examples/php/
 
   #Then
-  Assert_File_Exists $(Files_Path_Root)/examples/dotnet/.pipelines/ci.local.sh
-  Assert_File_Exists $(Files_Path_Root)/examples/dotnet/app1/Dockerfile
-  Assert_File_Exists $(Files_Path_Root)/examples/dotnet/app1/work.sln
-  Assert_File_Exists $(Files_Path_Root)/examples/dotnet/app1/src/work.csproj
+  Assert_File_Exists $(Files_Path_Root)/examples/php/.pipelines/ci.local.sh
+  Assert_File_Exists $(Files_Path_Root)/examples/php/app1/Dockerfile
+  Assert_File_Exists $(Files_Path_Root)/examples/php/app1/composer.json
+  Assert_File_Exists $(Files_Path_Root)/examples/php/app1/src/index.php
 }
