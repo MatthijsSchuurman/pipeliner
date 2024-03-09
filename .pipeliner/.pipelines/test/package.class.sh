@@ -57,8 +57,14 @@ IntegrationTest_Pipeliner_Package_Create() {
   Assert_Contains "$files" ".pipeliner/core/log.class.sh"
   Assert_Contains "$files" ".pipeliner/README.md"
   Assert_Contains "$files" ".pipeliner/LICENSE.md"
-  Assert_Contains "$files" "examples/node/.pipelines/ci.local.sh"
+  Assert_Contains "$files" ".vscode/settings.json"
+  Assert_Contains "$files" ".github/workflows/ci.yml"
+  Assert_Contains "$files" ".azuredevops/ci.yml"
   Assert_Contains "$files" "examples/dotnet/app1/work.sln"
+  Assert_Contains "$files" "examples/jvm/app-kotlin/build.gradle"
+  Assert_Contains "$files" "examples/node/.pipelines/ci.local.sh"
+  Assert_Contains "$files" "examples/php/app1/src/index.php"
+  Assert_Contains "$files" "Vagrantfile"
 
   Assert_Not_Contains "$(echo "$files" | grep "^README.md$")" "README.md" #should be removed from root
   Assert_Not_Contains "$(echo "$files" | grep "^LICENSE.md$")" "LICENSE.md" #should be removed from root

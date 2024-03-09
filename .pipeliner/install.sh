@@ -75,16 +75,27 @@ Install_Extract() {
 }
 
 Install_Install() {
+  local failed=0
+
+  local file=
+  local directory=
+  local directories=(.pipeliner .azuredevops .github Vagrantfile examples)
+
   if Install_Is_Upgrade; then
-    rm -Rf "$(Install_Directory)/.pipeliner" "$(Install_Directory)/examples" > /dev/null 2>&1
+    for directory in ${directories[@]}; do
+      rm -Rf "$(Install_Directory)/$directory" > /dev/null 2>&1
+    done
   fi
 
-  mv "$(Install_Directory_Temp)/.pipeliner" "$(Install_Directory_Temp)/examples" "$(Install_Directory)" > /dev/null 2>&1
-  if [ $? != 0 ]; then
-    echo "Error: Unable to move files from $(Install_Directory_Temp) to $(Install_Directory)" >&2
-    exit 1
-  fi
+  for directory in ${directories[@]}; do
+    mv "$(Install_Directory_Temp)/$directory" "$(Install_Directory)" > /dev/null 2>&1
+    if [ $? != 0 ]; then
+      echo "Error: Unable to move files from $(Install_Directory_Temp)/$directory to $(Install_Directory)" >&2
+      failed=1
+    fi
+  done
 
+  #Merge .vscode
   if [ ! -d "$(Install_Directory)/.vscode" ]; then
     mkdir -p "$(Install_Directory)/.vscode" > /dev/null 2>&1
   fi
@@ -94,7 +105,7 @@ Install_Install() {
     fi
   done
 
-  return 0
+  return $failed
 }
 
 Install_Validate() {
