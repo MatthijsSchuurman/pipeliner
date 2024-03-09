@@ -22,7 +22,7 @@ UnitTest_Artifacts_Directory_Azure() {
   #Given
   local actual=
 
-  BUILD_ARTIFACTSTAGINGDIRECTORY="$(Files_Path_Root)/artifacts-test"
+  BUILD_ARTIFACTSTAGINGDIRECTORY="$(realpath $(Files_Path_Root)/artifacts-test)"
   Environment_Platform() { #mock
     echo "azure"
   }
@@ -31,7 +31,7 @@ UnitTest_Artifacts_Directory_Azure() {
   actual=$(Artifacts_Directory)
 
   #Then
-  Assert_Match "$actual" "$BUILD_ARTIFACTSTAGINGDIRECTORY"
+  Assert_Match "$actual" "$(Files_Path_Root)/artifacts-test"
   Assert_Directory_Exists "$actual"
 
   #Clean

@@ -8,7 +8,7 @@ Artifacts_Directory() {
 
   case $(Environment_Platform) in
     "azure")
-      directory=$BUILD_ARTIFACTSTAGINGDIRECTORY
+      directory=$(Files_Path_Root)/$(realpath --relative-to "$(pwd)" "$BUILD_ARTIFACTSTAGINGDIRECTORY")
       ;;
     "github")
       directory="$(Files_Path_Root)/artifacts"
