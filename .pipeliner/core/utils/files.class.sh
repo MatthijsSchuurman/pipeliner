@@ -134,17 +134,31 @@ Files_Temp__Dir() {
 Files_Temp_File() {
   local prefix=$1
   local suffix=$2
-  local template=${prefix}XXXXXXX${suffix}
 
-  mktemp -p "$(Files_Temp__Dir)" "$template"
+  local filename=$(mktemp -p "$(Files_Temp__Dir)")
+
+  if [ "$prefix" -o "$suffix" ]; then
+    local newfilename=$(Files_Temp__Dir)/$prefix$(basename $filename)$suffix
+    mv $filename $newfilename
+    filename=$newfilename
+  fi
+
+  echo $filename
 }
 
 Files_Temp_Directory() {
   local prefix=$1
   local suffix=$2
-  local template=${prefix}XXXXXXX${suffix}
 
-  mktemp -d -p "$(Files_Temp__Dir)" "$template"
+  local filename=$(mktemp -d -p "$(Files_Temp__Dir)")
+
+  if [ "$prefix" -o "$suffix" ]; then
+    local newfilename=$(Files_Temp__Dir)/$prefix$(basename $filename)$suffix
+    mv $filename $newfilename
+    filename=$newfilename
+  fi
+
+  echo $filename
 }
 
 Files_Temp_Clean() {
