@@ -25,10 +25,10 @@ UnitTest_Packages_Version() {
   local actual=
 
   #When
-  actual=$(Packages_Version ls)
+  actual=$(Packages_Version bash)
 
   #Then
-  Assert_Match "$actual" "ls \(GNU coreutils\) [0-9\.]+"
+  Assert_Match "$actual" "GNU bash.*version [0-9\.]+"
 
   #When
   actual=$(Packages_Version wget)

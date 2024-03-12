@@ -321,6 +321,7 @@ UnitTest_Files_Watch_Directory_Written() {
   local directory=tmp
   rm -rf $directory 2>&1 > /dev/null
   mkdir $directory
+  sync
 
   #When
   UnitTest_Files_Watch_Directory_Written_thread(){

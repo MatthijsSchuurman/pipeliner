@@ -54,6 +54,8 @@ UnitTest_PHP_Composer_Test() {
   local actual=
   local exitCode=
 
+  PHP_Composer_Install $workdir
+
   #When
   PHP_Composer_Test $workdir
   exitCode=$?

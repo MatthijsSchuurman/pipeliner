@@ -33,13 +33,13 @@ trim() {
 toLower() {
   local string=$1
 
-  echo ${string,,}
+  echo $string | tr '[:upper:]' '[:lower:]'
 }
 
 toUpper() {
   local string=$1
 
-  echo ${string^^}
+  echo $string | tr '[:lower:]' '[:upper:]'
 }
 
 map() {
