@@ -323,7 +323,11 @@ UnitTest_SSH_Run() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "home" .. drwx
+  if [ $(Environment_OS) == "macos" ]; then
+    Assert_Contains "$actual" "Users" .. drwx
+  else
+    Assert_Contains "$actual" "home" .. drwx
+  fi
 }
 
 UnitTest_SSH_Copy() {
