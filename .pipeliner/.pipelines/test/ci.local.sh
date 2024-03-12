@@ -23,9 +23,9 @@ E2ETest_Pipeliner_Pipeline_CI() {
   Assert_Match "$actual" "integration Test report: .+\.txt"
   Assert_Match "$actual" "e2e Test report: .+\.txt"
 
-  local unitTestReport=$(echo "$actual" | grep -Pom 1 "unit Test report: (.+\.txt)" | sed -E "s/unit Test report: (.+\.txt)/\1/")
-  local integrationTestReport=$(echo "$actual" | grep -Pom 1 "integration Test report: (.+\.txt)" | sed -E "s/integration Test report: (.+\.txt)/\1/")
-  local e2eTestReport=$(echo "$actual" | grep -Pom 1 "e2e Test report: (.+\.txt)" | sed -E "s/e2e Test report: (.+\.txt)/\1/")
+  local unitTestReport=$(echo "$actual" | grep --only-matching --max-count=1 "unit Test report: .*\.txt" | sed -E "s/unit Test report: (.+\.txt)/\1/")
+  local integrationTestReport=$(echo "$actual" | grep --only-matching --max-count=1 "integration Test report: .*\.txt" | sed -E "s/integration Test report: (.+\.txt)/\1/")
+  local e2eTestReport=$(echo "$actual" | grep --only-matching --max-count=1 "e2e Test report: .*\.txt" | sed -E "s/e2e Test report: (.+\.txt)/\1/")
 
   Assert_File_Exists "$unitTestReport"
   Assert_File_Exists "$integrationTestReport"

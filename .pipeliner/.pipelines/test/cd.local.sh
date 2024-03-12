@@ -25,8 +25,8 @@ E2ETest_Pipeliner_Pipeline_CD() {
   Assert_Match "$actual" "Package: .+\.zip"
   Assert_Match "$actual" "Docker image: .+\.tar\.xz"
 
-  local package=$(echo "$actual" | grep -Pom 1 "Package: (.+\.zip)" | sed -E "s/Package: (.+\.zip)/\1/")
-  local dockerImage=$(echo "$actual" | grep -Pom 1 "Docker image: (.+\.tar\.xz)" | sed -E "s/Docker image: (.+\.tar\.xz)/\1/")
+  local package=$(echo "$actual" | grep --only-matching --max-count=1 "Package: .*\.zip" | sed -E "s/Package: (.+\.zip)/\1/")
+  local dockerImage=$(echo "$actual" | grep --only-matching --max-count=1 "Docker image: .*\.tar\.xz" | sed -E "s/Docker image: (.+\.tar\.xz)/\1/")
   local version=$(echo "$package" | sed -E "s/.*\/pipeliner-([0-9]+\.[0-9]+\.[0-9]+)\.zip/\1/")
 
   Assert_File_Exists "$package"
