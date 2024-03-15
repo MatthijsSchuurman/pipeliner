@@ -2,6 +2,18 @@
 
 source $(Files_Path_Pipeliner)/haskell/cabal.class.sh
 
+UnitTest_Haskell_Cabal_Build() {
+  # Given
+  local actual
+  local workdir="examples/haskell/app1"
+
+  # When
+  actual=$(Haskell_Cabal_Build $workdir)
+
+  # Then
+  Assert_Directory_Exists $(Files_Path_Root)/$workdir/dist/
+}
+
 UnitTest_Haskell_Cabal_Test() {
   # Given
   local actual

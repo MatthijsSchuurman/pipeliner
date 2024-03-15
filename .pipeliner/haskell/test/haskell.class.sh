@@ -44,15 +44,3 @@ UnitTest_Haskell_Run() {
   Assert_Equal $exitCode 0
   Assert_Match "$actual" "[0-9]+\.[0-9]+\.[0-9]+" examples drwx
 }
-
-UnitTest_Haskell_Build() {
-  # Given
-  local actual
-  local workdir="examples/haskell/app1"
-
-  # When
-  actual=$(Haskell_Build $workdir)
-
-  # Then
-  Assert_Directory_Exists $(Files_Path_Root)/$workdir/dist/
-}

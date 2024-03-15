@@ -9,10 +9,3 @@ Haskell_Run() {
 
   Docker_Runner haskell "$workdir" "" "${commands[@]}"
 }
-
-Haskell_Build() {
-  local workdir=$1
-
-  Log_Info "Haskell Build"
-  Haskell_Run "$workdir" "cabal build"
-}

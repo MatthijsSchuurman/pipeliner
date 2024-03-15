@@ -2,6 +2,13 @@
 
 source $(Files_Path_Pipeliner)/haskell/haskell.class.sh
 
+Haskell_Cabal_Build() {
+  local workdir=$1
+
+  Log_Info "Haskell Build"
+  Haskell_Run "$workdir" "cabal update" "cabal build"
+}
+
 Haskell_Cabal_Test() {
   local workdir=$1
 
