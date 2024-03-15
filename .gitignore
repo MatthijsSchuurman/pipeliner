@@ -5,6 +5,8 @@ pipeliner-docker-*.tar.xz
 
 tmp.*log
 
+.config/
+.cache/
 .ssh/
 .local/
 .bash_history
@@ -18,6 +20,8 @@ node_modules/
 .templateengine/
 **/bin/
 **/obj/
+
+examples/**/dist-newstyle/
 
 .gradle/
 .kotlin/
