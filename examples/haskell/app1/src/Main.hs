@@ -4,5 +4,5 @@ import HelloWorld
 
 main :: IO ()
 main = do
-  result <- sayHello
+  result <- HelloWorld.sayHello
   putStrLn $ "Returned value: " ++ show result
