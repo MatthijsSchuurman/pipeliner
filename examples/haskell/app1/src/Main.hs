@@ -1,8 +1,7 @@
-module Main where
-
 import HelloWorld
+import System.Exit (exitSuccess, exitFailure)
 
 main :: IO ()
 main = do
-  result <- HelloWorld.sayHello
-  putStrLn $ "Returned value: " ++ show result
+  HelloWorld.sayHello
+  return ()
