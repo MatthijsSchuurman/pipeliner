@@ -50,26 +50,26 @@ UnitTest_Haskell_Cabal_Test() {
   rm $(Files_Path_Root)/$workdir/test-report.txt
 }
 
-UnitTest_Haskell_Cabal_Lint() {
-  # Given
-  local actual=
-  local exitCode=
-  local workdir="examples/haskell/app1"
+# UnitTest_Haskell_Cabal_Lint() {
+#   # Given
+#   local actual=
+#   local exitCode=
+#   local workdir="examples/haskell/app1"
 
-  # When
-  actual=$(Haskell_Cabal_Lint $workdir)
-  exitCode=$?
+#   # When
+#   actual=$(Haskell_Cabal_Lint $workdir)
+#   exitCode=$?
 
-  # Then
-  Assert_Equal $exitCode 0
-  Assert_File_Exists $(Files_Path_Root)/$workdir/lint-report.html
+#   # Then
+#   Assert_Equal $exitCode 0
+#   Assert_File_Exists $(Files_Path_Root)/$workdir/lint-report.html
 
-  if [ $(Environment_Platform) == "local" ]; then
-    Assert_Contains "$actual" INFO "Haskell Lint"
-  else
-    Assert_Contains "$actual" info "Haskell Lint"
-  fi
+#   if [ $(Environment_Platform) == "local" ]; then
+#     Assert_Contains "$actual" INFO "Haskell Lint"
+#   else
+#     Assert_Contains "$actual" info "Haskell Lint"
+#   fi
 
-  # Clean
-  rm $(Files_Path_Root)/$workdir/lint-report.html
-}
+#   # Clean
+#   rm $(Files_Path_Root)/$workdir/lint-report.html
+# }

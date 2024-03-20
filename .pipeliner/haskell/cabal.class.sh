@@ -27,9 +27,9 @@ Haskell_Cabal_Test() {
   return $exitCode
 }
 
-Haskell_Cabal_Lint() {
-  local workdir=$1
+# Haskell_Cabal_Lint() {
+#   local workdir=$1
 
-  Log_Info "Haskell Lint"
-  Haskell_Run "$workdir" "hlint --show --report=lint-report.html ."
-}
+#   Log_Info "Haskell Lint"
+#   Haskell_Run "$workdir" "hlint --show --report=lint-report.html ."
+# }

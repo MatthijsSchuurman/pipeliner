@@ -9,9 +9,9 @@ IntegrationTest_Examples_Haskell_Pipelines_Stage_Test() {
 
   #Then
   Assert_File_Exists $(Files_Path_Root)/examples/haskell/app1/test-report.txt
-  Assert_File_Exists $(Files_Path_Root)/examples/haskell/app1/lint-report.html
+  #Assert_File_Exists $(Files_Path_Root)/examples/haskell/app1/lint-report.html
 
   #Clean
   rm $(Files_Path_Root)/examples/haskell/app1/test-report.txt
-  rm $(Files_Path_Root)/examples/haskell/app1/lint-report.html
+  #rm $(Files_Path_Root)/examples/haskell/app1/lint-report.html
 }
