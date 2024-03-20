@@ -1,5 +1,3 @@
-module Main where
-
 import HelloWorldTest
 import Test.Tasty
 

@@ -6,7 +6,11 @@ Haskell_Cabal_Build() {
   local workdir=$1
 
   Log_Info "Haskell Build"
-  Haskell_Run "$workdir" "cabal update --builddir=dist/" "cabal build --builddir=dist/" "cabal install --builddir=dist/ --installdir=dist/ --overwrite-policy=always --install-method=copy"
+  if [ ! -d "$workdir/dist/" ]; then
+    Haskell_Run "$workdir" "cabal update --builddir=dist/"
+  fi
+
+  Haskell_Run "$workdir" "cabal build --builddir=dist/" "cabal install --builddir=dist/ --installdir=dist/ --overwrite-policy=always --install-method=copy"
 }
 
 Haskell_Cabal_Test() {
