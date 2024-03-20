@@ -1,0 +1,41 @@
+cabal-version: 3.0
+
+name: helloworld
+version: 1.0
+build-type: Simple
+
+
+library
+  default-language: Haskell2010
+  build-depends:
+    base >= 4.7 && < 5
+
+  hs-source-dirs:
+    src
+  exposed-modules:
+    HelloWorld
+
+
+executable helloworld
+  default-language: Haskell2010
+  build-depends:
+    base >= 4.7 && < 5,
+    helloworld
+
+  main-is: src/Main.hs
+
+
+test-suite helloworldtest
+  type: exitcode-stdio-1.0
+  default-language: Haskell2010
+  build-depends:
+    base >= 4.7 && < 5,
+    tasty >= 1.2 && < 1.5,
+    tasty-hunit >= 0.10 && < 0.12,
+    helloworld
+
+  main-is: Main.hs
+  hs-source-dirs:
+    test
+  other-modules:
+    HelloWorldTest

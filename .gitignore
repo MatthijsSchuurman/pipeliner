@@ -5,6 +5,8 @@ pipeliner-docker-*.tar.xz
 
 tmp.*log
 
+.config/
+.cache/
 .ssh/
 .local/
 .bash_history
@@ -19,6 +21,8 @@ node_modules/
 **/bin/
 **/obj/
 
+examples/**/dist/
+
 .gradle/
 .kotlin/
 examples/**/*.jar
@@ -30,7 +34,9 @@ examples/**/vendor/
 
 test-report.json
 test-report.xml
+test-report.txt
 lint-report.json
+lint-report.html
 lint-report.txt
 
 .vagrant/
