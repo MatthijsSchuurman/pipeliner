@@ -21,7 +21,7 @@ node_modules/
 **/bin/
 **/obj/
 
-examples/**/dist-newstyle/
+examples/**/dist/
 
 .gradle/
 .kotlin/
@@ -34,7 +34,9 @@ examples/**/vendor/
 
 test-report.json
 test-report.xml
+test-report.txt
 lint-report.json
+lint-report.html
 lint-report.txt
 
 .vagrant/
