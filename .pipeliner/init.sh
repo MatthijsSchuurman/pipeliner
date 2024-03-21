@@ -3,7 +3,7 @@ set +e
 
 # Import all classes
 source $(dirname "${BASH_SOURCE[0]}")/core/utils/files.class.sh
-Files_Import_Classes
+Files_Pre_Import_Classes
 
 # Setup prerequisites
 Packages_Prerequisites docker
