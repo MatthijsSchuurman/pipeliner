@@ -91,6 +91,7 @@ UnitTest_Artifacts_Write() {
   #When
   actual=$(Artifacts_Write "$filename" "$content")
 
+  #Then
   Assert_File_Exists "$(Artifacts_Directory)/$filename"
   Assert_Equal "$(cat $(Artifacts_Directory)/$filename)" "$content"
 
@@ -123,6 +124,7 @@ UnitTest_Artifacts_Write_Directory() {
   #When
   actual=$(Artifacts_Write "$filename" "$content")
 
+  #Then
   Assert_File_Exists "$(Artifacts_Directory)/$filename"
   Assert_Equal "$(cat $(Artifacts_Directory)/$filename)" "$content"
 
@@ -144,6 +146,7 @@ UnitTest_Artifacts_Write_Azure() {
   #When
   actual=$(Artifacts_Write "$filename" "$content")
 
+  #Then
   Assert_File_Exists "$BUILD_ARTIFACTSTAGINGDIRECTORY/$filename"
   Assert_Equal "$(cat $BUILD_ARTIFACTSTAGINGDIRECTORY/$filename)" "$content"
 
@@ -176,6 +179,7 @@ UnitTest_Artifacts_Write_Github() {
   #When
   actual=$(Artifacts_Write "$filename" "$content")
 
+  #Then
   Assert_File_Exists "$(Artifacts_Directory)/$filename"
   Assert_Equal "$(cat $(Artifacts_Directory)/$filename)" "$content"
 
@@ -209,6 +213,7 @@ UnitTest_Artifacts_Read() {
   #When
   actual=$(Artifacts_Read "$filename")
 
+  #Then
   Assert_Equal "$actual" "$content"
 
   #Clean
@@ -233,6 +238,7 @@ UnitTest_Artifacts_Read_Azure() {
   #When
   actual=$(Artifacts_Read "$filename")
 
+  #Then
   Assert_Equal "$actual" "$content"
 
   #Clean
@@ -259,6 +265,7 @@ UnitTest_Artifacts_Read_Github() {
   #When
   actual=$(Artifacts_Read "$filename")
 
+  #Then
   Assert_Equal "$actual" "$content"
 
   #Clean
@@ -315,6 +322,7 @@ UnitTest_Artifacts_Move() {
   #When
   actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename")
 
+  #Then
   Assert_File_Exists "$(Artifacts_Directory)/$destinationFilename"
   Assert_Not_File_Exists "$sourceFilename"
 
@@ -349,6 +357,7 @@ UnitTest_Artifacts_Move_Directory() {
   #When
   actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename")
 
+  #Then
   Assert_File_Exists "$(Artifacts_Directory)/$destinationFilename"
   Assert_Not_File_Exists "$sourceFilename"
 
@@ -375,6 +384,7 @@ UnitTest_Artifacts_Move_Directory() {
   #When
   actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename")
 
+  #Then
   Assert_Directory_Exists "$(Artifacts_Directory)/$destinationFilename"
   Assert_File_Exists "$(Artifacts_Directory)/$destinationFilename/test.txt"
   Assert_Not_File_Exists "$sourceFilename"
@@ -400,6 +410,7 @@ UnitTest_Artifacts_Move_Azure() {
   #When
   actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename")
 
+  #Then
   Assert_File_Exists "$BUILD_ARTIFACTSTAGINGDIRECTORY/$destinationFilename"
   Assert_Not_File_Exists "$sourceFilename"
 
@@ -434,6 +445,7 @@ UnitTest_Artifacts_Move_Github() {
   #When
   actual=$(Artifacts_Move "$sourceFilename" "$destinationFilename")
 
+  #Then
   Assert_File_Exists "$(Artifacts_Directory)/$destinationFilename"
   Assert_Not_File_Exists "$sourceFilename"
 
@@ -501,6 +513,7 @@ UnitTest_Artifacts_Delete() {
   #When
   actual=$(Artifacts_Delete "$filename")
 
+  #Then
   Assert_Not_File_Exists "$(Artifacts_Directory)/$filename"
 
   if [ $(Environment_Platform) == "local" ]; then
@@ -529,6 +542,7 @@ UnitTest_Artifacts_Delete_Azure() {
   #When
   actual=$(Artifacts_Delete "$filename")
 
+  #Then
   Assert_Not_File_Exists "$BUILD_ARTIFACTSTAGINGDIRECTORY/$filename"
 
   if [ $(Environment_Platform) == "local" ]; then
@@ -561,6 +575,7 @@ UnitTest_Artifacts_Delete_Github() {
   #When
   actual=$(Artifacts_Delete "$filename")
 
+  #Then
   Assert_Not_File_Exists "$(Artifacts_Directory)/$filename"
 
   if [ $(Environment_Platform) == "local" ]; then

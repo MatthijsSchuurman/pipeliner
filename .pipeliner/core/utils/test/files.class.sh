@@ -184,6 +184,23 @@ UnitTest_Files_Get_Class_Files() {
   Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/utils/test.class.sh"
 }
 
+UnitTest_Files_Pre_Import_Classes() {
+  #Given
+
+  #When
+  Files_Pre_Import_Classes
+
+  #Then
+  Assert_Equal "$(type -t Color_Red)" "function"
+  Assert_Equal "$(type -t Files_Get_Class_Files)" "function"
+  Assert_Equal "$(type -t Vagrant_Up)" "function"
+  Assert_Equal "$(type -t zip)" "file"
+
+  Assert_Not_Contains "$(declare -f Color_Red)" source colors.class.sh
+  Assert_Not_Contains "$(declare -f Files_Get_Class_Files)" source files.class.sh
+  Assert_Contains "$(declare -f Vagrant_Up)" Vagrant_Up source vagrant.class.sh #not yet initialised
+}
+
 UnitTest_Files_Import_Classes() {
   #Given
 
@@ -191,18 +208,14 @@ UnitTest_Files_Import_Classes() {
   Files_Import_Classes
 
   #Then
-  Assert_Not_Equal "$(type -t Color_Red)" ""
-  Assert_Not_Equal "$(type -t Color_Green)" ""
-  Assert_Not_Equal "$(type -t Color_Yellow)" ""
-  Assert_Not_Equal "$(type -t Assert_Equal)" ""
-  Assert_Not_Equal "$(type -t Assert_Starts_With)" ""
-  Assert_Not_Equal "$(type -t Assert_Ends_With)" ""
-  Assert_Not_Equal "$(type -t Assert_Contains)" ""
-  Assert_Not_Equal "$(type -t Assert_Not_Equal)" ""
-  Assert_Not_Equal "$(type -t Assert_Empty)" ""
-  Assert_Not_Equal "$(type -t Test_Run)" ""
-  Assert_Not_Equal "$(type -t Files_Get_Class_Files)" ""
-  Assert_Not_Equal "$(type -t Files_Import_Classes)" ""
+  Assert_Equal "$(type -t Color_Red)" "function"
+  Assert_Equal "$(type -t Files_Get_Class_Files)" "function"
+  Assert_Equal "$(type -t Vagrant_Up)" "function"
+  Assert_Equal "$(type -t zip)" "file"
+
+  Assert_Not_Contains "$(declare -f Color_Red)" source colors.class.sh
+  Assert_Not_Contains "$(declare -f Files_Get_Class_Files)" source files.class.sh
+  Assert_Not_Contains "$(declare -f Vagrant_Up)" source vagrant.class.sh
 }
 
 UnitTest_Files_Get_Stage_Files() {
