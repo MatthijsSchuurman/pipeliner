@@ -54,10 +54,13 @@ Files_Pre_Import_Classes() {
       continue
     fi
 
-    functions=$(grep "^ *[A-Za-z0-9_]\+( *) *{*" $file | sed -E "s/\( *\) *\{.*//")
-
+    functions=$(grep "^ *[A-Za-z0-9_]\+ *( *) *{*" $file | sed -E "s/ *\( *\) *\{.*//")
     for function in $functions; do
-      eval "function $function() { source $file; $function \"\$@\"; }"
+      if type -t $function > /dev/null 2>&1; then #function/command already defined
+        continue
+      fi
+
+      eval "$function() { source $file; $function \"\$@\"; }"
     done
   done
 }

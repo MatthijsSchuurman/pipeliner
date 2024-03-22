@@ -191,10 +191,14 @@ UnitTest_Files_Pre_Import_Classes() {
   Files_Pre_Import_Classes
 
   #Then
-  Assert_Contains "$(declare -f Color_Red)" Color_Red source colors.class.sh
-  Assert_Contains "$(declare -f Docker_Run)" Docker_Run source docker.class.sh
-  Assert_Contains "$(declare -f Test_Run)" Test_Run source test.class.sh
+  Assert_Equal "$(type -t Color_Red)" "function"
+  Assert_Equal "$(type -t Files_Get_Class_Files)" "function"
+  Assert_Equal "$(type -t Vagrant_Up)" "function"
+  Assert_Equal "$(type -t zip)" "file"
+
+  Assert_Not_Contains "$(declare -f Color_Red)" source colors.class.sh
   Assert_Not_Contains "$(declare -f Files_Get_Class_Files)" source files.class.sh
+  Assert_Contains "$(declare -f Vagrant_Up)" Vagrant_Up source vagrant.class.sh #not yet initialised
 }
 
 UnitTest_Files_Import_Classes() {
@@ -204,10 +208,14 @@ UnitTest_Files_Import_Classes() {
   Files_Import_Classes
 
   #Then
+  Assert_Equal "$(type -t Color_Red)" "function"
+  Assert_Equal "$(type -t Files_Get_Class_Files)" "function"
+  Assert_Equal "$(type -t Vagrant_Up)" "function"
+  Assert_Equal "$(type -t zip)" "file"
+
   Assert_Not_Contains "$(declare -f Color_Red)" source colors.class.sh
-  Assert_Not_Contains "$(declare -f Docker_Run)" source docker.class.sh
-  Assert_Not_Contains "$(declare -f Test_Run)" test.class.sh
   Assert_Not_Contains "$(declare -f Files_Get_Class_Files)" source files.class.sh
+  Assert_Not_Contains "$(declare -f Vagrant_Up)" source vagrant.class.sh
 }
 
 UnitTest_Files_Get_Stage_Files() {
