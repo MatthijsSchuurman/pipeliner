@@ -68,19 +68,6 @@ Files_Import_Classes() {
   done
 }
 
-Files_Get_Stage_Files() {
-  files=$(find $(Files_Path_Root) -name "*.stage.sh" | sort)
-
-  echo $files
-}
-
-Files_Import_Stages() {
-  files=$(Files_Get_Stage_Files)
-  for file in $files; do
-    source $file
-  done
-}
-
 Files_Get_Test_Files() {
   files=$(find $(Files_Path_Root) -path "*/test/*.sh" | sort)
 

@@ -21,7 +21,7 @@ Test_SH_Watch() {
     Color_Yellow $file ; echo
     echo
 
-    if [[ "$file" != *"/test/"*".sh" ]]; then #class/stage/normal scripts
+    if [[ "$file" != *"/test/"*".sh" ]]; then #class/normal scripts
       file=$(dirname $file)/test/$(basename $file) #assume related test file is in test directory
     fi
 

@@ -218,29 +218,6 @@ UnitTest_Files_Import_Classes() {
   Assert_Not_Contains "$(declare -f Vagrant_Up)" source vagrant.class.sh
 }
 
-UnitTest_Files_Get_Stage_Files() {
-  #Given
-
-  #When
-  local files=$(Files_Get_Stage_Files)
-
-  #Then
-  Assert_Contains "$files" "$(Files_Path_Root)/examples/node/.pipelines/build.stage.sh"
-  Assert_Contains "$files" "$(Files_Path_Root)/examples/node/.pipelines/test.stage.sh"
-}
-
-
-UnitTest_Files_Import_Stages() {
-  #Given
-
-  #When
-  Files_Import_Stages
-
-  #Then
-  Assert_Not_Equal "$(type -t Node_Pipelines_Stage_Build)" ""
-  Assert_Not_Equal "$(type -t Node_Pipelines_Stage_Test)" ""
-}
-
 UnitTest_Files_Get_Test_Files() {
   #Given
 

@@ -7,6 +7,3 @@ Files_Import_Classes
 
 # Setup prerequisites
 Packages_Prerequisites docker
-
-# Import all stages
-Files_Import_Stages
