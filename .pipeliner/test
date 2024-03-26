@@ -15,15 +15,15 @@ Test_SH_Watch() {
   while true; do
     file=$(Files_Watch_Directory_Written "$(Files_Path_Root)")
     if [ $? != 0 ]; then break; fi #exit on error
-    if [[ "$file" != *".sh" ]]; then continue; fi #skip non-sh files
+    if [[ "$file" != *".sh" && "$file" != "$(Files_Path_Pipeliner)/"* ]]; then continue; fi #skip non-sh files
 
-    echo -n "Re-running tests for "
+    if [[ "$file" != *".test"* ]]; then #module/normal scripts
+      file=${file%.sh}.test.sh
+    fi
+
+    echo -n "Re-running "
     Color_Yellow $file ; echo
     echo
-
-    if [[ "$file" != *"/test/"*".sh" ]]; then #class/normal scripts
-      file=$(dirname $file)/test/$(basename $file) #assume related test file is in test directory
-    fi
 
     Test_Run "" $file ""
     echo
