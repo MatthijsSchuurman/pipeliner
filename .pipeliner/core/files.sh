@@ -41,14 +41,14 @@ Files_Path_Data() {
   echo "$path"
 }
 
-Files_Get_Class_Files() {
-  files=$(find $(Files_Path_Root) -name "*.class.sh" | sort)
+Files_Get_Module_Files() {
+  files=$(find $(Files_Path_Root) -name "*.sh" | sort)
 
   echo $files
 }
 
-Files_Pre_Import_Classes() {
-  files=$(Files_Get_Class_Files)
+Files_Pre_Import_Modules() {
+  files=$(Files_Get_Module_Files)
   for file in $files; do
     functions=$(grep "^ *[A-Za-z0-9_]\+ *( *) *{*" $file | sed -E "s/ *\( *\) *\{.*//")
     for function in $functions; do
@@ -61,8 +61,8 @@ Files_Pre_Import_Classes() {
   done
 }
 
-Files_Import_Classes() {
-  files=$(Files_Get_Class_Files)
+Files_Import_Modules() {
+  files=$(Files_Get_Module_Files)
   for file in $files; do
     source $file
   done

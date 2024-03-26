@@ -171,11 +171,11 @@ UnitTest_Files_Path_Data() {
 
 # Files get / import
 
-UnitTest_Files_Get_Class_Files() {
+UnitTest_Files_Get_Module_Files() {
   #Given
 
   #When
-  local files=$(Files_Get_Class_Files)
+  local files=$(Files_Get_Module_Files)
 
   #Then
   Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/assert.class.sh"
@@ -184,37 +184,37 @@ UnitTest_Files_Get_Class_Files() {
   Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test.class.sh"
 }
 
-UnitTest_Files_Pre_Import_Classes() {
+UnitTest_Files_Pre_Import_Modules() {
   #Given
 
   #When
-  Files_Pre_Import_Classes
+  Files_Pre_Import_Modules
 
   #Then
   Assert_Equal "$(type -t Color_Red)" "function"
-  Assert_Equal "$(type -t Files_Get_Class_Files)" "function"
+  Assert_Equal "$(type -t Files_Get_Module_Files)" "function"
   Assert_Equal "$(type -t Vagrant_Up)" "function"
   Assert_Equal "$(type -t zip)" "file"
 
   Assert_Not_Contains "$(declare -f Color_Red)" source colors.class.sh
-  Assert_Not_Contains "$(declare -f Files_Get_Class_Files)" source files.class.sh
+  Assert_Not_Contains "$(declare -f Files_Get_Module_Files)" source files.class.sh
   Assert_Contains "$(declare -f Vagrant_Up)" Vagrant_Up source vagrant.class.sh #not yet initialised
 }
 
-UnitTest_Files_Import_Classes() {
+UnitTest_Files_Import_Modules() {
   #Given
 
   #When
-  Files_Import_Classes
+  Files_Import_Modules
 
   #Then
   Assert_Equal "$(type -t Color_Red)" "function"
-  Assert_Equal "$(type -t Files_Get_Class_Files)" "function"
+  Assert_Equal "$(type -t Files_Get_Module_Files)" "function"
   Assert_Equal "$(type -t Vagrant_Up)" "function"
   Assert_Equal "$(type -t zip)" "file"
 
   Assert_Not_Contains "$(declare -f Color_Red)" source colors.class.sh
-  Assert_Not_Contains "$(declare -f Files_Get_Class_Files)" source files.class.sh
+  Assert_Not_Contains "$(declare -f Files_Get_Module_Files)" source files.class.sh
   Assert_Not_Contains "$(declare -f Vagrant_Up)" source vagrant.class.sh
 }
 
@@ -237,8 +237,8 @@ UnitTest_Files_Import_Tests() {
   Files_Import_Tests
 
   #Then
-  Assert_Not_Equal "$(type -t UnitTest_Files_Get_Class_Files)" ""
-  Assert_Not_Equal "$(type -t UnitTest_Files_Import_Classes)" ""
+  Assert_Not_Equal "$(type -t UnitTest_Files_Get_Module_Files)" ""
+  Assert_Not_Equal "$(type -t UnitTest_Files_Import_Modules)" ""
   Assert_Not_Equal "$(type -t UnitTest_Files_Get_Test_Files)" ""
   Assert_Not_Equal "$(type -t UnitTest_Files_Import_Tests)" ""
 }
@@ -257,8 +257,8 @@ UnitTest_Files_Get_Unit_Tests() {
   local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/files.class.sh)
 
   #Then
-  Assert_Contains "$unittests" "UnitTest_Files_Get_Class_Files"
-  Assert_Contains "$unittests" "UnitTest_Files_Import_Classes"
+  Assert_Contains "$unittests" "UnitTest_Files_Get_Module_Files"
+  Assert_Contains "$unittests" "UnitTest_Files_Import_Modules"
   Assert_Contains "$unittests" "UnitTest_Files_Get_Test_Files"
   Assert_Contains "$unittests" "UnitTest_Files_Import_Tests"
 
