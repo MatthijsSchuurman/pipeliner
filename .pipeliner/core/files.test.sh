@@ -198,7 +198,7 @@ UnitTest_Files_Pre_Import_Modules() {
 
   Assert_Not_Contains "$(declare -f Color_Red)" source colors.sh
   Assert_Not_Contains "$(declare -f Files_Get_Module_Files)" source files.sh
-  Assert_Contains "$(declare -f Vagrant_Up)" Vagrant_Up source vagrant.sh #not yet initialised
+  Assert_Contains "$(declare -f VCS_Affected)" VCS_Affected source vcs.sh #not yet initialised
 }
 
 UnitTest_Files_Import_Modules() {
