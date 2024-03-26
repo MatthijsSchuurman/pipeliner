@@ -6,7 +6,7 @@ UnitTest_Install_Test_mode(){
   local exitCode=
 
   #When
-  actual=$(source $(Files_Path_Pipeliner)/install.sh)
+  actual=$(source $(Files_Path_Pipeliner)/install)
   exitCode=$?
 
   #Then
@@ -19,7 +19,7 @@ UnitTest_Install_Directory(){
   local actual=
 
   #When
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   actual=$(Install_Directory)
 
   #Then
@@ -30,7 +30,7 @@ UnitTest_Install_Directory(){
   cd /tmp
 
   #When
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   actual=$(Install_Directory)
 
   #Then
@@ -42,7 +42,7 @@ UnitTest_Install_Directory_Temp(){
   local actual=
 
   #When
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   actual=$(Install_Directory_Temp)
 
   #Then
@@ -53,7 +53,7 @@ UnitTest_Install_Directory_Temp(){
   cd /tmp
 
   #When
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   actual=$(Install_Directory_Temp)
 
   #Then
@@ -62,7 +62,7 @@ UnitTest_Install_Directory_Temp(){
 
 UnitTest_Install_Directory_Temp_Flush(){
   #Given
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   local tmp=$(Install_Directory_Temp)
 
   #When
@@ -89,7 +89,7 @@ UnitTest_Install_Directory_Temp_Flush(){
 
 UnitTest_Install_Directory_Temp_Clear(){
   #Given
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   local tmp=$(Install_Directory_Temp)
 
   #When
@@ -115,7 +115,7 @@ UnitTest_Install_Is_Upgrade() {
   local exitCode=
 
   #When
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   Install_Is_Upgrade
   exitCode=$?
 
@@ -127,7 +127,7 @@ UnitTest_Install_Is_Upgrade() {
   cd /tmp
 
   #When
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   Install_Is_Upgrade
   exitCode=$?
 
@@ -142,7 +142,7 @@ UnitTest_Install_Download() {
 
   cd /tmp
   rm -Rf pipeliner*.zip
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
 
   #When
   actual=$(Install_Download "$PACKAGEURL")
@@ -168,7 +168,7 @@ UnitTest_Install_Extract() {
   mkdir -p "$directory"
   cd "$directory"
 
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   Install_Directory_Temp_Flush #ensure tmp folder is created
   package=$(Install_Download "$PACKAGEURL")
 
@@ -179,7 +179,11 @@ UnitTest_Install_Extract() {
   #Then
   Assert_Equal $exitCode 0
   Assert_Directory_Exists "$(Install_Directory_Temp)/.pipeliner"
-  Assert_File_Exists "$(Install_Directory_Temp)/.pipeliner/init"
+  if [ -f "$(Install_Directory_Temp)/.pipeliner/init" ]; then #new method
+    Assert_File_Exists "$(Install_Directory_Temp)/.pipeliner/init"
+  else #old method
+    Assert_File_Exists "$(Install_Directory_Temp)/.pipeliner/init.sh"
+  fi
   Assert_Directory_Exists "$(Install_Directory_Temp)/.vscode"
   Assert_File_Exists "$(Install_Directory_Temp)/.vscode/extensions.json"
   Assert_Directory_Exists "$(Install_Directory_Temp)/.azuredevops"
@@ -205,7 +209,7 @@ UnitTest_Install_Install() {
   mkdir -p "$directory"
   cd "$directory"
 
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   mkdir -p "$(Install_Directory_Temp)/.pipeliner" "$(Install_Directory_Temp)/.azuredevops" "$(Install_Directory_Temp)/.github/workflows" "$(Install_Directory_Temp)/.vscode" "$(Install_Directory_Temp)/examples/node/app1"
   touch "$(Install_Directory_Temp)/.pipeliner/init" "$(Install_Directory_Temp)/.azuredevops/ci.yml" "$(Install_Directory_Temp)/.github/workflows/ci.yml" "$(Install_Directory_Temp)/Vagrantfile" "$(Install_Directory_Temp)/.vscode/extensions.json" "$(Install_Directory_Temp)/examples/node/app1/Dockerfile"
 
@@ -244,7 +248,7 @@ UnitTest_Install_Install_vscode() {
   touch "$directory/.vscode/settings.json"
   cd "$directory"
 
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
   mkdir -p "$(Install_Directory_Temp)/.pipeliner" "$(Install_Directory_Temp)/.azuredevops" "$(Install_Directory_Temp)/.github/workflows" "$(Install_Directory_Temp)/.vscode" "$(Install_Directory_Temp)/examples/node/app1"
   touch "$(Install_Directory_Temp)/.pipeliner/init" "$(Install_Directory_Temp)/.azuredevops/ci.yml" "$(Install_Directory_Temp)/.github/workflows/ci.yml" "$(Install_Directory_Temp)/Vagrantfile" "$(Install_Directory_Temp)/.vscode/extensions.json" "$(Install_Directory_Temp)/examples/node/app1/Dockerfile"
   echo test > "$(Install_Directory_Temp)/.vscode/settings.json" #shouldn't overwrite existing settings.json
@@ -282,7 +286,7 @@ UnitTest_Install_Validate() {
   local actual=
   local exitCode=
 
-  source $(Files_Path_Pipeliner)/install.sh
+  source $(Files_Path_Pipeliner)/install
 
   #When
   actual=$(Install_Validate)
@@ -310,14 +314,18 @@ E2ETest_Install() {
   cd "$directory"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/install.sh)
+  actual=$($(Files_Path_Pipeliner)/install)
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 0
   Assert_Contains "$actual" Downloading Installing Validating
   Assert_Directory_Exists .pipeliner
-  Assert_File_Exists .pipeliner/init
+  if [ -f .pipeliner/init ]; then #new method
+    Assert_File_Exists .pipeliner/init
+  else #old method
+    Assert_File_Exists .pipeliner/init.sh
+  fi
   Assert_Directory_Exists .azuredevops
   Assert_File_Exists .azuredevops/ci.yml
   Assert_Directory_Exists .github
@@ -330,14 +338,18 @@ E2ETest_Install() {
 
 
   #When
-  actual=$(cat $(Files_Path_Pipeliner)/install.sh | bash)
+  actual=$(cat $(Files_Path_Pipeliner)/install | bash)
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 0
   Assert_Contains "$actual" Downloading Upgrading Validating
   Assert_Directory_Exists .pipeliner
-  Assert_File_Exists .pipeliner/init
+  if [ -f .pipeliner/init ]; then #new method
+    Assert_File_Exists .pipeliner/init
+  else #old method
+    Assert_File_Exists .pipeliner/init.sh
+  fi
   Assert_Directory_Exists .azuredevops
   Assert_File_Exists .azuredevops/ci.yml
   Assert_Directory_Exists .github

@@ -39,7 +39,7 @@ E2ETest_Pipeliner_Pipeline_CD() {
   Assert_Equal $? 0
   wget --quiet --content-disposition http://127.0.0.1:8088/pipeliner.zip #will redirect to pipeliner-$version.zip
   Assert_Equal $? 0
-  wget --quiet --content-disposition http://127.0.0.1:8088/install.sh
+  wget --quiet --content-disposition http://127.0.0.1:8088/install
   Assert_Equal $? 0
   docker stop pipeliner_e2etest > /dev/null 2>&1
   docker rm --force pipeliner_e2etest > /dev/null 2>&1
@@ -49,5 +49,5 @@ E2ETest_Pipeliner_Pipeline_CD() {
 
   #Clean
   rm "$downloadedPackage"
-  rm "install.sh"
+  rm "install"
 }

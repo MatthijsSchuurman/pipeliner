@@ -109,7 +109,12 @@ Install_Install() {
 }
 
 Install_Validate() {
-  .pipeliner/test --type unit --include test/installed.sh
+  if [ -f .pipeliner/test ]; then
+    .pipeliner/test --type unit --include installed
+  else
+    .pipeliner/test.sh --type unit --include installed
+  fi
+
   if [ $? != 0 ]; then
     exit 1
   fi

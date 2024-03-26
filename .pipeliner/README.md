@@ -30,7 +30,7 @@ This project is licensed under the terms of the [MIT license](LICENSE.md).
 To install Pipeliner in your current project directory, run:
 
 ```bash
-wget -q -O - "https://github.com/MatthijsSchuurman/pipeliner/releases/latest/download/install.sh" | bash
+wget -q -O - "https://github.com/MatthijsSchuurman/pipeliner/releases/latest/download/install" | bash
 ```
 This will create 2 directories: `.pipeliner/` and `examples/` and now you're ready to go. If you know what you're doing already then delete the examples.
 Next step is to setup your first script
