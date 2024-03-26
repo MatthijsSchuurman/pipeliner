@@ -225,9 +225,9 @@ UnitTest_Files_Get_Test_Files() {
   local files=$(Files_Get_Test_Files)
 
   #Then
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test/assert.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test/log.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/test/init.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/assert.test.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/log.test.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/init.test.sh"
 }
 
 UnitTest_Files_Import_Tests() {
@@ -248,13 +248,13 @@ UnitTest_Files_Get_Unit_Tests() {
   #Given
 
   #When
-  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/test.sh)
+  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test.test.sh)
 
   #Then
   Assert_Contains "$unittests" UnitTest_Example
 
   #When
-  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/files.sh)
+  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/files.test.sh)
 
   #Then
   Assert_Contains "$unittests" "UnitTest_Files_Get_Module_Files"
@@ -273,7 +273,7 @@ UnitTest_Files_Get_Integration_Tests() {
   #Given
 
   #When
-  local integrationtests=$(Files_Get_Integration_Tests $(Files_Path_Pipeliner)/core/test/test.sh)
+  local integrationtests=$(Files_Get_Integration_Tests $(Files_Path_Pipeliner)/core/test.test.sh)
 
   #Then
   Assert_Contains "$integrationtests" IntegrationTest_Example
@@ -289,7 +289,7 @@ UnitTest_Files_Get_E2E_Tests() {
   #Given
 
   #When
-  local e2etests=$(Files_Get_E2E_Tests $(Files_Path_Pipeliner)/core/test/test.sh)
+  local e2etests=$(Files_Get_E2E_Tests $(Files_Path_Pipeliner)/core/test.test.sh)
 
   #Then
   Assert_Contains "$e2etests" E2ETest_Example

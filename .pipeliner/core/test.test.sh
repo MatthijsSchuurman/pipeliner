@@ -94,7 +94,7 @@ UnitTest_Test_Execute_Fail() {
 UnitTest_Test_Run() {
   #Given
   local type=unit,integration,e2e
-  local include=core/test/misc.sh
+  local include=core/misc.test.sh
   local exclude=
 
   local actual=
@@ -117,7 +117,7 @@ UnitTest_Test_Run() {
 UnitTest_Test_Run_Type() {
   #Given
   local type=integration,e2e #don't include unit tests to avoid recursion
-  local include=core/test/test.sh
+  local include=core/test.test.sh
   local exclude=
 
   local actual=
@@ -137,7 +137,7 @@ UnitTest_Test_Run_Type() {
 
   #Given
   local type=e2e #don't include unit tests to avoid recursion
-  local include=core/test/test.sh
+  local include=core/test.test.sh
   local exclude=
 
   local actual=
@@ -158,7 +158,7 @@ UnitTest_Test_Run_Type() {
 
   #Given
   local type=unknown #don't include unit tests to avoid recursion
-  local include=core/test/test.sh
+  local include=core/test.test.sh
   local exclude=
 
   local actual=
@@ -176,8 +176,8 @@ UnitTest_Test_Run_Type() {
 UnitTest_Test_Run_Exclude() {
   #Given
   local type=unit,integration,e2e
-  local include=core/test/misc.sh
-  local exclude=core/test/misc.sh
+  local include=core/misc.test.sh
+  local exclude=core/misc.test.sh
 
   local actual=
   local exitCode=
@@ -216,7 +216,7 @@ UnitTest_Test_Run_Exclude() {
 UnitTest_Test_Run_Fail() {
   #Given
   local type=unit,integration,e2e
-  local include=core/test/misc.sh
+  local include=core/misc.test.sh
   local exclude=
 
   local actual=

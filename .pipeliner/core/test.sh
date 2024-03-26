@@ -197,7 +197,7 @@ Test__Title() {
 
   local title="${file//"$(Files_Path_Root)"\//}"
   title=${title//.pipeliner/pipeliner}
-  title=$(echo $title | sed -E "s/\.(class|local|test)\.sh//" | sed -E "s/(test)?\// /g")
+  title=$(echo $title | sed -E "s/\.(local|test)\.sh//" | sed -E "s/\// /g")
   title=$(echo $title | tr '[:lower:]' '[:upper:]' <<< ${title:0:1})${title:1}
 
   echo $title

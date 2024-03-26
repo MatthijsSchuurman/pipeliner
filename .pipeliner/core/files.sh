@@ -69,7 +69,7 @@ Files_Import_Modules() {
 }
 
 Files_Get_Test_Files() {
-  files=$(find $(Files_Path_Root) -path "*/test/*.sh" | sort)
+  files=$(find $(Files_Path_Root) -path "*/*.test.sh" | sort)
 
   echo $files
 }

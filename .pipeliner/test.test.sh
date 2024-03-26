@@ -6,7 +6,7 @@ E2ETest_Test_Type() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type unit --include core/test/test.sh)
+  actual=$($(Files_Path_Pipeliner)/test.sh --type unit --include core/test.test.sh)
   exitCode=$?
 
   #Then
@@ -17,7 +17,7 @@ E2ETest_Test_Type() {
   Assert_Match "$actual" "Example: .+SKIP"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type integration --include core/test/test.sh)
+  actual=$($(Files_Path_Pipeliner)/test.sh --type integration --include core/test.test.sh)
   exitCode=$?
 
   #Then
@@ -27,7 +27,7 @@ E2ETest_Test_Type() {
   Assert_Match "$actual" "Example: .+SKIP"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type e2e --include core/test/test.sh)
+  actual=$($(Files_Path_Pipeliner)/test.sh --type e2e --include core/test.test.sh)
   exitCode=$?
 
   #Then
