@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/files.class.sh
+source $(Files_Path_Pipeliner)/core/files.class.sh
 source $(Files_Path_Pipeliner)/core/log.class.sh
 
 VCS_Affected() {

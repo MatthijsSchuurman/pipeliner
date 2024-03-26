@@ -20,7 +20,7 @@ Files_Path_Original() {
 }
 
 Files_Path_Root() {
-  realpath --relative-to "$(pwd)" "$(Files_Path_Original)/$(dirname ${BASH_SOURCE[0]})/../../.."
+  realpath --relative-to "$(pwd)" "$(Files_Path_Original)/$(dirname ${BASH_SOURCE[0]})/../.."
 }
 
 Files_Path_Work() {
@@ -50,10 +50,6 @@ Files_Get_Class_Files() {
 Files_Pre_Import_Classes() {
   files=$(Files_Get_Class_Files)
   for file in $files; do
-    if [ $(basename $file) == "files.class.sh" ]; then
-      continue
-    fi
-
     functions=$(grep "^ *[A-Za-z0-9_]\+ *( *) *{*" $file | sed -E "s/ *\( *\) *\{.*//")
     for function in $functions; do
       if type -t $function > /dev/null 2>&1; then #function/command already defined

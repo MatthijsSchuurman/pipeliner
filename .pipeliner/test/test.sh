@@ -6,7 +6,7 @@ E2ETest_Test_Type() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type unit --include core/utils/test/test.class.sh)
+  actual=$($(Files_Path_Pipeliner)/test.sh --type unit --include core/test/test.class.sh)
   exitCode=$?
 
   #Then
@@ -17,7 +17,7 @@ E2ETest_Test_Type() {
   Assert_Match "$actual" "Example: .+SKIP"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type integration --include core/utils/test/test.class.sh)
+  actual=$($(Files_Path_Pipeliner)/test.sh --type integration --include core/test/test.class.sh)
   exitCode=$?
 
   #Then
@@ -27,7 +27,7 @@ E2ETest_Test_Type() {
   Assert_Match "$actual" "Example: .+SKIP"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type e2e --include core/utils/test/test.class.sh)
+  actual=$($(Files_Path_Pipeliner)/test.sh --type e2e --include core/test/test.class.sh)
   exitCode=$?
 
   #Then
@@ -77,7 +77,7 @@ E2ETest_Test_Exclude() {
 #   #When
 #   E2ETest_Test_Watch_thread(){
 #     sleep 1
-#     touch $(Files_Path_Pipeliner)/core/utils/colors.class.sh
+#     touch $(Files_Path_Pipeliner)/core/colors.class.sh
 #   }
 
 #   E2ETest_Test_Watch_thread &
@@ -87,7 +87,7 @@ E2ETest_Test_Exclude() {
 #   #Then
 #   Assert_Equal $exitCode 0
 #   Assert_Contains "$actual" "Watching for changes in $(Files_Path_Root)"
-#   Assert_Contains "$actual" "Re-running tests for $(Files_Path_Pipeliner)/core/utils/colors.class.sh"
+#   Assert_Contains "$actual" "Re-running tests for $(Files_Path_Pipeliner)/core/colors.class.sh"
 #   Assert_Contains "$actual" "Pipeliner core utils colors"
 #   Assert_Match "$actual" "Color Red: .+OK"
 # }

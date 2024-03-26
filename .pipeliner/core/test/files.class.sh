@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/files.class.sh
+source $(Files_Path_Pipeliner)/core/files.class.sh
 
 UnitTest_Files_Path_Original() {
   local currentDirectory=$(pwd)
@@ -14,7 +14,7 @@ UnitTest_Files_Path_Original() {
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../.." #go to root directory
 
   #When
   local path=$(Files_Path_Original)
@@ -29,7 +29,7 @@ UnitTest_Files_Path_Original() {
 UnitTest_Files_Path_Root() {
   local currentDirectory=$(pwd)
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
 
   #When
   local path=$(Files_Path_Root)
@@ -47,11 +47,11 @@ UnitTest_Files_Path_Root() {
   cd $currentDirectory #go back to current directory
 
   #Then
-  Assert_Starts_With "$path" "../../.."
+  Assert_Starts_With "$path" "../.."
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../../examples/node" #examples/node
+  cd "$(dirname ${BASH_SOURCE[0]})/../../../examples/node" #examples/node
 
   #When
   local path=$(Files_Path_Root)
@@ -64,7 +64,7 @@ UnitTest_Files_Path_Root() {
 UnitTest_Files_Path_Work() {
   local currentDirectory=$(pwd)
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
 
   #When
   local path=$(Files_Path_Work)
@@ -75,18 +75,18 @@ UnitTest_Files_Path_Work() {
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})" #.pipeliner/core/utils
+  cd "$(dirname ${BASH_SOURCE[0]})" #.pipeliner/core
 
   #When
   local path=$(Files_Path_Work)
   cd $currentDirectory #go back to current directory
 
   #Then
-  Assert_Starts_With "$path" ".pipeliner/core/utils"
+  Assert_Starts_With "$path" ".pipeliner/core"
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../../examples/node" #examples/node
+  cd "$(dirname ${BASH_SOURCE[0]})/../../../examples/node" #examples/node
 
   #When
   local path=$(Files_Path_Work)
@@ -99,7 +99,7 @@ UnitTest_Files_Path_Work() {
 UnitTest_Files_Path_Pipeliner() {
   local currentDirectory=$(pwd)
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
 
   #When
   local path=$(Files_Path_Pipeliner)
@@ -117,11 +117,11 @@ UnitTest_Files_Path_Pipeliner() {
   cd $currentDirectory #go back to current directory
 
   #Then
-  Assert_Starts_With "$path" "../../../../.pipeliner"
+  Assert_Starts_With "$path" "../../../.pipeliner"
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../../examples/node" #examples/node
+  cd "$(dirname ${BASH_SOURCE[0]})/../../../examples/node" #examples/node
 
   #When
   local path=$(Files_Path_Pipeliner)
@@ -134,7 +134,7 @@ UnitTest_Files_Path_Pipeliner() {
 UnitTest_Files_Path_Data() {
   local currentDirectory=$(pwd)
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
 
   #When
   local path=$(Files_Path_Data)
@@ -142,7 +142,7 @@ UnitTest_Files_Path_Data() {
 
   #Then
   Assert_Starts_With "$path" "./.pipeliner/data"
-  Assert_Directory_Exists "$(dirname ${BASH_SOURCE[0]})/../../../../$path"
+  Assert_Directory_Exists "$(dirname ${BASH_SOURCE[0]})/../../../$path"
 
 
   #Given
@@ -153,11 +153,11 @@ UnitTest_Files_Path_Data() {
   cd $currentDirectory #go back to current directory
 
   #Then
-  Assert_Starts_With "$path" "../../../../.pipeliner/data"
+  Assert_Starts_With "$path" "../../../.pipeliner/data"
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../../examples/node" #examples/node
+  cd "$(dirname ${BASH_SOURCE[0]})/../../../examples/node" #examples/node
 
   #When
   local path=$(Files_Path_Data)
@@ -165,7 +165,7 @@ UnitTest_Files_Path_Data() {
 
   #Then
   Assert_Starts_With "$path" "../../.pipeliner/data"
-  Assert_Directory_Exists "$(dirname ${BASH_SOURCE[0]})/../../../../examples/node/$path"
+  Assert_Directory_Exists "$(dirname ${BASH_SOURCE[0]})/../../../examples/node/$path"
 }
 
 
@@ -178,10 +178,10 @@ UnitTest_Files_Get_Class_Files() {
   local files=$(Files_Get_Class_Files)
 
   #Then
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/utils/assert.class.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/utils/colors.class.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/utils/files.class.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/utils/test.class.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/assert.class.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/colors.class.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/files.class.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test.class.sh"
 }
 
 UnitTest_Files_Pre_Import_Classes() {
@@ -248,7 +248,7 @@ UnitTest_Files_Get_Test_Files() {
   local files=$(Files_Get_Test_Files)
 
   #Then
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/utils/test/assert.class.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test/assert.class.sh"
   Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test/log.class.sh"
   Assert_Contains "$files" "$(Files_Path_Pipeliner)/test/init.sh"
 }
@@ -271,13 +271,13 @@ UnitTest_Files_Get_Unit_Tests() {
   #Given
 
   #When
-  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/utils/test/test.class.sh)
+  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/test.class.sh)
 
   #Then
   Assert_Contains "$unittests" UnitTest_Example
 
   #When
-  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/utils/test/files.class.sh)
+  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/files.class.sh)
 
   #Then
   Assert_Contains "$unittests" "UnitTest_Files_Get_Class_Files"
@@ -296,7 +296,7 @@ UnitTest_Files_Get_Integration_Tests() {
   #Given
 
   #When
-  local integrationtests=$(Files_Get_Integration_Tests $(Files_Path_Pipeliner)/core/utils/test/test.class.sh)
+  local integrationtests=$(Files_Get_Integration_Tests $(Files_Path_Pipeliner)/core/test/test.class.sh)
 
   #Then
   Assert_Contains "$integrationtests" IntegrationTest_Example
@@ -312,7 +312,7 @@ UnitTest_Files_Get_E2E_Tests() {
   #Given
 
   #When
-  local e2etests=$(Files_Get_E2E_Tests $(Files_Path_Pipeliner)/core/utils/test/test.class.sh)
+  local e2etests=$(Files_Get_E2E_Tests $(Files_Path_Pipeliner)/core/test/test.class.sh)
 
   #Then
   Assert_Contains "$e2etests" E2ETest_Example

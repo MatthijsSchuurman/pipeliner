@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/vagrant.class.sh
-source $(Files_Path_Pipeliner)/core/utils/packages.class.sh
+source $(Files_Path_Pipeliner)/core/vagrant.class.sh
+source $(Files_Path_Pipeliner)/core/packages.class.sh
 
 UnitTest_Vagrant_Exists() {
   #Given

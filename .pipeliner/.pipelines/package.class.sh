@@ -6,7 +6,7 @@ source $(Files_Path_Pipeliner)/core/version.class.sh
 source $(Files_Path_Pipeliner)/core/compression.class.sh
 source $(Files_Path_Pipeliner)/core/variables.class.sh
 source $(Files_Path_Pipeliner)/core/artifacts.class.sh
-source $(Files_Path_Pipeliner)/core/utils/vcs.class.sh
+source $(Files_Path_Pipeliner)/core/vcs.class.sh
 
 Pipeliner_Package_Filename() {
   local version=$(Version_Pipeliner_Full)

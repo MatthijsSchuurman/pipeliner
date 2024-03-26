@@ -1,10 +1,10 @@
 #!/bin/bash
 
-source $(dirname "${BASH_SOURCE[0]}")/core/utils/files.class.sh
-source $(Files_Path_Pipeliner)/core/utils/test.class.sh
-source $(Files_Path_Pipeliner)/core/utils/assert.class.sh
-source $(Files_Path_Pipeliner)/core/utils/colors.class.sh
-source $(Files_Path_Pipeliner)/core/utils/cli.class.sh
+source $(dirname "${BASH_SOURCE[0]}")/core/files.class.sh
+source $(Files_Path_Pipeliner)/core/test.class.sh
+source $(Files_Path_Pipeliner)/core/assert.class.sh
+source $(Files_Path_Pipeliner)/core/colors.class.sh
+source $(Files_Path_Pipeliner)/core/cli.class.sh
 source $(Files_Path_Pipeliner)/core/version.class.sh
 
 Test_SH_Watch() {

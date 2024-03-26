@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source $(Files_Path_Pipeliner)/core/environment.class.sh
-source $(Files_Path_Pipeliner)/core/utils/misc.sh
+source $(Files_Path_Pipeliner)/core/misc.sh
 source $(Files_Path_Pipeliner)/core/log.class.sh
 
 Version_Pipeliner() {

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/packages.class.sh
+source $(Files_Path_Pipeliner)/core/packages.class.sh
 
 UnitTest_Packages_Installed() {
   #Given

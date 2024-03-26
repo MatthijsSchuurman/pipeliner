@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/misc.sh
+source $(Files_Path_Pipeliner)/core/misc.sh
 
 UnitTest_explode() {
   #Given

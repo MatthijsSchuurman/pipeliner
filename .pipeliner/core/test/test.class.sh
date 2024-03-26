@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/test.class.sh
+source $(Files_Path_Pipeliner)/core/test.class.sh
 
 UnitTest_Example() {
   #Given
@@ -38,13 +38,13 @@ UnitTest_Example_Skip() {
 
 UnitTest_Test__Title() {
   #Given
-  local file="$(Files_Path_Pipeliner)/core/utils/test.test.sh"
+  local file="$(Files_Path_Pipeliner)/core/test.test.sh"
 
   #When
   local title=$(Test__Title $file)
 
   #Then
-  Assert_Equal "$title" "Pipeliner core utils test"
+  Assert_Equal "$title" "Pipeliner core test"
 }
 
 UnitTest_Test__Name() {
@@ -94,7 +94,7 @@ UnitTest_Test_Execute_Fail() {
 UnitTest_Test_Run() {
   #Given
   local type=unit,integration,e2e
-  local include=core/utils/test/misc.sh
+  local include=core/test/misc.sh
   local exclude=
 
   local actual=
@@ -117,7 +117,7 @@ UnitTest_Test_Run() {
 UnitTest_Test_Run_Type() {
   #Given
   local type=integration,e2e #don't include unit tests to avoid recursion
-  local include=core/utils/test/test.class.sh
+  local include=core/test/test.class.sh
   local exclude=
 
   local actual=
@@ -137,7 +137,7 @@ UnitTest_Test_Run_Type() {
 
   #Given
   local type=e2e #don't include unit tests to avoid recursion
-  local include=core/utils/test/test.class.sh
+  local include=core/test/test.class.sh
   local exclude=
 
   local actual=
@@ -158,7 +158,7 @@ UnitTest_Test_Run_Type() {
 
   #Given
   local type=unknown #don't include unit tests to avoid recursion
-  local include=core/utils/test/test.class.sh
+  local include=core/test/test.class.sh
   local exclude=
 
   local actual=
@@ -176,8 +176,8 @@ UnitTest_Test_Run_Type() {
 UnitTest_Test_Run_Exclude() {
   #Given
   local type=unit,integration,e2e
-  local include=core/utils/test/misc.sh
-  local exclude=core/utils/test/misc.sh
+  local include=core/test/misc.sh
+  local exclude=core/test/misc.sh
 
   local actual=
   local exitCode=
@@ -216,7 +216,7 @@ UnitTest_Test_Run_Exclude() {
 UnitTest_Test_Run_Fail() {
   #Given
   local type=unit,integration,e2e
-  local include=core/utils/test/misc.sh
+  local include=core/test/misc.sh
   local exclude=
 
   local actual=

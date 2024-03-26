@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/cli.class.sh
+source $(Files_Path_Pipeliner)/core/cli.class.sh
 
 UnitTest_CLI_Arguments() {
   #Given

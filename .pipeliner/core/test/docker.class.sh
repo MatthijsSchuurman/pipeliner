@@ -2,7 +2,7 @@
 
 source $(Files_Path_Pipeliner)/core/docker.class.sh
 source $(Files_Path_Pipeliner)/core/compression.class.sh
-source $(Files_Path_Pipeliner)/core/utils/packages.class.sh
+source $(Files_Path_Pipeliner)/core/packages.class.sh
 
 UnitTest_Docker_Build() {
   if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip

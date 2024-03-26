@@ -31,12 +31,12 @@ UnitTest_Installed_Pipeliner_Test() {
   #Given
 
   #When
-  Assert_Directory_Exists $(Files_Path_Pipeliner)/core/utils/
+  Assert_Directory_Exists $(Files_Path_Pipeliner)/core/
 
   #Then
   Assert_File_Exists $(Files_Path_Pipeliner)/test.sh
-  Assert_File_Exists $(Files_Path_Pipeliner)/core/utils/test.class.sh
-  Assert_File_Exists $(Files_Path_Pipeliner)/core/utils/test/test.class.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/core/test.class.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/core/test/test.class.sh
 }
 
 UnitTest_Installed_AzureDevOps() {

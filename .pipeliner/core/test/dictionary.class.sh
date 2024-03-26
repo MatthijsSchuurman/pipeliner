@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/dictionary.class.sh
+source $(Files_Path_Pipeliner)/core/dictionary.class.sh
 
 UnitTest_Dictionary_Exists() {
   #Given

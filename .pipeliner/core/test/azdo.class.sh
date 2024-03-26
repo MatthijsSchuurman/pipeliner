@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/azdo.class.sh
-source $(Files_Path_Pipeliner)/core/utils/files.class.sh
+source $(Files_Path_Pipeliner)/core/azdo.class.sh
+source $(Files_Path_Pipeliner)/core/files.class.sh
 
 UnitTest_AZDO_Agent_Latest() {
   #Given

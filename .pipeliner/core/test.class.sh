@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/dictionary.class.sh
-source $(Files_Path_Pipeliner)/core/utils/colors.class.sh
-source $(Files_Path_Pipeliner)/core/utils/files.class.sh
+source $(Files_Path_Pipeliner)/core/dictionary.class.sh
+source $(Files_Path_Pipeliner)/core/colors.class.sh
+source $(Files_Path_Pipeliner)/core/files.class.sh
 
 Test_Run() {
   local types=$1

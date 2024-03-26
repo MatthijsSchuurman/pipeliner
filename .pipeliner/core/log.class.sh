@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/colors.class.sh
+source $(Files_Path_Pipeliner)/core/colors.class.sh
 source $(Files_Path_Pipeliner)/core/environment.class.sh
 
 Log__Log() {

@@ -3,7 +3,7 @@
 source $(Files_Path_Pipeliner)/core/log.class.sh
 source $(Files_Path_Pipeliner)/core/variables.class.sh
 source $(Files_Path_Pipeliner)/core/artifacts.class.sh
-source $(Files_Path_Pipeliner)/core/utils/test.class.sh
+source $(Files_Path_Pipeliner)/core/test.class.sh
 
 Pipeliner_Test_Report_Filename() {
   local type=$1

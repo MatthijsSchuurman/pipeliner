@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/utils/dictionary.class.sh
+source $(Files_Path_Pipeliner)/core/dictionary.class.sh
 source $(Files_Path_Pipeliner)/core/environment.class.sh
 source $(Files_Path_Pipeliner)/core/log.class.sh
 
