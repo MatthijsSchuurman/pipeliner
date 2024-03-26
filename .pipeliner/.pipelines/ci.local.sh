@@ -1,5 +1,5 @@
 #!/bin/bash
-source $(dirname ${BASH_SOURCE[0]})/../../.pipeliner/init.sh
+source $(dirname ${BASH_SOURCE[0]})/../../.pipeliner/init
 
 Version_BuildId_Next
 

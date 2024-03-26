@@ -1,5 +1,5 @@
 #!/bin/bash
-source $(dirname ${BASH_SOURCE[0]})/../../../.pipeliner/init.sh
+source $(dirname ${BASH_SOURCE[0]})/../../../.pipeliner/init
 
 mode=$1
 apps=$(JVM_Pipelines_Affected "$mode")

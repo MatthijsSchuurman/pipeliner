@@ -10,7 +10,7 @@ stages:
   - job: UnitTest
     steps:
     - bash: |
-        source ./.pipeliner/init.sh
+        source ./.pipeliner/init
         Pipeliner_Test_Run unit
       displayName: Run unit tests
 
@@ -23,7 +23,7 @@ stages:
   - job: IntegrationTest
     steps:
     - script: |
-        source ./.pipeliner/init.sh
+        source ./.pipeliner/init
         Pipeliner_Test_Run integration
       displayName: Run integration tests
 
@@ -36,7 +36,7 @@ stages:
   - job: E2ETest
     steps:
     - script: |
-        source ./.pipeliner/init.sh
+        source ./.pipeliner/init
         Pipeliner_Test_Run e2e
       displayName: Run E2E tests
 

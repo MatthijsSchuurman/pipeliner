@@ -18,7 +18,7 @@ E2ETest_Pipeliner_Pipeline_CD() {
   Assert_Contains "$actual" "Docker version"
 
   Assert_Contains "$actual" "Creating package"
-  Assert_Contains "$actual" "adding: .pipeliner/test.sh"
+  Assert_Contains "$actual" "adding: .pipeliner/test"
   Assert_Contains "$actual" "adding: examples/node/app1/test/helloworld.js"
   Assert_Contains "$actual" "Removing build directory"
 

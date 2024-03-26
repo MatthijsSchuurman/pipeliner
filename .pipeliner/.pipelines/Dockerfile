@@ -4,7 +4,7 @@ ARG package
 
 COPY $package \
     .pipeliner/README.md \
-    .pipeliner/install.sh \
+    .pipeliner/install \
     /usr/share/nginx/html/
 
 RUN echo -e "server {\n\

@@ -53,7 +53,7 @@ IntegrationTest_Pipeliner_Package_Create() {
 
   #check contents
   files=$(unzip -l "$(Artifacts_Directory)/packages/pipeliner-1.2.345-test.zip" | awk '{print $4}')
-  Assert_Contains "$files" ".pipeliner/init.sh"
+  Assert_Contains "$files" ".pipeliner/init"
   Assert_Contains "$files" ".pipeliner/core/log.sh"
   Assert_Contains "$files" ".pipeliner/README.md"
   Assert_Contains "$files" ".pipeliner/LICENSE.md"
