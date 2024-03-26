@@ -42,7 +42,7 @@ Files_Path_Data() {
 }
 
 Files_Get_Module_Files() {
-  files=$(find $(Files_Path_Root) -name "*.sh" | sort)
+  files=$(find $(Files_Path_Root) -name "*.sh" -not -name "*.test.sh" | sort)
 
   echo $files
 }

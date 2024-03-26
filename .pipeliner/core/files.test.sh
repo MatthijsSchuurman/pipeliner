@@ -29,7 +29,7 @@ UnitTest_Files_Path_Original() {
 UnitTest_Files_Path_Root() {
   local currentDirectory=$(pwd)
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../.." #go to root directory
 
   #When
   local path=$(Files_Path_Root)
@@ -51,7 +51,7 @@ UnitTest_Files_Path_Root() {
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../examples/node" #examples/node
+  cd "$(dirname ${BASH_SOURCE[0]})/../../examples/node" #examples/node
 
   #When
   local path=$(Files_Path_Root)
@@ -64,7 +64,7 @@ UnitTest_Files_Path_Root() {
 UnitTest_Files_Path_Work() {
   local currentDirectory=$(pwd)
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../.." #go to root directory
 
   #When
   local path=$(Files_Path_Work)
@@ -86,7 +86,7 @@ UnitTest_Files_Path_Work() {
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../examples/node" #examples/node
+  cd "$(dirname ${BASH_SOURCE[0]})/../../examples/node" #examples/node
 
   #When
   local path=$(Files_Path_Work)
@@ -99,7 +99,7 @@ UnitTest_Files_Path_Work() {
 UnitTest_Files_Path_Pipeliner() {
   local currentDirectory=$(pwd)
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../.." #go to root directory
 
   #When
   local path=$(Files_Path_Pipeliner)
@@ -117,11 +117,11 @@ UnitTest_Files_Path_Pipeliner() {
   cd $currentDirectory #go back to current directory
 
   #Then
-  Assert_Starts_With "$path" "../../../.pipeliner"
+  Assert_Starts_With "$path" "../../.pipeliner"
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../examples/node" #examples/node
+  cd "$(dirname ${BASH_SOURCE[0]})/../../examples/node" #examples/node
 
   #When
   local path=$(Files_Path_Pipeliner)
@@ -134,7 +134,7 @@ UnitTest_Files_Path_Pipeliner() {
 UnitTest_Files_Path_Data() {
   local currentDirectory=$(pwd)
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../.." #go to root directory
+  cd "$(dirname ${BASH_SOURCE[0]})/../.." #go to root directory
 
   #When
   local path=$(Files_Path_Data)
@@ -142,7 +142,7 @@ UnitTest_Files_Path_Data() {
 
   #Then
   Assert_Starts_With "$path" "./.pipeliner/data"
-  Assert_Directory_Exists "$(dirname ${BASH_SOURCE[0]})/../../../$path"
+  Assert_Directory_Exists "$(dirname ${BASH_SOURCE[0]})/../../$path"
 
 
   #Given
@@ -153,11 +153,11 @@ UnitTest_Files_Path_Data() {
   cd $currentDirectory #go back to current directory
 
   #Then
-  Assert_Starts_With "$path" "../../../.pipeliner/data"
+  Assert_Starts_With "$path" "../../.pipeliner/data"
 
 
   #Given
-  cd "$(dirname ${BASH_SOURCE[0]})/../../../examples/node" #examples/node
+  cd "$(dirname ${BASH_SOURCE[0]})/../../examples/node" #examples/node
 
   #When
   local path=$(Files_Path_Data)
@@ -165,7 +165,7 @@ UnitTest_Files_Path_Data() {
 
   #Then
   Assert_Starts_With "$path" "../../.pipeliner/data"
-  Assert_Directory_Exists "$(dirname ${BASH_SOURCE[0]})/../../../examples/node/$path"
+  Assert_Directory_Exists "$(dirname ${BASH_SOURCE[0]})/../../examples/node/$path"
 }
 
 
