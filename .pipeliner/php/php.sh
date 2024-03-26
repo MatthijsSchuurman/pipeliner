@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/docker.class.sh
+source $(Files_Path_Pipeliner)/core/docker.sh
 
 PHP_Run() {
   local workdir=$1

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/log.class.sh
-source $(Files_Path_Pipeliner)/core/variables.class.sh
+source $(Files_Path_Pipeliner)/core/log.sh
+source $(Files_Path_Pipeliner)/core/variables.sh
 
 AZDO_Agent_Latest() {
   local json=$(wget --quiet --output-document - https://api.github.com/repos/microsoft/azure-pipelines-agent/releases/latest )

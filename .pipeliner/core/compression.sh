@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/docker.class.sh
-source $(Files_Path_Pipeliner)/core/log.class.sh
+source $(Files_Path_Pipeliner)/core/docker.sh
+source $(Files_Path_Pipeliner)/core/log.sh
 
 Compression_Zip() {
   local filename=$1

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/log.class.sh
-source $(Files_Path_Pipeliner)/core/version.class.sh
-source $(Files_Path_Pipeliner)/core/docker.class.sh
-source $(Files_Path_Pipeliner)/core/variables.class.sh
-source $(Files_Path_Pipeliner)/core/artifacts.class.sh
+source $(Files_Path_Pipeliner)/core/log.sh
+source $(Files_Path_Pipeliner)/core/version.sh
+source $(Files_Path_Pipeliner)/core/docker.sh
+source $(Files_Path_Pipeliner)/core/variables.sh
+source $(Files_Path_Pipeliner)/core/artifacts.sh
 
 Pipeliner_Docker_Create_Image() {
   local package=$1

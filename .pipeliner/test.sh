@@ -1,11 +1,11 @@
 #!/bin/bash
 
-source $(dirname "${BASH_SOURCE[0]}")/core/files.class.sh
-source $(Files_Path_Pipeliner)/core/test.class.sh
-source $(Files_Path_Pipeliner)/core/assert.class.sh
-source $(Files_Path_Pipeliner)/core/colors.class.sh
-source $(Files_Path_Pipeliner)/core/cli.class.sh
-source $(Files_Path_Pipeliner)/core/version.class.sh
+source $(dirname "${BASH_SOURCE[0]}")/core/files.sh
+source $(Files_Path_Pipeliner)/core/test.sh
+source $(Files_Path_Pipeliner)/core/assert.sh
+source $(Files_Path_Pipeliner)/core/colors.sh
+source $(Files_Path_Pipeliner)/core/cli.sh
+source $(Files_Path_Pipeliner)/core/version.sh
 
 Test_SH_Watch() {
   echo -n "Watching for changes in "

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/haskell/cabal.class.sh
+source $(Files_Path_Pipeliner)/haskell/cabal.sh
 
 UnitTest_Haskell_Cabal_Build() {
   # Given

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/artifacts.class.sh
+source $(Files_Path_Pipeliner)/core/artifacts.sh
 
 UnitTest_Artifacts_Directory() {
   #Given

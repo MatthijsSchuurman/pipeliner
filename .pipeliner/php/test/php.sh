@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/php/php.class.sh
+source $(Files_Path_Pipeliner)/php/php.sh
 
 UnitTest_PHP_Dockerfile() {
   #Given

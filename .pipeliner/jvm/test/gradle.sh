@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/jvm/gradle.class.sh
+source $(Files_Path_Pipeliner)/jvm/gradle.sh
 
 UnitTest_Gradle_Clean() {
   #Given

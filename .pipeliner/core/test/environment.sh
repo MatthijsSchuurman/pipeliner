@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/environment.class.sh
+source $(Files_Path_Pipeliner)/core/environment.sh
 
 UnitTest_Environment_Platform() {
   #Given

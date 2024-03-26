@@ -1,12 +1,12 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/compression.class.sh
-source $(Files_Path_Pipeliner)/core/environment.class.sh
+source $(Files_Path_Pipeliner)/core/compression.sh
+source $(Files_Path_Pipeliner)/core/environment.sh
 
 UnitTest_Compression_Zip() {
   #Given
   local filename="test.zip"
-  local files="$(Files_Path_Pipeliner)/core/compression.class.sh"
+  local files="$(Files_Path_Pipeliner)/core/compression.sh"
   local actual=
   local exitCode=
 
@@ -25,7 +25,7 @@ UnitTest_Compression_Zip() {
   fi
 
   Assert_File_Exists "$filename"
-  Assert_Contains "$actual" adding compression.class.sh
+  Assert_Contains "$actual" adding compression.sh
 
   #Clean
   rm -f "$filename"
@@ -33,7 +33,7 @@ UnitTest_Compression_Zip() {
 
   #Given
   filename="test2.zip"
-  files="$(Files_Path_Pipeliner)/core/compression.class.sh $(Files_Path_Pipeliner)/core/log.class.sh"
+  files="$(Files_Path_Pipeliner)/core/compression.sh $(Files_Path_Pipeliner)/core/log.sh"
 
   rm -f "$filename"
 
@@ -50,8 +50,8 @@ UnitTest_Compression_Zip() {
   fi
 
   Assert_File_Exists "$filename"
-  Assert_Contains "$actual" adding compression.class.sh
-  Assert_Contains "$actual" adding log.class.sh
+  Assert_Contains "$actual" adding compression.sh
+  Assert_Contains "$actual" adding log.sh
 
   #Clean
   rm -f "$filename"
@@ -79,7 +79,7 @@ UnitTest_Compression_Zip_Directory() {
   fi
 
   Assert_File_Exists "$filename"
-  Assert_Contains "$actual" adding core/compression.class.sh
+  Assert_Contains "$actual" adding core/compression.sh
   Assert_Contains "$actual" adding test.sh
 
   #Clean

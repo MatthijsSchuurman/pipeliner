@@ -44,11 +44,11 @@ source $(dirname ${BASH_SOURCE[0]})/.pipeliner/init.sh #Load everything
 App_Build #Build the app
 ```
 
-#### ./app.class.sh
+#### ./app.sh
 ```bash
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/docker.class.sh
+source $(Files_Path_Pipeliner)/core/docker.sh
 
 App_Build() {
   Docker_Build .pipeliner/core/Dockerfile core:runner #Build the pipeline runner container
@@ -57,11 +57,11 @@ App_Build() {
 }
 ```
 
-#### ./test/app.class.sh
+#### ./test/app.sh
 ```bash
 #!/bin/bash
 
-source $(Files_Path_Root)/app.class.sh
+source $(Files_Path_Root)/app.sh
 
 IntegrationTest_App_Build() {
   #Given
@@ -161,7 +161,7 @@ E2ETest_Test_Include() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type dontrunanytests --include colors.class.sh)
+  actual=$($(Files_Path_Pipeliner)/test.sh --type dontrunanytests --include colors.sh)
   exitCode=$?
 
   #Then

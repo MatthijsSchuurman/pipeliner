@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/files.class.sh
+source $(Files_Path_Pipeliner)/core/files.sh
 
 UnitTest_Files_Path_Original() {
   local currentDirectory=$(pwd)
@@ -178,10 +178,10 @@ UnitTest_Files_Get_Module_Files() {
   local files=$(Files_Get_Module_Files)
 
   #Then
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/assert.class.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/colors.class.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/files.class.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test.class.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/assert.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/colors.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/files.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test.sh"
 }
 
 UnitTest_Files_Pre_Import_Modules() {
@@ -196,9 +196,9 @@ UnitTest_Files_Pre_Import_Modules() {
   Assert_Equal "$(type -t Vagrant_Up)" "function"
   Assert_Equal "$(type -t zip)" "file"
 
-  Assert_Not_Contains "$(declare -f Color_Red)" source colors.class.sh
-  Assert_Not_Contains "$(declare -f Files_Get_Module_Files)" source files.class.sh
-  Assert_Contains "$(declare -f Vagrant_Up)" Vagrant_Up source vagrant.class.sh #not yet initialised
+  Assert_Not_Contains "$(declare -f Color_Red)" source colors.sh
+  Assert_Not_Contains "$(declare -f Files_Get_Module_Files)" source files.sh
+  Assert_Contains "$(declare -f Vagrant_Up)" Vagrant_Up source vagrant.sh #not yet initialised
 }
 
 UnitTest_Files_Import_Modules() {
@@ -213,9 +213,9 @@ UnitTest_Files_Import_Modules() {
   Assert_Equal "$(type -t Vagrant_Up)" "function"
   Assert_Equal "$(type -t zip)" "file"
 
-  Assert_Not_Contains "$(declare -f Color_Red)" source colors.class.sh
-  Assert_Not_Contains "$(declare -f Files_Get_Module_Files)" source files.class.sh
-  Assert_Not_Contains "$(declare -f Vagrant_Up)" source vagrant.class.sh
+  Assert_Not_Contains "$(declare -f Color_Red)" source colors.sh
+  Assert_Not_Contains "$(declare -f Files_Get_Module_Files)" source files.sh
+  Assert_Not_Contains "$(declare -f Vagrant_Up)" source vagrant.sh
 }
 
 UnitTest_Files_Get_Test_Files() {
@@ -225,8 +225,8 @@ UnitTest_Files_Get_Test_Files() {
   local files=$(Files_Get_Test_Files)
 
   #Then
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test/assert.class.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test/log.class.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test/assert.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/test/log.sh"
   Assert_Contains "$files" "$(Files_Path_Pipeliner)/test/init.sh"
 }
 
@@ -248,13 +248,13 @@ UnitTest_Files_Get_Unit_Tests() {
   #Given
 
   #When
-  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/test.class.sh)
+  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/test.sh)
 
   #Then
   Assert_Contains "$unittests" UnitTest_Example
 
   #When
-  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/files.class.sh)
+  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/core/test/files.sh)
 
   #Then
   Assert_Contains "$unittests" "UnitTest_Files_Get_Module_Files"
@@ -273,7 +273,7 @@ UnitTest_Files_Get_Integration_Tests() {
   #Given
 
   #When
-  local integrationtests=$(Files_Get_Integration_Tests $(Files_Path_Pipeliner)/core/test/test.class.sh)
+  local integrationtests=$(Files_Get_Integration_Tests $(Files_Path_Pipeliner)/core/test/test.sh)
 
   #Then
   Assert_Contains "$integrationtests" IntegrationTest_Example
@@ -289,7 +289,7 @@ UnitTest_Files_Get_E2E_Tests() {
   #Given
 
   #When
-  local e2etests=$(Files_Get_E2E_Tests $(Files_Path_Pipeliner)/core/test/test.class.sh)
+  local e2etests=$(Files_Get_E2E_Tests $(Files_Path_Pipeliner)/core/test/test.sh)
 
   #Then
   Assert_Contains "$e2etests" E2ETest_Example

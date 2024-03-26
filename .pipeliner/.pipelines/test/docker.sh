@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/.pipelines/docker.class.sh
+source $(Files_Path_Pipeliner)/.pipelines/docker.sh
 
 UnitTest_Pipeliner_Docker_Create_Image() {
   #Given

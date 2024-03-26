@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/log.class.sh
+source $(Files_Path_Pipeliner)/core/log.sh
 
 UnitTest_Log_Debug() {
   #Given

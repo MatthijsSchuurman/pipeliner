@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/test.class.sh
+source $(Files_Path_Pipeliner)/core/test.sh
 
 UnitTest_Example() {
   #Given
@@ -117,7 +117,7 @@ UnitTest_Test_Run() {
 UnitTest_Test_Run_Type() {
   #Given
   local type=integration,e2e #don't include unit tests to avoid recursion
-  local include=core/test/test.class.sh
+  local include=core/test/test.sh
   local exclude=
 
   local actual=
@@ -137,7 +137,7 @@ UnitTest_Test_Run_Type() {
 
   #Given
   local type=e2e #don't include unit tests to avoid recursion
-  local include=core/test/test.class.sh
+  local include=core/test/test.sh
   local exclude=
 
   local actual=
@@ -158,7 +158,7 @@ UnitTest_Test_Run_Type() {
 
   #Given
   local type=unknown #don't include unit tests to avoid recursion
-  local include=core/test/test.class.sh
+  local include=core/test/test.sh
   local exclude=
 
   local actual=

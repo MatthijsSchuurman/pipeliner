@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/node/npm.class.sh
+source $(Files_Path_Pipeliner)/node/npm.sh
 
 UnitTest_NPM_Install() {
   #Given

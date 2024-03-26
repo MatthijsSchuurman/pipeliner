@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/haskell/haskell.class.sh
+source $(Files_Path_Pipeliner)/haskell/haskell.sh
 
 Haskell_Cabal_Build() {
   local workdir=$1

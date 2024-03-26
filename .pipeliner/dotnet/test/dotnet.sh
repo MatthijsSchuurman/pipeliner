@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/dotnet/dotnet.class.sh
+source $(Files_Path_Pipeliner)/dotnet/dotnet.sh
 
 UnitTest_DotNet_Dockerfile() {
   #Given

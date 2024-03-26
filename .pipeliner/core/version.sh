@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/environment.class.sh
+source $(Files_Path_Pipeliner)/core/environment.sh
 source $(Files_Path_Pipeliner)/core/misc.sh
-source $(Files_Path_Pipeliner)/core/log.class.sh
+source $(Files_Path_Pipeliner)/core/log.sh
 
 Version_Pipeliner() {
   #get version from first line of README.md

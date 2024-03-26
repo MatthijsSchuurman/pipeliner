@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/assert.class.sh
+source $(Files_Path_Pipeliner)/core/assert.sh
 
 
 # String assertions

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/php/php.class.sh
+source $(Files_Path_Pipeliner)/php/php.sh
 
 PHP_Composer_Install() {
   local workdir=$1

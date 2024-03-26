@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/.pipelines/test.class.sh
+source $(Files_Path_Pipeliner)/.pipelines/test.sh
 
 IntegrationTest_Pipeliner_Test_Report_Filename() {
   #Given

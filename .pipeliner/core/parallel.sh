@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/log.class.sh
-source $(Files_Path_Pipeliner)/core/files.class.sh
+source $(Files_Path_Pipeliner)/core/log.sh
+source $(Files_Path_Pipeliner)/core/files.sh
 
 
 Parallel__Command_Start() {

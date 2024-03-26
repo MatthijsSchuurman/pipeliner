@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/docker.class.sh
-source $(Files_Path_Pipeliner)/core/compression.class.sh
-source $(Files_Path_Pipeliner)/core/packages.class.sh
+source $(Files_Path_Pipeliner)/core/docker.sh
+source $(Files_Path_Pipeliner)/core/compression.sh
+source $(Files_Path_Pipeliner)/core/packages.sh
 
 UnitTest_Docker_Build() {
   if [ "$(Environment_Platform)" == "docker" ]; then exit 255; fi #skip
@@ -394,8 +394,8 @@ UnitTest_Docker_Compression_ZIP_Example() {
 
   Assert_File_Exists $(Files_Path_Root)/core-test.zip
   Assert_Contains "$(file $(Files_Path_Root)/core-test.zip)" "Zip archive data"
-  Assert_Contains "$actual" adding core/compression.class.sh
-  Assert_Contains "$actual" adding core/log.class.sh
+  Assert_Contains "$actual" adding core/compression.sh
+  Assert_Contains "$actual" adding core/log.sh
 
   #Clean
   rm -f $(Files_Path_Root)/core-test.zip

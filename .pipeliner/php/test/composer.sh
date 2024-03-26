@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/php/composer.class.sh
+source $(Files_Path_Pipeliner)/php/composer.sh
 
 UnitTest_PHP_Composer_Install() {
   #Given

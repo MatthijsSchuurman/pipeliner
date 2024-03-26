@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/node/node.class.sh
+source $(Files_Path_Pipeliner)/node/node.sh
 
 Node_NPM_Install() {
   local workdir=$1

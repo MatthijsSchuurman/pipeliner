@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/vagrant.class.sh
-source $(Files_Path_Pipeliner)/core/packages.class.sh
+source $(Files_Path_Pipeliner)/core/vagrant.sh
+source $(Files_Path_Pipeliner)/core/packages.sh
 
 E2ETest_AZDO_Agent_Start() {
   if ! Packages_Installed vagrant ; then

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/vcs.class.sh
+source $(Files_Path_Pipeliner)/core/vcs.sh
 
 UnitTest_VCS_Affected() {
   if [ ! -d $(Files_Path_Root)/.hg ] && [ ! -d $(Files_Path_Root)/.git ]; then exit 255; fi #skip

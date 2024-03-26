@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/haskell/haskell.class.sh
+source $(Files_Path_Pipeliner)/haskell/haskell.sh
 
 UnitTest_Haskell_Dockerfile() {
   # Given

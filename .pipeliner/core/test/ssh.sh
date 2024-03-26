@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/ssh.class.sh
-source $(Files_Path_Pipeliner)/core/compression.class.sh
+source $(Files_Path_Pipeliner)/core/ssh.sh
+source $(Files_Path_Pipeliner)/core/compression.sh
 
 UnitTest_SSH_Directory() {
   #Given

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/.pipelines/package.class.sh
+source $(Files_Path_Pipeliner)/.pipelines/package.sh
 
 IntegrationTest_Pipeliner_Package_Filename() {
   #Given
@@ -54,7 +54,7 @@ IntegrationTest_Pipeliner_Package_Create() {
   #check contents
   files=$(unzip -l "$(Artifacts_Directory)/packages/pipeliner-1.2.345-test.zip" | awk '{print $4}')
   Assert_Contains "$files" ".pipeliner/init.sh"
-  Assert_Contains "$files" ".pipeliner/core/log.class.sh"
+  Assert_Contains "$files" ".pipeliner/core/log.sh"
   Assert_Contains "$files" ".pipeliner/README.md"
   Assert_Contains "$files" ".pipeliner/LICENSE.md"
   Assert_Contains "$files" ".vscode/settings.json"

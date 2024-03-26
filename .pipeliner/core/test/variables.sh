@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/variables.class.sh
+source $(Files_Path_Pipeliner)/core/variables.sh
 
 UnitTest_Variables_Set() {
   #Given

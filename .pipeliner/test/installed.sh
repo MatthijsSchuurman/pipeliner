@@ -22,8 +22,8 @@ UnitTest_Installed_Pipeliner_Docker() {
 
   #Then
   Assert_File_Exists $(Files_Path_Pipeliner)/docker.sh
-  Assert_File_Exists $(Files_Path_Pipeliner)/core/docker.class.sh
-  Assert_File_Exists $(Files_Path_Pipeliner)/core/test/docker.class.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/core/docker.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/core/test/docker.sh
   Assert_File_Exists $(Files_Path_Pipeliner)/core/Dockerfile
 }
 
@@ -35,8 +35,8 @@ UnitTest_Installed_Pipeliner_Test() {
 
   #Then
   Assert_File_Exists $(Files_Path_Pipeliner)/test.sh
-  Assert_File_Exists $(Files_Path_Pipeliner)/core/test.class.sh
-  Assert_File_Exists $(Files_Path_Pipeliner)/core/test/test.class.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/core/test.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/core/test/test.sh
 }
 
 UnitTest_Installed_AzureDevOps() {

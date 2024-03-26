@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/parallel.class.sh
+source $(Files_Path_Pipeliner)/core/parallel.sh
 
 
 UnitTest_Parallel__Command_Start() {

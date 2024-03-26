@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/colors.class.sh
-source $(Files_Path_Pipeliner)/core/environment.class.sh
+source $(Files_Path_Pipeliner)/core/colors.sh
+source $(Files_Path_Pipeliner)/core/environment.sh
 
 Log__Log() {
   local level=$1

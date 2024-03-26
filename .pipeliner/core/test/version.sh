@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/version.class.sh
+source $(Files_Path_Pipeliner)/core/version.sh
 
 UnitTest_Version_Pipeliner() {
   #Given

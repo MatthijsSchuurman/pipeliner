@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/log.class.sh
-source $(Files_Path_Pipeliner)/core/environment.class.sh
+source $(Files_Path_Pipeliner)/core/log.sh
+source $(Files_Path_Pipeliner)/core/environment.sh
 source $(Files_Path_Pipeliner)/core/misc.sh
 
 PIPELINER_IMAGES_BUILT=""

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/log.class.sh
-source $(Files_Path_Pipeliner)/core/environment.class.sh
-source $(Files_Path_Pipeliner)/core/version.class.sh
-source $(Files_Path_Pipeliner)/core/compression.class.sh
-source $(Files_Path_Pipeliner)/core/variables.class.sh
-source $(Files_Path_Pipeliner)/core/artifacts.class.sh
-source $(Files_Path_Pipeliner)/core/vcs.class.sh
+source $(Files_Path_Pipeliner)/core/log.sh
+source $(Files_Path_Pipeliner)/core/environment.sh
+source $(Files_Path_Pipeliner)/core/version.sh
+source $(Files_Path_Pipeliner)/core/compression.sh
+source $(Files_Path_Pipeliner)/core/variables.sh
+source $(Files_Path_Pipeliner)/core/artifacts.sh
+source $(Files_Path_Pipeliner)/core/vcs.sh
 
 Pipeliner_Package_Filename() {
   local version=$(Version_Pipeliner_Full)

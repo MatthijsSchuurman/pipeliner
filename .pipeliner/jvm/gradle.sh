@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/jvm/jvm.class.sh
+source $(Files_Path_Pipeliner)/jvm/jvm.sh
 
 JVM_Gradle_Clean() {
   local workdir=$1
