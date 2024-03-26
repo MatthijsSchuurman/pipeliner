@@ -11,7 +11,7 @@ E2ETest_Test_Type() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "Pipeliner core utils test"
+  Assert_Contains "$actual" "Pipeliner core test"
   Assert_Match "$actual" "Test Title: .+OK"
   Assert_Match "$actual" "Example: .+OK"
   Assert_Match "$actual" "Example: .+SKIP"
@@ -43,12 +43,12 @@ E2ETest_Test_Include() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --include colors.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --include colors)
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "Pipeliner core utils colors"
+  Assert_Contains "$actual" "Pipeliner core colors"
   Assert_Match "$actual" "Color Red: .+SKIP"
 }
 
@@ -58,12 +58,12 @@ E2ETest_Test_Exclude() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --exclude colors.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --exclude colors)
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "Pipeliner core utils files"
+  Assert_Contains "$actual" "Pipeliner core files"
   Assert_Match "$actual" "Files Path Pipeliner: .+SKIP"
   Assert_Not_Match "$actual" "Color Red: .+SKIP"
 }
@@ -88,7 +88,7 @@ E2ETest_Test_Exclude() {
 #   Assert_Equal $exitCode 0
 #   Assert_Contains "$actual" "Watching for changes in $(Files_Path_Root)"
 #   Assert_Contains "$actual" "Re-running tests for $(Files_Path_Pipeliner)/core/colors.sh"
-#   Assert_Contains "$actual" "Pipeliner core utils colors"
+#   Assert_Contains "$actual" "Pipeliner core colors"
 #   Assert_Match "$actual" "Color Red: .+OK"
 # }
 
@@ -103,7 +103,7 @@ E2ETest_Test_Arguments() {
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "Usage:" "test.sh" "options"
+  Assert_Contains "$actual" "Usage:" "test" "options"
   Assert_Contains "$actual" "--watch" "Watch for changes and re-run tests"
   Assert_Contains "$actual" "--type" "Test type (unit,integration,e2e)"
   Assert_Contains "$actual" "--include" "Include pattern"

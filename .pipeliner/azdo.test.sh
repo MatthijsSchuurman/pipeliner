@@ -16,7 +16,7 @@ E2ETest_AZDO_Agent_Start() {
   Vagrant_Halt azdo
 
   #When
-  actual=$($(Files_Path_Pipeliner)/azdo.sh agent start)
+  actual=$($(Files_Path_Pipeliner)/azdo agent start)
   exitCode=$?
 
   #Then
@@ -28,7 +28,7 @@ E2ETest_AZDO_Agent_Start() {
   fi
 
   #When
-  actual=$($(Files_Path_Pipeliner)/azdo.sh agent start)
+  actual=$($(Files_Path_Pipeliner)/azdo agent start)
   exitCode=$?
 
   #Then
@@ -51,7 +51,7 @@ E2ETest_AZDO_Agent_Command() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/azdo.sh agent command "pwd ; ls -la")
+  actual=$($(Files_Path_Pipeliner)/azdo agent command "pwd ; ls -la")
   exitCode=$?
 
   #Then
@@ -72,7 +72,7 @@ E2ETest_AZDO_Agent_Stop() {
   Vagrant_Up azdo
 
   #When
-  actual=$($(Files_Path_Pipeliner)/azdo.sh agent stop)
+  actual=$($(Files_Path_Pipeliner)/azdo agent stop)
   exitCode=$?
 
   #Then

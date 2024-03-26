@@ -6,7 +6,7 @@ E2ETest_Docker() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh "echo 'Hello, World!'")
+  actual=$($(Files_Path_Pipeliner)/docker "echo 'Hello, World!'")
   exitCode=$?
 
   #Then
@@ -22,7 +22,7 @@ E2ETest_Docker() {
   Assert_Contains "$actual" "Hello, World!"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh pwd "ls -la")
+  actual=$($(Files_Path_Pipeliner)/docker pwd "ls -la")
   exitCode=$?
 
   #Then
@@ -31,7 +31,7 @@ E2ETest_Docker() {
 
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh -i core "UNKNOWN_COMMAND")
+  actual=$($(Files_Path_Pipeliner)/docker -i core "UNKNOWN_COMMAND")
   exitCode=$?
 
   #Then
@@ -51,7 +51,7 @@ E2ETest_Docker_node() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh --image node "node --help")
+  actual=$($(Files_Path_Pipeliner)/docker --image node "node --help")
   exitCode=$?
 
   #Then
@@ -67,7 +67,7 @@ E2ETest_Docker_node() {
   Assert_Contains "$actual" "Usage: node"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh -i node "UNKNOWN_COMMAND")
+  actual=$($(Files_Path_Pipeliner)/docker -i node "UNKNOWN_COMMAND")
   exitCode=$?
 
   #Then
@@ -87,7 +87,7 @@ E2ETest_Docker_dotnet() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh --image dotnet "dotnet --help")
+  actual=$($(Files_Path_Pipeliner)/docker --image dotnet "dotnet --help")
   exitCode=$?
 
   #Then
@@ -103,7 +103,7 @@ E2ETest_Docker_dotnet() {
   Assert_Contains "$actual" "Usage: dotnet"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh -i dotnet "UNKNOWN_COMMAND")
+  actual=$($(Files_Path_Pipeliner)/docker -i dotnet "UNKNOWN_COMMAND")
   exitCode=$?
 
   #Then
@@ -123,7 +123,7 @@ E2ETest_Docker_unknown() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh -i unknown "UNKNOWN_COMMAND" 2>&1)
+  actual=$($(Files_Path_Pipeliner)/docker -i unknown "UNKNOWN_COMMAND" 2>&1)
   exitCode=$?
 
   #Then
@@ -143,19 +143,19 @@ E2ETest_Docker_Arguments() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh --help)
+  actual=$($(Files_Path_Pipeliner)/docker --help)
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 0
-  Assert_Contains "$actual" "Usage:" "docker.sh" "options"
+  Assert_Contains "$actual" "Usage:" "docker" "options"
   Assert_Contains "$actual" "--image" "Image to run"
   Assert_Contains "$actual" "--help" "Show usage information"
   Assert_Contains "$actual" "--version" "Show version information"
   Assert_Contains "$actual" "-i" "--image"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh --version)
+  actual=$($(Files_Path_Pipeliner)/docker --version)
   exitCode=$?
 
   #Then
@@ -169,7 +169,7 @@ E2ETest_Docker_Arguments_Fail() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/docker.sh --unknown 2>&1)
+  actual=$($(Files_Path_Pipeliner)/docker --unknown 2>&1)
   exitCode=$?
 
   #Then
