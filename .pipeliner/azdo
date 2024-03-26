@@ -1,5 +1,5 @@
 #!/bin/bash
-source $(dirname ${BASH_SOURCE[0]})/init.sh
+source $(dirname ${BASH_SOURCE[0]})/init
 
 
 #Main logic
@@ -51,7 +51,7 @@ else
         fi
       elif [ "$(Dictionary_Get "$arguments" agent,0)" == "setup" ]; then
         Vagrant_SSH azdo '
-source pipeliner/.pipeliner/init.sh
+source pipeliner/.pipeliner/init
 Packages_Prerequisites wget git zip
 
 sudo usermod -a -G docker vagrant

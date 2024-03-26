@@ -39,7 +39,7 @@ Next step is to setup your first script
 #### ./pipeline.sh
 ```bash
 #!/bin/bash
-source $(dirname ${BASH_SOURCE[0]})/.pipeliner/init.sh #Load everything
+source $(dirname ${BASH_SOURCE[0]})/.pipeliner/init #Load everything
 
 App_Build #Build the app
 ```
@@ -90,7 +90,7 @@ So this chapter gives you some guidance on how to get to easily testable code.
 
 First of all, use the `test.sh` script to continuously run tests on your code. Just hit save on `some.sh` file and it will run all tests defined in `test/some.sh`.
 ```bash
-.pipeliner/test.sh --watch
+.pipeliner/test --watch
 ```
 
 ## Test types
@@ -226,10 +226,10 @@ By mocking `Version_Pipeliner_Full` you can assume the filename of the test repo
 - [dotnet](../.pipeliner/dotnet/)/ *.NET libraries*
 - [node](../.pipeliner/node/)/     *Node libraries*
 
-- [docker.sh](../.pipeliner/docker.sh)    *Quickly [run something in docker](#docker)*
-- [init.sh](../.pipeliner/init.sh)        *Initialise pipeliner in your pipeline*
-- [install.sh](../.pipeliner/install.sh)  *Install/Upgrade pipeliner in current directory*
-- [test.sh](../.pipeliner/test.sh)        *Run [tests](#philosophy)*
+- [docker.sh](../.pipeliner/docker)    *Quickly [run something in docker](#docker)*
+- [init.sh](../.pipeliner/init)        *Initialise pipeliner in your pipeline*
+- [install.sh](../.pipeliner/install)  *Install/Upgrade pipeliner in current directory*
+- [test.sh](../.pipeliner/test)        *Run [tests](#philosophy)*
 
 [examples](../examples/)/            *Various pipeline examples*
 
@@ -237,9 +237,9 @@ By mocking `Version_Pipeliner_Full` you can assume the filename of the test repo
 ## Docker
 Pipeliner relies heavily on Docker it's probably useful to easily run various things in Docker:
 ```bash
-.pipeliner/docker.sh --image node "npm install"
+.pipeliner/docker --image node "npm install"
 ```
 Or login to the container itself:
 ```bash
-.pipeliner/docker.sh --image dotnet
+.pipeliner/docker --image dotnet
 ```

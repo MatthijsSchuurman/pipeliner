@@ -179,7 +179,7 @@ UnitTest_Install_Extract() {
   #Then
   Assert_Equal $exitCode 0
   Assert_Directory_Exists "$(Install_Directory_Temp)/.pipeliner"
-  Assert_File_Exists "$(Install_Directory_Temp)/.pipeliner/init.sh"
+  Assert_File_Exists "$(Install_Directory_Temp)/.pipeliner/init"
   Assert_Directory_Exists "$(Install_Directory_Temp)/.vscode"
   Assert_File_Exists "$(Install_Directory_Temp)/.vscode/extensions.json"
   Assert_Directory_Exists "$(Install_Directory_Temp)/.azuredevops"
@@ -207,7 +207,7 @@ UnitTest_Install_Install() {
 
   source $(Files_Path_Pipeliner)/install.sh
   mkdir -p "$(Install_Directory_Temp)/.pipeliner" "$(Install_Directory_Temp)/.azuredevops" "$(Install_Directory_Temp)/.github/workflows" "$(Install_Directory_Temp)/.vscode" "$(Install_Directory_Temp)/examples/node/app1"
-  touch "$(Install_Directory_Temp)/.pipeliner/init.sh" "$(Install_Directory_Temp)/.azuredevops/ci.yml" "$(Install_Directory_Temp)/.github/workflows/ci.yml" "$(Install_Directory_Temp)/Vagrantfile" "$(Install_Directory_Temp)/.vscode/extensions.json" "$(Install_Directory_Temp)/examples/node/app1/Dockerfile"
+  touch "$(Install_Directory_Temp)/.pipeliner/init" "$(Install_Directory_Temp)/.azuredevops/ci.yml" "$(Install_Directory_Temp)/.github/workflows/ci.yml" "$(Install_Directory_Temp)/Vagrantfile" "$(Install_Directory_Temp)/.vscode/extensions.json" "$(Install_Directory_Temp)/examples/node/app1/Dockerfile"
 
   #When
   Install_Install
@@ -216,7 +216,7 @@ UnitTest_Install_Install() {
   #Then
   Assert_Equal $exitCode 0
   Assert_Directory_Exists "$(Install_Directory)/.pipeliner"
-  Assert_File_Exists "$(Install_Directory)/.pipeliner/init.sh"
+  Assert_File_Exists "$(Install_Directory)/.pipeliner/init"
   Assert_Directory_Exists "$(Install_Directory)/.azuredevops"
   Assert_File_Exists "$(Install_Directory)/.azuredevops/ci.yml"
   Assert_Directory_Exists "$(Install_Directory)/.github"
@@ -246,7 +246,7 @@ UnitTest_Install_Install_vscode() {
 
   source $(Files_Path_Pipeliner)/install.sh
   mkdir -p "$(Install_Directory_Temp)/.pipeliner" "$(Install_Directory_Temp)/.azuredevops" "$(Install_Directory_Temp)/.github/workflows" "$(Install_Directory_Temp)/.vscode" "$(Install_Directory_Temp)/examples/node/app1"
-  touch "$(Install_Directory_Temp)/.pipeliner/init.sh" "$(Install_Directory_Temp)/.azuredevops/ci.yml" "$(Install_Directory_Temp)/.github/workflows/ci.yml" "$(Install_Directory_Temp)/Vagrantfile" "$(Install_Directory_Temp)/.vscode/extensions.json" "$(Install_Directory_Temp)/examples/node/app1/Dockerfile"
+  touch "$(Install_Directory_Temp)/.pipeliner/init" "$(Install_Directory_Temp)/.azuredevops/ci.yml" "$(Install_Directory_Temp)/.github/workflows/ci.yml" "$(Install_Directory_Temp)/Vagrantfile" "$(Install_Directory_Temp)/.vscode/extensions.json" "$(Install_Directory_Temp)/examples/node/app1/Dockerfile"
   echo test > "$(Install_Directory_Temp)/.vscode/settings.json" #shouldn't overwrite existing settings.json
 
   #When
@@ -256,7 +256,7 @@ UnitTest_Install_Install_vscode() {
   #Then
   Assert_Equal $exitCode 0
   Assert_Directory_Exists "$(Install_Directory)/.pipeliner"
-  Assert_File_Exists "$(Install_Directory)/.pipeliner/init.sh"
+  Assert_File_Exists "$(Install_Directory)/.pipeliner/init"
   Assert_Directory_Exists "$(Install_Directory)/.azuredevops"
   Assert_File_Exists "$(Install_Directory)/.azuredevops/ci.yml"
   Assert_Directory_Exists "$(Install_Directory)/.github"
@@ -317,7 +317,7 @@ E2ETest_Install() {
   Assert_Equal $exitCode 0
   Assert_Contains "$actual" Downloading Installing Validating
   Assert_Directory_Exists .pipeliner
-  Assert_File_Exists .pipeliner/init.sh
+  Assert_File_Exists .pipeliner/init
   Assert_Directory_Exists .azuredevops
   Assert_File_Exists .azuredevops/ci.yml
   Assert_Directory_Exists .github
@@ -337,7 +337,7 @@ E2ETest_Install() {
   Assert_Equal $exitCode 0
   Assert_Contains "$actual" Downloading Upgrading Validating
   Assert_Directory_Exists .pipeliner
-  Assert_File_Exists .pipeliner/init.sh
+  Assert_File_Exists .pipeliner/init
   Assert_Directory_Exists .azuredevops
   Assert_File_Exists .azuredevops/ci.yml
   Assert_Directory_Exists .github

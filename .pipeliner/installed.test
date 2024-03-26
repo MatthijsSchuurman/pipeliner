@@ -7,8 +7,8 @@ UnitTest_Installed_Pipeliner() {
   Assert_Directory_Exists $(Files_Path_Pipeliner)
 
   #Then
-  Assert_File_Exists $(Files_Path_Pipeliner)/init.sh
-  Assert_File_Exists $(Files_Path_Pipeliner)/install.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/init
+  Assert_File_Exists $(Files_Path_Pipeliner)/install
 
   Assert_File_Exists $(Files_Path_Pipeliner)/README.md
   Assert_File_Exists $(Files_Path_Pipeliner)/LICENSE.md
@@ -21,7 +21,7 @@ UnitTest_Installed_Pipeliner_Docker() {
   Assert_Directory_Exists $(Files_Path_Pipeliner)/core/
 
   #Then
-  Assert_File_Exists $(Files_Path_Pipeliner)/docker.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/docker
   Assert_File_Exists $(Files_Path_Pipeliner)/core/docker.sh
   Assert_File_Exists $(Files_Path_Pipeliner)/core/docker.test.sh
   Assert_File_Exists $(Files_Path_Pipeliner)/core/Dockerfile
@@ -34,7 +34,7 @@ UnitTest_Installed_Pipeliner_Test() {
   Assert_Directory_Exists $(Files_Path_Pipeliner)/core/
 
   #Then
-  Assert_File_Exists $(Files_Path_Pipeliner)/test.sh
+  Assert_File_Exists $(Files_Path_Pipeliner)/test
   Assert_File_Exists $(Files_Path_Pipeliner)/core/test.sh
   Assert_File_Exists $(Files_Path_Pipeliner)/core/test.test.sh
 }

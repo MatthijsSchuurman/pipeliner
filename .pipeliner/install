@@ -109,12 +109,12 @@ Install_Install() {
 }
 
 Install_Validate() {
-  .pipeliner/test.sh --type unit --include test/installed.sh
+  .pipeliner/test --type unit --include test/installed.sh
   if [ $? != 0 ]; then
     exit 1
   fi
 
-  echo "For further validations, run: .pipeliner/test.sh"
+  echo "For further validations, run: .pipeliner/test"
 }
 
 
