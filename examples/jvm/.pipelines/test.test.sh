@@ -2,7 +2,7 @@
 
 IntegrationTest_Examples_JVM_Pipelines_Stage_Test_java() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   JVM_Pipelines_Stage_Test examples/jvm/app-java
@@ -16,7 +16,7 @@ IntegrationTest_Examples_JVM_Pipelines_Stage_Test_java() {
 
 IntegrationTest_Examples_JVM_Pipelines_Stage_Test_kotlin() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   JVM_Pipelines_Stage_Test examples/jvm/app-kotlin

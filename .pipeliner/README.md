@@ -57,7 +57,7 @@ App_Build() {
 }
 ```
 
-#### ./test/app.sh
+#### ./app.test.sh
 ```bash
 #!/bin/bash
 
@@ -88,7 +88,7 @@ The key to success is [TDD](https://en.wikipedia.org/wiki/Test-driven_developmen
 
 So this chapter gives you some guidance on how to get to easily testable code.
 
-First of all, use the `test.sh` script to continuously run tests on your code. Just hit save on `some.sh` file and it will run all tests defined in `test/some.sh`.
+First of all, use the `.pipeliner/test` script to continuously run tests on your code. Just hit save on `some.sh` file and it will run all tests defined in `test/some.sh`.
 ```bash
 .pipeliner/test --watch
 ```
@@ -128,7 +128,7 @@ Note that [mocking](#mocking) is your friend here, even more so than with [unit 
 ```bash
 IntegrationTest_Examples_DotNet_Pipelines_Stage_Test() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   DotNet_Pipelines_Stage_Test examples/dotnet/app1
@@ -161,7 +161,7 @@ E2ETest_Test_Include() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --include colors.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --include colors)
   exitCode=$?
 
   #Then
@@ -221,15 +221,19 @@ By mocking `Version_Pipeliner_Full` you can assume the filename of the test repo
 # Tools
 
 ## Files & Directory
-[.pipeliner](../.pipeliner/)/      *Main pipeliner directory*
-- [core](../.pipeliner/core/)/     *Core libraries*
-- [dotnet](../.pipeliner/dotnet/)/ *.NET libraries*
-- [node](../.pipeliner/node/)/     *Node libraries*
+[.pipeliner](../.pipeliner/)/        *Main pipeliner directory*
+- [core](../.pipeliner/core/)/       *Core libraries*
+- [dotnet](../.pipeliner/dotnet/)/   *.NET libraries*
+- [haskell](../.pipeliner/haskell/)/ *Haskell & Cabal libraries*
+- [jvm](../.pipeliner/jvm/)/         *JVM (Java & Kotlin) / Gradle libraries*
+- [node](../.pipeliner/node/)/       *Node & NPM libraries*
+- [php](../.pipeliner/php/)/         *PHP & Composer libraries*
 
-- [docker.sh](../.pipeliner/docker)    *Quickly [run something in docker](#docker)*
-- [init.sh](../.pipeliner/init)        *Initialise pipeliner in your pipeline*
-- [install.sh](../.pipeliner/install)  *Install/Upgrade pipeliner in current directory*
-- [test.sh](../.pipeliner/test)        *Run [tests](#philosophy)*
+[.pipeliner](../.pipeliner/)/        *Main scripts*
+- [docker](../.pipeliner/docker)     *Quickly [run something in docker](#docker)*
+- [init](../.pipeliner/init)         *Initialise pipeliner in your pipeline*
+- [install](../.pipeliner/install)   *Install/Upgrade pipeliner in current directory*
+- [test](../.pipeliner/test)         *Run [tests](#philosophy)*
 
 [examples](../examples/)/            *Various pipeline examples*
 

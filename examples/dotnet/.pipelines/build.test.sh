@@ -2,7 +2,7 @@
 
 IntegrationTest_Examples_DotNet_Stage_Build() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   DotNet_Pipelines_Stage_Build examples/dotnet/app1

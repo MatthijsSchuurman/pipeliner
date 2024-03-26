@@ -2,7 +2,7 @@
 
 IntegrationTest_Examples_DotNet_Pipelines_Affected_all() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   local actual=$(DotNet_Pipelines_Affected "#all")
@@ -13,7 +13,7 @@ IntegrationTest_Examples_DotNet_Pipelines_Affected_all() {
 
 IntegrationTest_Examples_DotNet_Pipelines_Affected_affected() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   VCS_Affected_Directories() { #mock
     echo "examples/dotnet/app1"

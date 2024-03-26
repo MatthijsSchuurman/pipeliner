@@ -2,7 +2,7 @@
 
 IntegrationTest_Examples_Node_Pipelines_Affected_all() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   local actual=$(Node_Pipelines_Affected "#all")
@@ -13,7 +13,7 @@ IntegrationTest_Examples_Node_Pipelines_Affected_all() {
 
 IntegrationTest_Examples_Node_Pipelines_Affected_affected() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   VCS_Affected_Directories() { #mock
     echo "examples/node/app1"

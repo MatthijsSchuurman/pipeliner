@@ -2,7 +2,7 @@
 
 IntegrationTest_Examples_JVM_Stage_Build_java() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   JVM_Pipelines_Stage_Build examples/jvm/app-java
@@ -22,7 +22,7 @@ IntegrationTest_Examples_JVM_Stage_Build_java() {
 
 IntegrationTest_Examples_JVM_Stage_Build_kotlin() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   JVM_Pipelines_Stage_Build examples/jvm/app-kotlin

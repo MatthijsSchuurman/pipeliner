@@ -2,7 +2,7 @@
 
 IntegrationTest_Examples_Haskell_Stage_Build() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   Haskell_Pipelines_Stage_Build examples/haskell/app1

@@ -2,7 +2,7 @@
 
 IntegrationTest_Examples_Node_Pipelines_Stage_Test() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   Node_Pipelines_Stage_Test examples/node/app1

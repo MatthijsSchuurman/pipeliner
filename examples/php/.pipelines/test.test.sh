@@ -2,7 +2,7 @@
 
 IntegrationTest_Examples_PHP_Pipelines_Stage_Test() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   PHP_Pipelines_Stage_Test examples/php/app1
