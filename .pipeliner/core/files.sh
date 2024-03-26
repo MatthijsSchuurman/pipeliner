@@ -42,7 +42,7 @@ Files_Path_Data() {
 }
 
 Files_Get_Module_Files() {
-  files=$(find $(Files_Path_Root) -name "*.sh" -not -name "*.test.sh" | sort)
+  files=$(find $(Files_Path_Root) -name "*.sh" -not -name "*.test.sh" -not -name "*.local.sh" | sort)
 
   echo $files
 }
@@ -69,7 +69,7 @@ Files_Import_Modules() {
 }
 
 Files_Get_Test_Files() {
-  files=$(find $(Files_Path_Root) -path "*/*.test.sh" | sort)
+  files=$(find $(Files_Path_Root) -path "*/*.test.sh" -or -path "*/*.test" | sort)
 
   echo $files
 }

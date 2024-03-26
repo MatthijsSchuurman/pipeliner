@@ -34,7 +34,7 @@ UnitTest_Docker_Build_Arguments() {
   Packages_Prerequisites docker
 
   #When
-  actual=$(Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile.test core-test:test "key1=value1 key2=value2")
+  actual=$(Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile_test core-test:test "key1=value1 key2=value2")
   actual2=$(Docker_Run core-test:test)
   exitCode=$?
 
@@ -43,25 +43,25 @@ UnitTest_Docker_Build_Arguments() {
   #Then
   Assert_Equal $exitCode 0
   if [ $(Environment_Platform) == "local" ]; then
-    Assert_Contains "$actual" GROUP "Docker Build" core/Dockerfile.test core-test:test ENDGROUP
+    Assert_Contains "$actual" GROUP "Docker Build" core/Dockerfile_test core-test:test ENDGROUP
   else
-    Assert_Contains "$actual" group "Docker Build" core/Dockerfile.test core-test:test endgroup
+    Assert_Contains "$actual" group "Docker Build" core/Dockerfile_test core-test:test endgroup
   fi
 
   Assert_Contains "$actual2" key1=value1
   Assert_Contains "$actual2" key2=value2
 
   #When
-  actual=$(Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile.test core-test:test "key1=value1")
+  actual=$(Docker_Build $(Files_Path_Pipeliner)/core/Dockerfile_test core-test:test "key1=value1")
   actual2=$(Docker_Run core-test:test)
   exitCode=$?
 
   #Then
   Assert_Equal $exitCode 0
   if [ $(Environment_Platform) == "local" ]; then
-    Assert_Contains "$actual" GROUP "Docker Build" core/Dockerfile.test core-test:test ENDGROUP
+    Assert_Contains "$actual" GROUP "Docker Build" core/Dockerfile_test core-test:test ENDGROUP
   else
-    Assert_Contains "$actual" group "Docker Build" core/Dockerfile.test core-test:test endgroup
+    Assert_Contains "$actual" group "Docker Build" core/Dockerfile_test core-test:test endgroup
   fi
 
   Assert_Contains "$actual2" key1=value1

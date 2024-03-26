@@ -227,7 +227,7 @@ UnitTest_Files_Get_Test_Files() {
   #Then
   Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/assert.test.sh"
   Assert_Contains "$files" "$(Files_Path_Pipeliner)/core/log.test.sh"
-  Assert_Contains "$files" "$(Files_Path_Pipeliner)/init.test.sh"
+  Assert_Contains "$files" "$(Files_Path_Pipeliner)/init.test"
 }
 
 UnitTest_Files_Import_Tests() {
@@ -263,7 +263,7 @@ UnitTest_Files_Get_Unit_Tests() {
   Assert_Contains "$unittests" "UnitTest_Files_Import_Tests"
 
   #When
-  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/test.sh)
+  local unittests=$(Files_Get_Unit_Tests $(Files_Path_Pipeliner)/test)
 
   #Then
   Assert_Empty "$unittests"
@@ -279,7 +279,7 @@ UnitTest_Files_Get_Integration_Tests() {
   Assert_Contains "$integrationtests" IntegrationTest_Example
 
   #When
-  local integrationtests=$(Files_Get_Integration_Tests $(Files_Path_Pipeliner)/test.sh)
+  local integrationtests=$(Files_Get_Integration_Tests $(Files_Path_Pipeliner)/test)
 
   #Then
   Assert_Empty "$integrationtests"
@@ -295,7 +295,7 @@ UnitTest_Files_Get_E2E_Tests() {
   Assert_Contains "$e2etests" E2ETest_Example
 
   #When
-  local e2etests=$(Files_Get_E2E_Tests $(Files_Path_Pipeliner)/test.sh)
+  local e2etests=$(Files_Get_E2E_Tests $(Files_Path_Pipeliner)/test)
 
   #Then
   Assert_Empty "$e2etests"

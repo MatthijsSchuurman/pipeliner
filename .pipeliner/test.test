@@ -6,7 +6,7 @@ E2ETest_Test_Type() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type unit --include core/test.test.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type unit --include core/test.test.sh)
   exitCode=$?
 
   #Then
@@ -17,7 +17,7 @@ E2ETest_Test_Type() {
   Assert_Match "$actual" "Example: .+SKIP"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type integration --include core/test.test.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type integration --include core/test.test.sh)
   exitCode=$?
 
   #Then
@@ -27,7 +27,7 @@ E2ETest_Test_Type() {
   Assert_Match "$actual" "Example: .+SKIP"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type e2e --include core/test.test.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type e2e --include core/test.test.sh)
   exitCode=$?
 
   #Then
@@ -43,7 +43,7 @@ E2ETest_Test_Include() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type dontrunanytests --include colors.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --include colors.sh)
   exitCode=$?
 
   #Then
@@ -58,7 +58,7 @@ E2ETest_Test_Exclude() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type dontrunanytests --exclude colors.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --exclude colors.sh)
   exitCode=$?
 
   #Then
@@ -81,7 +81,7 @@ E2ETest_Test_Exclude() {
 #   }
 
 #   E2ETest_Test_Watch_thread &
-#   actual=$($(Files_Path_Pipeliner)/test.sh --watch)
+#   actual=$($(Files_Path_Pipeliner)/test --watch)
 #   exitCode=$?
 
 #   #Then
@@ -98,7 +98,7 @@ E2ETest_Test_Arguments() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --help)
+  actual=$($(Files_Path_Pipeliner)/test --help)
   exitCode=$?
 
   #Then
@@ -116,7 +116,7 @@ E2ETest_Test_Arguments() {
   Assert_Contains "$actual" "-e" "--exclude"
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --version)
+  actual=$($(Files_Path_Pipeliner)/test --version)
   exitCode=$?
 
   #Then
@@ -130,7 +130,7 @@ E2ETest_Test_Arguments_Fail() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --unknown 2>&1)
+  actual=$($(Files_Path_Pipeliner)/test --unknown 2>&1)
   exitCode=$?
 
   #Then

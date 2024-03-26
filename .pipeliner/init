@@ -3,7 +3,7 @@ set +e
 
 # Import all modules
 source $(dirname "${BASH_SOURCE[0]}")/core/files.sh
-Files_Import_Modules
+Files_Pre_Import_Modules
 
 # Setup prerequisites
 Packages_Prerequisites docker

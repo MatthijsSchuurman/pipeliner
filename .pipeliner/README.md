@@ -161,7 +161,7 @@ E2ETest_Test_Include() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type dontrunanytests --include colors.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --include colors.sh)
   exitCode=$?
 
   #Then
