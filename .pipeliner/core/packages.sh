@@ -13,6 +13,11 @@ Packages_Installed() {
     exitCode=$?
   fi
 
+  if [ $exitCode == 0 -a $bin == docker ]; then
+    docker buildx > /dev/null 2>&1
+    exitCode=$?
+  fi
+
   return $exitCode
 }
 
@@ -73,9 +78,9 @@ Packages__Determine_Packages() {
       ;;
     "docker")
       if [ $(Packages__Determine_Manager) == "apt" ]; then
-        packages=docker.io
+        packages="docker.io docker-buildx"
       else
-        packages=docker
+        packages="docker docker-buildx"
       fi
       ;;
     *)

@@ -120,7 +120,7 @@ UnitTest_Packages__Determine_Packages_Docker() {
   package=$(Packages__Determine_Packages docker)
 
   #Then
-  Assert_Equal "$package" "docker.io"
+  Assert_Equal "$package" "docker.io docker-buildx"
 
 
   #Given
@@ -132,7 +132,7 @@ UnitTest_Packages__Determine_Packages_Docker() {
   package=$(Packages__Determine_Packages docker)
 
   #Then
-  Assert_Equal "$package" "docker"
+  Assert_Equal "$package" "docker docker-buildx"
 }
 
 UnitTest_Packages__Determine_Services() {
