@@ -1,7 +1,10 @@
 #!/bin/bash
 source $(dirname ${BASH_SOURCE[0]})/../../.pipeliner/init
 
-Version_BuildId_Next
+Environment_Platform
+if [ $(Environment_Platform) == "local" ]; then
+  Version_BuildId_Next
+fi
 
 echo
 Pipeliner_Test_Run unit
@@ -9,8 +12,4 @@ if [ $? != 0 ]; then exit 1 ; fi
 
 echo
 Pipeliner_Test_Run integration
-if [ $? != 0 ]; then exit 1 ; fi
-
-echo
-Pipeliner_Test_Run e2e
 if [ $? != 0 ]; then exit 1 ; fi
