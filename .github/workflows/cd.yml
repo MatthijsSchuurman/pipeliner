@@ -7,6 +7,25 @@ on:
       - main
 
 jobs:
+  E2E_test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Run E2E tests
+      run: |
+        source ./.pipeliner/init
+        Pipeliner_Test_Run e2e
+
+    - name: Publish test report
+      uses: actions/upload-artifact@v4
+      with:
+        name: E2ETestReport
+        path: artifacts/testReports/
+      if: always()
+
+
   Build:
     runs-on: ubuntu-latest
     steps:
@@ -22,8 +41,8 @@ jobs:
         package=$(Variables_Get "package")
         Variables_Set "packageName" "$(basename "$package")"
 
-    - name: Upload package
+    - name: Publish package
       uses: actions/upload-artifact@v4
       with:
-        name: packages
+        name: Packages
         path: artifacts/packages/

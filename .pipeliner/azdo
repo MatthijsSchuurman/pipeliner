@@ -4,7 +4,7 @@ source $(dirname ${BASH_SOURCE[0]})/init
 
 #Main logic
 argumentsDefinition="
-agent: agent #Azure DevOps agent commands: start, setup, command, stop, clean
+agent: agent #Azure DevOps agent commands: start, restart, setup, command, stop, clean
 --url: url #Azure DevOps URL
 --token: token #Azure DevOps PAT
 --pool: pool #Azure DevOps pool
@@ -36,6 +36,9 @@ else
   if Dictionary_Exists "$arguments" agent,0 ; then
     if [ "$(Dictionary_Get "$arguments" agent,0)" == "stop" ]; then
       Vagrant_Halt azdo
+    elif [ "$(Dictionary_Get "$arguments" agent,0)" == "restart" ]; then
+      Vagrant_Halt azdo
+      Vagrant_Up azdo
     elif [ "$(Dictionary_Get "$arguments" agent,0)" == "clean" ]; then
       Vagrant_Destroy azdo
     else

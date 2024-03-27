@@ -17,6 +17,11 @@ E2ETest_Pipeliner_Pipeline_CD() {
   Assert_Equal $exitCode 0
   Assert_Contains "$actual" "Docker version"
 
+  Assert_Contains "$actual" "Running tests"
+  Assert_Match "$actual" "e2e Test report: .+\.txt"
+  local e2eTestReport=$(echo "$actual" | grep --only-matching --max-count=1 "e2e Test report: .*\.txt" | sed -E "s/e2e Test report: (.+\.txt)/\1/")
+  Assert_File_Exists "$e2eTestReport"
+
   Assert_Contains "$actual" "Creating package"
   Assert_Contains "$actual" "adding: .pipeliner/test"
   Assert_Contains "$actual" "adding: examples/node/app1/test/helloworld.js"
