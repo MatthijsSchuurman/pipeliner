@@ -109,7 +109,7 @@ IntegrationTest_Pipeliner_Test_Run() {
   Assert_Contains "$actual" "Fake test report"
   Assert_Contains "$actual" "type: e2e"
   Assert_Contains "$actual" "include: "
-  Assert_Contains "$actual" "exclude: cd.local.sh"
+  Assert_Contains "$actual" "exclude: cd.local"
 
   Assert_Equal "$(Variables_Get e2eTestReport)" "$(Artifacts_Directory)/testReports/e2e_test_report-1.2.345-test.txt"
   Assert_File_Exists "$(Artifacts_Directory)/testReports/e2e_test_report-1.2.345-test.txt"
