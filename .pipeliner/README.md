@@ -30,7 +30,7 @@ This project is licensed under the terms of the [MIT license](LICENSE.md).
 To install Pipeliner in your current project directory, run:
 
 ```bash
-wget -q -O - "https://github.com/MatthijsSchuurman/pipeliner/releases/latest/download/install.sh" | bash
+wget -q -O - "https://github.com/MatthijsSchuurman/pipeliner/releases/latest/download/install" | bash
 ```
 This will create 2 directories: `.pipeliner/` and `examples/` and now you're ready to go. If you know what you're doing already then delete the examples.
 Next step is to setup your first script
@@ -39,16 +39,16 @@ Next step is to setup your first script
 #### ./pipeline.sh
 ```bash
 #!/bin/bash
-source $(dirname ${BASH_SOURCE[0]})/.pipeliner/init.sh #Load everything
+source $(dirname ${BASH_SOURCE[0]})/.pipeliner/init #Load everything
 
 App_Build #Build the app
 ```
 
-#### ./app.class.sh
+#### ./app.sh
 ```bash
 #!/bin/bash
 
-source $(Files_Path_Pipeliner)/core/docker.class.sh
+source $(Files_Path_Pipeliner)/core/docker.sh
 
 App_Build() {
   Docker_Build .pipeliner/core/Dockerfile core:runner #Build the pipeline runner container
@@ -57,11 +57,11 @@ App_Build() {
 }
 ```
 
-#### ./test/app.class.sh
+#### ./app.test.sh
 ```bash
 #!/bin/bash
 
-source $(Files_Path_Root)/app.class.sh
+source $(Files_Path_Root)/app.sh
 
 IntegrationTest_App_Build() {
   #Given
@@ -88,9 +88,9 @@ The key to success is [TDD](https://en.wikipedia.org/wiki/Test-driven_developmen
 
 So this chapter gives you some guidance on how to get to easily testable code.
 
-First of all, use the `test.sh` script to continuously run tests on your code. Just hit save on `some.sh` file and it will run all tests defined in `test/some.sh`.
+First of all, use the `.pipeliner/test` script to continuously run tests on your code. Just hit save on `some.sh` file and it will run all tests defined in `test/some.sh`.
 ```bash
-.pipeliner/test.sh --watch
+.pipeliner/test --watch
 ```
 
 ## Test types
@@ -128,7 +128,7 @@ Note that [mocking](#mocking) is your friend here, even more so than with [unit 
 ```bash
 IntegrationTest_Examples_DotNet_Pipelines_Stage_Test() {
   #Given
-  source $(Files_Path_Pipeliner)/init.sh
+  source $(Files_Path_Pipeliner)/init
 
   #When
   DotNet_Pipelines_Stage_Test examples/dotnet/app1
@@ -161,7 +161,7 @@ E2ETest_Test_Include() {
   local exitCode=
 
   #When
-  actual=$($(Files_Path_Pipeliner)/test.sh --type dontrunanytests --include colors.class.sh)
+  actual=$($(Files_Path_Pipeliner)/test --type dontrunanytests --include colors)
   exitCode=$?
 
   #Then
@@ -221,15 +221,19 @@ By mocking `Version_Pipeliner_Full` you can assume the filename of the test repo
 # Tools
 
 ## Files & Directory
-[.pipeliner](../.pipeliner/)/      *Main pipeliner directory*
-- [core](../.pipeliner/core/)/     *Core libraries*
-- [dotnet](../.pipeliner/dotnet/)/ *.NET libraries*
-- [node](../.pipeliner/node/)/     *Node libraries*
+[.pipeliner](../.pipeliner/)/        *Main pipeliner directory*
+- [core](../.pipeliner/core/)/       *Core libraries*
+- [dotnet](../.pipeliner/dotnet/)/   *.NET libraries*
+- [haskell](../.pipeliner/haskell/)/ *Haskell & Cabal libraries*
+- [jvm](../.pipeliner/jvm/)/         *JVM (Java & Kotlin) / Gradle libraries*
+- [node](../.pipeliner/node/)/       *Node & NPM libraries*
+- [php](../.pipeliner/php/)/         *PHP & Composer libraries*
 
-- [docker.sh](../.pipeliner/docker.sh)    *Quickly [run something in docker](#docker)*
-- [init.sh](../.pipeliner/init.sh)        *Initialise pipeliner in your pipeline*
-- [install.sh](../.pipeliner/install.sh)  *Install/Upgrade pipeliner in current directory*
-- [test.sh](../.pipeliner/test.sh)        *Run [tests](#philosophy)*
+[.pipeliner](../.pipeliner/)/        *Main scripts*
+- [docker](../.pipeliner/docker)     *Quickly [run something in docker](#docker)*
+- [init](../.pipeliner/init)         *Initialise pipeliner in your pipeline*
+- [install](../.pipeliner/install)   *Install/Upgrade pipeliner in current directory*
+- [test](../.pipeliner/test)         *Run [tests](#philosophy)*
 
 [examples](../examples/)/            *Various pipeline examples*
 
@@ -237,9 +241,9 @@ By mocking `Version_Pipeliner_Full` you can assume the filename of the test repo
 ## Docker
 Pipeliner relies heavily on Docker it's probably useful to easily run various things in Docker:
 ```bash
-.pipeliner/docker.sh --image node "npm install"
+.pipeliner/docker --image node "npm install"
 ```
 Or login to the container itself:
 ```bash
-.pipeliner/docker.sh --image dotnet
+.pipeliner/docker --image dotnet
 ```

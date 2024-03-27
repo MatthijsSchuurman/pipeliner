@@ -1,0 +1,74 @@
+#!/bin/bash
+
+source $(dirname "${BASH_SOURCE[0]}")/core/files.sh
+source $(Files_Path_Pipeliner)/core/test.sh
+source $(Files_Path_Pipeliner)/core/assert.sh
+source $(Files_Path_Pipeliner)/core/colors.sh
+source $(Files_Path_Pipeliner)/core/cli.sh
+source $(Files_Path_Pipeliner)/core/version.sh
+
+Test_SH_Watch() {
+  echo -n "Watching for changes in "
+  Color_Yellow $(Files_Path_Root) ; echo
+  echo
+
+  while true; do
+    file=$(Files_Watch_Directory_Written "$(Files_Path_Root)")
+    if [ $? != 0 ]; then break; fi #exit on error
+    if [[ "$file" != *".sh" && "$file" != "$(Files_Path_Pipeliner)/"* ]]; then continue; fi #skip non-sh files
+
+    if [[ "$file" != *".test"* ]]; then #module/normal scripts
+      file=${file%.sh}.test.sh
+    fi
+
+    echo -n "Re-running "
+    Color_Yellow $file ; echo
+    echo
+
+    Test_Run "" $file ""
+    echo
+  done
+}
+
+
+#Main logic
+echo
+
+argumentsDefinition="
+--watch: watch #Watch for changes and re-run tests
+--type: type #Test type (unit,integration,e2e)
+--include: include #Include pattern
+--exclude: exclude #Exclude pattern
+
+--help: help #Show usage information
+--stats: stats #Show statistics
+--version: version #Show version information
+
+-w: watch #--watch
+-t: type #--type
+-i: include #--include
+-e: exclude #--exclude
+"
+
+arguments=$(CLI_Arguments "$argumentsDefinition" "$@")
+
+if Dictionary_Exists "$arguments" FAILURES ; then
+  echo
+  CLI_Arguments_Usage ${BASH_SOURCE[0]} "$argumentsDefinition"
+  echo
+  exit 1
+elif Dictionary_Exists "$arguments" help,0 ; then
+  CLI_Arguments_Usage ${BASH_SOURCE[0]} "$argumentsDefinition"
+elif Dictionary_Exists "$arguments" version,0 ; then
+  echo "Pipeliner $(Version_Pipeliner)"
+elif Dictionary_Exists "$arguments" stats,0 ; then
+  echo "Test statistics"
+  echo
+  Test_Statistics
+elif Dictionary_Exists "$arguments" watch,0 ; then
+  Test_SH_Watch
+else #run once
+  Test_Run "$(Dictionary_Get "$arguments" type,0 2> /dev/null)" "$(Dictionary_Get "$arguments" include,0 2> /dev/null)" "$(Dictionary_Get "$arguments" exclude,0 2> /dev/null)"
+fi
+
+echo

@@ -3,7 +3,7 @@
   "tasks": [
     {
       "label": "Run tests",
-      "command": ".pipeliner/test.sh --watch",
+      "command": ".pipeliner/test --watch",
       "group": "test",
       "type": "shell",
     }

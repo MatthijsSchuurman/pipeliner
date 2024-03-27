@@ -15,7 +15,7 @@ jobs:
 
     - name: Run unit tests
       run: |
-        source ./.pipeliner/init.sh
+        source ./.pipeliner/init
         Pipeliner_Test_Run unit
 
     - name: Upload test results
@@ -34,7 +34,7 @@ jobs:
 
     - name: Run integration tests
       run: |
-        source ./.pipeliner/init.sh
+        source ./.pipeliner/init
         Pipeliner_Test_Run integration
 
     - name: Upload test results
@@ -53,7 +53,7 @@ jobs:
 
     - name: Run E2E tests
       run: |
-        source ./.pipeliner/init.sh
+        source ./.pipeliner/init
         Pipeliner_Test_Run e2e
 
     - name: Upload test results

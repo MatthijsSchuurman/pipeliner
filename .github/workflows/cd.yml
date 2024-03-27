@@ -16,7 +16,7 @@ jobs:
     - name: Create package
       id: package
       run: |
-        source ./.pipeliner/init.sh
+        source ./.pipeliner/init
         Pipeliner_Package_Create
 
         package=$(Variables_Get "package")
