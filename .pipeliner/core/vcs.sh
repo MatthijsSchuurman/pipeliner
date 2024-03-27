@@ -23,7 +23,7 @@ VCS_Affected() {
 
   #remove prefix M (modified), A (added), R (removed), ! (missing), ? (not tracked)
   files=$(echo "$files" | sed -E "s/^[MAR!?] //")
-  echo "$files" | sort
+  echo "$files" | LC_COLLATE=C sort
 }
 
 VCS_Affected_Directories() {
@@ -42,7 +42,7 @@ VCS_Affected_Directories() {
       directories+=("$(dirname $file)")
     fi
   done
-  directories=$(IFS=$'\n'; echo "${directories[*]}" | sort | uniq)
+  directories=$(IFS=$'\n'; echo "${directories[*]}" | LC_COLLATE=C sort | uniq)
 
   if [ "$depth" ]; then
     directories=$(echo "$directories" | cut -d'/' -f1-$depth)
