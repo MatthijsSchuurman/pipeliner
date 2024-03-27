@@ -6,4 +6,4 @@ source $(dirname "${BASH_SOURCE[0]}")/core/files.sh
 Files_Pre_Import_Modules
 
 # Setup prerequisites
-Packages_Prerequisites docker docker-buildx
+Packages_Prerequisites docker

@@ -73,9 +73,9 @@ Packages__Determine_Packages() {
       ;;
     "docker")
       if [ $(Packages__Determine_Manager) == "apt" ]; then
-        packages=docker.io
+        packages="docker.io docker-buildx"
       else
-        packages=docker
+        packages="docker docker-buildx"
       fi
       ;;
     *)
