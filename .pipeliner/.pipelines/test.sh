@@ -21,7 +21,7 @@ Pipeliner_Test_Run() {
   local exitCode=
 
   if [ $type == "e2e" ]; then
-    exclude="ci.local.sh" #prevent infinite loop
+    exclude="cd.local.sh" #prevent infinite loop
   fi
 
   Log_Info "Running tests"

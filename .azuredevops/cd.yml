@@ -5,6 +5,7 @@ pool: Default
 
 stages:
 - stage: Test
+  dependsOn: [] # Run in parallel
   jobs:
   - job: E2ETest
     steps:
@@ -19,6 +20,7 @@ stages:
       condition: always()
 
 - stage: Build
+  dependsOn: [] # Run in parallel
   jobs:
   - job: CreatePackage
     steps:
