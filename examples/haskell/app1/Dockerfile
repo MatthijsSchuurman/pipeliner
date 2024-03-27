@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:lastest
 
 RUN apk --no-cache add \
     libffi \
