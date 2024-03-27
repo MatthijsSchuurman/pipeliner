@@ -13,6 +13,11 @@ Packages_Installed() {
     exitCode=$?
   fi
 
+  if [ $exitCode == 0 -a $bin == docker ]; then
+    docker buildx > /dev/null 2>&1
+    exitCode=$?
+  fi
+
   return $exitCode
 }
 
