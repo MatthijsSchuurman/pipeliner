@@ -1,7 +1,6 @@
 #!/bin/bash
 source $(dirname ${BASH_SOURCE[0]})/../../.pipeliner/init
 
-Environment_Platform
 if [ $(Environment_Platform) == "local" ]; then
   Version_BuildId_Next
 fi

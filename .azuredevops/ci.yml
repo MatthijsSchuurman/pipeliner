@@ -12,10 +12,10 @@ stages:
     - bash: |
         source ./.pipeliner/init
         Pipeliner_Test_Run unit
-      displayName: Run unit tests
+      displayName: Run Unit tests
 
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: Unit Test Report
+      artifact: UnitTestReport
       displayName: Publish test report
       condition: always()
 
@@ -25,9 +25,9 @@ stages:
     - script: |
         source ./.pipeliner/init
         Pipeliner_Test_Run integration
-      displayName: Run integration tests
+      displayName: Run Integration tests
 
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: Integration Test Report
+      artifact: IntegrationTestReport
       displayName: Publish test report
       condition: always()

@@ -16,7 +16,7 @@ stages:
       displayName: Run E2E tests
 
     - publish: $(Build.ArtifactStagingDirectory)/testReports
-      artifact: E2E Test Report
+      artifact: E2ETestReport
       displayName: Publish test report
       condition: always()
 
@@ -34,5 +34,5 @@ stages:
       displayName: Create package
 
     - publish: $(Build.ArtifactStagingDirectory)/packages
-      artifact: packages
-      displayName: Upload package
+      artifact: Packages
+      displayName: Publish package
