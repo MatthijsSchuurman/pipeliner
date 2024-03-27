@@ -12,7 +12,7 @@ Docker_Build() {
   local arguments="$3"
 
   Log_Group "Docker Build $dockerfile $tag"
-  dockerCommand="docker build"
+  dockerCommand="docker buildx build"
   dockerCommand+=" --file $dockerfile"
   dockerCommand+=" --tag $tag"
 
