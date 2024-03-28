@@ -2,6 +2,7 @@
 
 ORIGINALPWD=$PWD #store as soon as script get loaded
 PACKAGEURL=https://github.com/MatthijsSchuurman/pipeliner/releases/latest/download/pipeliner.zip
+INSTALLDIRECTORIES=(.pipeliner .azuredevops .github Vagrantfile examples) #.vscode is merged separately
 
 Install_Directory() {
   echo $ORIGINALPWD
@@ -79,15 +80,14 @@ Install_Install() {
 
   local file=
   local directory=
-  local directories=(.pipeliner .azuredevops .github Vagrantfile examples)
 
   if Install_Is_Upgrade; then
-    for directory in ${directories[@]}; do
+    for directory in ${INSTALLDIRECTORIES[@]}; do
       rm -Rf "$(Install_Directory)/$directory" > /dev/null 2>&1
     done
   fi
 
-  for directory in ${directories[@]}; do
+  for directory in ${INSTALLDIRECTORIES[@]}; do
     mv "$(Install_Directory_Temp)/$directory" "$(Install_Directory)" > /dev/null 2>&1
     if [ $? != 0 ]; then
       echo "Error: Unable to move files from $(Install_Directory_Temp)/$directory to $(Install_Directory)" >&2
