@@ -1,13 +1,13 @@
-# Pipeliner v0.6
+# Pipeliner v24.3
 > Ever wondered why we create test automation pipelines but we don't bother to automatically test those pipelines?
 
 Pipeliner is a Bash & Docker based CI/CD extension to make pipelines maintainable. More than that, it's a [philosophy](#philosophy) to validate everything continuously using Test Driven Development.
 
 ## Portable & Easy to debug
 - Everything runs in Docker & Bash
-- Runs locally and in the Cloud
-- Supports various CI/CD platforms
-  - [Azure DevOps](https://azure.microsoft.com/en-us/products/devops/pipelines/), [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines), [GitHub Actions](https://github.com/features/actions), [GitLab Pipelines](https://docs.gitlab.com/ee/ci/pipelines/) and probably more
+- Runs locally and in the Cloud on Linux & MacOS
+- Supports [Azure DevOps](https://azure.microsoft.com/en-us/products/devops/pipelines/) & [GitHub Actions](https://github.com/features/actions) CI/CD platforms
+  - [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) & [GitLab Pipelines](https://docs.gitlab.com/ee/ci/pipelines/) not yet supported
 - Separation of concerns
 - Automated testing
 - [Get started](#get-started) in 2 seconds
