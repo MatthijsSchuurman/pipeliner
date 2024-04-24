@@ -1,11 +1,11 @@
 #!/bin/bash
 
-IntegrationTest_Examples_Node_Stage_Build() {
+IntegrationTest_Examples_Node_Build() {
   #Given
   source $(Files_Path_Pipeliner)/init
 
   #When
-  Node_Pipelines_Stage_Build examples/node/app1
+  Node_Pipelines_Build examples/node/app1
 
   #Then
   actual=$(Docker_List examples/node/app1:latest)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Haskell_Pipelines_Stage_Build() {
+Haskell_Pipelines_Build() {
   local app=$1
 
   Haskell_Cabal_Build $app

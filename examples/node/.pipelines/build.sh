@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Node_Pipelines_Stage_Build() {
+Node_Pipelines_Build() {
   local app=$1
 
   Node_NPM_Install $app prod

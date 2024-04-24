@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Haskell_Pipelines_Stage_Test() {
+Haskell_Pipelines_Test() {
   local app=$1
 
   Haskell_Cabal_Test $app

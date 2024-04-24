@@ -1,11 +1,11 @@
 #!/bin/bash
 
-IntegrationTest_Examples_JVM_Stage_Build_java() {
+IntegrationTest_Examples_JVM_Build_java() {
   #Given
   source $(Files_Path_Pipeliner)/init
 
   #When
-  JVM_Pipelines_Stage_Build examples/jvm/app-java
+  JVM_Pipelines_Build examples/jvm/app-java
 
   #Then
   actual=$(Docker_List examples/jvm/app-java:latest)
@@ -20,12 +20,12 @@ IntegrationTest_Examples_JVM_Stage_Build_java() {
   Assert_Equal $? 0
 }
 
-IntegrationTest_Examples_JVM_Stage_Build_kotlin() {
+IntegrationTest_Examples_JVM_Build_kotlin() {
   #Given
   source $(Files_Path_Pipeliner)/init
 
   #When
-  JVM_Pipelines_Stage_Build examples/jvm/app-kotlin
+  JVM_Pipelines_Build examples/jvm/app-kotlin
 
   #Then
   actual=$(Docker_List examples/jvm/app-kotlin:latest)

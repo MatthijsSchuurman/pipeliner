@@ -1,11 +1,11 @@
 #!/bin/bash
 
-IntegrationTest_Examples_Node_Pipelines_Stage_Test() {
+IntegrationTest_Examples_Node_Pipelines_Test() {
   #Given
   source $(Files_Path_Pipeliner)/init
 
   #When
-  Node_Pipelines_Stage_Test examples/node/app1
+  Node_Pipelines_Test examples/node/app1
 
   #Then
   Assert_File_Exists $(Files_Path_Root)/examples/node/app1/test-report.json

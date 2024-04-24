@@ -1,11 +1,11 @@
 #!/bin/bash
 
-IntegrationTest_Examples_PHP_Stage_Build() {
+IntegrationTest_Examples_PHP_Build() {
   #Given
   source $(Files_Path_Pipeliner)/init
 
   #When
-  PHP_Pipelines_Stage_Build examples/php/app1
+  PHP_Pipelines_Build examples/php/app1
 
   #Then
   actual=$(Docker_List examples/php/app1:latest)

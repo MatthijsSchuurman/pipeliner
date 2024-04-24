@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JVM_Pipelines_Stage_Build() {
+JVM_Pipelines_Build() {
   local app=$1
 
   JVM_Gradle_Clean $app

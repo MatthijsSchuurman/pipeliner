@@ -1,11 +1,11 @@
 #!/bin/bash
 
-IntegrationTest_Examples_Haskell_Stage_Build() {
+IntegrationTest_Examples_Haskell_Build() {
   #Given
   source $(Files_Path_Pipeliner)/init
 
   #When
-  Haskell_Pipelines_Stage_Build examples/haskell/app1
+  Haskell_Pipelines_Build examples/haskell/app1
 
   #Then
   actual=$(Docker_List examples/haskell/app1:latest)
