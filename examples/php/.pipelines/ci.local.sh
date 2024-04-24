@@ -7,8 +7,8 @@ apps=$(PHP_Pipelines_Affected "$mode")
 for app in $apps; do
   echo
   Log_Warning "Running CI pipline for $app"
-  PHP_Pipelines_Stage_Test $app
-  PHP_Pipelines_Stage_Build $app
+  PHP_Pipelines_Test $app
+  PHP_Pipelines_Build $app
   Log_Info "CI pipline for $app done"
   echo
 done

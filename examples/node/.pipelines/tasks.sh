@@ -24,3 +24,26 @@ Node_Pipelines_Affected() {
     echo "$app"
   done
 }
+
+
+Node_Pipelines_Build() {
+  local app=$1
+
+  Node_NPM_Install $app prod
+
+  local curpath=$(pwd)
+  cd "$(Files_Path_Root)/$app"
+  Docker_Build Dockerfile "$app:latest"
+  local exitCode=$?
+  cd "$curpath"
+
+  return $exitCode
+}
+
+
+Node_Pipelines_Test() {
+  local app=$1
+
+  Node_NPM_Test $app
+  Node_NPM_Lint $app
+}

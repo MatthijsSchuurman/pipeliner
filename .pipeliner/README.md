@@ -126,12 +126,12 @@ For example you may have some technical building blocks like `Compression` and `
 Note that [mocking](#mocking) is your friend here, even more so than with [unit testing](#unit-testing). You don't want to have to rely on external or complex dependencies as that makes testing your functional building blocks hard. And besides, that is what [E2E testing](#e2e-testing) is for.
 
 ```bash
-IntegrationTest_Examples_DotNet_Pipelines_Stage_Test() {
+IntegrationTest_Examples_DotNet_Pipelines_Test() {
   #Given
   source $(Files_Path_Pipeliner)/init
 
   #When
-  DotNet_Pipelines_Stage_Test examples/dotnet/app1
+  DotNet_Pipelines_Test examples/dotnet/app1
 
   #Then
   Assert_File_Exists $(Files_Path_Root)/examples/dotnet/app1/test-report.xml

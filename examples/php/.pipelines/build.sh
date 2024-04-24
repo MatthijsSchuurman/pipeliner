@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PHP_Pipelines_Stage_Build() {
+PHP_Pipelines_Build() {
   local app=$1
 
   PHP_Composer_Install $app prod
