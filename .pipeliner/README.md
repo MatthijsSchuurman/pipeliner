@@ -1,4 +1,4 @@
-# Pipeliner v24.3
+# Pipeliner v24.12
 > Ever wondered why we create test automation pipelines but we don't bother to automatically test those pipelines?
 
 Pipeliner is a Bash & Docker based CI/CD extension to make pipelines maintainable. More than that, it's a [philosophy](#philosophy) to validate everything continuously using Test Driven Development.

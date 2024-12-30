@@ -21,6 +21,9 @@ node_modules/
 **/bin/
 **/obj/
 
+examples/**/app
+coverage.out
+
 examples/**/dist/
 
 .gradle/
