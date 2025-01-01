@@ -108,7 +108,7 @@ Files_Watch_Directory_Written() {
 
   which inotifywait > /dev/null 2>&1
   if [ $? == 0 ]; then
-    inotifywait --recursive --event close_write --format "%w%f" $directory 2>/dev/null
+    inotifywait --recursive --event modify --format "%w%f" $directory 2>/dev/null
   else
     which fswatch > /dev/null 2>&1
     if [ $? == 0 ]; then

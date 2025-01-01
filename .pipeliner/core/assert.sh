@@ -201,6 +201,36 @@ Assert_Not_File_Exists() {
   fi
 }
 
+Assert_File_Contains() {
+  local file=$1
+  local expected=$2
+
+  if [ ! -f "$file" ]; then
+    echo "Assert failed: expected file '$file' to exist"
+    exit 1
+  fi
+
+  if ! grep -q "$expected" "$file"; then
+    echo "Assert failed: expected file '$file' to contain '$expected'"
+    exit 1
+  fi
+}
+
+Assert_File_Not_Contains() {
+  local file=$1
+  local expected=$2
+
+  if [ ! -f "$file" ]; then
+    echo "Assert failed: expected file '$file' to exist"
+    exit 1
+  fi
+
+  if grep -q "$expected" "$file"; then
+    echo "Assert failed: expected file '$file' to not contain '$expected'"
+    exit 1
+  fi
+}
+
 Assert_Directory_Exists() {
   local directory=$1
 
