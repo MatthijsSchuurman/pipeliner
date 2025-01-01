@@ -974,6 +974,134 @@ UnitTest_Assert_Not_File_Exists_Fail() {
   fi
 }
 
+UnitTest_Assert_File_Contains() {
+  #Given
+  local filename=$(Files_Path_Pipeliner)/README.md
+  local contains="Pipeliner"
+  local actual=
+
+  #When
+  actual=$(Assert_File_Contains "$filename" "$contains")
+
+  #Then
+  if [ $? != 0 ]; then
+    echo "Test failed: assert file contains should not fail when file contains expected"
+    exit 1
+  fi
+
+  #Given
+  local contains="P[a-z]pe.\+r "
+
+  #When
+  actual=$(Assert_File_Contains "$filename" "$contains")
+
+  #Then
+  if [ $? != 0 ]; then
+    echo "Test failed: assert file contains should not fail when file contains expected"
+    exit 1
+  fi
+}
+UnitTest_Assert_File_Contains_Fail() {
+  #Given
+  local filename=$(Files_Path_Pipeliner)/README.md
+  local contains="DOESNOTEXIST"
+  local actual=
+
+  #When
+  actual=$(Assert_File_Contains "$filename" "$contains")
+
+  #Then
+  if [ $? == 0 ]; then
+    echo "Test failed: assert file contains should fail when file does not contain expected"
+    exit 1
+  fi
+  if [ "$actual" != "Assert failed: expected file '$(Files_Path_Pipeliner)/README.md' to contain 'DOESNOTEXIST'" ]; then
+    echo "Test failed: assert file contains should return the correct value when file does not contain expected"
+    exit
+  fi
+
+  #Given
+  local filename=$(Files_Path_Pipeliner)/DOESNOTEXIST
+  local contains="Pipeliner"
+
+  #When
+  actual=$(Assert_File_Contains "$filename" "$contains")
+
+  #Then
+  if [ $? == 0 ]; then
+    echo "Test failed: assert file contains should fail when file does not exist"
+    exit 1
+  fi
+  if [ "$actual" != "Assert failed: expected file '$(Files_Path_Pipeliner)/DOESNOTEXIST' to exist" ]; then
+    echo "Test failed: assert file contains should return the correct value when file does not exist"
+    exit 1
+  fi
+}
+
+UnitTest_Assert_File_Not_Contains() {
+  #Given
+  local filename=$(Files_Path_Pipeliner)/README.md
+  local contains="DOESNOTEXIST"
+  local actual=
+
+  #When
+  actual=$(Assert_File_Not_Contains "$filename" "$contains")
+
+  #Then
+  if [ $? != 0 ]; then
+    echo "Test failed: assert file not contains should not fail when file does not contain expected"
+    exit 1
+  fi
+
+  #Given
+  local contains="DOES[0-9]\+EXIST"
+
+  #When
+  actual=$(Assert_File_Not_Contains "$filename" "$contains")
+
+  #Then
+  if [ $? != 0 ]; then
+    echo "Test failed: assert file not contains should not fail when file does not contain expected"
+    exit 1
+  fi
+}
+UnitTest_Assert_File_Not_Contains_Fail() {
+  #Given
+  local filename=$(Files_Path_Pipeliner)/README.md
+  local contains="Pipeliner"
+  local actual=
+
+  #When
+  actual=$(Assert_File_Not_Contains "$filename" "$contains")
+
+  #Then
+  if [ $? == 0 ]; then
+    echo "Test failed: assert file not contains should fail when file contains expected"
+    exit 1
+  fi
+  if [ "$actual" != "Assert failed: expected file '$(Files_Path_Pipeliner)/README.md' to not contain 'Pipeliner'" ]; then
+    echo "Test failed: assert file not contains should return the correct value when file contains expected"
+    exit 1
+  fi
+
+  #Given
+  local filename=$(Files_Path_Pipeliner)/DOESNOTEXIST
+  local contains="Pipeliner"
+
+  #When
+  actual=$(Assert_File_Not_Contains "$filename" "$contains")
+
+  #Then
+  if [ $? == 0 ]; then
+    echo "Test failed: assert file not contains should fail when file does not exist"
+    exit 1
+  fi
+  if [ "$actual" != "Assert failed: expected file '$(Files_Path_Pipeliner)/DOESNOTEXIST' to exist" ]; then
+    echo "Test failed: assert file not contains should return the correct value when file does not exist"
+    exit 1
+  fi
+}
+
 
 UnitTest_Assert_Directory_Exists() {
   #Given
