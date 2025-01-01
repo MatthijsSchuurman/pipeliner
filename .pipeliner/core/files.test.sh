@@ -316,7 +316,7 @@ UnitTest_Files_Watch_Directory_Written() {
   #When
   UnitTest_Files_Watch_Directory_Written_thread(){
     sleep 1
-    touch $directory/test.txt
+    echo "test" > $directory/test.txt
   }
   UnitTest_Files_Watch_Directory_Written_thread &
 
