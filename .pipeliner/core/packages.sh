@@ -159,7 +159,7 @@ Packages_Install() {
   Log_Group "Installing package: $packages"
   case $manager in
     "apt")
-      sudo apt install -y $packages
+      sudo apt install --no-install-recommends -y $packages
       exitCode=$?
       ;;
     "pacman")
