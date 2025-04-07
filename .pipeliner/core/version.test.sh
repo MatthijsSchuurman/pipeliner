@@ -4,7 +4,7 @@ source $(Files_Path_Pipeliner)/core/version.sh
 
 UnitTest_Version_Pipeliner() {
   #Given
-  local version=25.1
+  local version=25.5
 
   #When
   local actual=$(Version_Pipeliner)
