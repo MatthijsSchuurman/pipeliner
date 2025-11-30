@@ -16,7 +16,7 @@ Log__Log() {
       level=$(echo "$level" | tr '[:upper:]' '[:lower:]')
       echo "::$level::$message"
       ;;
-    "local")
+    "local" | "docker")
       local log="$level $message"
 
       case $level in
@@ -65,7 +65,7 @@ Log_Variable() {
     "github")
       echo "$key=$value" >> "$GITHUB_OUTPUT"
       ;;
-    "local")
+    "local" | "docker")
       Color_Cyan "VARIABLE $key=$value" ; echo
       ;;
     *)
@@ -82,7 +82,7 @@ Log_Group() {
   case $(Environment_Platform) in
     "azure")  echo "##[group] $name" ;;
     "github") echo "::group::$name" ;;
-    "local")  Color_Blue "GROUP $name" ; echo ;;
+    "local" | "docker")  Color_Blue "GROUP $name" ; echo ;;
     *)
       echo "Log grouping for $(Environment_Platform) platform is not supported" >&2
       exit 1
@@ -94,7 +94,7 @@ Log_Group_End() {
   case $(Environment_Platform) in
     "azure")  echo "##[endgroup]" ;;
     "github") echo "::endgroup::" ;;
-    "local")  Color_Blue "ENDGROUP" ; echo ;;
+    "local" | "docker")  Color_Blue "ENDGROUP" ; echo ;;
     *)
       echo "Log grouping for $(Environment_Platform) platform is not supported" >&2
       exit 1
