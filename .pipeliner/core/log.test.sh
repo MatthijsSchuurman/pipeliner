@@ -14,6 +14,18 @@ UnitTest_Log_Debug() {
   #Then
   Assert_Contains "$actual" "DEBUG" "debug message"
 }
+UnitTest_Log_Debug_Docker() {
+  #Given
+  Environment_Platform() { #mock
+    echo "docker"
+  }
+
+  #When
+  local actual=$(Log_Debug "debug message")
+
+  #Then
+  Assert_Contains "$actual" "DEBUG" "debug message"
+}
 UnitTest_Log_Debug_Azure() {
   #Given
   Environment_Platform() { #mock
@@ -68,6 +80,18 @@ UnitTest_Log_Info() {
   #Then
   Assert_Contains "$actual" "INFO" "info message"
 }
+UnitTest_Log_Info_Docker() {
+  #Given
+  Environment_Platform() { #mock
+    echo "docker"
+  }
+
+  #When
+  local actual=$(Log_Info "info message")
+
+  #Then
+  Assert_Contains "$actual" "INFO" "info message"
+}
 UnitTest_Log_Info_Azure() {
   #Given
   Environment_Platform() { #mock
@@ -114,6 +138,18 @@ UnitTest_Log_Warning() {
   #Given
   Environment_Platform() { #mock
     echo "local"
+  }
+
+  #When
+  local actual=$(Log_Warning "warning message")
+
+  #Then
+  Assert_Contains "$actual" "WARN" "warning message"
+}
+UnitTest_Log_Warning_Docker() {
+  #Given
+  Environment_Platform() { #mock
+    echo "docker"
   }
 
   #When
@@ -177,6 +213,18 @@ UnitTest_Log_Error() {
   #Then
   Assert_Contains "$actual" "ERROR" "error message"
 }
+UnitTest_Log_Error_Docker() {
+  #Given
+  Environment_Platform() { #mock
+    echo "docker"
+  }
+
+  #When
+  local actual=$(Log_Error "error message")
+
+  #Then
+  Assert_Contains "$actual" "ERROR" "error message"
+}
 UnitTest_Log_Error_Azure() {
   #Given
   Environment_Platform() { #mock
@@ -223,6 +271,18 @@ UnitTest_Log_Variable() {
   #Given
   Environment_Platform() { #mock
     echo "local"
+  }
+
+  #When
+  local actual=$(Log_Variable "key" "value")
+
+  #Then
+  Assert_Contains "$actual" "VARIABLE" "key=value"
+}
+UnitTest_Log_Variable_Docker() {
+  #Given
+  Environment_Platform() { #mock
+    echo "docker"
   }
 
   #When
@@ -294,6 +354,18 @@ UnitTest_Log_Group() {
   #Then
   Assert_Contains "$actual" "GROUP" "group message"
 }
+UnitTest_Log_Group_Docker() {
+  #Given
+  Environment_Platform() { #mock
+    echo "docker"
+  }
+
+  #When
+  local actual=$(Log_Group "group message")
+
+  #Then
+  Assert_Contains "$actual" "GROUP" "group message"
+}
 UnitTest_Log_Group_Azure() {
   #Given
   Environment_Platform() { #mock
@@ -340,6 +412,18 @@ UnitTest_Log_Group_End() {
   #Given
   Environment_Platform() { #mock
     echo "local"
+  }
+
+  #When
+  local actual=$(Log_Group_End)
+
+  #Then
+  Assert_Contains "$actual" "ENDGROUP"
+}
+UnitTest_Log_Group_End_Docker() {
+  #Given
+  Environment_Platform() { #mock
+    echo "docker"
   }
 
   #When
